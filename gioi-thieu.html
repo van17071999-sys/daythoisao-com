@@ -149,75 +149,52 @@
         </p>
       </div>
 
-      <!-- Founder Detailed Profile Card -->
-      <div class="bg-gradient-to-br from-[#FAF6EE] via-[#F5ECE0] to-[#EADBCA] rounded-3xl p-6 sm:p-10 border-2 border-[#D9C4A6] shadow-xl overflow-hidden relative">
-        <div class="absolute top-0 right-0 p-8 opacity-10 pointer-events-none hidden sm:block">
-          <i class="fa-solid fa-music text-9xl text-[#881B1B]"></i>
-        </div>
-
-        <div class="relative z-10 space-y-8">
-          
-          <!-- Badge and Stamp -->
-          <div class="flex items-center justify-between">
-            <span class="text-xs uppercase tracking-widest text-[#881B1B] font-bold bg-[#881B1B]/10 px-4 py-1.5 rounded-full border border-[#881B1B]/20 flex items-center gap-2 shadow-sm">
-              <i class="fa-solid fa-award text-[#E5A93C]"></i> Người Sáng Lập & Giảng Viên
-            </span>
-            <div class="w-11 h-14 border-2 border-[#881B1B] text-[#881B1B] flex flex-col items-center justify-center text-[10px] font-bold tracking-tighter bg-red-50/80 rotate-2 shadow-inner rounded-sm">
-              <span>ÂU</span>
-              <span>CƠ</span>
-            </div>
-          </div>
-
-          <!-- Main Info Grid -->
-          <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-            <div class="md:col-span-4 flex flex-col items-center text-center space-y-3">
-              <div class="relative">
-                <div class="w-32 h-32 sm:w-36 sm:h-36 rounded-3xl bg-gradient-to-tr from-[#193822] via-[#20402C] to-[#3B6B48] text-amber-200 flex items-center justify-center shadow-xl border-4 border-white">
-                  <i class="fa-solid fa-user-graduate text-5xl text-amber-100"></i>
-                </div>
-                <span class="absolute -bottom-2 -right-2 w-9 h-9 rounded-full bg-[#881B1B] text-white text-sm flex items-center justify-center font-bold shadow-lg border-2 border-white">
-                  <i class="fa-solid fa-music"></i>
+      <!-- Founder Detailed Profile Card (Dynamic Container) -->
+      <div id="founderProfileSection">
+        <!-- Default: Đang cập nhật State -->
+        <div class="bg-gradient-to-br from-[#FAF6EE] via-[#F5ECE0] to-[#EADBCA] rounded-3xl p-6 sm:p-10 border-2 border-[#D9C4A6] shadow-xl overflow-hidden relative">
+          <div class="relative z-10 space-y-6 text-center sm:text-left">
+            
+            <div class="flex flex-wrap items-center justify-between gap-3">
+              <div class="flex items-center gap-2">
+                <span class="text-xs uppercase tracking-widest text-[#881B1B] font-bold bg-[#881B1B]/10 px-4 py-1.5 rounded-full border border-[#881B1B]/20 flex items-center gap-2 shadow-sm">
+                  <i class="fa-solid fa-user-tie text-[#881B1B]"></i> Người Sáng Lập
+                </span>
+                <span class="inline-flex items-center gap-1.5 text-xs font-bold text-amber-800 bg-amber-100 px-3 py-1 rounded-full border border-amber-300 shadow-sm">
+                  <i class="fa-solid fa-clock-rotate-left animate-spin text-[11px]"></i> Đang cập nhật
                 </span>
               </div>
-              <div>
-                <h3 class="font-serif text-2xl font-bold text-[#292421]">Thầy Quách Hạ Văn</h3>
-                <span class="text-xs font-bold text-[#881B1B] uppercase tracking-wider block mt-0.5">Chủ nhiệm Sáo Trúc Âu Cơ</span>
+              <div class="w-11 h-14 border-2 border-[#881B1B] text-[#881B1B] flex flex-col items-center justify-center text-[10px] font-bold tracking-tighter bg-red-50/80 rotate-2 shadow-inner rounded-sm">
+                <span>ÂU</span>
+                <span>CƠ</span>
               </div>
             </div>
 
-            <div class="md:col-span-8 space-y-4 text-sm sm:text-base text-[#59524B] leading-relaxed">
-              <p>
-                Với hơn <strong class="text-[#292421] font-semibold">8 năm kinh nghiệm</strong> nghiên cứu, biểu diễn và trực tiếp đào tạo hàng nghìn học viên, Thầy Quách Hạ Văn luôn trăn trở về việc đơn giản hóa quá trình học nhạc cụ dân tộc truyền thống.
-              </p>
-              <p>
-                Phương pháp giảng dạy độc quyền tại <strong class="text-[#292421]">Sáo Trúc Âu Cơ</strong> kết hợp trực quan giữa <em>hệ thống cảm âm 2 dòng nốt - lời</em>, hình ảnh ngón bấm chi tiết và kỹ thuật luyện hơi thực chiến, giúp người mới bắt đầu có thể thổi kêu và chơi trọn vẹn bài hát đầu tiên chỉ sau vài ngày tự luyện tập.
-              </p>
-              <div class="p-4 bg-white/90 rounded-2xl border border-[#D9CDBB] italic text-xs sm:text-sm text-[#292421] leading-relaxed">
-                <i class="fa-solid fa-quote-left text-[#881B1B]/40 text-base mr-1.5"></i>
-                "Âm nhạc dân tộc Việt Nam có sức sống trường tồn mãnh liệt. Mục tiêu của daythoisao.com là xóa bỏ mọi rào cản về nhạc lý phức tạp, mở ra cánh cửa để bất kỳ ai yêu tiếng sáo đều có thể tự học một cách dễ dàng và bài bản nhất."
+            <div class="py-4 flex flex-col sm:flex-row items-center gap-5 sm:gap-6">
+              <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-3xl bg-[#FAF6EE] border-2 border-dashed border-[#881B1B]/40 flex items-center justify-center text-[#881B1B] shrink-0 shadow-inner">
+                <i class="fa-solid fa-user-gear text-4xl sm:text-5xl text-[#881B1B]/70"></i>
+              </div>
+              <div class="space-y-2">
+                <h3 class="font-serif text-2xl sm:text-3xl font-bold text-[#292421]">Thông Tin Người Sáng Lập Đang Cập Nhật</h3>
+                <p class="text-xs sm:text-sm text-[#59524B] leading-relaxed max-w-2xl">
+                  Nội dung giới thiệu chi tiết về Người sáng lập & Đội ngũ Giảng viên Sáo Trúc Âu Cơ đang được cập nhật và hoàn thiện.
+                </p>
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-amber-50 border border-amber-200 text-xs text-amber-900 font-medium">
+                  <i class="fa-solid fa-circle-info text-amber-700"></i> Mọi hoạt động tư vấn khóa học và hỗ trợ kỹ thuật thổi sáo vẫn diễn ra bình thường 24/7.
+                </div>
               </div>
             </div>
-          </div>
 
-          <!-- Stats Grid -->
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 border-t border-[#D9CDBB]">
-            <div class="bg-white/85 backdrop-blur-sm p-4 rounded-2xl border border-[#D9CDBB] text-center shadow-sm">
-              <div class="font-serif font-bold text-[#881B1B] text-2xl sm:text-3xl">5.000+</div>
-              <div class="text-xs font-bold text-[#292421] mt-1">Học viên toàn quốc</div>
-              <p class="text-[11px] text-[#6B625B] mt-0.5">Đã tham gia các khóa học Trực tiếp & Online</p>
+            <div class="pt-4 border-t border-[#D9CDBB] flex flex-col sm:flex-row items-center justify-between gap-4">
+              <div class="text-xs text-[#59524B] text-center sm:text-left">
+                📍 <strong>Địa chỉ lớp học:</strong> 106/72 Hòa Bình, Phường Hiệp Tân, Tân Phú, TP.HCM
+              </div>
+              <a href="https://zalo.me/0374261368" target="_blank" class="px-5 py-2.5 bg-[#881B1B] hover:bg-[#701515] text-white text-xs font-bold rounded-xl shadow transition-all flex items-center gap-2">
+                <i class="fa-solid fa-phone text-xs"></i> Zalo Hotline: 0374 261 368
+              </a>
             </div>
-            <div class="bg-white/85 backdrop-blur-sm p-4 rounded-2xl border border-[#D9CDBB] text-center shadow-sm">
-              <div class="font-serif font-bold text-[#193822] text-2xl sm:text-3xl">500+</div>
-              <div class="text-xs font-bold text-[#292421] mt-1">Cảm âm chuẩn 2 dòng</div>
-              <p class="text-[11px] text-[#6B625B] mt-0.5">Kho bài tập đa thể loại nhạc quê hương & nhạc trẻ</p>
-            </div>
-            <div class="bg-white/85 backdrop-blur-sm p-4 rounded-2xl border border-[#D9CDBB] text-center shadow-sm">
-              <div class="font-serif font-bold text-amber-700 text-2xl sm:text-3xl">100%</div>
-              <div class="text-xs font-bold text-[#292421] mt-1">Kiểm âm chuẩn 440Hz</div>
-              <p class="text-[11px] text-[#6B625B] mt-0.5">Tất cả nhạc cụ chế tác được đo tần số chuẩn xác</p>
-            </div>
-          </div>
 
+          </div>
         </div>
       </div>
 
@@ -345,6 +322,94 @@
         }
       }
     }
+
+    // Dynamic Founder Profile Renderer
+    function renderFounderPage() {
+      try {
+        const saved = JSON.parse(localStorage.getItem('DAYTHOISAO_FOUNDER_SETTINGS') || '{}');
+        const container = document.getElementById('founderProfileSection');
+        if (!container) return;
+
+        if (saved.visibility === 'public') {
+          const name = saved.name || "Thầy Quách Hạ Văn";
+          const title = saved.title || "Chủ nhiệm & Giảng viên Sáo Trúc Âu Cơ";
+          const bio = saved.bio || "Hơn 8 năm tâm huyết nghiên cứu, giảng dạy và xây dựng hệ thống giáo trình tự học sáo trúc thực chiến, dễ hiểu từ số 0.";
+          const rawZalo = saved.zalo || "0374 261 368";
+          const cleanZalo = rawZalo.replace(/\s+/g, '');
+
+          container.innerHTML = `
+            <div class="bg-gradient-to-br from-[#FAF6EE] via-[#F5ECE0] to-[#EADBCA] rounded-3xl p-6 sm:p-10 border-2 border-[#D9C4A6] shadow-xl overflow-hidden relative">
+              <div class="absolute top-0 right-0 p-8 opacity-10 pointer-events-none hidden sm:block">
+                <i class="fa-solid fa-music text-9xl text-[#881B1B]"></i>
+              </div>
+
+              <div class="relative z-10 space-y-8">
+                <div class="flex items-center justify-between">
+                  <span class="text-xs uppercase tracking-widest text-[#881B1B] font-bold bg-[#881B1B]/10 px-4 py-1.5 rounded-full border border-[#881B1B]/20 flex items-center gap-2 shadow-sm">
+                    <i class="fa-solid fa-award text-[#E5A93C]"></i> Người Sáng Lập & Giảng Viên
+                  </span>
+                  <div class="w-11 h-14 border-2 border-[#881B1B] text-[#881B1B] flex flex-col items-center justify-center text-[10px] font-bold tracking-tighter bg-red-50/80 rotate-2 shadow-inner rounded-sm">
+                    <span>ÂU</span>
+                    <span>CƠ</span>
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+                  <div class="md:col-span-4 flex flex-col items-center text-center space-y-3">
+                    <div class="relative">
+                      <div class="w-32 h-32 sm:w-36 sm:h-36 rounded-3xl bg-gradient-to-tr from-[#193822] via-[#20402C] to-[#3B6B48] text-amber-200 flex items-center justify-center shadow-xl border-4 border-white">
+                        <i class="fa-solid fa-user-graduate text-5xl text-amber-100"></i>
+                      </div>
+                      <span class="absolute -bottom-2 -right-2 w-9 h-9 rounded-full bg-[#881B1B] text-white text-sm flex items-center justify-center font-bold shadow-lg border-2 border-white">
+                        <i class="fa-solid fa-music"></i>
+                      </span>
+                    </div>
+                    <div>
+                      <h3 class="font-serif text-2xl font-bold text-[#292421]">${name}</h3>
+                      <span class="text-xs font-bold text-[#881B1B] uppercase tracking-wider block mt-0.5">${title}</span>
+                    </div>
+                  </div>
+
+                  <div class="md:col-span-8 space-y-4 text-sm sm:text-base text-[#59524B] leading-relaxed">
+                    <p>${bio}</p>
+                    <p>
+                      Phương pháp giảng dạy độc quyền tại <strong class="text-[#292421]">Sáo Trúc Âu Cơ</strong> kết hợp trực quan giữa <em>hệ thống cảm âm 2 dòng nốt - lời</em>, hình ảnh ngón bấm chi tiết và kỹ thuật luyện hơi thực chiến, giúp người mới bắt đầu có thể thổi kêu và chơi trọn vẹn bài hát đầu tiên chỉ sau vài ngày tự luyện tập.
+                    </p>
+                    <div class="p-4 bg-white/90 rounded-2xl border border-[#D9CDBB] italic text-xs sm:text-sm text-[#292421] leading-relaxed">
+                      <i class="fa-solid fa-quote-left text-[#881B1B]/40 text-base mr-1.5"></i>
+                      "Âm nhạc dân tộc Việt Nam có sức sống trường tồn mãnh liệt. Mục tiêu của daythoisao.com là xóa bỏ mọi rào cản về nhạc lý phức tạp, mở ra cánh cửa để bất kỳ ai yêu tiếng sáo đều có thể tự học một cách dễ dàng và bài bản nhất."
+                    </div>
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 border-t border-[#D9CDBB]">
+                  <div class="bg-white/85 backdrop-blur-sm p-4 rounded-2xl border border-[#D9CDBB] text-center shadow-sm">
+                    <div class="font-serif font-bold text-[#881B1B] text-2xl sm:text-3xl">5.000+</div>
+                    <div class="text-xs font-bold text-[#292421] mt-1">Học viên toàn quốc</div>
+                    <p class="text-[11px] text-[#6B625B] mt-0.5">Đã tham gia các khóa học Trực tiếp & Online</p>
+                  </div>
+                  <div class="bg-white/85 backdrop-blur-sm p-4 rounded-2xl border border-[#D9CDBB] text-center shadow-sm">
+                    <div class="font-serif font-bold text-[#193822] text-2xl sm:text-3xl">500+</div>
+                    <div class="text-xs font-bold text-[#292421] mt-1">Cảm âm chuẩn 2 dòng</div>
+                    <p class="text-[11px] text-[#6B625B] mt-0.5">Kho bài tập đa thể loại nhạc quê hương & nhạc trẻ</p>
+                  </div>
+                  <div class="bg-white/85 backdrop-blur-sm p-4 rounded-2xl border border-[#D9CDBB] text-center shadow-sm">
+                    <div class="font-serif font-bold text-amber-700 text-2xl sm:text-3xl">100%</div>
+                    <div class="text-xs font-bold text-[#292421] mt-1">Kiểm âm chuẩn 440Hz</div>
+                    <p class="text-[11px] text-[#6B625B] mt-0.5">Tất cả nhạc cụ chế tác được đo tần số chuẩn xác</p>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          `;
+        }
+      } catch (e) {
+        console.warn(e);
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', renderFounderPage);
   </script>
 </body>
 </html>

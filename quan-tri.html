@@ -431,13 +431,13 @@
             <div class="bg-white rounded-2xl border border-[#E8DFC8] shadow-sm p-6 space-y-4">
               <div class="flex items-center justify-between pb-2 border-b border-stone-100">
                 <h3 class="font-serif text-base font-bold text-[#193822] flex items-center gap-2">
-                  <i class="fa-solid fa-user-tie text-[#881B1B]"></i> Cấu hình Người Sáng Lập
+                  <i class="fa-solid fa-user-tie text-[#881B1B]"></i> Cấu hình Người Sáng Lập & Trang Giới Thiệu
                 </h3>
-                <span class="text-[10px] uppercase font-bold text-amber-700 bg-amber-50 px-2 py-0.5 rounded border border-amber-200">Trang chủ</span>
+                <span class="text-[10px] uppercase font-bold text-amber-700 bg-amber-50 px-2 py-0.5 rounded border border-amber-200">Trang Giới Thiệu</span>
               </div>
               <form onsubmit="saveFounderSettings(event)" class="space-y-3 text-xs">
                 <div>
-                  <label class="font-bold text-[#292421] block mb-1.5">Chế độ hiển thị trên Trang chủ:</label>
+                  <label class="font-bold text-[#292421] block mb-1.5">Chế độ hiển thị Trang Giới Thiệu & Người Sáng Lập:</label>
                   <div class="grid grid-cols-2 gap-2">
                     <label class="flex items-center gap-2 p-2.5 rounded-xl border border-[#D9CDBB] bg-[#FAF6EE] cursor-pointer hover:border-[#881B1B] transition-all">
                       <input type="radio" name="founderVisibility" value="private" id="founderVisPrivate" checked class="accent-[#881B1B]">
@@ -1656,7 +1656,8 @@
         zalo: document.getElementById('settingFounderZalo').value
       };
       localStorage.setItem('DAYTHOISAO_FOUNDER_SETTINGS', JSON.stringify(founder));
-      showToast("Đã lưu cấu hình Người Sáng Lập!");
+      const statusText = visibility === 'public' ? 'Công khai (Hiển thị đầy đủ)' : 'Riêng tư / Tạm ẩn (Báo Đang cập nhật)';
+      showToast(`Đã lưu! Trang Giới thiệu hiện ở chế độ: ${statusText}`);
     }
 
     function loadFounderSettings() {
