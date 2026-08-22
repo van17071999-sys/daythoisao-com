@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Đang tải bài viết... - daythoisao.com</title>
+  <script>
+    // Client-side fallback router for clean URLs like /bai-viet/:slug
+    (function() {
+      var path = window.location.pathname;
+      var match = path.match(/\/bai-viet\/([^/?#]+)/);
+      if (match && match[1]) {
+        var slug = decodeURIComponent(match[1]);
+        window.location.replace('/bai-viet-chi-tiet.html?slug=' + encodeURIComponent(slug));
+      } else {
+        window.location.replace('/index.html');
+      }
+    })();
+  </script>
+</head>
+<body style="font-family: system-ui, -apple-system, sans-serif; text-align: center; padding: 60px 20px; background-color: #FAF6EE; color: #292421;">
+  <h2 style="color: #881B1B;">Đang mở bài viết...</h2>
+  <p style="color: #6B625B; font-size: 14px;">Vui lòng chờ trong giây lát hoặc bấm vào <a href="/bai-viet.html" style="color: #881B1B; font-weight: bold;">danh sách bài viết</a>.</p>
+</body>
+</html>

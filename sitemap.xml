@@ -55,9 +55,51 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://daythoisao.com/bai-viet-chi-tiet.html</loc>
+    <loc>https://daythoisao.com/bai-viet/cach-chon-sao-truc-phu-hop-cho-nguoi-moi-bat-dau</loc>
     <lastmod>2024-08-23</lastmod>
-    <changefreq>daily</changefreq>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://daythoisao.com/bai-viet/5-loi-thuong-gap-khi-thoi-sao-va-cach-khac-phuc-triet-de</loc>
+    <lastmod>2024-08-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://daythoisao.com/bai-viet/bi-quyet-luyen-hoi-tho-bung-va-ky-thuat-rung-hoi-vibrato</loc>
+    <lastmod>2024-08-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://daythoisao.com/bai-viet/huong-dan-doc-not-nhac-va-cach-dich-cam-am-bai-hat</loc>
+    <lastmod>2024-08-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://daythoisao.com/bai-viet/nghe-thuat-luyen-lay-vuot-ngon-va-dap-ngon-trong-dan-ca</loc>
+    <lastmod>2024-08-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://daythoisao.com/bai-viet/kinh-nghiem-ve-sinh-chong-moc-va-chong-nut-sao-mua-dong</loc>
+    <lastmod>2024-08-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://daythoisao.com/bai-viet/lo-trinh-30-ngay-tu-hoc-thoi-sao-thanh-thao-tai-nha</loc>
+    <lastmod>2024-08-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://daythoisao.com/bai-viet/bi-quyet-chon-micro-va-xu-ly-am-thanh-bieu-dien-san-khau</loc>
+    <lastmod>2024-08-23</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 </urlset>

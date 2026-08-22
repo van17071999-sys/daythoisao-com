@@ -516,7 +516,7 @@
         return `
         <article class="bg-white rounded-2xl border border-[#E8DFC8] overflow-hidden shadow-sm article-card flex flex-col justify-between hover:border-[#881B1B] transition-all">
           <div>
-            <a href="bai-viet-chi-tiet.html?slug=${itemSlug}" class="block h-48 overflow-hidden relative bg-stone-100 group">
+            <a href="/bai-viet/${itemSlug}" class="block h-48 overflow-hidden relative bg-stone-100 group">
               <img src="${item.img}" alt="${item.title}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
               <span class="absolute top-3 left-3 bg-[#881B1B] text-white text-[10px] uppercase font-bold px-2.5 py-1 rounded-full shadow">
                 ${item.categoryName || item.category}
@@ -529,7 +529,7 @@
                 <span><i class="fa-regular fa-clock text-[#881B1B] mr-1"></i>${item.readTime}</span>
               </div>
               <h3 class="font-serif text-base sm:text-lg font-bold text-[#292421] hover:text-[#881B1B] transition-colors leading-snug mb-2">
-                <a href="bai-viet-chi-tiet.html?slug=${itemSlug}">${item.title}</a>
+                <a href="/bai-viet/${itemSlug}">${item.title}</a>
               </h3>
               <p class="text-xs text-[#59524B] line-clamp-3 leading-relaxed">
                 ${item.summary}
@@ -538,7 +538,7 @@
           </div>
           <div class="px-5 pb-5 pt-2 border-t border-[#F2EADA] flex items-center justify-between">
             <span class="text-[11px] font-semibold text-[#881B1B]"><i class="fa-solid fa-feather mr-1"></i>Sáo Trúc Âu Cơ</span>
-            <a href="bai-viet-chi-tiet.html?slug=${itemSlug}" class="px-3.5 py-1.5 bg-[#FAF6EE] hover:bg-[#881B1B] text-[#881B1B] hover:text-white border border-[#E0D5C3] hover:border-[#881B1B] text-xs font-semibold rounded-lg transition-all flex items-center gap-1 shadow-sm">
+            <a href="/bai-viet/${itemSlug}" class="px-3.5 py-1.5 bg-[#FAF6EE] hover:bg-[#881B1B] text-[#881B1B] hover:text-white border border-[#E0D5C3] hover:border-[#881B1B] text-xs font-semibold rounded-lg transition-all flex items-center gap-1 shadow-sm">
               Đọc bài viết <i class="fa-solid fa-arrow-right text-[9px]"></i>
             </a>
           </div>

@@ -496,6 +496,16 @@
         .replace(/-+/g, '-');
     }
 
+    function getSlugFromUrl() {
+      const path = window.location.pathname;
+      const match = path.match(/\/bai-viet\/([^/?#]+)/);
+      if (match && match[1] && match[1] !== 'index.html' && match[1] !== 'bai-viet.html') {
+        return decodeURIComponent(match[1]);
+      }
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get('slug');
+    }
+
     function getAllArticles() {
       try {
         const stored = localStorage.getItem('DAYTHOISAO_ARTICLES');
@@ -517,13 +527,13 @@
 
     function initDetailPage() {
       const urlParams = new URLSearchParams(window.location.search);
-      const slugParam = urlParams.get('slug');
+      const slugFromUrl = getSlugFromUrl();
       const articleId = parseInt(urlParams.get('id'));
       const articles = getAllArticles();
       
       let article = null;
-      if (slugParam) {
-        article = articles.find(a => (a.slug || generateSlug(a.title)) === slugParam);
+      if (slugFromUrl) {
+        article = articles.find(a => (a.slug || generateSlug(a.title)) === slugFromUrl);
       }
       if (!article && articleId) {
         article = articles.find(a => a.id === articleId);
@@ -536,6 +546,14 @@
 
       const currentSlug = article.slug || generateSlug(article.title);
 
+      // Clean URL: Update browser address bar to clean SEO link: /bai-viet/{slug}
+      try {
+        const cleanPath = `/bai-viet/${currentSlug}`;
+        if (window.location.pathname !== cleanPath) {
+          window.history.replaceState({ articleId: article.id, slug: currentSlug }, '', cleanPath);
+        }
+      } catch (e) {}
+
       // Update Page SEO Metadata
       document.title = `${article.title} - Dạy Thổi Sáo | daythoisao.com`;
       const descEl = document.getElementById('pageDescription');
@@ -543,9 +561,9 @@
 
       // Update canonical and og url
       const canonicalEl = document.getElementById('pageCanonical');
-      if (canonicalEl) canonicalEl.href = `https://daythoisao.com/bai-viet-chi-tiet.html?slug=${currentSlug}`;
+      if (canonicalEl) canonicalEl.href = `https://daythoisao.com/bai-viet/${currentSlug}`;
       const ogUrlEl = document.getElementById('ogUrl');
-      if (ogUrlEl) ogUrlEl.content = `https://daythoisao.com/bai-viet-chi-tiet.html?slug=${currentSlug}`;
+      if (ogUrlEl) ogUrlEl.content = `https://daythoisao.com/bai-viet/${currentSlug}`;
 
       // Breadcrumb & Headings
       document.getElementById('breadcrumbCategory').innerText = article.categoryName || article.category;
@@ -585,7 +603,7 @@
       grid.innerHTML = related.map(item => {
         const itemSlug = item.slug || generateSlug(item.title);
         return `
-        <a href="bai-viet-chi-tiet.html?slug=${itemSlug}" class="bg-white rounded-2xl border border-[#E8DFC8] overflow-hidden shadow-sm hover:-translate-y-1.5 hover:shadow-md hover:border-[#881B1B] transition-all flex flex-col justify-between group">
+        <a href="/bai-viet/${itemSlug}" class="bg-white rounded-2xl border border-[#E8DFC8] overflow-hidden shadow-sm hover:-translate-y-1.5 hover:shadow-md hover:border-[#881B1B] transition-all flex flex-col justify-between group">
           <div>
             <div class="h-36 overflow-hidden bg-stone-100 relative">
               <img src="${item.img}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
