@@ -1,0 +1,1508 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cách Đọc Nốt Nhạc & Nhạc Lý Sáo Trúc Cơ Bản - Tự Học Thổi Sáo | daythoisao.com</title>
+  <meta name="description" content="Hướng dẫn cách đọc nốt nhạc trên khuông nhạc 5 dòng kẻ, nhận biết cao độ, trường độ, dấu thăng giáng và chuyển đổi sang cảm âm thổi sáo dễ dàng cho người mới.">
+  <meta name="keywords" content="cách đọc nốt nhạc, nhạc lý sáo trúc, cảm âm thổi sáo, tự học thổi sáo, dạy thổi sáo hồ chí minh, học thổi sáo quận tân phú, nốt nhạc sáo trúc">
+  <meta name="author" content="Sáo Trúc Âu Cơ - daythoisao.com">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://daythoisao.com/doc-not-nhac.html">
+  
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="Cách Đọc Nốt Nhạc & Nhạc Lý Sáo Trúc Cơ Bản - Tự Học Thổi Sáo | daythoisao.com">
+  <meta property="og:description" content="Hướng dẫn cách đọc nốt nhạc trên khuông nhạc 5 dòng kẻ, nhận biết cao độ, trường độ, dấu thăng giáng và chuyển đổi sang cảm âm thổi sáo dễ dàng cho người mới.">
+  <meta property="og:url" content="https://daythoisao.com/doc-not-nhac.html">
+  <meta property="og:site_name" content="daythoisao.com - Sáo Trúc Âu Cơ">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="vi_VN">
+  <meta property="og:image" content="https://daythoisao.com/assets/logo.png">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Cách Đọc Nốt Nhạc & Nhạc Lý Sáo Trúc Cơ Bản - Tự Học Thổi Sáo | daythoisao.com">
+  <meta name="twitter:description" content="Hướng dẫn cách đọc nốt nhạc trên khuông nhạc 5 dòng kẻ, nhận biết cao độ, trường độ, dấu thăng giáng và chuyển đổi sang cảm âm thổi sáo dễ dàng cho người mới.">
+  <meta name="twitter:image" content="https://daythoisao.com/assets/logo.png">
+
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Cinzel:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'cream-bg': '#FDFBF7',
+            'paper-warm': '#FAF6EE',
+            'bordeaux-red': '#881B1B',
+            'crimson-dark': '#701515',
+            'bamboo-green': '#193822',
+            'bamboo-dark': '#112517',
+            'amber-gold': '#D9822B',
+            'gold-accent': '#E5A93C',
+            'ink-dark': '#292421',
+            'ink-muted': '#6B625B',
+            'border-warm': '#E8DFC8'
+          },
+          fontFamily: {
+            serif: ['"Playfair Display"', 'Georgia', 'serif'],
+            sans: ['"Be Vietnam Pro"', 'sans-serif'],
+            cinzel: ['"Cinzel"', 'serif']
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { background-color: #FAF6EE; color: #292421; font-family: 'Be Vietnam Pro', sans-serif; }
+    .bg-paper-texture {
+      background-color: #FAF6EE;
+      background-image: radial-gradient(#e0d7c7 0.75px, transparent 0.75px), radial-gradient(#e0d7c7 0.75px, #FAF6EE 0.75px);
+      background-size: 30px 30px;
+      background-position: 0 0, 15px 15px;
+    }
+    .flute-tube-row {
+      background: #FFFFFF;
+      border: 1.5px solid #292421;
+      border-radius: 9999px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    }
+    .hole-blow {
+      width: 18px;
+      height: 12px;
+      border-radius: 9999px;
+      border: 1.5px solid #292421;
+      background: #FFFFFF;
+    }
+    .hole-main-closed {
+      width: 14px;
+      height: 14px;
+      border-radius: 9999px;
+      background-color: #2563EB;
+      border: 1.5px solid #1E40AF;
+      box-shadow: inset 0 1px 2px rgba(0,0,0,0.3);
+    }
+    .hole-main-open {
+      width: 14px;
+      height: 14px;
+      border-radius: 9999px;
+      background-color: #FFFFFF;
+      border: 1.5px solid #292421;
+    }
+    .octave-tab-btn.active {
+      background-color: #881B1B !important;
+      color: #FFFFFF !important;
+      border-color: #881B1B !important;
+      box-shadow: 0 2px 6px rgba(136, 27, 27, 0.3);
+    }
+    .collapsible-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease-in-out, opacity 0.3s ease-in-out;
+      opacity: 0;
+    }
+    .collapsible-content.expanded {
+      max-height: 4500px;
+      opacity: 1;
+    }
+    .svg-note-item {
+      cursor: pointer;
+      transition: transform 0.15s ease;
+    }
+    .svg-note-item:hover ellipse {
+      fill: #D9822B !important;
+    }
+    .svg-note-item:hover text {
+      fill: #D9822B !important;
+      font-weight: 800;
+    }
+    .svg-note-item.playing ellipse {
+      fill: #2563EB !important;
+      filter: drop-shadow(0 0 6px #2563EB);
+    }
+    .svg-note-item.playing text {
+      fill: #2563EB !important;
+      font-weight: 800;
+    }
+    .sheet-note-group.playing ellipse {
+      fill: #DC2626 !important;
+      stroke: #DC2626 !important;
+      filter: drop-shadow(0 0 6px #DC2626);
+    }
+    .sheet-note-group.playing text {
+      fill: #DC2626 !important;
+      font-weight: 900 !important;
+    }
+    .hcb-note-txt.hidden-txt {
+      display: none;
+    }
+  </style>
+</head>
+<body class="bg-paper-texture antialiased flex flex-col min-h-screen pb-16 md:pb-0">
+
+  <!-- ================= TOP HEADER (Logo Flush Left) ================= -->
+  <header class="bg-[#FAF6EE]/95 sticky top-0 z-50 border-b border-[#EADFCB] backdrop-blur-md">
+    <div class="w-full px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-3 group shrink-0">
+        <img src="assets/logo.png" alt="Logo daythoisao.com" class="w-11 h-11 rounded-full object-cover border border-[#881B1B]/30 shadow-sm group-hover:scale-105 transition-transform">
+        <div>
+          <span class="block font-serif text-xl sm:text-2xl font-bold tracking-wide text-[#881B1B] lowercase leading-none">daythoisao.com</span>
+          <span class="block text-xs text-[#2D5E3B] font-medium tracking-tight mt-0.5">Kiến thức sáo trúc cho mọi người</span>
+        </div>
+      </a>
+      <nav class="hidden md:flex items-center space-x-4 lg:space-x-6 text-[14px] lg:text-[15px] font-medium text-[#292421]">
+        <a href="index.html" class="hover:text-[#881B1B] transition-colors">Trang chủ</a>
+        <a href="lo-trinh-nguoi-moi.html" class="hover:text-[#881B1B] transition-colors">Lộ trình học</a>
+        <a href="danh-sach-bai-tap.html" class="hover:text-[#881B1B] transition-colors">Kho cảm âm</a>
+        <a href="tra-cuu-the-bam.html" class="hover:text-[#881B1B] transition-colors">Thế bấm sáo</a>
+        <a href="luyen-hoi-khau-hinh.html" class="hover:text-[#881B1B] transition-colors">Kỹ thuật hơi</a>
+        <a href="doc-not-nhac.html" class="text-[#881B1B] border-b-2 border-[#881B1B] pb-1 font-semibold">Đọc nốt nhạc</a>
+        <a href="ke-hoach-15-phut.html" class="hover:text-[#881B1B] transition-colors">Kế hoạch 15p</a>
+        <a href="bai-viet.html" class="hover:text-[#881B1B] transition-colors">Bài viết</a>
+      </nav>
+      <div class="flex items-center space-x-2 sm:space-x-3 shrink-0">
+        <a href="index.html" class="hidden sm:inline-flex px-3.5 py-2 text-xs font-semibold text-[#881B1B] border border-[#881B1B] hover:bg-[#881B1B] hover:text-white rounded-xl transition-all items-center gap-1">
+          <i class="fa-solid fa-house"></i> Trang chủ
+        </a>
+        <button onclick="toggleMobileMenu()" class="md:hidden w-10 h-10 rounded-xl flex items-center justify-center text-[#292421] hover:bg-[#EADBCA] transition-colors">
+          <i class="fa-solid fa-bars text-xl" id="mobileMenuIcon"></i>
+        </button>
+      </div>
+    </div>
+      <!-- Mobile Nav Dropdown -->
+    <div id="mobileMenu" class="hidden md:hidden bg-[#FAF6EE] border-b border-[#EADFCB] px-6 py-4 space-y-3 shadow-md">
+      <a href="index.html" class="block text-[#292421] hover:text-[#881B1B] font-medium py-1"><i class="fa-solid fa-house w-5 text-[#881B1B]"></i> Trang chủ</a>
+      <a href="lo-trinh-nguoi-moi.html" class="block text-[#292421] hover:text-[#881B1B] font-medium py-1"><i class="fa-solid fa-compass w-5 text-[#881B1B]"></i> Lộ trình học cho người mới</a>
+      <a href="danh-sach-bai-tap.html" class="block text-[#292421] hover:text-[#881B1B] font-medium py-1"><i class="fa-solid fa-music w-5 text-[#881B1B]"></i> Kho cảm âm & bài tập</a>
+      <a href="tra-cuu-the-bam.html" class="block text-[#292421] hover:text-[#881B1B] font-medium py-1"><i class="fa-solid fa-hand w-5 text-[#881B1B]"></i> Công cụ tra cứu thế bấm</a>
+      <a href="luyen-hoi-khau-hinh.html" class="block text-[#292421] hover:text-[#881B1B] font-medium py-1"><i class="fa-solid fa-wind w-5 text-[#881B1B]"></i> Khẩu hình & Kỹ thuật hơi</a>
+      <a href="doc-not-nhac.html" class="block text-[#881B1B] font-bold py-1"><i class="fa-solid fa-book-open w-5 text-[#881B1B]"></i> Cách đọc nốt nhạc & Nhạc lý</a>
+      <a href="ke-hoach-15-phut.html" class="block text-[#292421] hover:text-[#881B1B] font-medium py-1"><i class="fa-solid fa-stopwatch w-5 text-[#881B1B]"></i> Kế hoạch 15 phút/ngày</a>
+      <a href="bai-viet.html" class="block text-[#292421] hover:text-[#881B1B] font-medium py-1"><i class="fa-solid fa-newspaper w-5 text-[#881B1B]"></i> Kho bài viết & Kinh nghiệm</a>
+      <div class="pt-2 border-t border-stone-200">
+        <a href="https://saotrucauco.com" target="_blank" class="w-full py-2.5 bg-[#881B1B] text-white rounded-xl font-medium text-xs block text-center shadow">
+          <i class="fa-solid fa-graduation-cap mr-1"></i> Sáo Trúc Âu Cơ
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= MAIN CONTAINER ================= -->
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex-1">
+    
+    <!-- Breadcrumb -->
+    <nav class="flex items-center gap-2 text-xs text-[#6B625B] mb-6">
+      <a href="index.html" class="hover:text-[#881B1B]"><i class="fa-solid fa-house mr-1"></i>Trang chủ</a>
+      <span>/</span>
+      <span class="text-[#881B1B] font-semibold">Chuyên đề 2: Bảng thế bấm sáo trúc & Nhạc lý cơ bản</span>
+    </nav>
+
+    <!-- Banner -->
+    <div class="bg-gradient-to-r from-[#193822] to-[#112517] text-white rounded-3xl p-8 sm:p-10 shadow-lg mb-10 relative overflow-hidden">
+      <div class="max-w-3xl relative z-10 space-y-3">
+        <span class="px-3.5 py-1 bg-white/20 rounded-full text-xs font-semibold uppercase tracking-wider text-amber-200">
+          <i class="fa-solid fa-graduation-cap mr-1"></i> Giáo trình nhạc lý & âm vực sáo trúc
+        </span>
+        <h1 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold">Bảng Thế Bấm Sáo Trúc & Nhạc Lý Chuẩn</h1>
+        <p class="text-sm sm:text-base text-emerald-100 leading-relaxed font-light">
+          Hệ thống thế bấm 3 quãng từ <strong>Đô 1 đến Sol 3</strong>, thứ tự 7 dấu thăng/giáng trực quan trên 5 dòng kẻ, sơ đồ cây phân nhánh trường độ & dấu lặng, ý nghĩa số chỉ nhịp và thực hành đọc nhạc với bản nhạc <strong>Hot Cross Buns</strong>.
+        </p>
+      </div>
+      <div class="absolute right-4 bottom-0 opacity-15 text-white pointer-events-none">
+        <i class="fa-solid fa-music text-[200px]"></i>
+      </div>
+    </div>
+
+    <!-- Quick Navigation Index (7 Sections with auto-expand) -->
+    <div class="bg-white rounded-2xl p-5 border border-[#E8DFC8] shadow-sm mb-10">
+      <h3 class="text-xs font-bold text-[#881B1B] uppercase tracking-wider mb-3 flex items-center gap-2">
+        <i class="fa-solid fa-list-check"></i> Mục lục bài học (Bấm để mở trực tiếp):
+      </h3>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
+        <a href="#sec1" onclick="openSection('sec1')" class="p-2.5 bg-[#FAF6EE] hover:bg-[#F2E8D8] rounded-xl font-bold text-[#881B1B] border border-[#E8DFC8] text-center transition-colors">1. Sheet nhạc & 7 Dấu ♯ / ♭</a>
+        <a href="#sec2" onclick="openSection('sec2')" class="p-2.5 bg-[#FAF6EE] hover:bg-[#F2E8D8] rounded-xl font-medium border border-[#E8DFC8] text-center transition-colors">2. Khuông nhạc & Khóa Sol</a>
+        <a href="#sec3" onclick="openSection('sec3')" class="p-2.5 bg-[#FAF6EE] hover:bg-[#F2E8D8] rounded-xl font-bold text-[#881B1B] border border-[#E8DFC8] text-center transition-colors">3. Bảng thế bấm 3 Quãng</a>
+        <a href="#sec4" onclick="openSection('sec4')" class="p-2.5 bg-[#FAF6EE] hover:bg-[#F2E8D8] rounded-xl font-bold text-[#193822] border border-[#E8DFC8] text-center transition-colors">4. Hình nốt, Dấu lặng & Cây trường độ</a>
+        <a href="#sec5" onclick="openSection('sec5')" class="p-2.5 bg-[#FAF6EE] hover:bg-[#F2E8D8] rounded-xl font-bold text-[#881B1B] border border-[#E8DFC8] text-center transition-colors">5. Ý nghĩa số chỉ nhịp</a>
+        <a href="#sec6" onclick="openSection('sec6')" class="p-2.5 bg-[#FAF6EE] hover:bg-[#F2E8D8] rounded-xl font-medium border border-[#E8DFC8] text-center transition-colors">6. Ký hiệu thường gặp</a>
+        <a href="#sec7" onclick="openSection('sec7')" class="p-2.5 bg-[#FAF6EE] hover:bg-[#F2E8D8] rounded-xl font-medium border border-[#E8DFC8] text-center transition-colors text-[#881B1B] font-bold">7. Thực hành: Hot Cross Buns</a>
+      </div>
+    </div>
+
+    <!-- ================= 7 NỘI DUNG CHI TIẾT (COLLAPSIBLE TẤT CẢ) ================= -->
+    <div class="space-y-8 text-[#292421]">
+
+      <!-- 1. Sheet nhạc là gì & Thứ tự 7 dấu Thăng / Giáng (COLLAPSIBLE) -->
+      <section id="sec1" class="bg-white rounded-3xl p-6 sm:p-8 border border-[#E8DFC8] shadow-sm space-y-4">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-3 border-b border-[#F0E8DA]">
+          <div class="flex items-center gap-3">
+            <span class="w-8 h-8 rounded-full bg-[#881B1B] text-white flex items-center justify-center font-bold text-sm">1</span>
+            <div>
+              <h2 class="font-serif text-2xl font-bold text-[#881B1B]">Sheet Nhạc Là Gì & Thứ Tự 7 Dấu Thăng (♯) / 7 Dấu Giáng (♭)</h2>
+              <span class="text-xs text-[#2D5E3B] font-semibold">Vị trí trực quan trên 5 dòng kẻ khuông nhạc & quy tắc tìm giọng</span>
+            </div>
+          </div>
+          <button onclick="toggleSectionCollapse('sec1')" id="btn-toggle-sec1" class="px-5 py-2.5 bg-[#881B1B] hover:bg-[#701515] text-white text-xs font-bold rounded-xl shadow flex items-center justify-center gap-2 transition-all">
+            <i class="fa-solid fa-eye" id="icon-sec1"></i> <span id="text-sec1">Xem thêm</span>
+          </button>
+        </div>
+        
+        <!-- Collapsible Content Sec 1 -->
+        <div id="content-sec1" class="collapsible-content space-y-6 pt-2">
+          <p class="text-sm leading-relaxed text-[#4A423B]">
+            <strong>Sheet nhạc (Bản nhạc tiêu chuẩn)</strong> là hệ thống văn bản âm nhạc quốc tế dùng để ghi lại chính xác hai yếu tố: <strong>Cao độ</strong> (độ cao trầm của âm) và <strong>Trường độ</strong> (độ ngân dài ngắn).
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="bg-[#FAF6EE] p-4 sm:p-5 rounded-2xl border border-[#EADFCB] space-y-2">
+              <h3 class="text-xs font-bold text-[#193822] uppercase tracking-wider flex items-center gap-1.5">
+                <i class="fa-solid fa-file-lines text-[#881B1B]"></i> Sheet nhạc tiêu chuẩn:
+              </h3>
+              <ul class="text-xs space-y-1.5 text-[#59524B] list-disc list-inside">
+                <li>Ghi chép chính xác cao độ trên khuông và độ dài từng nốt.</li>
+                <li><strong>Ưu điểm lớn nhất:</strong> Người học chỉ cần nhìn bản nhạc là có thể <strong>tự thổi được bài hát mới mà không cần nghe thuộc trước</strong>.</li>
+                <li>Chuẩn quốc tế áp dụng cho mọi loại nhạc cụ.</li>
+              </ul>
+            </div>
+
+            <div class="bg-[#FAF6EE] p-4 sm:p-5 rounded-2xl border border-[#EADFCB] space-y-2">
+              <h3 class="text-xs font-bold text-[#881B1B] uppercase tracking-wider flex items-center gap-1.5">
+                <i class="fa-solid fa-align-left text-[#881B1B]"></i> Cảm âm sáo trúc:
+              </h3>
+              <ul class="text-xs space-y-1.5 text-[#59524B] list-disc list-inside">
+                <li>Ghi tên nốt chữ (Đô, Rê, Mi...) kèm lời ca.</li>
+                <li><strong>Đặc điểm:</strong> Dễ tiếp cận cho người mới, nhưng người chơi <strong>bắt buộc phải thuộc giai điệu bài hát từ trước</strong> mới thổi đúng nhịp phách được.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="bg-gradient-to-br from-[#FAF6EE] to-[#F5ECE0] p-5 sm:p-6 rounded-2xl border-2 border-[#D9CDBB] space-y-6">
+            <div class="flex items-center justify-between border-b border-[#E0D5C3] pb-3">
+              <div>
+                <h3 class="font-serif text-base sm:text-lg font-bold text-[#881B1B] flex items-center gap-2">
+                  <i class="fa-solid fa-lines-leaning"></i> THỨ TỰ 7 DẤU THĂNG (♯) & 7 DẤU GIÁNG (♭) TRÊN 5 DÒNG KẺ
+                </h3>
+                <p class="text-xs text-[#6B625B] mt-0.5">Vị trí dòng kẻ / khe cố định ở đầu khuông nhạc (Khóa Sol)</p>
+              </div>
+              <span class="hidden sm:inline-block px-3 py-1 bg-[#881B1B] text-white text-[11px] font-bold rounded-full">Trực quan 5 dòng kẻ</span>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <div class="bg-white p-4 sm:p-5 rounded-2xl border border-red-200 shadow-sm space-y-3">
+                <div class="flex items-center justify-between border-b border-red-100 pb-2">
+                  <strong class="text-sm font-bold text-[#881B1B] flex items-center gap-1.5">
+                    <span class="text-lg">♯</span> 7 DẤU THĂNG (Tăng nửa cung)
+                  </strong>
+                  <span class="text-[10px] font-bold bg-red-100 text-[#881B1B] px-2.5 py-0.5 rounded-full">Fa - Đô - Sol - Rê - La - Mi - Si</span>
+                </div>
+                <div class="overflow-x-auto bg-[#FAF6EE] p-2 rounded-xl border border-red-100">
+                  <svg viewBox="0 0 520 175" class="w-full select-none" style="font-family: sans-serif;"><rect x="0" y="0" width="520" height="175" fill="#FAF6EE" rx="12" stroke="#E8DFC8"/><line x1="40" y1="45" x2="495" y2="45" stroke="#59524B" stroke-width="1.4"/><line x1="40" y1="60" x2="495" y2="60" stroke="#59524B" stroke-width="1.4"/><line x1="40" y1="75" x2="495" y2="75" stroke="#59524B" stroke-width="1.4"/><line x1="40" y1="90" x2="495" y2="90" stroke="#881B1B" stroke-width="1.4"/><line x1="40" y1="105" x2="495" y2="105" stroke="#59524B" stroke-width="1.4"/><text x="12" y="49" font-size="8.5" fill="#6B625B">D5</text><text x="12" y="64" font-size="8.5" fill="#6B625B">D4</text><text x="12" y="79" font-size="8.5" fill="#6B625B">D3</text><text x="12" y="94" font-size="8.5" fill="#881B1B" font-weight="bold">D2</text><text x="12" y="109" font-size="8.5" fill="#6B625B">D1</text><text x="50" y="100" font-size="64" fill="#193822" font-family="serif">𝄞</text><text x="145" y="45" font-size="28" font-weight="bold" fill="#881B1B" text-anchor="middle" dominant-baseline="central">♯</text><line x1="145" y1="115" x2="145" y2="128" stroke="#D9CDBB" stroke-dasharray="2,2"/><rect x="123" y="130" width="44" height="34" rx="6" fill="#FFFFFF" stroke="#F0D5D5"/><text x="145" y="144" font-size="10.5" font-weight="bold" fill="#881B1B" text-anchor="middle">1. Fa♯</text><text x="145" y="157" font-size="8.5" fill="#6B625B" text-anchor="middle">Dòng 5</text><text x="195" y="67.5" font-size="28" font-weight="bold" fill="#881B1B" text-anchor="middle" dominant-baseline="central">♯</text><line x1="195" y1="115" x2="195" y2="128" stroke="#D9CDBB" stroke-dasharray="2,2"/><rect x="173" y="130" width="44" height="34" rx="6" fill="#FFFFFF" stroke="#F0D5D5"/><text x="195" y="144" font-size="10.5" font-weight="bold" fill="#881B1B" text-anchor="middle">2. Đô♯</text><text x="195" y="157" font-size="8.5" fill="#6B625B" text-anchor="middle">Khe 3</text><text x="245" y="37.5" font-size="28" font-weight="bold" fill="#881B1B" text-anchor="middle" dominant-baseline="central">♯</text><line x1="245" y1="115" x2="245" y2="128" stroke="#D9CDBB" stroke-dasharray="2,2"/><rect x="223" y="130" width="44" height="34" rx="6" fill="#FFFFFF" stroke="#F0D5D5"/><text x="245" y="144" font-size="10.5" font-weight="bold" fill="#881B1B" text-anchor="middle">3. Sol♯</text><text x="245" y="157" font-size="8.5" fill="#6B625B" text-anchor="middle">Trên D5</text><text x="295" y="60" font-size="28" font-weight="bold" fill="#881B1B" text-anchor="middle" dominant-baseline="central">♯</text><line x1="295" y1="115" x2="295" y2="128" stroke="#D9CDBB" stroke-dasharray="2,2"/><rect x="273" y="130" width="44" height="34" rx="6" fill="#FFFFFF" stroke="#F0D5D5"/><text x="295" y="144" font-size="10.5" font-weight="bold" fill="#881B1B" text-anchor="middle">4. Rê♯</text><text x="295" y="157" font-size="8.5" fill="#6B625B" text-anchor="middle">Dòng 4</text><text x="345" y="82.5" font-size="28" font-weight="bold" fill="#881B1B" text-anchor="middle" dominant-baseline="central">♯</text><line x1="345" y1="115" x2="345" y2="128" stroke="#D9CDBB" stroke-dasharray="2,2"/><rect x="323" y="130" width="44" height="34" rx="6" fill="#FFFFFF" stroke="#F0D5D5"/><text x="345" y="144" font-size="10.5" font-weight="bold" fill="#881B1B" text-anchor="middle">5. La♯</text><text x="345" y="157" font-size="8.5" fill="#6B625B" text-anchor="middle">Khe 2</text><text x="395" y="52.5" font-size="28" font-weight="bold" fill="#881B1B" text-anchor="middle" dominant-baseline="central">♯</text><line x1="395" y1="115" x2="395" y2="128" stroke="#D9CDBB" stroke-dasharray="2,2"/><rect x="373" y="130" width="44" height="34" rx="6" fill="#FFFFFF" stroke="#F0D5D5"/><text x="395" y="144" font-size="10.5" font-weight="bold" fill="#881B1B" text-anchor="middle">6. Mi♯</text><text x="395" y="157" font-size="8.5" fill="#6B625B" text-anchor="middle">Khe 4</text><text x="445" y="75" font-size="28" font-weight="bold" fill="#881B1B" text-anchor="middle" dominant-baseline="central">♯</text><line x1="445" y1="115" x2="445" y2="128" stroke="#D9CDBB" stroke-dasharray="2,2"/><rect x="423" y="130" width="44" height="34" rx="6" fill="#FFFFFF" stroke="#F0D5D5"/><text x="445" y="144" font-size="10.5" font-weight="bold" fill="#881B1B" text-anchor="middle">7. Si♯</text><text x="445" y="157" font-size="8.5" fill="#6B625B" text-anchor="middle">Dòng 3</text></svg>
+                </div>
+                <div class="p-3 bg-red-50/50 rounded-xl border border-red-100 text-[11px] text-[#59524B] leading-relaxed space-y-1">
+                  <strong class="text-[#881B1B] block">🔍 Mẹo xác định giọng Trưởng (Dấu Thăng):</strong>
+                  <p>Lấy tên nốt của <strong>dấu thăng cuối cùng tăng lên 1/2 cung</strong>.</p>
+                  <p class="text-[#6B625B]"><em>Ví dụ: Có 1 dấu Fa♯ ➡️ tăng nửa cung thành <strong>Sol Trưởng (G)</strong> • Có 2 dấu (Fa♯, Đô♯) ➡️ tăng nửa cung từ Đô♯ thành <strong>Rê Trưởng (D)</strong>.</em></p>
+                </div>
+              </div>
+
+              <div class="bg-white p-4 sm:p-5 rounded-2xl border border-blue-200 shadow-sm space-y-3">
+                <div class="flex items-center justify-between border-b border-blue-100 pb-2">
+                  <strong class="text-sm font-bold text-blue-800 flex items-center gap-1.5">
+                    <span class="text-lg">♭</span> 7 DẤU GIÁNG (Giảm nửa cung)
+                  </strong>
+                  <span class="text-[10px] font-bold bg-blue-100 text-blue-800 px-2.5 py-0.5 rounded-full">Si - Mi - La - Rê - Sol - Đô - Fa</span>
+                </div>
+                <div class="overflow-x-auto bg-[#FAF6EE] p-2 rounded-xl border border-blue-100">
+                  <svg viewBox="0 0 520 175" class="w-full select-none" style="font-family: sans-serif;"><rect x="0" y="0" width="520" height="175" fill="#FAF6EE" rx="12" stroke="#E8DFC8"/><line x1="40" y1="45" x2="495" y2="45" stroke="#59524B" stroke-width="1.4"/><line x1="40" y1="60" x2="495" y2="60" stroke="#59524B" stroke-width="1.4"/><line x1="40" y1="75" x2="495" y2="75" stroke="#59524B" stroke-width="1.4"/><line x1="40" y1="90" x2="495" y2="90" stroke="#1D4ED8" stroke-width="1.4"/><line x1="40" y1="105" x2="495" y2="105" stroke="#59524B" stroke-width="1.4"/><text x="12" y="49" font-size="8.5" fill="#6B625B">D5</text><text x="12" y="64" font-size="8.5" fill="#6B625B">D4</text><text x="12" y="79" font-size="8.5" fill="#6B625B">D3</text><text x="12" y="94" font-size="8.5" fill="#1D4ED8" font-weight="bold">D2</text><text x="12" y="109" font-size="8.5" fill="#6B625B">D1</text><text x="50" y="100" font-size="64" fill="#193822" font-family="serif">𝄞</text><text x="145" y="79" font-size="28" font-weight="bold" fill="#1D4ED8" text-anchor="middle" dominant-baseline="central">♭</text><line x1="145" y1="115" x2="145" y2="128" stroke="#D9CDBB" stroke-dasharray="2,2"/><rect x="123" y="130" width="44" height="34" rx="6" fill="#FFFFFF" stroke="#D5E0F0"/><text x="145" y="144" font-size="10.5" font-weight="bold" fill="#1D4ED8" text-anchor="middle">1. Si♭</text><text x="145" y="157" font-size="8.5" fill="#6B625B" text-anchor="middle">Dòng 3</text><text x="195" y="56.5" font-size="28" font-weight="bold" fill="#1D4ED8" text-anchor="middle" dominant-baseline="central">♭</text><line x1="195" y1="115" x2="195" y2="128" stroke="#D9CDBB" stroke-dasharray="2,2"/><rect x="173" y="130" width="44" height="34" rx="6" fill="#FFFFFF" stroke="#D5E0F0"/><text x="195" y="144" font-size="10.5" font-weight="bold" fill="#1D4ED8" text-anchor="middle">2. Mi♭</text><text x="195" y="157" font-size="8.5" fill="#6B625B" text-anchor="middle">Khe 4</text><text x="245" y="86.5" font-size="28" font-weight="bold" fill="#1D4ED8" text-anchor="middle" dominant-baseline="central">♭</text><line x1="245" y1="115" x2="245" y2="128" stroke="#D9CDBB" stroke-dasharray="2,2"/><rect x="223" y="130" width="44" height="34" rx="6" fill="#FFFFFF" stroke="#D5E0F0"/><text x="245" y="144" font-size="10.5" font-weight="bold" fill="#1D4ED8" text-anchor="middle">3. La♭</text><text x="245" y="157" font-size="8.5" fill="#6B625B" text-anchor="middle">Khe 2</text><text x="295" y="64" font-size="28" font-weight="bold" fill="#1D4ED8" text-anchor="middle" dominant-baseline="central">♭</text><line x1="295" y1="115" x2="295" y2="128" stroke="#D9CDBB" stroke-dasharray="2,2"/><rect x="273" y="130" width="44" height="34" rx="6" fill="#FFFFFF" stroke="#D5E0F0"/><text x="295" y="144" font-size="10.5" font-weight="bold" fill="#1D4ED8" text-anchor="middle">4. Rê♭</text><text x="295" y="157" font-size="8.5" fill="#6B625B" text-anchor="middle">Dòng 4</text><text x="345" y="94" font-size="28" font-weight="bold" fill="#1D4ED8" text-anchor="middle" dominant-baseline="central">♭</text><line x1="345" y1="115" x2="345" y2="128" stroke="#D9CDBB" stroke-dasharray="2,2"/><rect x="323" y="130" width="44" height="34" rx="6" fill="#FFFFFF" stroke="#D5E0F0"/><text x="345" y="144" font-size="10.5" font-weight="bold" fill="#1D4ED8" text-anchor="middle">5. Sol♭</text><text x="345" y="157" font-size="8.5" fill="#6B625B" text-anchor="middle">Dòng 2</text><text x="395" y="71.5" font-size="28" font-weight="bold" fill="#1D4ED8" text-anchor="middle" dominant-baseline="central">♭</text><line x1="395" y1="115" x2="395" y2="128" stroke="#D9CDBB" stroke-dasharray="2,2"/><rect x="373" y="130" width="44" height="34" rx="6" fill="#FFFFFF" stroke="#D5E0F0"/><text x="395" y="144" font-size="10.5" font-weight="bold" fill="#1D4ED8" text-anchor="middle">6. Đô♭</text><text x="395" y="157" font-size="8.5" fill="#6B625B" text-anchor="middle">Khe 3</text><text x="445" y="109" font-size="28" font-weight="bold" fill="#1D4ED8" text-anchor="middle" dominant-baseline="central">♭</text><line x1="445" y1="115" x2="445" y2="128" stroke="#D9CDBB" stroke-dasharray="2,2"/><rect x="423" y="130" width="44" height="34" rx="6" fill="#FFFFFF" stroke="#D5E0F0"/><text x="445" y="144" font-size="10.5" font-weight="bold" fill="#1D4ED8" text-anchor="middle">7. Fa♭</text><text x="445" y="157" font-size="8.5" fill="#6B625B" text-anchor="middle">Dòng 1</text></svg>
+                </div>
+                <div class="p-3 bg-blue-50/50 rounded-xl border border-blue-100 text-[11px] text-[#59524B] leading-relaxed space-y-1">
+                  <strong class="text-blue-800 block">🔍 Mẹo xác định giọng Trưởng (Dấu Giáng):</strong>
+                  <p>Tên giọng chính là <strong>dấu giáng đứng kế cuối cùng</strong>.</p>
+                  <p class="text-[#6B625B]"><em>Ví dụ: Có 2 dấu (Si♭, Mi♭) ➡️ Dấu kế cuối là Si♭ ➡️ <strong>Si Giáng Trưởng (B♭)</strong> • (Trường hợp đặc biệt 1 dấu Si♭ duy nhất là giọng <strong>Fa Trưởng (F)</strong>).</em></p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="text-center pt-2">
+            <button onclick="toggleSectionCollapse('sec1')" class="px-4 py-2 bg-white border border-[#D9CDBB] hover:bg-[#F2E8D7] text-[#881B1B] text-xs font-bold rounded-xl shadow-sm inline-flex items-center gap-1.5">
+              <i class="fa-solid fa-chevron-up"></i> Thu gọn mục 1
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. Khuông nhạc & Khóa Sol (COLLAPSIBLE) -->
+      <section id="sec2" class="bg-white rounded-3xl p-6 sm:p-8 border border-[#E8DFC8] shadow-sm space-y-4">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-3 border-b border-[#F0E8DA]">
+          <div class="flex items-center gap-3">
+            <span class="w-8 h-8 rounded-full bg-[#881B1B] text-white flex items-center justify-center font-bold text-sm">2</span>
+            <div>
+              <h2 class="font-serif text-2xl font-bold text-[#881B1B]">Khuông Nhạc, Khóa Sol & Dãy Cao Độ (Đô 1 – Sol 3)</h2>
+              <span class="text-xs text-[#2D5E3B] font-semibold">19 nốt nhạc hoàn chỉnh bao quát toàn bộ âm vực sáo trúc</span>
+            </div>
+          </div>
+          <button onclick="toggleSectionCollapse('sec2')" id="btn-toggle-sec2" class="px-5 py-2.5 bg-[#881B1B] hover:bg-[#701515] text-white text-xs font-bold rounded-xl shadow flex items-center justify-center gap-2 transition-all">
+            <i class="fa-solid fa-eye" id="icon-sec2"></i> <span id="text-sec2">Xem thêm</span>
+          </button>
+        </div>
+
+        <!-- Collapsible Content Sec 2 -->
+        <div id="content-sec2" class="collapsible-content space-y-5 pt-2">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+            <div class="p-4 bg-[#FAF6EE] rounded-2xl border border-[#EADFCB] space-y-1">
+              <strong class="text-[#881B1B] block text-sm">Quãng 1 (Trầm)</strong>
+              <p class="text-[#59524B]">Từ <strong>Đô 1 đến Si 1</strong>. Luồng hơi êm dịu, ấm áp, nốt nằm ở nửa dưới khuông nhạc và dòng phụ dưới.</p>
+            </div>
+            <div class="p-4 bg-[#FAF6EE] rounded-2xl border border-[#EADFCB] space-y-1">
+              <strong class="text-[#193822] block text-sm">Quãng 2 (Trung - Cao)</strong>
+              <p class="text-[#59524B]">Từ <strong>Đô 2 đến Si 2</strong>. Luồng hơi mím môi gom hẹp, âm thanh vang sáng, nốt nằm từ giữa khuông lên dòng phụ trên.</p>
+            </div>
+            <div class="p-4 bg-[#FAF6EE] rounded-2xl border border-[#EADFCB] space-y-1">
+              <strong class="text-[#881B1B] block text-sm">Quãng 3 (Cao vút)</strong>
+              <p class="text-[#59524B]">Từ <strong>Đô 3 đến Sol 3</strong>. Luồng hơi căng mạnh, ép hơi dứt khoát, nốt nằm ở các dòng phụ thứ 2, 3, 4 phía trên.</p>
+            </div>
+          </div>
+
+          <div class="p-5 sm:p-6 bg-[#FAF6EE] rounded-2xl border border-[#EADFCB] space-y-4">
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-3">
+              <div>
+                <span class="text-xs font-bold text-[#881B1B] uppercase tracking-wider block">
+                  <i class="fa-solid fa-wand-magic-sparkles mr-1"></i> Khuông nhạc tương tác toàn cảnh (Đô 1 ➡️ Sol 3)
+                </span>
+                <p class="text-[11px] text-[#6B625B]">Nhấp vào bất kỳ nốt nào trên khuông nhạc để nghe âm thanh</p>
+              </div>
+              <button onclick="playFullScaleAscending()" id="playScaleBtn" class="shrink-0 px-4 py-2 bg-[#881B1B] hover:bg-[#701515] text-white text-xs font-bold rounded-xl shadow flex items-center gap-1.5 transition-all">
+                <i class="fa-solid fa-play"></i> ▶ Nghe trọn thang âm (Đô 1 ➡️ Sol 3)
+              </button>
+            </div>
+
+            <div class="overflow-x-auto bg-white p-3 sm:p-4 rounded-xl border border-[#E0D5C3] shadow-inner">
+              <svg id="staffSvg" viewBox="0 0 1060 210" class="min-w-[980px] w-full select-none">
+                <line x1="60" y1="70" x2="1040" y2="70" stroke="#59524B" stroke-width="1.5"/>
+                <line x1="60" y1="85" x2="1040" y2="85" stroke="#59524B" stroke-width="1.5"/>
+                <line x1="60" y1="100" x2="1040" y2="100" stroke="#59524B" stroke-width="1.5"/>
+                <line x1="60" y1="115" x2="1040" y2="115" stroke="#881B1B" stroke-width="1.8"/>
+                <line x1="60" y1="130" x2="1040" y2="130" stroke="#59524B" stroke-width="1.5"/>
+
+                <text x="15" y="74" font-size="9" fill="#6B625B" font-family="sans-serif">Dòng 5</text>
+                <text x="15" y="89" font-size="9" fill="#6B625B" font-family="sans-serif">Dòng 4</text>
+                <text x="15" y="104" font-size="9" fill="#6B625B" font-family="sans-serif">Dòng 3</text>
+                <text x="15" y="119" font-size="9" fill="#881B1B" font-weight="bold" font-family="sans-serif">Dòng 2 (Sol)</text>
+                <text x="15" y="134" font-size="9" fill="#6B625B" font-family="sans-serif">Dòng 1</text>
+
+                <text x="75" y="128" font-size="80" fill="#193822" font-family="serif">𝄞</text>
+
+                <g class="svg-note-item" id="svg-note-0" onclick="playSingleNote(261.63, 'Đô 1 (C1)')">
+                  <line x1="150" y1="145" x2="178" y2="145" stroke="#292421" stroke-width="1.5"/>
+                  <ellipse cx="164" cy="145" rx="8" ry="6" fill="#292421" transform="rotate(-15 164 145)"/>
+                  <line x1="171" y1="145" x2="171" y2="95" stroke="#292421" stroke-width="1.5"/>
+                  <text x="153" y="168" font-size="11" font-weight="bold" fill="#881B1B">Đô¹</text>
+                </g>
+
+                <g class="svg-note-item" id="svg-note-1" onclick="playSingleNote(293.66, 'Rê 1 (D1)')">
+                  <ellipse cx="210" cy="138" rx="8" ry="6" fill="#292421" transform="rotate(-15 210 138)"/>
+                  <line x1="217" y1="138" x2="217" y2="88" stroke="#292421" stroke-width="1.5"/>
+                  <text x="199" y="168" font-size="11" font-weight="bold" fill="#881B1B">Rê¹</text>
+                </g>
+
+                <g class="svg-note-item" id="svg-note-2" onclick="playSingleNote(329.63, 'Mi 1 (E1)')">
+                  <ellipse cx="256" cy="130" rx="8" ry="6" fill="#292421" transform="rotate(-15 256 130)"/>
+                  <line x1="263" y1="130" x2="263" y2="80" stroke="#292421" stroke-width="1.5"/>
+                  <text x="246" y="168" font-size="11" font-weight="bold" fill="#881B1B">Mi¹</text>
+                </g>
+
+                <g class="svg-note-item" id="svg-note-3" onclick="playSingleNote(349.23, 'Fa 1 (F1)')">
+                  <ellipse cx="302" cy="122.5" rx="8" ry="6" fill="#292421" transform="rotate(-15 302 122.5)"/>
+                  <line x1="309" y1="122.5" x2="309" y2="72" stroke="#292421" stroke-width="1.5"/>
+                  <text x="292" y="168" font-size="11" font-weight="bold" fill="#881B1B">Fa¹</text>
+                </g>
+
+                <g class="svg-note-item" id="svg-note-4" onclick="playSingleNote(392.00, 'Sol 1 (G1)')">
+                  <ellipse cx="348" cy="115" rx="8" ry="6" fill="#881B1B" transform="rotate(-15 348 115)"/>
+                  <line x1="355" y1="115" x2="355" y2="65" stroke="#881B1B" stroke-width="1.5"/>
+                  <text x="336" y="168" font-size="11" font-weight="bold" fill="#881B1B">Sol¹</text>
+                </g>
+
+                <g class="svg-note-item" id="svg-note-5" onclick="playSingleNote(440.00, 'La 1 (A1)')">
+                  <ellipse cx="394" cy="107.5" rx="8" ry="6" fill="#292421" transform="rotate(-15 394 107.5)"/>
+                  <line x1="401" y1="107.5" x2="401" y2="57" stroke="#292421" stroke-width="1.5"/>
+                  <text x="385" y="168" font-size="11" font-weight="bold" fill="#881B1B">La¹</text>
+                </g>
+
+                <g class="svg-note-item" id="svg-note-6" onclick="playSingleNote(493.88, 'Si 1 (B1)')">
+                  <ellipse cx="440" cy="100" rx="8" ry="6" fill="#292421" transform="rotate(-15 440 100)"/>
+                  <line x1="433" y1="100" x2="433" y2="150" stroke="#292421" stroke-width="1.5"/>
+                  <text x="431" y="168" font-size="11" font-weight="bold" fill="#881B1B">Si¹</text>
+                </g>
+
+                <g class="svg-note-item" id="svg-note-7" onclick="playSingleNote(523.25, 'Đô 2 (C2)')">
+                  <ellipse cx="486" cy="92.5" rx="8" ry="6" fill="#292421" transform="rotate(-15 486 92.5)"/>
+                  <line x1="479" y1="92.5" x2="479" y2="142" stroke="#292421" stroke-width="1.5"/>
+                  <text x="475" y="168" font-size="11" font-weight="bold" fill="#193822">Đô²</text>
+                </g>
+
+                <g class="svg-note-item" id="svg-note-8" onclick="playSingleNote(587.33, 'Rê 2 (D2)')">
+                  <ellipse cx="532" cy="85" rx="8" ry="6" fill="#292421" transform="rotate(-15 532 85)"/>
+                  <line x1="525" y1="85" x2="525" y2="135" stroke="#292421" stroke-width="1.5"/>
+                  <text x="521" y="168" font-size="11" font-weight="bold" fill="#193822">Rê²</text>
+                </g>
+
+                <g class="svg-note-item" id="svg-note-9" onclick="playSingleNote(659.25, 'Mi 2 (E2)')">
+                  <ellipse cx="578" cy="77.5" rx="8" ry="6" fill="#292421" transform="rotate(-15 578 77.5)"/>
+                  <line x1="571" y1="77.5" x2="571" y2="127" stroke="#292421" stroke-width="1.5"/>
+                  <text x="568" y="168" font-size="11" font-weight="bold" fill="#193822">Mi²</text>
+                </g>
+
+                <g class="svg-note-item" id="svg-note-10" onclick="playSingleNote(698.46, 'Fa 2 (F2)')">
+                  <ellipse cx="624" cy="70" rx="8" ry="6" fill="#292421" transform="rotate(-15 624 70)"/>
+                  <line x1="617" y1="70" x2="617" y2="120" stroke="#292421" stroke-width="1.5"/>
+                  <text x="614" y="168" font-size="11" font-weight="bold" fill="#193822">Fa²</text>
+                </g>
+
+                <g class="svg-note-item" id="svg-note-11" onclick="playSingleNote(783.99, 'Sol 2 (G2)')">
+                  <ellipse cx="670" cy="62.5" rx="8" ry="6" fill="#292421" transform="rotate(-15 670 62.5)"/>
+                  <line x1="663" y1="62.5" x2="663" y2="112" stroke="#292421" stroke-width="1.5"/>
+                  <text x="658" y="168" font-size="11" font-weight="bold" fill="#193822">Sol²</text>
+                </g>
+
+                <g class="svg-note-item" id="svg-note-12" onclick="playSingleNote(880.00, 'La 2 (A2)')">
+                  <line x1="702" y1="55" x2="730" y2="55" stroke="#292421" stroke-width="1.5"/>
+                  <ellipse cx="716" cy="55" rx="8" ry="6" fill="#292421" transform="rotate(-15 716 55)"/>
+                  <line x1="709" y1="55" x2="709" y2="105" stroke="#292421" stroke-width="1.5"/>
+                  <text x="707" y="168" font-size="11" font-weight="bold" fill="#193822">La²</text>
+                </g>
+
+                <g class="svg-note-item" id="svg-note-13" onclick="playSingleNote(987.77, 'Si 2 (B2)')">
+                  <line x1="748" y1="55" x2="776" y2="55" stroke="#292421" stroke-width="1.5"/>
+                  <ellipse cx="762" cy="47.5" rx="8" ry="6" fill="#292421" transform="rotate(-15 762 47.5)"/>
+                  <line x1="755" y1="47.5" x2="755" y2="97" stroke="#292421" stroke-width="1.5"/>
+                  <text x="753" y="168" font-size="11" font-weight="bold" fill="#193822">Si²</text>
+                </g>
+
+                <g class="svg-note-item" id="svg-note-14" onclick="playSingleNote(1046.50, 'Đô 3 (C3)')">
+                  <line x1="794" y1="55" x2="822" y2="55" stroke="#292421" stroke-width="1.5"/>
+                  <line x1="794" y1="40" x2="822" y2="40" stroke="#292421" stroke-width="1.5"/>
+                  <ellipse cx="808" cy="40" rx="8" ry="6" fill="#881B1B" transform="rotate(-15 808 40)"/>
+                  <line x1="801" y1="40" x2="801" y2="90" stroke="#881B1B" stroke-width="1.5"/>
+                  <text x="797" y="168" font-size="11" font-weight="bold" fill="#881B1B">Đô³</text>
+                </g>
+
+                <g class="svg-note-item" id="svg-note-15" onclick="playSingleNote(1174.66, 'Rê 3 (D3)')">
+                  <line x1="840" y1="55" x2="868" y2="55" stroke="#292421" stroke-width="1.5"/>
+                  <line x1="840" y1="40" x2="868" y2="40" stroke="#292421" stroke-width="1.5"/>
+                  <ellipse cx="854" cy="32.5" rx="8" ry="6" fill="#881B1B" transform="rotate(-15 854 32.5)"/>
+                  <line x1="847" y1="32.5" x2="847" y2="82" stroke="#881B1B" stroke-width="1.5"/>
+                  <text x="843" y="168" font-size="11" font-weight="bold" fill="#881B1B">Rê³</text>
+                </g>
+
+                <g class="svg-note-item" id="svg-note-16" onclick="playSingleNote(1318.51, 'Mi 3 (E3)')">
+                  <line x1="886" y1="55" x2="914" y2="55" stroke="#292421" stroke-width="1.5"/>
+                  <line x1="886" y1="40" x2="914" y2="40" stroke="#292421" stroke-width="1.5"/>
+                  <line x1="886" y1="25" x2="914" y2="25" stroke="#292421" stroke-width="1.5"/>
+                  <ellipse cx="900" cy="25" rx="8" ry="6" fill="#881B1B" transform="rotate(-15 900 25)"/>
+                  <line x1="893" y1="25" x2="893" y2="75" stroke="#881B1B" stroke-width="1.5"/>
+                  <text x="890" y="168" font-size="11" font-weight="bold" fill="#881B1B">Mi³</text>
+                </g>
+
+                <g class="svg-note-item" id="svg-note-17" onclick="playSingleNote(1396.91, 'Fa 3 (F3)')">
+                  <line x1="932" y1="55" x2="960" y2="55" stroke="#292421" stroke-width="1.5"/>
+                  <line x1="932" y1="40" x2="960" y2="40" stroke="#292421" stroke-width="1.5"/>
+                  <line x1="932" y1="25" x2="960" y2="25" stroke="#292421" stroke-width="1.5"/>
+                  <ellipse cx="946" cy="17.5" rx="8" ry="6" fill="#881B1B" transform="rotate(-15 946 17.5)"/>
+                  <line x1="939" y1="17.5" x2="939" y2="67" stroke="#881B1B" stroke-width="1.5"/>
+                  <text x="936" y="168" font-size="11" font-weight="bold" fill="#881B1B">Fa³</text>
+                </g>
+
+                <g class="svg-note-item" id="svg-note-18" onclick="playSingleNote(1567.98, 'Sol 3 (G3)')">
+                  <line x1="978" y1="55" x2="1006" y2="55" stroke="#292421" stroke-width="1.5"/>
+                  <line x1="978" y1="40" x2="1006" y2="40" stroke="#292421" stroke-width="1.5"/>
+                  <line x1="978" y1="25" x2="1006" y2="25" stroke="#292421" stroke-width="1.5"/>
+                  <line x1="978" y1="10" x2="1006" y2="10" stroke="#292421" stroke-width="1.5"/>
+                  <ellipse cx="992" cy="10" rx="8" ry="6" fill="#881B1B" transform="rotate(-15 992 10)"/>
+                  <line x1="985" y1="10" x2="985" y2="60" stroke="#881B1B" stroke-width="1.5"/>
+                  <text x="980" y="168" font-size="11" font-weight="bold" fill="#881B1B">Sol³</text>
+                </g>
+
+                <rect x="145" y="180" width="310" height="20" rx="6" fill="#FAF6EE" stroke="#E0D5C3"/>
+                <text x="250" y="194" font-size="10" font-weight="bold" fill="#881B1B">QUÃNG 1 (Đô 1 ➡️ Si 1)</text>
+
+                <rect x="470" y="180" width="305" height="20" rx="6" fill="#FAF6EE" stroke="#E0D5C3"/>
+                <text x="575" y="194" font-size="10" font-weight="bold" fill="#193822">QUÃNG 2 (Đô 2 ➡️ Si 2)</text>
+
+                <rect x="790" y="180" width="220" height="20" rx="6" fill="#FAF6EE" stroke="#E0D5C3"/>
+                <text x="860" y="194" font-size="10" font-weight="bold" fill="#881B1B">QUÃNG 3 (Đô 3 ➡️ Sol 3)</text>
+              </svg>
+            </div>
+          </div>
+
+          <div class="text-center pt-2">
+            <button onclick="toggleSectionCollapse('sec2')" class="px-4 py-2 bg-white border border-[#D9CDBB] hover:bg-[#F2E8D7] text-[#881B1B] text-xs font-bold rounded-xl shadow-sm inline-flex items-center gap-1.5">
+              <i class="fa-solid fa-chevron-up"></i> Thu gọn mục 2
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. BẢNG THẾ BẤM SÁO TRÚC (COLLAPSIBLE) -->
+      <section id="sec3" class="bg-white rounded-3xl p-6 sm:p-8 border border-[#E8DFC8] shadow-sm space-y-4">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-3 border-b border-[#F0E8DA]">
+          <div class="flex items-center gap-3">
+            <span class="w-8 h-8 rounded-full bg-[#881B1B] text-white flex items-center justify-center font-bold text-sm">3</span>
+            <div>
+              <h2 class="font-serif text-2xl font-bold text-[#881B1B]">Bảng Thế Bấm Sáo Trúc Chuẩn Theo 3 Quãng</h2>
+              <span class="text-xs text-[#2D5E3B] font-semibold">Trực quan, dễ nhớ và chuẩn âm từng nốt</span>
+            </div>
+          </div>
+
+          <button onclick="toggleSectionCollapse('sec3')" id="btn-toggle-sec3" class="px-5 py-2.5 bg-[#881B1B] hover:bg-[#701515] text-white text-xs font-bold rounded-xl shadow flex items-center justify-center gap-2 transition-all">
+            <i class="fa-solid fa-eye" id="icon-sec3"></i> <span id="text-sec3">Xem thêm</span>
+          </button>
+        </div>
+
+        <!-- Collapsible Content Wrapper -->
+        <div id="content-sec3" class="collapsible-content space-y-6 pt-2">
+          
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-3 bg-[#FAF6EE] rounded-2xl border border-[#EADFCB]">
+            <div class="flex items-center gap-2 bg-white p-1 rounded-xl border border-[#E0D5C3]">
+              <button onclick="filterOctaveView('all')" id="btn-oct-all" class="octave-tab-btn active px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all">
+                Tất cả 3 Quãng
+              </button>
+              <button onclick="filterOctaveView(1)" id="btn-oct-1" class="octave-tab-btn px-3 py-1.5 rounded-lg text-xs font-bold text-[#59524B] hover:bg-[#FAF6EE] transition-all">
+                Quãng 1
+              </button>
+              <button onclick="filterOctaveView(2)" id="btn-oct-2" class="octave-tab-btn px-3 py-1.5 rounded-lg text-xs font-bold text-[#59524B] hover:bg-[#FAF6EE] transition-all">
+                Quãng 2
+              </button>
+              <button onclick="filterOctaveView(3)" id="btn-oct-3" class="octave-tab-btn px-3 py-1.5 rounded-lg text-xs font-bold text-[#59524B] hover:bg-[#FAF6EE] transition-all">
+                Quãng 3
+              </button>
+            </div>
+
+            <div class="flex items-center gap-4 text-xs">
+              <div class="flex items-center gap-1.5"><span class="hole-blow"></span><span>Lỗ thổi</span></div>
+              <div class="flex items-center gap-1.5"><span class="hole-main-closed"></span><span>Bịt kín</span></div>
+              <div class="flex items-center gap-1.5"><span class="hole-main-open"></span><span>Mở</span></div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-6" id="chartColumnsContainer">
+            <div class="octave-col bg-[#FAF6EE]/60 p-4 sm:p-5 rounded-2xl border border-[#EADFCB] space-y-3" id="col-oct-1">
+              <div class="pb-2 border-b border-[#E0D5C3] flex items-center justify-between">
+                <h3 class="font-serif text-base font-bold text-[#881B1B] flex items-center gap-1.5">
+                  <i class="fa-solid fa-leaf text-emerald-700"></i> QUÃNG 1 (Âm Trầm)
+                </h3>
+                <span class="text-[11px] font-semibold text-[#59524B]">Đô 1 ➡️ Si 1</span>
+              </div>
+              <div class="space-y-2 text-xs" id="list-oct-1"></div>
+            </div>
+
+            <div class="octave-col bg-[#FAF6EE]/60 p-4 sm:p-5 rounded-2xl border border-[#EADFCB] space-y-3" id="col-oct-2">
+              <div class="pb-2 border-b border-[#E0D5C3] flex items-center justify-between">
+                <h3 class="font-serif text-base font-bold text-[#193822] flex items-center gap-1.5">
+                  <i class="fa-solid fa-wind text-blue-600"></i> QUÃNG 2 (Trung - Cao)
+                </h3>
+                <span class="text-[11px] font-semibold text-[#59524B]">Đô 2 ➡️ Si 2</span>
+              </div>
+              <div class="space-y-2 text-xs" id="list-oct-2"></div>
+            </div>
+
+            <div class="octave-col bg-[#FAF6EE]/60 p-4 sm:p-5 rounded-2xl border border-[#EADFCB] space-y-3" id="col-oct-3">
+              <div class="pb-2 border-b border-[#E0D5C3] flex items-center justify-between">
+                <h3 class="font-serif text-base font-bold text-[#881B1B] flex items-center gap-1.5">
+                  <i class="fa-solid fa-fire text-amber-600"></i> QUÃNG 3 (Cao Vút)
+                </h3>
+                <span class="text-[11px] font-semibold text-[#59524B]">Đô 3 ➡️ Sol 3</span>
+              </div>
+              <div class="space-y-2 text-xs" id="list-oct-3"></div>
+            </div>
+          </div>
+
+          <div class="text-center pt-2">
+            <button onclick="toggleSectionCollapse('sec3')" class="px-4 py-2 bg-white border border-[#D9CDBB] hover:bg-[#F2E8D7] text-[#881B1B] text-xs font-bold rounded-xl shadow-sm inline-flex items-center gap-1.5">
+              <i class="fa-solid fa-chevron-up"></i> Thu gọn bảng thế bấm
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. HÌNH NỐT, DẤU LẶNG & CÂY PHÂN NHÁNH TRƯỜNG ĐỘ (COLLAPSIBLE) -->
+      <section id="sec4" class="bg-white rounded-3xl p-6 sm:p-8 border border-[#E8DFC8] shadow-sm space-y-4">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-3 border-b border-[#F0E8DA]">
+          <div class="flex items-center gap-3">
+            <span class="w-8 h-8 rounded-full bg-[#881B1B] text-white flex items-center justify-center font-bold text-sm">4</span>
+            <div>
+              <h2 class="font-serif text-2xl font-bold text-[#881B1B]">Hình Nốt, Dấu Lặng & Cây Phân Nhánh Trường Độ</h2>
+              <span class="text-xs text-[#2D5E3B] font-semibold">Tương quan trường độ giữa hình nốt phát âm và dấu lặng nghỉ</span>
+            </div>
+          </div>
+          <button onclick="toggleSectionCollapse('sec4')" id="btn-toggle-sec4" class="px-5 py-2.5 bg-[#881B1B] hover:bg-[#701515] text-white text-xs font-bold rounded-xl shadow flex items-center justify-center gap-2 transition-all">
+            <i class="fa-solid fa-eye" id="icon-sec4"></i> <span id="text-sec4">Xem thêm</span>
+          </button>
+        </div>
+
+        <!-- Collapsible Content Sec 4 -->
+        <div id="content-sec4" class="collapsible-content space-y-6 pt-2">
+          <p class="text-sm text-[#4A423B] leading-relaxed">
+            <strong>Trường độ</strong> là độ ngân dài hay ngắn của âm thanh, còn <strong>Dấu lặng</strong> biểu thị khoảng thời gian nghỉ im lặng tương ứng. Cứ mỗi hình nốt sẽ có một dấu lặng có giá trị phách bằng nhau:
+          </p>
+
+          <div class="bg-[#FAF6EE] p-4 sm:p-6 rounded-2xl border-2 border-[#E0D5C3] space-y-4">
+            <div class="flex items-center justify-between border-b border-[#E0D5C3] pb-3">
+              <h3 class="font-serif text-base font-bold text-[#881B1B] flex items-center gap-2">
+                <i class="fa-solid fa-sitemap"></i> BẢNG PHÂN NHÁNH HÌNH NỐT & DẤU LẶNG TƯƠNG ỨNG
+              </h3>
+              <span class="text-xs font-semibold text-[#193822] bg-emerald-100 px-3 py-1 rounded-full">Chuẩn Nhạc Lý Quốc Tế</span>
+            </div>
+
+            <div class="overflow-x-auto bg-white p-3 sm:p-5 rounded-xl border border-[#E0D5C3] shadow-inner">
+              <svg viewBox="0 0 1040 460" class="w-full select-none" style="font-family: sans-serif;">\n<rect x="0" y="0" width="1040" height="460" fill="#FAF6EE" rx="16"/>\n<rect x="15" y="10" width="220" height="26" fill="#E8DFC8" rx="8"/>\n<text x="25" y="27" font-size="11" font-weight="bold" fill="#881B1B">HÌNH NỐT & TÊN GỌI</text>\n<text x="150" y="27" font-size="11" font-weight="bold" fill="#193822">DẤU LẶNG</text>\n<rect x="245" y="10" width="780" height="26" fill="#E8DFC8" rx="8"/>\n<text x="560" y="27" font-size="11" font-weight="bold" fill="#881B1B" text-anchor="middle">SƠ ĐỒ PHÂN NHÁNH TRƯỜNG ĐỘ (LŨY THỪA PHÂN ĐÔI)</text>\n<line x1="140" y1="10" x2="140" y2="450" stroke="#D9CDBB" stroke-width="1.2"/>\n<line x1="240" y1="10" x2="240" y2="450" stroke="#D9CDBB" stroke-width="1.5"/>\n<text x="22" y="65" font-size="13" font-weight="bold" fill="#881B1B">1 Tròn</text>\n<text x="22" y="80" font-size="10" fill="#6B625B">(4 phách)</text>\n<line x1="15" y1="85" x2="235" y2="85" stroke="#E0D5C3" stroke-dasharray="2,2" stroke-width="1"/>\n<text x="22" y="120" font-size="13" font-weight="bold" fill="#881B1B">2 Trắng</text>\n<text x="22" y="135" font-size="10" fill="#6B625B">(2 phách)</text>\n<line x1="15" y1="140" x2="235" y2="140" stroke="#E0D5C3" stroke-dasharray="2,2" stroke-width="1"/>\n<text x="22" y="180" font-size="13" font-weight="bold" fill="#881B1B">4 Đen</text>\n<text x="22" y="195" font-size="10" fill="#6B625B">(1 phách)</text>\n<line x1="15" y1="200" x2="235" y2="200" stroke="#E0D5C3" stroke-dasharray="2,2" stroke-width="1"/>\n<text x="22" y="245" font-size="13" font-weight="bold" fill="#881B1B">8 Móc Đơn</text>\n<text x="22" y="260" font-size="10" fill="#6B625B">(1/2 phách)</text>\n<line x1="15" y1="265" x2="235" y2="265" stroke="#E0D5C3" stroke-dasharray="2,2" stroke-width="1"/>\n<text x="22" y="310" font-size="13" font-weight="bold" fill="#881B1B">16 Móc Kép</text>\n<text x="22" y="325" font-size="10" fill="#6B625B">(1/4 phách)</text>\n<line x1="15" y1="330" x2="235" y2="330" stroke="#E0D5C3" stroke-dasharray="2,2" stroke-width="1"/>\n<text x="22" y="375" font-size="13" font-weight="bold" fill="#881B1B">32 Móc Ba</text>\n<text x="22" y="390" font-size="10" fill="#6B625B">(1/8 phách)</text>\n<line x1="15" y1="395" x2="235" y2="395" stroke="#E0D5C3" stroke-dasharray="2,2" stroke-width="1"/>\n<text x="22" y="430" font-size="13" font-weight="bold" fill="#881B1B">64 Móc Tư</text>\n<text x="22" y="445" font-size="10" fill="#6B625B">(1/16 phách)</text>\n<line x1="15" y1="450" x2="235" y2="450" stroke="#E0D5C3" stroke-dasharray="2,2" stroke-width="1"/>\n<line x1="155" y1="60" x2="225" y2="60" stroke="#59524B" stroke-width="1.5"/>\n<rect x="175" y="60" width="28" height="9" fill="#292421" rx="1"/>\n<text x="190" y="80" font-size="9" fill="#6B625B" text-anchor="middle">Lặng tròn</text>\n<line x1="155" y1="122" x2="225" y2="122" stroke="#59524B" stroke-width="1.5"/>\n<rect x="175" y="113" width="28" height="9" fill="#292421" rx="1"/>\n<text x="190" y="136" font-size="9" fill="#6B625B" text-anchor="middle">Lặng trắng</text>\n<path d="M 183 162 Q 192 166 186 172 Q 194 176 184 186 C 187 190 193 189 193 185 C 193 193 183 195 180 190 C 178 186 181 182 186 180 Q 178 174 186 169 Q 179 165 183 162 Z" fill="#292421"/>\n<text x="190" y="200" font-size="9" fill="#6B625B" text-anchor="middle">Lặng đen</text>\n<circle cx="183" cy="235" r="3.5" fill="#292421"/>\n<path d="M 183 234 Q 193 234 195 241 L 186 256" stroke="#292421" stroke-width="2.2" fill="none" stroke-linecap="round"/>\n<text x="190" y="266" font-size="9" fill="#6B625B" text-anchor="middle">Lặng đơn</text>\n<circle cx="183" cy="300" r="3" fill="#292421"/>\n<path d="M 183 299 Q 193 299 194 305 L 188 316" stroke="#292421" stroke-width="2" fill="none" stroke-linecap="round"/>\n<circle cx="181" cy="309" r="3" fill="#292421"/>\n<path d="M 181 308 Q 191 308 193 314 L 185 328" stroke="#292421" stroke-width="2" fill="none" stroke-linecap="round"/>\n<text x="190" y="338" font-size="9" fill="#6B625B" text-anchor="middle">Lặng kép</text>\n<circle cx="183" cy="365" r="2.5" fill="#292421"/>\n<path d="M 183 365 Q 191 365 193 370 L 188 379" stroke="#292421" stroke-width="1.8" fill="none"/>\n<circle cx="181" cy="373" r="2.5" fill="#292421"/>\n<path d="M 181 373 Q 189 373 192 378 L 187 387" stroke="#292421" stroke-width="1.8" fill="none"/>\n<circle cx="180" cy="381" r="2.5" fill="#292421"/>\n<path d="M 180 381 Q 188 381 191 386 L 185 396" stroke="#292421" stroke-width="1.8" fill="none"/>\n<text x="190" y="403" font-size="9" fill="#6B625B" text-anchor="middle">Lặng ba</text>\n<text x="190" y="425" font-size="16" font-weight="bold" fill="#292421" text-anchor="middle">𝄿*</text>\n<text x="190" y="445" font-size="9" fill="#6B625B" text-anchor="middle">Lặng tư (4 móc)</text>\n<ellipse cx="635" cy="58" rx="9.5" ry="6.8" fill="none" stroke="#292421" stroke-width="2.5" transform="rotate(-15 635 58)"/>\n<ellipse cx="635" cy="58" rx="4" ry="2" fill="#FAF6EE" transform="rotate(-15 635 58)"/>\n<line x1="621" y1="65" x2="493" y2="105" stroke="#59524B" stroke-width="1.5" stroke-dasharray="4,4"/>\n<line x1="649" y1="65" x2="777" y2="105" stroke="#59524B" stroke-width="1.5" stroke-dasharray="4,4"/>\n<ellipse cx="485" cy="120" rx="7.5" ry="5.5" fill="none" stroke="#292421" stroke-width="2.2" transform="rotate(-15 485 120)"/>\n<line x1="492" y1="119" x2="492" y2="92" stroke="#292421" stroke-width="2"/>\n<ellipse cx="785" cy="120" rx="7.5" ry="5.5" fill="none" stroke="#292421" stroke-width="2.2" transform="rotate(-15 785 120)"/>\n<line x1="792" y1="119" x2="792" y2="92" stroke="#292421" stroke-width="2"/>\n<line x1="477" y1="128" x2="400" y2="165" stroke="#59524B" stroke-width="1.5" stroke-dasharray="4,4"/>\n<line x1="493" y1="128" x2="570" y2="165" stroke="#59524B" stroke-width="1.5" stroke-dasharray="4,4"/>\n<line x1="777" y1="128" x2="700" y2="165" stroke="#59524B" stroke-width="1.5" stroke-dasharray="4,4"/>\n<line x1="793" y1="128" x2="870" y2="165" stroke="#59524B" stroke-width="1.5" stroke-dasharray="4,4"/>\n<ellipse cx="395" cy="180" rx="7" ry="5" fill="#292421" transform="rotate(-15 395 180)"/>\n<line x1="401" y1="179" x2="401" y2="152" stroke="#292421" stroke-width="2"/>\n<ellipse cx="575" cy="180" rx="7" ry="5" fill="#292421" transform="rotate(-15 575 180)"/>\n<line x1="581" y1="179" x2="581" y2="152" stroke="#292421" stroke-width="2"/>\n<ellipse cx="695" cy="180" rx="7" ry="5" fill="#292421" transform="rotate(-15 695 180)"/>\n<line x1="701" y1="179" x2="701" y2="152" stroke="#292421" stroke-width="2"/>\n<ellipse cx="875" cy="180" rx="7" ry="5" fill="#292421" transform="rotate(-15 875 180)"/>\n<line x1="881" y1="179" x2="881" y2="152" stroke="#292421" stroke-width="2"/>\n<line x1="395" y1="190" x2="395" y2="204" stroke="#292421" stroke-width="1.5"/>\n<line x1="350" y1="204" x2="440" y2="204" stroke="#292421" stroke-width="1.5"/>\n<line x1="350" y1="204" x2="350" y2="218" stroke="#292421" stroke-width="1.5"/>\n<line x1="440" y1="204" x2="440" y2="218" stroke="#292421" stroke-width="1.5"/>\n<line x1="575" y1="190" x2="575" y2="204" stroke="#292421" stroke-width="1.5"/>\n<line x1="530" y1="204" x2="620" y2="204" stroke="#292421" stroke-width="1.5"/>\n<line x1="530" y1="204" x2="530" y2="218" stroke="#292421" stroke-width="1.5"/>\n<line x1="620" y1="204" x2="620" y2="218" stroke="#292421" stroke-width="1.5"/>\n<line x1="695" y1="190" x2="695" y2="204" stroke="#292421" stroke-width="1.5"/>\n<line x1="650" y1="204" x2="740" y2="204" stroke="#292421" stroke-width="1.5"/>\n<line x1="650" y1="204" x2="650" y2="218" stroke="#292421" stroke-width="1.5"/>\n<line x1="740" y1="204" x2="740" y2="218" stroke="#292421" stroke-width="1.5"/>\n<line x1="875" y1="190" x2="875" y2="204" stroke="#292421" stroke-width="1.5"/>\n<line x1="830" y1="204" x2="920" y2="204" stroke="#292421" stroke-width="1.5"/>\n<line x1="830" y1="204" x2="830" y2="218" stroke="#292421" stroke-width="1.5"/>\n<line x1="920" y1="204" x2="920" y2="218" stroke="#292421" stroke-width="1.5"/>\n<ellipse cx="350" cy="245" rx="6.5" ry="4.5" fill="#292421" transform="rotate(-15 350 245)"/>\n<ellipse cx="440" cy="245" rx="6.5" ry="4.5" fill="#292421" transform="rotate(-15 440 245)"/>\n<line x1="355.5" y1="244" x2="355.5" y2="218" stroke="#292421" stroke-width="1.8"/>\n<line x1="445.5" y1="244" x2="445.5" y2="218" stroke="#292421" stroke-width="1.8"/>\n<line x1="355.5" y1="219" x2="445.5" y2="219" stroke="#292421" stroke-width="3.5"/>\n<ellipse cx="530" cy="245" rx="6.5" ry="4.5" fill="#292421" transform="rotate(-15 530 245)"/>\n<ellipse cx="620" cy="245" rx="6.5" ry="4.5" fill="#292421" transform="rotate(-15 620 245)"/>\n<line x1="535.5" y1="244" x2="535.5" y2="218" stroke="#292421" stroke-width="1.8"/>\n<line x1="625.5" y1="244" x2="625.5" y2="218" stroke="#292421" stroke-width="1.8"/>\n<line x1="535.5" y1="219" x2="625.5" y2="219" stroke="#292421" stroke-width="3.5"/>\n<ellipse cx="650" cy="245" rx="6.5" ry="4.5" fill="#292421" transform="rotate(-15 650 245)"/>\n<ellipse cx="740" cy="245" rx="6.5" ry="4.5" fill="#292421" transform="rotate(-15 740 245)"/>\n<line x1="655.5" y1="244" x2="655.5" y2="218" stroke="#292421" stroke-width="1.8"/>\n<line x1="745.5" y1="244" x2="745.5" y2="218" stroke="#292421" stroke-width="1.8"/>\n<line x1="655.5" y1="219" x2="745.5" y2="219" stroke="#292421" stroke-width="3.5"/>\n<ellipse cx="830" cy="245" rx="6.5" ry="4.5" fill="#292421" transform="rotate(-15 830 245)"/>\n<ellipse cx="920" cy="245" rx="6.5" ry="4.5" fill="#292421" transform="rotate(-15 920 245)"/>\n<line x1="835.5" y1="244" x2="835.5" y2="218" stroke="#292421" stroke-width="1.8"/>\n<line x1="925.5" y1="244" x2="925.5" y2="218" stroke="#292421" stroke-width="1.8"/>\n<line x1="835.5" y1="219" x2="925.5" y2="219" stroke="#292421" stroke-width="3.5"/>\n<ellipse cx="325" cy="310" rx="5.5" ry="4" fill="#292421" transform="rotate(-15 325 310)"/>\n<ellipse cx="360" cy="310" rx="5.5" ry="4" fill="#292421" transform="rotate(-15 360 310)"/>\n<line x1="330" y1="309" x2="330" y2="286" stroke="#292421" stroke-width="1.6"/>\n<line x1="365" y1="309" x2="365" y2="286" stroke="#292421" stroke-width="1.6"/>\n<line x1="330" y1="287" x2="365" y2="287" stroke="#292421" stroke-width="2.5"/>\n<line x1="330" y1="292" x2="365" y2="292" stroke="#292421" stroke-width="2.5"/>\n<ellipse cx="415" cy="310" rx="5.5" ry="4" fill="#292421" transform="rotate(-15 415 310)"/>\n<ellipse cx="450" cy="310" rx="5.5" ry="4" fill="#292421" transform="rotate(-15 450 310)"/>\n<line x1="420" y1="309" x2="420" y2="286" stroke="#292421" stroke-width="1.6"/>\n<line x1="455" y1="309" x2="455" y2="286" stroke="#292421" stroke-width="1.6"/>\n<line x1="420" y1="287" x2="455" y2="287" stroke="#292421" stroke-width="2.5"/>\n<line x1="420" y1="292" x2="455" y2="292" stroke="#292421" stroke-width="2.5"/>\n<ellipse cx="505" cy="310" rx="5.5" ry="4" fill="#292421" transform="rotate(-15 505 310)"/>\n<ellipse cx="540" cy="310" rx="5.5" ry="4" fill="#292421" transform="rotate(-15 540 310)"/>\n<line x1="510" y1="309" x2="510" y2="286" stroke="#292421" stroke-width="1.6"/>\n<line x1="545" y1="309" x2="545" y2="286" stroke="#292421" stroke-width="1.6"/>\n<line x1="510" y1="287" x2="545" y2="287" stroke="#292421" stroke-width="2.5"/>\n<line x1="510" y1="292" x2="545" y2="292" stroke="#292421" stroke-width="2.5"/>\n<ellipse cx="595" cy="310" rx="5.5" ry="4" fill="#292421" transform="rotate(-15 595 310)"/>\n<ellipse cx="630" cy="310" rx="5.5" ry="4" fill="#292421" transform="rotate(-15 630 310)"/>\n<line x1="600" y1="309" x2="600" y2="286" stroke="#292421" stroke-width="1.6"/>\n<line x1="635" y1="309" x2="635" y2="286" stroke="#292421" stroke-width="1.6"/>\n<line x1="600" y1="287" x2="635" y2="287" stroke="#292421" stroke-width="2.5"/>\n<line x1="600" y1="292" x2="635" y2="292" stroke="#292421" stroke-width="2.5"/>\n<ellipse cx="685" cy="310" rx="5.5" ry="4" fill="#292421" transform="rotate(-15 685 310)"/>\n<ellipse cx="720" cy="310" rx="5.5" ry="4" fill="#292421" transform="rotate(-15 720 310)"/>\n<line x1="690" y1="309" x2="690" y2="286" stroke="#292421" stroke-width="1.6"/>\n<line x1="725" y1="309" x2="725" y2="286" stroke="#292421" stroke-width="1.6"/>\n<line x1="690" y1="287" x2="725" y2="287" stroke="#292421" stroke-width="2.5"/>\n<line x1="690" y1="292" x2="725" y2="292" stroke="#292421" stroke-width="2.5"/>\n<ellipse cx="775" cy="310" rx="5.5" ry="4" fill="#292421" transform="rotate(-15 775 310)"/>\n<ellipse cx="810" cy="310" rx="5.5" ry="4" fill="#292421" transform="rotate(-15 810 310)"/>\n<line x1="780" y1="309" x2="780" y2="286" stroke="#292421" stroke-width="1.6"/>\n<line x1="815" y1="309" x2="815" y2="286" stroke="#292421" stroke-width="1.6"/>\n<line x1="780" y1="287" x2="815" y2="287" stroke="#292421" stroke-width="2.5"/>\n<line x1="780" y1="292" x2="815" y2="292" stroke="#292421" stroke-width="2.5"/>\n<ellipse cx="865" cy="310" rx="5.5" ry="4" fill="#292421" transform="rotate(-15 865 310)"/>\n<ellipse cx="900" cy="310" rx="5.5" ry="4" fill="#292421" transform="rotate(-15 900 310)"/>\n<line x1="870" y1="309" x2="870" y2="286" stroke="#292421" stroke-width="1.6"/>\n<line x1="905" y1="309" x2="905" y2="286" stroke="#292421" stroke-width="1.6"/>\n<line x1="870" y1="287" x2="905" y2="287" stroke="#292421" stroke-width="2.5"/>\n<line x1="870" y1="292" x2="905" y2="292" stroke="#292421" stroke-width="2.5"/>\n<ellipse cx="955" cy="310" rx="5.5" ry="4" fill="#292421" transform="rotate(-15 955 310)"/>\n<ellipse cx="990" cy="310" rx="5.5" ry="4" fill="#292421" transform="rotate(-15 990 310)"/>\n<line x1="960" y1="309" x2="960" y2="286" stroke="#292421" stroke-width="1.6"/>\n<line x1="995" y1="309" x2="995" y2="286" stroke="#292421" stroke-width="1.6"/>\n<line x1="960" y1="287" x2="995" y2="287" stroke="#292421" stroke-width="2.5"/>\n<line x1="960" y1="292" x2="995" y2="292" stroke="#292421" stroke-width="2.5"/>\n<ellipse cx="300" cy="375" rx="4.5" ry="3.2" fill="#292421" transform="rotate(-15 300 375)"/>\n<ellipse cx="320" cy="375" rx="4.5" ry="3.2" fill="#292421" transform="rotate(-15 320 375)"/>\n<line x1="304" y1="374" x2="304" y2="350" stroke="#292421" stroke-width="1.4"/>\n<line x1="324" y1="374" x2="324" y2="350" stroke="#292421" stroke-width="1.4"/>\n<line x1="304" y1="351" x2="324" y2="351" stroke="#292421" stroke-width="2"/>\n<line x1="304" y1="355" x2="324" y2="355" stroke="#292421" stroke-width="2"/>\n<line x1="304" y1="359" x2="324" y2="359" stroke="#292421" stroke-width="2"/>\n<ellipse cx="344" cy="375" rx="4.5" ry="3.2" fill="#292421" transform="rotate(-15 344 375)"/>\n<ellipse cx="364" cy="375" rx="4.5" ry="3.2" fill="#292421" transform="rotate(-15 364 375)"/>\n<line x1="348" y1="374" x2="348" y2="350" stroke="#292421" stroke-width="1.4"/>\n<line x1="368" y1="374" x2="368" y2="350" stroke="#292421" stroke-width="1.4"/>\n<line x1="348" y1="351" x2="368" y2="351" stroke="#292421" stroke-width="2"/>\n<line x1="348" y1="355" x2="368" y2="355" stroke="#292421" stroke-width="2"/>\n<line x1="348" y1="359" x2="368" y2="359" stroke="#292421" stroke-width="2"/>\n<ellipse cx="388" cy="375" rx="4.5" ry="3.2" fill="#292421" transform="rotate(-15 388 375)"/>\n<ellipse cx="408" cy="375" rx="4.5" ry="3.2" fill="#292421" transform="rotate(-15 408 375)"/>\n<line x1="392" y1="374" x2="392" y2="350" stroke="#292421" stroke-width="1.4"/>\n<line x1="412" y1="374" x2="412" y2="350" stroke="#292421" stroke-width="1.4"/>\n<line x1="392" y1="351" x2="412" y2="351" stroke="#292421" stroke-width="2"/>\n<line x1="392" y1="355" x2="412" y2="355" stroke="#292421" stroke-width="2"/>\n<line x1="392" y1="359" x2="412" y2="359" stroke="#292421" stroke-width="2"/>\n<ellipse cx="432" cy="375" rx="4.5" ry="3.2" fill="#292421" transform="rotate(-15 432 375)"/>\n<ellipse cx="452" cy="375" rx="4.5" ry="3.2" fill="#292421" transform="rotate(-15 452 375)"/>\n<line x1="436" y1="374" x2="436" y2="350" stroke="#292421" stroke-width="1.4"/>\n<line x1="456" y1="374" x2="456" y2="350" stroke="#292421" stroke-width="1.4"/>\n<line x1="436" y1="351" x2="456" y2="351" stroke="#292421" stroke-width="2"/>\n<line x1="436" y1="355" x2="456" y2="355" stroke="#292421" stroke-width="2"/>\n<line x1="436" y1="359" x2="456" y2="359" stroke="#292421" stroke-width="2"/>\n<ellipse cx="476" cy="375" rx="4.5" ry="3.2" fill="#292421" transform="rotate(-15 476 375)"/>\n<ellipse cx="496" cy="375" rx="4.5" ry="3.2" fill="#292421" transform="rotate(-15 496 375)"/>\n<line x1="480" y1="374" x2="480" y2="350" stroke="#292421" stroke-width="1.4"/>\n<line x1="500" y1="374" x2="500" y2="350" stroke="#292421" stroke-width="1.4"/>\n<line x1="480" y1="351" x2="500" y2="351" stroke="#292421" stroke-width="2"/>\n<line x1="480" y1="355" x2="500" y2="355" stroke="#292421" stroke-width="2"/>\n<line x1="480" y1="359" x2="500" y2="359" stroke="#292421" stroke-width="2"/>\n<ellipse cx="520" cy="375" rx="4.5" ry="3.2" fill="#292421" transform="rotate(-15 520 375)"/>\n<ellipse cx="540" cy="375" rx="4.5" ry="3.2" fill="#292421" transform="rotate(-15 540 375)"/>\n<line x1="524" y1="374" x2="524" y2="350" stroke="#292421" stroke-width="1.4"/>\n<line x1="544" y1="374" x2="544" y2="350" stroke="#292421" stroke-width="1.4"/>\n<line x1="524" y1="351" x2="544" y2="351" stroke="#292421" stroke-width="2"/>\n<line x1="524" y1="355" x2="544" y2="355" stroke="#292421" stroke-width="2"/>\n<line x1="524" y1="359" x2="544" y2="359" stroke="#292421" stroke-width="2"/>\n<ellipse cx="564" cy="375" rx="4.5" ry="3.2" fill="#292421" transform="rotate(-15 564 375)"/>\n<ellipse cx="584" cy="375" rx="4.5" ry="3.2" fill="#292421" transform="rotate(-15 584 375)"/>\n<line x1="568" y1="374" x2="568" y2="350" stroke="#292421" stroke-width="1.4"/>\n<line x1="588" y1="374" x2="588" y2="350" stroke="#292421" stroke-width="1.4"/>\n<line x1="568" y1="351" x2="588" y2="351" stroke="#292421" stroke-width="2"/>\n<line x1="568" y1="355" x2="588" y2="355" stroke="#292421" stroke-width="2"/>\n<line x1="568" y1="359" x2="588" y2="359" stroke="#292421" stroke-width="2"/>\n<ellipse cx="608" cy="375" rx="4.5" ry="3.2" fill="#292421" transform="rotate(-15 608 375)"/>\n<ellipse cx="628" cy="375" rx="4.5" ry="3.2" fill="#292421" transform="rotate(-15 628 375)"/>\n<line x1="612" y1="374" x2="612" y2="350" stroke="#292421" stroke-width="1.4"/>\n<line x1="632" y1="374" x2="632" y2="350" stroke="#292421" stroke-width="1.4"/>\n<line x1="612" y1="351" x2="632" y2="351" stroke="#292421" stroke-width="2"/>\n<line x1="612" y1="355" x2="632" y2="355" stroke="#292421" stroke-width="2"/>\n<line x1="612" y1="359" x2="632" y2="359" stroke="#292421" stroke-width="2"/>\n<ellipse cx="652" cy="375" rx="4.5" ry="3.2" fill="#292421" transform="rotate(-15 652 375)"/>\n<ellipse cx="672" cy="375" rx="4.5" ry="3.2" fill="#292421" transform="rotate(-15 672 375)"/>\n<line x1="656" y1="374" x2="656" y2="350" stroke="#292421" stroke-width="1.4"/>\n<line x1="676" y1="374" x2="676" y2="350" stroke="#292421" stroke-width="1.4"/>\n<line x1="656" y1="351" x2="676" y2="351" stroke="#292421" stroke-width="2"/>\n<line x1="656" y1="355" x2="676" y2="355" stroke="#292421" stroke-width="2"/>\n<line x1="656" y1="359" x2="676" y2="359" stroke="#292421" stroke-width="2"/>\n<ellipse cx="696" cy="375" rx="4.5" ry="3.2" fill="#292421" transform="rotate(-15 696 375)"/>\n<ellipse cx="716" cy="375" rx="4.5" ry="3.2" fill="#292421" transform="rotate(-15 716 375)"/>\n<line x1="700" y1="374" x2="700" y2="350" stroke="#292421" stroke-width="1.4"/>\n<line x1="720" y1="374" x2="720" y2="350" stroke="#292421" stroke-width="1.4"/>\n<line x1="700" y1="351" x2="720" y2="351" stroke="#292421" stroke-width="2"/>\n<line x1="700" y1="355" x2="720" y2="355" stroke="#292421" stroke-width="2"/>\n<line x1="700" y1="359" x2="720" y2="359" stroke="#292421" stroke-width="2"/>\n<ellipse cx="740" cy="375" rx="4.5" ry="3.2" fill="#292421" transform="rotate(-15 740 375)"/>\n<ellipse cx="760" cy="375" rx="4.5" ry="3.2" fill="#292421" transform="rotate(-15 760 375)"/>\n<line x1="744" y1="374" x2="744" y2="350" stroke="#292421" stroke-width="1.4"/>\n<line x1="764" y1="374" x2="764" y2="350" stroke="#292421" stroke-width="1.4"/>\n<line x1="744" y1="351" x2="764" y2="351" stroke="#292421" stroke-width="2"/>\n<line x1="744" y1="355" x2="764" y2="355" stroke="#292421" stroke-width="2"/>\n<line x1="744" y1="359" x2="764" y2="359" stroke="#292421" stroke-width="2"/>\n<ellipse cx="784" cy="375" rx="4.5" ry="3.2" fill="#292421" transform="rotate(-15 784 375)"/>\n<ellipse cx="804" cy="375" rx="4.5" ry="3.2" fill="#292421" transform="rotate(-15 804 375)"/>\n<line x1="788" y1="374" x2="788" y2="350" stroke="#292421" stroke-width="1.4"/>\n<line x1="808" y1="374" x2="808" y2="350" stroke="#292421" stroke-width="1.4"/>\n<line x1="788" y1="351" x2="808" y2="351" stroke="#292421" stroke-width="2"/>\n<line x1="788" y1="355" x2="808" y2="355" stroke="#292421" stroke-width="2"/>\n<line x1="788" y1="359" x2="808" y2="359" stroke="#292421" stroke-width="2"/>\n<ellipse cx="828" cy="375" rx="4.5" ry="3.2" fill="#292421" transform="rotate(-15 828 375)"/>\n<ellipse cx="848" cy="375" rx="4.5" ry="3.2" fill="#292421" transform="rotate(-15 848 375)"/>\n<line x1="832" y1="374" x2="832" y2="350" stroke="#292421" stroke-width="1.4"/>\n<line x1="852" y1="374" x2="852" y2="350" stroke="#292421" stroke-width="1.4"/>\n<line x1="832" y1="351" x2="852" y2="351" stroke="#292421" stroke-width="2"/>\n<line x1="832" y1="355" x2="852" y2="355" stroke="#292421" stroke-width="2"/>\n<line x1="832" y1="359" x2="852" y2="359" stroke="#292421" stroke-width="2"/>\n<ellipse cx="872" cy="375" rx="4.5" ry="3.2" fill="#292421" transform="rotate(-15 872 375)"/>\n<ellipse cx="892" cy="375" rx="4.5" ry="3.2" fill="#292421" transform="rotate(-15 892 375)"/>\n<line x1="876" y1="374" x2="876" y2="350" stroke="#292421" stroke-width="1.4"/>\n<line x1="896" y1="374" x2="896" y2="350" stroke="#292421" stroke-width="1.4"/>\n<line x1="876" y1="351" x2="896" y2="351" stroke="#292421" stroke-width="2"/>\n<line x1="876" y1="355" x2="896" y2="355" stroke="#292421" stroke-width="2"/>\n<line x1="876" y1="359" x2="896" y2="359" stroke="#292421" stroke-width="2"/>\n<ellipse cx="916" cy="375" rx="4.5" ry="3.2" fill="#292421" transform="rotate(-15 916 375)"/>\n<ellipse cx="936" cy="375" rx="4.5" ry="3.2" fill="#292421" transform="rotate(-15 936 375)"/>\n<line x1="920" y1="374" x2="920" y2="350" stroke="#292421" stroke-width="1.4"/>\n<line x1="940" y1="374" x2="940" y2="350" stroke="#292421" stroke-width="1.4"/>\n<line x1="920" y1="351" x2="940" y2="351" stroke="#292421" stroke-width="2"/>\n<line x1="920" y1="355" x2="940" y2="355" stroke="#292421" stroke-width="2"/>\n<line x1="920" y1="359" x2="940" y2="359" stroke="#292421" stroke-width="2"/>\n<ellipse cx="960" cy="375" rx="4.5" ry="3.2" fill="#292421" transform="rotate(-15 960 375)"/>\n<ellipse cx="980" cy="375" rx="4.5" ry="3.2" fill="#292421" transform="rotate(-15 980 375)"/>\n<line x1="964" y1="374" x2="964" y2="350" stroke="#292421" stroke-width="1.4"/>\n<line x1="984" y1="374" x2="984" y2="350" stroke="#292421" stroke-width="1.4"/>\n<line x1="964" y1="351" x2="984" y2="351" stroke="#292421" stroke-width="2"/>\n<line x1="964" y1="355" x2="984" y2="355" stroke="#292421" stroke-width="2"/>\n<line x1="964" y1="359" x2="984" y2="359" stroke="#292421" stroke-width="2"/>\n<ellipse cx="290.0" cy="430" rx="3.5" ry="2.5" fill="#292421" transform="rotate(-15 290.0 430)"/>\n<ellipse cx="300.0" cy="430" rx="3.5" ry="2.5" fill="#292421" transform="rotate(-15 300.0 430)"/>\n<line x1="293.0" y1="429" x2="293.0" y2="405" stroke="#292421" stroke-width="1.2"/>\n<line x1="303.0" y1="429" x2="303.0" y2="405" stroke="#292421" stroke-width="1.2"/>\n<line x1="293.0" y1="406" x2="303.0" y2="406" stroke="#292421" stroke-width="1.5"/>\n<line x1="293.0" y1="409.5" x2="303.0" y2="409.5" stroke="#292421" stroke-width="1.5"/>\n<line x1="293.0" y1="413" x2="303.0" y2="413" stroke="#292421" stroke-width="1.5"/>\n<line x1="293.0" y1="416.5" x2="303.0" y2="416.5" stroke="#292421" stroke-width="1.5"/>\n<ellipse cx="312.5" cy="430" rx="3.5" ry="2.5" fill="#292421" transform="rotate(-15 312.5 430)"/>\n<ellipse cx="322.5" cy="430" rx="3.5" ry="2.5" fill="#292421" transform="rotate(-15 322.5 430)"/>\n<line x1="315.5" y1="429" x2="315.5" y2="405" stroke="#292421" stroke-width="1.2"/>\n<line x1="325.5" y1="429" x2="325.5" y2="405" stroke="#292421" stroke-width="1.2"/>\n<line x1="315.5" y1="406" x2="325.5" y2="406" stroke="#292421" stroke-width="1.5"/>\n<line x1="315.5" y1="409.5" x2="325.5" y2="409.5" stroke="#292421" stroke-width="1.5"/>\n<line x1="315.5" y1="413" x2="325.5" y2="413" stroke="#292421" stroke-width="1.5"/>\n<line x1="315.5" y1="416.5" x2="325.5" y2="416.5" stroke="#292421" stroke-width="1.5"/>\n<ellipse cx="335.0" cy="430" rx="3.5" ry="2.5" fill="#292421" transform="rotate(-15 335.0 430)"/>\n<ellipse cx="345.0" cy="430" rx="3.5" ry="2.5" fill="#292421" transform="rotate(-15 345.0 430)"/>\n<line x1="338.0" y1="429" x2="338.0" y2="405" stroke="#292421" stroke-width="1.2"/>\n<line x1="348.0" y1="429" x2="348.0" y2="405" stroke="#292421" stroke-width="1.2"/>\n<line x1="338.0" y1="406" x2="348.0" y2="406" stroke="#292421" stroke-width="1.5"/>\n<line x1="338.0" y1="409.5" x2="348.0" y2="409.5" stroke="#292421" stroke-width="1.5"/>\n<line x1="338.0" y1="413" x2="348.0" y2="413" stroke="#292421" stroke-width="1.5"/>\n<line x1="338.0" y1="416.5" x2="348.0" y2="416.5" stroke="#292421" stroke-width="1.5"/>\n<ellipse cx="357.5" cy="430" rx="3.5" ry="2.5" fill="#292421" transform="rotate(-15 357.5 430)"/>\n<ellipse cx="367.5" cy="430" rx="3.5" ry="2.5" fill="#292421" transform="rotate(-15 367.5 430)"/>\n<line x1="360.5" y1="429" x2="360.5" y2="405" stroke="#292421" stroke-width="1.2"/>\n<line x1="370.5" y1="429" x2="370.5" y2="405" stroke="#292421" stroke-width="1.2"/>\n<line x1="360.5" y1="406" x2="370.5" y2="406" stroke="#292421" stroke-width="1.5"/>\n<line x1="360.5" y1="409.5" x2="370.5" y2="409.5" stroke="#292421" stroke-width="1.5"/>\n<line x1="360.5" y1="413" x2="370.5" y2="413" stroke="#292421" stroke-width="1.5"/>\n<line x1="360.5" y1="416.5" x2="370.5" y2="416.5" stroke="#292421" stroke-width="1.5"/>\n<ellipse cx="380.0" cy="430" rx="3.5" ry="2.5" fill="#292421" transform="rotate(-15 380.0 430)"/>\n<ellipse cx="390.0" cy="430" rx="3.5" ry="2.5" fill="#292421" transform="rotate(-15 390.0 430)"/>\n<line x1="383.0" y1="429" x2="383.0" y2="405" stroke="#292421" stroke-width="1.2"/>\n<line x1="393.0" y1="429" x2="393.0" y2="405" stroke="#292421" stroke-width="1.2"/>\n<line x1="383.0" y1="406" x2="393.0" y2="406" stroke="#292421" stroke-width="1.5"/>\n<line x1="383.0" y1="409.5" x2="393.0" y2="409.5" stroke="#292421" stroke-width="1.5"/>\n<line x1="383.0" y1="413" x2="393.0" y2="413" stroke="#292421" stroke-width="1.5"/>\n<line x1="383.0" y1="416.5" x2="393.0" y2="416.5" stroke="#292421" stroke-width="1.5"/>\n<ellipse cx="402.5" cy="430" rx="3.5" ry="2.5" fill="#292421" transform="rotate(-15 402.5 430)"/>\n<ellipse cx="412.5" cy="430" rx="3.5" ry="2.5" fill="#292421" transform="rotate(-15 412.5 430)"/>\n<line x1="405.5" y1="429" x2="405.5" y2="405" stroke="#292421" stroke-width="1.2"/>\n<line x1="415.5" y1="429" x2="415.5" y2="405" stroke="#292421" stroke-width="1.2"/>\n<line x1="405.5" y1="406" x2="415.5" y2="406" stroke="#292421" stroke-width="1.5"/>\n<line x1="405.5" y1="409.5" x2="415.5" y2="409.5" stroke="#292421" stroke-width="1.5"/>\n<line x1="405.5" y1="413" x2="415.5" y2="413" stroke="#292421" stroke-width="1.5"/>\n<line x1="405.5" y1="416.5" x2="415.5" y2="416.5" stroke="#292421" stroke-width="1.5"/>\n<ellipse cx="425.0" cy="430" rx="3.5" ry="2.5" fill="#292421" transform="rotate(-15 425.0 430)"/>\n<ellipse cx="435.0" cy="430" rx="3.5" ry="2.5" fill="#292421" transform="rotate(-15 435.0 430)"/>\n<line x1="428.0" y1="429" x2="428.0" y2="405" stroke="#292421" stroke-width="1.2"/>\n<line x1="438.0" y1="429" x2="438.0" y2="405" stroke="#292421" stroke-width="1.2"/>\n<line x1="428.0" y1="406" x2="438.0" y2="406" stroke="#292421" stroke-width="1.5"/>\n<line x1="428.0" y1="409.5" x2="438.0" y2="409.5" stroke="#292421" stroke-width="1.5"/>\n<line x1="428.0" y1="413" x2="438.0" y2="413" stroke="#292421" stroke-width="1.5"/>\n<line x1="428.0" y1="416.5" x2="438.0" y2="416.5" stroke="#292421" stroke-width="1.5"/>\n<ellipse cx="447.5" cy="430" rx="3.5" ry="2.5" fill="#292421" transform="rotate(-15 447.5 430)"/>\n<ellipse cx="457.5" cy="430" rx="3.5" ry="2.5" fill="#292421" transform="rotate(-15 457.5 430)"/>\n<line x1="450.5" y1="429" x2="450.5" y2="405" stroke="#292421" stroke-width="1.2"/>\n<line x1="460.5" y1="429" x2="460.5" y2="405" stroke="#292421" stroke-width="1.2"/>\n<line x1="450.5" y1="406" x2="460.5" y2="406" stroke="#292421" stroke-width="1.5"/>\n<line x1="450.5" y1="409.5" x2="460.5" y2="409.5" stroke="#292421" stroke-width="1.5"/>\n<line x1="450.5" y1="413" x2="460.5" y2="413" stroke="#292421" stroke-width="1.5"/>\n<line x1="450.5" y1="416.5" x2="460.5" y2="416.5" stroke="#292421" stroke-width="1.5"/>\n<ellipse cx="470.0" cy="430" rx="3.5" ry="2.5" fill="#292421" transform="rotate(-15 470.0 430)"/>\n<ellipse cx="480.0" cy="430" rx="3.5" ry="2.5" fill="#292421" transform="rotate(-15 480.0 430)"/>\n<line x1="473.0" y1="429" x2="473.0" y2="405" stroke="#292421" stroke-width="1.2"/>\n<line x1="483.0" y1="429" x2="483.0" y2="405" stroke="#292421" stroke-width="1.2"/>\n<line x1="473.0" y1="406" x2="483.0" y2="406" stroke="#292421" stroke-width="1.5"/>\n<line x1="473.0" y1="409.5" x2="483.0" y2="409.5" stroke="#292421" stroke-width="1.5"/>\n<line x1="473.0" y1="413" x2="483.0" y2="413" stroke="#292421" stroke-width="1.5"/>\n<line x1="473.0" y1="416.5" x2="483.0" y2="416.5" stroke="#292421" stroke-width="1.5"/>\n<ellipse cx="492.5" cy="430" rx="3.5" ry="2.5" fill="#292421" transform="rotate(-15 492.5 430)"/>\n<ellipse cx="502.5" cy="430" rx="3.5" ry="2.5" fill="#292421" transform="rotate(-15 502.5 430)"/>\n<line x1="495.5" y1="429" x2="495.5" y2="405" stroke="#292421" stroke-width="1.2"/>\n<line x1="505.5" y1="429" x2="505.5" y2="405" stroke="#292421" stroke-width="1.2"/>\n<line x1="495.5" y1="406" x2="505.5" y2="406" stroke="#292421" stroke-width="1.5"/>\n<line x1="495.5" y1="409.5" x2="505.5" y2="409.5" stroke="#292421" stroke-width="1.5"/>\n<line x1="495.5" y1="413" x2="505.5" y2="413" stroke="#292421" stroke-width="1.5"/>\n<line x1="495.5" y1="416.5" x2="505.5" y2="416.5" stroke="#292421" stroke-width="1.5"/>\n<ellipse cx="515.0" cy="430" rx="3.5" ry="2.5" fill="#292421" transform="rotate(-15 515.0 430)"/>\n<ellipse cx="525.0" cy="430" rx="3.5" ry="2.5" fill="#292421" transform="rotate(-15 525.0 430)"/>\n<line x1="518.0" y1="429" x2="518.0" y2="405" stroke="#292421" stroke-width="1.2"/>\n<line x1="528.0" y1="429" x2="528.0" y2="405" stroke="#292421" stroke-width="1.2"/>\n<line x1="518.0" y1="406" x2="528.0" y2="406" stroke="#292421" stroke-width="1.5"/>\n<line x1="518.0" y1="409.5" x2="528.0" y2="409.5" stroke="#292421" stroke-width="1.5"/>\n<line x1="518.0" y1="413" x2="528.0" y2="413" stroke="#292421" stroke-width="1.5"/>\n<line x1="518.0" y1="416.5" x2="528.0" y2="416.5" stroke="#292421" stroke-width="1.5"/>\n<ellipse cx="537.5" cy="430" rx="3.5" ry="2.5" fill="#292421" transform="rotate(-15 537.5 430)"/>\n<ellipse cx="547.5" cy="430" rx="3.5" ry="2.5" fill="#292421" transform="rotate(-15 547.5 430)"/>\n<line x1="540.5" y1="429" x2="540.5" y2="405" stroke="#292421" stroke-width="1.2"/>\n<line x1="550.5" y1="429" x2="550.5" y2="405" stroke="#292421" stroke-width="1.2"/>\n<line x1="540.5" y1="406" x2="550.5" y2="406" stroke="#292421" stroke-width="1.5"/>\n<line x1="540.5" y1="409.5" x2="550.5" y2="409.5" stroke="#292421" stroke-width="1.5"/>\n<line x1="540.5" y1="413" x2="550.5" y2="413" stroke="#292421" stroke-width="1.5"/>\n<line x1="540.5" y1="416.5" x2="550.5" y2="416.5" stroke="#292421" stroke-width="1.5"/>\n<ellipse cx="560.0" cy="430" rx="3.5" ry="2.5" fill="#292421" transform="rotate(-15 560.0 430)"/>\n<ellipse cx="570.0" cy="430" rx="3.5" ry="2.5" fill="#292421" transform="rotate(-15 570.0 430)"/>\n<line x1="563.0" y1="429" x2="563.0" y2="405" stroke="#292421" stroke-width="1.2"/>\n<line x1="573.0" y1="429" x2="573.0" y2="405" stroke="#292421" stroke-width="1.2"/>\n<line x1="563.0" y1="406" x2="573.0" y2="406" stroke="#292421" stroke-width="1.5"/>\n<line x1="563.0" y1="409.5" x2="573.0" y2="409.5" stroke="#292421" stroke-width="1.5"/>\n<line x1="563.0" y1="413" x2="573.0" y2="413" stroke="#292421" stroke-width="1.5"/>\n<line x1="563.0" y1="416.5" x2="573.0" y2="416.5" stroke="#292421" stroke-width="1.5"/>\n<ellipse cx="582.5" cy="430" rx="3.5" ry="2.5" fill="#292421" transform="rotate(-15 582.5 430)"/>\n<ellipse cx="592.5" cy="430" rx="3.5" ry="2.5" fill="#292421" transform="rotate(-15 592.5 430)"/>\n<line x1="585.5" y1="429" x2="585.5" y2="405" stroke="#292421" stroke-width="1.2"/>\n<line x1="595.5" y1="429" x2="595.5" y2="405" stroke="#292421" stroke-width="1.2"/>\n<line x1="585.5" y1="406" x2="595.5" y2="406" stroke="#292421" stroke-width="1.5"/>\n<line x1="585.5" y1="409.5" x2="595.5" y2="409.5" stroke="#292421" stroke-width="1.5"/>\n<line x1="585.5" y1="413" x2="595.5" y2="413" stroke="#292421" stroke-width="1.5"/>\n<line x1="585.5" y1="416.5" x2="595.5" y2="416.5" stroke="#292421" stroke-width="1.5"/>\n<ellipse cx="605.0" cy="430" rx="3.5" ry="2.5" fill="#292421" transform="rotate(-15 605.0 430)"/>\n<ellipse cx="615.0" cy="430" rx="3.5" ry="2.5" fill="#292421" transform="rotate(-15 615.0 430)"/>\n<line x1="608.0" y1="429" x2="608.0" y2="405" stroke="#292421" stroke-width="1.2"/>\n<line x1="618.0" y1="429" x2="618.0" y2="405" stroke="#292421" stroke-width="1.2"/>\n<line x1="608.0" y1="406" x2="618.0" y2="406" stroke="#292421" stroke-width="1.5"/>\n<line x1="608.0" y1="409.5" x2="618.0" y2="409.5" stroke="#292421" stroke-width="1.5"/>\n<line x1="608.0" y1="413" x2="618.0" y2="413" stroke="#292421" stroke-width="1.5"/>\n<line x1="608.0" y1="416.5" x2="618.0" y2="416.5" stroke="#292421" stroke-width="1.5"/>\n<ellipse cx="627.5" cy="430" rx="3.5" ry="2.5" fill="#292421" transform="rotate(-15 627.5 430)"/>\n<ellipse cx="637.5" cy="430" rx="3.5" ry="2.5" fill="#292421" transform="rotate(-15 637.5 430)"/>\n<line x1="630.5" y1="429" x2="630.5" y2="405" stroke="#292421" stroke-width="1.2"/>\n<line x1="640.5" y1="429" x2="640.5" y2="405" stroke="#292421" stroke-width="1.2"/>\n<line x1="630.5" y1="406" x2="640.5" y2="406" stroke="#292421" stroke-width="1.5"/>\n<line x1="630.5" y1="409.5" x2="640.5" y2="409.5" stroke="#292421" stroke-width="1.5"/>\n<line x1="630.5" y1="413" x2="640.5" y2="413" stroke="#292421" stroke-width="1.5"/>\n<line x1="630.5" y1="416.5" x2="640.5" y2="416.5" stroke="#292421" stroke-width="1.5"/>\n<ellipse cx="650.0" cy="430" rx="3.5" ry="2.5" fill="#292421" transform="rotate(-15 650.0 430)"/>\n<ellipse cx="660.0" cy="430" rx="3.5" ry="2.5" fill="#292421" transform="rotate(-15 660.0 430)"/>\n<line x1="653.0" y1="429" x2="653.0" y2="405" stroke="#292421" stroke-width="1.2"/>\n<line x1="663.0" y1="429" x2="663.0" y2="405" stroke="#292421" stroke-width="1.2"/>\n<line x1="653.0" y1="406" x2="663.0" y2="406" stroke="#292421" stroke-width="1.5"/>\n<line x1="653.0" y1="409.5" x2="663.0" y2="409.5" stroke="#292421" stroke-width="1.5"/>\n<line x1="653.0" y1="413" x2="663.0" y2="413" stroke="#292421" stroke-width="1.5"/>\n<line x1="653.0" y1="416.5" x2="663.0" y2="416.5" stroke="#292421" stroke-width="1.5"/>\n<ellipse cx="672.5" cy="430" rx="3.5" ry="2.5" fill="#292421" transform="rotate(-15 672.5 430)"/>\n<ellipse cx="682.5" cy="430" rx="3.5" ry="2.5" fill="#292421" transform="rotate(-15 682.5 430)"/>\n<line x1="675.5" y1="429" x2="675.5" y2="405" stroke="#292421" stroke-width="1.2"/>\n<line x1="685.5" y1="429" x2="685.5" y2="405" stroke="#292421" stroke-width="1.2"/>\n<line x1="675.5" y1="406" x2="685.5" y2="406" stroke="#292421" stroke-width="1.5"/>\n<line x1="675.5" y1="409.5" x2="685.5" y2="409.5" stroke="#292421" stroke-width="1.5"/>\n<line x1="675.5" y1="413" x2="685.5" y2="413" stroke="#292421" stroke-width="1.5"/>\n<line x1="675.5" y1="416.5" x2="685.5" y2="416.5" stroke="#292421" stroke-width="1.5"/>\n<ellipse cx="695.0" cy="430" rx="3.5" ry="2.5" fill="#292421" transform="rotate(-15 695.0 430)"/>\n<ellipse cx="705.0" cy="430" rx="3.5" ry="2.5" fill="#292421" transform="rotate(-15 705.0 430)"/>\n<line x1="698.0" y1="429" x2="698.0" y2="405" stroke="#292421" stroke-width="1.2"/>\n<line x1="708.0" y1="429" x2="708.0" y2="405" stroke="#292421" stroke-width="1.2"/>\n<line x1="698.0" y1="406" x2="708.0" y2="406" stroke="#292421" stroke-width="1.5"/>\n<line x1="698.0" y1="409.5" x2="708.0" y2="409.5" stroke="#292421" stroke-width="1.5"/>\n<line x1="698.0" y1="413" x2="708.0" y2="413" stroke="#292421" stroke-width="1.5"/>\n<line x1="698.0" y1="416.5" x2="708.0" y2="416.5" stroke="#292421" stroke-width="1.5"/>\n<ellipse cx="717.5" cy="430" rx="3.5" ry="2.5" fill="#292421" transform="rotate(-15 717.5 430)"/>\n<ellipse cx="727.5" cy="430" rx="3.5" ry="2.5" fill="#292421" transform="rotate(-15 727.5 430)"/>\n<line x1="720.5" y1="429" x2="720.5" y2="405" stroke="#292421" stroke-width="1.2"/>\n<line x1="730.5" y1="429" x2="730.5" y2="405" stroke="#292421" stroke-width="1.2"/>\n<line x1="720.5" y1="406" x2="730.5" y2="406" stroke="#292421" stroke-width="1.5"/>\n<line x1="720.5" y1="409.5" x2="730.5" y2="409.5" stroke="#292421" stroke-width="1.5"/>\n<line x1="720.5" y1="413" x2="730.5" y2="413" stroke="#292421" stroke-width="1.5"/>\n<line x1="720.5" y1="416.5" x2="730.5" y2="416.5" stroke="#292421" stroke-width="1.5"/>\n<ellipse cx="740.0" cy="430" rx="3.5" ry="2.5" fill="#292421" transform="rotate(-15 740.0 430)"/>\n<ellipse cx="750.0" cy="430" rx="3.5" ry="2.5" fill="#292421" transform="rotate(-15 750.0 430)"/>\n<line x1="743.0" y1="429" x2="743.0" y2="405" stroke="#292421" stroke-width="1.2"/>\n<line x1="753.0" y1="429" x2="753.0" y2="405" stroke="#292421" stroke-width="1.2"/>\n<line x1="743.0" y1="406" x2="753.0" y2="406" stroke="#292421" stroke-width="1.5"/>\n<line x1="743.0" y1="409.5" x2="753.0" y2="409.5" stroke="#292421" stroke-width="1.5"/>\n<line x1="743.0" y1="413" x2="753.0" y2="413" stroke="#292421" stroke-width="1.5"/>\n<line x1="743.0" y1="416.5" x2="753.0" y2="416.5" stroke="#292421" stroke-width="1.5"/>\n<ellipse cx="762.5" cy="430" rx="3.5" ry="2.5" fill="#292421" transform="rotate(-15 762.5 430)"/>\n<ellipse cx="772.5" cy="430" rx="3.5" ry="2.5" fill="#292421" transform="rotate(-15 772.5 430)"/>\n<line x1="765.5" y1="429" x2="765.5" y2="405" stroke="#292421" stroke-width="1.2"/>\n<line x1="775.5" y1="429" x2="775.5" y2="405" stroke="#292421" stroke-width="1.2"/>\n<line x1="765.5" y1="406" x2="775.5" y2="406" stroke="#292421" stroke-width="1.5"/>\n<line x1="765.5" y1="409.5" x2="775.5" y2="409.5" stroke="#292421" stroke-width="1.5"/>\n<line x1="765.5" y1="413" x2="775.5" y2="413" stroke="#292421" stroke-width="1.5"/>\n<line x1="765.5" y1="416.5" x2="775.5" y2="416.5" stroke="#292421" stroke-width="1.5"/>\n<ellipse cx="785.0" cy="430" rx="3.5" ry="2.5" fill="#292421" transform="rotate(-15 785.0 430)"/>\n<ellipse cx="795.0" cy="430" rx="3.5" ry="2.5" fill="#292421" transform="rotate(-15 795.0 430)"/>\n<line x1="788.0" y1="429" x2="788.0" y2="405" stroke="#292421" stroke-width="1.2"/>\n<line x1="798.0" y1="429" x2="798.0" y2="405" stroke="#292421" stroke-width="1.2"/>\n<line x1="788.0" y1="406" x2="798.0" y2="406" stroke="#292421" stroke-width="1.5"/>\n<line x1="788.0" y1="409.5" x2="798.0" y2="409.5" stroke="#292421" stroke-width="1.5"/>\n<line x1="788.0" y1="413" x2="798.0" y2="413" stroke="#292421" stroke-width="1.5"/>\n<line x1="788.0" y1="416.5" x2="798.0" y2="416.5" stroke="#292421" stroke-width="1.5"/>\n<ellipse cx="807.5" cy="430" rx="3.5" ry="2.5" fill="#292421" transform="rotate(-15 807.5 430)"/>\n<ellipse cx="817.5" cy="430" rx="3.5" ry="2.5" fill="#292421" transform="rotate(-15 817.5 430)"/>\n<line x1="810.5" y1="429" x2="810.5" y2="405" stroke="#292421" stroke-width="1.2"/>\n<line x1="820.5" y1="429" x2="820.5" y2="405" stroke="#292421" stroke-width="1.2"/>\n<line x1="810.5" y1="406" x2="820.5" y2="406" stroke="#292421" stroke-width="1.5"/>\n<line x1="810.5" y1="409.5" x2="820.5" y2="409.5" stroke="#292421" stroke-width="1.5"/>\n<line x1="810.5" y1="413" x2="820.5" y2="413" stroke="#292421" stroke-width="1.5"/>\n<line x1="810.5" y1="416.5" x2="820.5" y2="416.5" stroke="#292421" stroke-width="1.5"/>\n<ellipse cx="830.0" cy="430" rx="3.5" ry="2.5" fill="#292421" transform="rotate(-15 830.0 430)"/>\n<ellipse cx="840.0" cy="430" rx="3.5" ry="2.5" fill="#292421" transform="rotate(-15 840.0 430)"/>\n<line x1="833.0" y1="429" x2="833.0" y2="405" stroke="#292421" stroke-width="1.2"/>\n<line x1="843.0" y1="429" x2="843.0" y2="405" stroke="#292421" stroke-width="1.2"/>\n<line x1="833.0" y1="406" x2="843.0" y2="406" stroke="#292421" stroke-width="1.5"/>\n<line x1="833.0" y1="409.5" x2="843.0" y2="409.5" stroke="#292421" stroke-width="1.5"/>\n<line x1="833.0" y1="413" x2="843.0" y2="413" stroke="#292421" stroke-width="1.5"/>\n<line x1="833.0" y1="416.5" x2="843.0" y2="416.5" stroke="#292421" stroke-width="1.5"/>\n<ellipse cx="852.5" cy="430" rx="3.5" ry="2.5" fill="#292421" transform="rotate(-15 852.5 430)"/>\n<ellipse cx="862.5" cy="430" rx="3.5" ry="2.5" fill="#292421" transform="rotate(-15 862.5 430)"/>\n<line x1="855.5" y1="429" x2="855.5" y2="405" stroke="#292421" stroke-width="1.2"/>\n<line x1="865.5" y1="429" x2="865.5" y2="405" stroke="#292421" stroke-width="1.2"/>\n<line x1="855.5" y1="406" x2="865.5" y2="406" stroke="#292421" stroke-width="1.5"/>\n<line x1="855.5" y1="409.5" x2="865.5" y2="409.5" stroke="#292421" stroke-width="1.5"/>\n<line x1="855.5" y1="413" x2="865.5" y2="413" stroke="#292421" stroke-width="1.5"/>\n<line x1="855.5" y1="416.5" x2="865.5" y2="416.5" stroke="#292421" stroke-width="1.5"/>\n<ellipse cx="875.0" cy="430" rx="3.5" ry="2.5" fill="#292421" transform="rotate(-15 875.0 430)"/>\n<ellipse cx="885.0" cy="430" rx="3.5" ry="2.5" fill="#292421" transform="rotate(-15 885.0 430)"/>\n<line x1="878.0" y1="429" x2="878.0" y2="405" stroke="#292421" stroke-width="1.2"/>\n<line x1="888.0" y1="429" x2="888.0" y2="405" stroke="#292421" stroke-width="1.2"/>\n<line x1="878.0" y1="406" x2="888.0" y2="406" stroke="#292421" stroke-width="1.5"/>\n<line x1="878.0" y1="409.5" x2="888.0" y2="409.5" stroke="#292421" stroke-width="1.5"/>\n<line x1="878.0" y1="413" x2="888.0" y2="413" stroke="#292421" stroke-width="1.5"/>\n<line x1="878.0" y1="416.5" x2="888.0" y2="416.5" stroke="#292421" stroke-width="1.5"/>\n<ellipse cx="897.5" cy="430" rx="3.5" ry="2.5" fill="#292421" transform="rotate(-15 897.5 430)"/>\n<ellipse cx="907.5" cy="430" rx="3.5" ry="2.5" fill="#292421" transform="rotate(-15 907.5 430)"/>\n<line x1="900.5" y1="429" x2="900.5" y2="405" stroke="#292421" stroke-width="1.2"/>\n<line x1="910.5" y1="429" x2="910.5" y2="405" stroke="#292421" stroke-width="1.2"/>\n<line x1="900.5" y1="406" x2="910.5" y2="406" stroke="#292421" stroke-width="1.5"/>\n<line x1="900.5" y1="409.5" x2="910.5" y2="409.5" stroke="#292421" stroke-width="1.5"/>\n<line x1="900.5" y1="413" x2="910.5" y2="413" stroke="#292421" stroke-width="1.5"/>\n<line x1="900.5" y1="416.5" x2="910.5" y2="416.5" stroke="#292421" stroke-width="1.5"/>\n<ellipse cx="920.0" cy="430" rx="3.5" ry="2.5" fill="#292421" transform="rotate(-15 920.0 430)"/>\n<ellipse cx="930.0" cy="430" rx="3.5" ry="2.5" fill="#292421" transform="rotate(-15 930.0 430)"/>\n<line x1="923.0" y1="429" x2="923.0" y2="405" stroke="#292421" stroke-width="1.2"/>\n<line x1="933.0" y1="429" x2="933.0" y2="405" stroke="#292421" stroke-width="1.2"/>\n<line x1="923.0" y1="406" x2="933.0" y2="406" stroke="#292421" stroke-width="1.5"/>\n<line x1="923.0" y1="409.5" x2="933.0" y2="409.5" stroke="#292421" stroke-width="1.5"/>\n<line x1="923.0" y1="413" x2="933.0" y2="413" stroke="#292421" stroke-width="1.5"/>\n<line x1="923.0" y1="416.5" x2="933.0" y2="416.5" stroke="#292421" stroke-width="1.5"/>\n<ellipse cx="942.5" cy="430" rx="3.5" ry="2.5" fill="#292421" transform="rotate(-15 942.5 430)"/>\n<ellipse cx="952.5" cy="430" rx="3.5" ry="2.5" fill="#292421" transform="rotate(-15 952.5 430)"/>\n<line x1="945.5" y1="429" x2="945.5" y2="405" stroke="#292421" stroke-width="1.2"/>\n<line x1="955.5" y1="429" x2="955.5" y2="405" stroke="#292421" stroke-width="1.2"/>\n<line x1="945.5" y1="406" x2="955.5" y2="406" stroke="#292421" stroke-width="1.5"/>\n<line x1="945.5" y1="409.5" x2="955.5" y2="409.5" stroke="#292421" stroke-width="1.5"/>\n<line x1="945.5" y1="413" x2="955.5" y2="413" stroke="#292421" stroke-width="1.5"/>\n<line x1="945.5" y1="416.5" x2="955.5" y2="416.5" stroke="#292421" stroke-width="1.5"/>\n<ellipse cx="965.0" cy="430" rx="3.5" ry="2.5" fill="#292421" transform="rotate(-15 965.0 430)"/>\n<ellipse cx="975.0" cy="430" rx="3.5" ry="2.5" fill="#292421" transform="rotate(-15 975.0 430)"/>\n<line x1="968.0" y1="429" x2="968.0" y2="405" stroke="#292421" stroke-width="1.2"/>\n<line x1="978.0" y1="429" x2="978.0" y2="405" stroke="#292421" stroke-width="1.2"/>\n<line x1="968.0" y1="406" x2="978.0" y2="406" stroke="#292421" stroke-width="1.5"/>\n<line x1="968.0" y1="409.5" x2="978.0" y2="409.5" stroke="#292421" stroke-width="1.5"/>\n<line x1="968.0" y1="413" x2="978.0" y2="413" stroke="#292421" stroke-width="1.5"/>\n<line x1="968.0" y1="416.5" x2="978.0" y2="416.5" stroke="#292421" stroke-width="1.5"/>\n<ellipse cx="987.5" cy="430" rx="3.5" ry="2.5" fill="#292421" transform="rotate(-15 987.5 430)"/>\n<ellipse cx="997.5" cy="430" rx="3.5" ry="2.5" fill="#292421" transform="rotate(-15 997.5 430)"/>\n<line x1="990.5" y1="429" x2="990.5" y2="405" stroke="#292421" stroke-width="1.2"/>\n<line x1="1000.5" y1="429" x2="1000.5" y2="405" stroke="#292421" stroke-width="1.2"/>\n<line x1="990.5" y1="406" x2="1000.5" y2="406" stroke="#292421" stroke-width="1.5"/>\n<line x1="990.5" y1="409.5" x2="1000.5" y2="409.5" stroke="#292421" stroke-width="1.5"/>\n<line x1="990.5" y1="413" x2="1000.5" y2="413" stroke="#292421" stroke-width="1.5"/>\n<line x1="990.5" y1="416.5" x2="1000.5" y2="416.5" stroke="#292421" stroke-width="1.5"/>\n</svg>
+            </div>
+
+            <div class="p-4 bg-amber-50/80 rounded-xl border border-amber-200 text-xs text-[#59524B] leading-relaxed space-y-1.5">
+              <strong class="text-[#881B1B] block text-sm flex items-center gap-1.5">
+                <i class="fa-solid fa-calculator"></i> Công thức toán học trường độ & dấu lặng:
+              </strong>
+              <p class="font-bold text-sm text-[#292421]">
+                1 Tròn = 2 Trắng = 4 Đen = 8 Móc đơn = 16 Móc kép = 32 Móc ba = 64 Móc tư
+              </p>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1 text-[11px] text-[#6B625B]">
+                <p>• <strong>Nốt / Lặng Tròn:</strong> 4 phách (chuẩn gốc)</p>
+                <p>• <strong>Nốt / Lặng Trắng:</strong> 2 phách (1/2 nốt tròn)</p>
+                <p>• <strong>Nốt / Lặng Đen:</strong> 1 phách (1/4 nốt tròn)</p>
+                <p>• <strong>Nốt / Lặng Đơn:</strong> 1/2 phách (1/8 nốt tròn)</p>
+                <p>• <strong>Nốt / Lặng Kép:</strong> 1/4 phách (1/16 nốt tròn)</p>
+                <p>• <strong>Dấu Chấm Dôi (·):</strong> Cộng thêm 50% độ dài đứng trước.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="text-center pt-2">
+            <button onclick="toggleSectionCollapse('sec4')" class="px-4 py-2 bg-white border border-[#D9CDBB] hover:bg-[#F2E8D7] text-[#881B1B] text-xs font-bold rounded-xl shadow-sm inline-flex items-center gap-1.5">
+              <i class="fa-solid fa-chevron-up"></i> Thu gọn mục 4
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. Ý NGHĨA SỐ CHỈ NHỊP & Ô NHỊP (COLLAPSIBLE) -->
+      <section id="sec5" class="bg-white rounded-3xl p-6 sm:p-8 border border-[#E8DFC8] shadow-sm space-y-4">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-3 border-b border-[#F0E8DA]">
+          <div class="flex items-center gap-3">
+            <span class="w-8 h-8 rounded-full bg-[#881B1B] text-white flex items-center justify-center font-bold text-sm">5</span>
+            <div>
+              <h2 class="font-serif text-2xl font-bold text-[#881B1B]">Ý Nghĩa Số Chỉ Nhịp & Ô Nhịp</h2>
+              <span class="text-xs text-[#2D5E3B] font-semibold">Bản chất của phân số chỉ nhịp trong âm nhạc</span>
+            </div>
+          </div>
+          <button onclick="toggleSectionCollapse('sec5')" id="btn-toggle-sec5" class="px-5 py-2.5 bg-[#881B1B] hover:bg-[#701515] text-white text-xs font-bold rounded-xl shadow flex items-center justify-center gap-2 transition-all">
+            <i class="fa-solid fa-eye" id="icon-sec5"></i> <span id="text-sec5">Xem thêm</span>
+          </button>
+        </div>
+
+        <!-- Collapsible Content Sec 5 -->
+        <div id="content-sec5" class="collapsible-content space-y-6 pt-2">
+          <div class="bg-[#FAF6EE] p-5 sm:p-6 rounded-2xl border border-[#EADFCB] space-y-4">
+            <h3 class="font-serif text-base font-bold text-[#881B1B] flex items-center gap-2">
+              <i class="fa-solid fa-circle-info"></i> Số chỉ nhịp được viết dưới dạng phân số gồm 2 con số:
+            </h3>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+              <div class="bg-white p-4 rounded-xl border-l-4 border-[#881B1B] shadow-sm space-y-1.5">
+                <span class="px-2 py-0.5 bg-red-100 text-[#881B1B] font-bold rounded text-[10px] uppercase">Số ở trên (Tử số)</span>
+                <h4 class="font-bold text-sm text-[#292421]">Cho biết SỐ LƯỢNG PHÁCH trong mỗi ô nhịp</h4>
+                <p class="text-[#59524B] leading-relaxed">
+                  Ví dụ: Số <strong>2</strong> = có 2 phách • Số <strong>3</strong> = có 3 phách • Số <strong>4</strong> = có 4 phách • Số <strong>6</strong> = có 6 phách trong 1 ô nhịp.
+                </p>
+              </div>
+
+              <div class="bg-white p-4 rounded-xl border-l-4 border-[#193822] shadow-sm space-y-1.5">
+                <span class="px-2 py-0.5 bg-emerald-100 text-[#193822] font-bold rounded text-[10px] uppercase">Số ở dưới (Mẫu số)</span>
+                <h4 class="font-bold text-sm text-[#292421]">Cho biết LOẠI NỐT NÀO có giá trị bằng 1 phách</h4>
+                <p class="text-[#59524B] leading-relaxed">
+                  Mẫu số được quy ước theo phân số chia từ <strong>Nốt Tròn</strong> (Dựa vào cây trường độ ở mục 4):
+                </p>
+                <ul class="text-[11px] text-[#59524B] space-y-1 list-disc list-inside pt-1">
+                  <li>Số <strong>1</strong>: Nốt tròn = 1 phách (1/1)</li>
+                  <li>Số <strong>2</strong>: Nốt trắng = 1 phách (1/2)</li>
+                  <li>Số <strong>4</strong>: <strong>Nốt đen = 1 phách</strong> (1/4) <em>(Phổ biến nhất)</em></li>
+                  <li>Số <strong>8</strong>: <strong>Nốt móc đơn = 1 phách</strong> (1/8)</li>
+                  <li>Số <strong>16</strong>: Nốt móc kép = 1 phách (1/16)</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div class="p-4 bg-white rounded-2xl border border-[#E8DFC8] shadow-sm space-y-2.5">
+              <div class="flex items-center justify-between">
+                <span class="font-serif text-2xl font-bold text-[#881B1B]">2 / 4</span>
+                <span class="px-2 py-0.5 bg-red-50 text-[#881B1B] text-[10px] font-bold rounded">2 Nốt đen/ô</span>
+              </div>
+              <h4 class="text-xs font-bold text-[#292421]">Nhịp 2/4 (Hành khúc)</h4>
+              <p class="text-[11px] text-[#59524B]">Mỗi ô nhịp có <strong>2 phách</strong>, mỗi phách là <strong>1 nốt đen</strong>.</p>
+              <p class="text-[11px] text-[#6B625B] border-t border-[#F0E8DA] pt-1">Phách 1 <strong>MẠNH</strong>, phách 2 <em>nhẹ</em>. Nhịp dứt khoát, bước đi.</p>
+            </div>
+
+            <div class="p-4 bg-white rounded-2xl border border-[#E8DFC8] shadow-sm space-y-2.5">
+              <div class="flex items-center justify-between">
+                <span class="font-serif text-2xl font-bold text-[#881B1B]">3 / 4</span>
+                <span class="px-2 py-0.5 bg-amber-50 text-[#881B1B] text-[10px] font-bold rounded">3 Nốt đen/ô</span>
+              </div>
+              <h4 class="text-xs font-bold text-[#292421]">Nhịp 3/4 (Valse)</h4>
+              <p class="text-[11px] text-[#59524B]">Mỗi ô nhịp có <strong>3 phách</strong>, mỗi phách là <strong>1 nốt đen</strong>.</p>
+              <p class="text-[11px] text-[#6B625B] border-t border-[#F0E8DA] pt-1">Phách 1 <strong>MẠNH</strong>, phách 2 & 3 <em>nhẹ</em>. Nhịp uyển chuyển, dìu dặt.</p>
+            </div>
+
+            <div class="p-4 bg-white rounded-2xl border border-[#E8DFC8] shadow-sm space-y-2.5">
+              <div class="flex items-center justify-between">
+                <span class="font-serif text-2xl font-bold text-[#881B1B]">4 / 4 (C)</span>
+                <span class="px-2 py-0.5 bg-emerald-50 text-emerald-800 text-[10px] font-bold rounded">4 Nốt đen/ô</span>
+              </div>
+              <h4 class="text-xs font-bold text-[#292421]">Nhịp 4/4 (Thông dụng nhất)</h4>
+              <p class="text-[11px] text-[#59524B]">Mỗi ô nhịp có <strong>4 phách</strong>, mỗi phách là <strong>1 nốt đen</strong>.</p>
+              <p class="text-[11px] text-[#6B625B] border-t border-[#F0E8DA] pt-1">Phách 1 <strong>MẠNH</strong>, 2 <em>nhẹ</em>, 3 <strong>MẠNH VỪA</strong>, 4 <em>nhẹ</em>.</p>
+            </div>
+
+            <div class="p-4 bg-white rounded-2xl border border-[#E8DFC8] shadow-sm space-y-2.5">
+              <div class="flex items-center justify-between">
+                <span class="font-serif text-2xl font-bold text-[#881B1B]">6 / 8</span>
+                <span class="px-2 py-0.5 bg-blue-50 text-blue-800 text-[10px] font-bold rounded">6 Móc đơn/ô</span>
+              </div>
+              <h4 class="text-xs font-bold text-[#292421]">Nhịp 6/8 (Trữ tình / Dân ca)</h4>
+              <p class="text-[11px] text-[#59524B]">Mỗi ô nhịp có <strong>6 phách</strong>, mỗi phách là <strong>1 nốt móc đơn</strong>.</p>
+              <p class="text-[11px] text-[#6B625B] border-t border-[#F0E8DA] pt-1">Gồm 2 nhóm 3 nốt: Phách 1 <strong>MẠNH</strong>, 2-3 nhẹ, 4 <strong>MẠNH VỪA</strong>, 5-6 nhẹ.</p>
+            </div>
+          </div>
+
+          <div class="text-center pt-2">
+            <button onclick="toggleSectionCollapse('sec5')" class="px-4 py-2 bg-white border border-[#D9CDBB] hover:bg-[#F2E8D7] text-[#881B1B] text-xs font-bold rounded-xl shadow-sm inline-flex items-center gap-1.5">
+              <i class="fa-solid fa-chevron-up"></i> Thu gọn mục 5
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. CÁC KÝ HIỆU THƯỜNG GẶP (COLLAPSIBLE) -->
+      <section id="sec6" class="bg-white rounded-3xl p-6 sm:p-8 border border-[#E8DFC8] shadow-sm space-y-4">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-3 border-b border-[#F0E8DA]">
+          <div class="flex items-center gap-3">
+            <span class="w-8 h-8 rounded-full bg-[#881B1B] text-white flex items-center justify-center font-bold text-sm">6</span>
+            <div>
+              <h2 class="font-serif text-2xl font-bold text-[#881B1B]">Các Ký Hiệu Thường Gặp Khi Thổi Sáo</h2>
+              <span class="text-xs text-[#2D5E3B] font-semibold">Dấu thăng giáng, dấu bình, dấu luyến, ngắt tiếng, cường độ & tốc độ</span>
+            </div>
+          </div>
+          <button onclick="toggleSectionCollapse('sec6')" id="btn-toggle-sec6" class="px-5 py-2.5 bg-[#881B1B] hover:bg-[#701515] text-white text-xs font-bold rounded-xl shadow flex items-center justify-center gap-2 transition-all">
+            <i class="fa-solid fa-eye" id="icon-sec6"></i> <span id="text-sec6">Xem thêm</span>
+          </button>
+        </div>
+
+        <!-- Collapsible Content Sec 6 -->
+        <div id="content-sec6" class="collapsible-content space-y-4 pt-2">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+            <div class="p-3.5 bg-[#FAF6EE] rounded-xl border border-[#EADFCB] space-y-1">
+              <strong class="text-[#881B1B] block">♯ Dấu Thăng & ♭ Dấu Giáng Biểu Biến</strong>
+              <p class="text-[#59524B]">Tăng (♯) hoặc giảm (♭) nốt lên/xuống nửa cung ngay trong bản nhạc. <em>Ví dụ: Fa♯ thổi bằng cách mở nửa lỗ Fa.</em></p>
+            </div>
+
+            <div class="p-3.5 bg-[#FAF6EE] rounded-xl border border-[#EADFCB] space-y-1">
+              <strong class="text-[#881B1B] block">♮ Dấu Bình (Natural)</strong>
+              <p class="text-[#59524B]">Hủy bỏ hiệu lực của dấu thăng hoặc dấu giáng trước đó, đưa nốt về cao độ nguyên bản tự nhiên.</p>
+            </div>
+
+            <div class="p-3.5 bg-[#FAF6EE] rounded-xl border border-[#EADFCB] space-y-1">
+              <strong class="text-[#881B1B] block">⌒ Dấu Nối & Dấu Luyến (Slur)</strong>
+              <p class="text-[#59524B]">Dấu luyến nối các nốt khác cao độ: chỉ đánh lưỡi nốt đầu, các nốt sau lướt ngón trong 1 làn hơi.</p>
+            </div>
+
+            <div class="p-3.5 bg-[#FAF6EE] rounded-xl border border-[#EADFCB] space-y-1">
+              <strong class="text-[#881B1B] block">· Staccato (Dấu ngắt tiếng)</strong>
+              <p class="text-[#59524B]">Dấu chấm đặt trên hoặc dưới đầu nốt: thổi ngắt tiếng dứt khoát, gọn gàng bằng đầu lưỡi.</p>
+            </div>
+
+            <div class="p-3.5 bg-[#FAF6EE] rounded-xl border border-[#EADFCB] space-y-1">
+              <strong class="text-[#881B1B] block">||:  :|| Dấu Nhắc Lại (Repeat)</strong>
+              <p class="text-[#59524B]">Lặp lại đoạn nhạc nằm giữa 2 dấu vạch đôi có 2 chấm.</p>
+            </div>
+
+            <div class="p-3.5 bg-[#FAF6EE] rounded-xl border border-[#EADFCB] space-y-1">
+              <strong class="text-[#881B1B] block">&lt; Crescendo & &gt; Diminuendo</strong>
+              <p class="text-[#59524B]">Ký hiệu điều tiết hơi: &lt; thổi mạnh dần lên, &gt; thổi nhẹ dần lại.</p>
+            </div>
+
+            <div class="p-3.5 bg-[#FAF6EE] rounded-xl border border-[#EADFCB] space-y-1 sm:col-span-2">
+              <strong class="text-[#881B1B] block">Cường độ (Dynamics) & Tốc độ (Tempo):</strong>
+              <p class="text-[#59524B]"><em>p</em> (nhẹ) • <em>mp</em> (vừa nhẹ) • <em>mf</em> (vừa to) • <em>f</em> (thổi to, mạnh mẽ) &nbsp;|&nbsp; <strong>Andante</strong> (Chậm) • <strong>Moderato</strong> (Vừa) • <strong>Allegro</strong> (Nhanh).</p>
+            </div>
+          </div>
+
+          <div class="text-center pt-2">
+            <button onclick="toggleSectionCollapse('sec6')" class="px-4 py-2 bg-white border border-[#D9CDBB] hover:bg-[#F2E8D7] text-[#881B1B] text-xs font-bold rounded-xl shadow-sm inline-flex items-center gap-1.5">
+              <i class="fa-solid fa-chevron-up"></i> Thu gọn mục 6
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- 7. THỰC HÀNH: HOT CROSS BUNS (COLLAPSIBLE) -->
+      <section id="sec7" class="bg-white rounded-3xl p-6 sm:p-8 border-2 border-[#881B1B]/40 shadow-lg space-y-4">
+        
+        <!-- Section Header with Collapse Button -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-3 border-b border-[#F0E8DA]">
+          <div class="flex items-center gap-3">
+            <span class="w-9 h-9 rounded-full bg-[#881B1B] text-white flex items-center justify-center font-bold text-base shadow">7</span>
+            <div>
+              <h2 class="font-serif text-2xl sm:text-3xl font-bold text-[#881B1B]">Thực Hành: Hot Cross Buns (Sáo Trúc)</h2>
+              <span class="text-xs text-[#2D5E3B] font-semibold">Bản nhạc thực hành đọc sheet 3 giọng kinh điển (Sol Trưởng - Fa Trưởng - Đô Trưởng)</span>
+            </div>
+          </div>
+
+          <button onclick="toggleSectionCollapse('sec7')" id="btn-toggle-sec7" class="px-5 py-2.5 bg-[#881B1B] hover:bg-[#701515] text-white text-xs font-bold rounded-xl shadow flex items-center justify-center gap-2 transition-all">
+            <i class="fa-solid fa-eye" id="icon-sec7"></i> <span id="text-sec7">Xem thêm</span>
+          </button>
+        </div>
+
+        <!-- Collapsible Content Sec 7 -->
+        <div id="content-sec7" class="collapsible-content space-y-6 pt-2">
+          
+          <!-- Quick Action Buttons -->
+          <div class="flex flex-wrap items-center justify-between gap-3 p-3 bg-[#FAF6EE] rounded-2xl border border-[#EADFCB]">
+            <div class="flex flex-wrap items-center gap-2">
+              <button onclick="toggleHcbNoteNames()" id="toggleHcbNotesBtn" class="px-3.5 py-2 bg-white border border-[#D9CDBB] hover:bg-[#F4ECE0] text-[#292421] text-xs font-bold rounded-xl shadow-sm transition-all flex items-center gap-1.5">
+                <i class="fa-solid fa-eye" id="toggleHcbIcon"></i> <span id="toggleHcbText">Ẩn tên nốt</span>
+              </button>
+              
+              <button onclick="playHotCrossBunFull()" id="playHcbFullBtn" class="px-4 py-2 bg-[#881B1B] hover:bg-[#701515] text-white text-xs font-bold rounded-xl shadow flex items-center gap-1.5 transition-all">
+                <i class="fa-solid fa-play"></i> <span id="playBtnText">Phát trọn vẹn 3 đoạn</span>
+              </button>
+
+              <button onclick="stopHcbPlayback()" id="stopHcbBtn" class="px-4 py-2 bg-[#4A423B] hover:bg-[#292421] text-white text-xs font-bold rounded-xl shadow flex items-center gap-1.5 transition-all">
+                <i class="fa-solid fa-stop"></i> Dừng phát
+              </button>
+            </div>
+
+            <!-- Metronome Speed for Practice Piece -->
+            <div class="flex items-center gap-3 text-xs">
+              <span class="text-[#6B625B] font-semibold">Tốc độ bài:</span>
+              <span class="font-bold text-[#881B1B]" id="hcbBpmDisplay">85 BPM</span>
+              <input type="range" id="hcbBpmSlider" min="50" max="130" value="85" oninput="updateHcbBpm(this.value)" class="w-24 accent-[#881B1B] cursor-pointer">
+            </div>
+          </div>
+
+          <!-- Line Selectors -->
+          <div class="flex flex-wrap items-center gap-2 p-2.5 bg-white rounded-xl border border-[#E0D5C3] text-xs">
+            <span class="font-bold text-[#881B1B] uppercase tracking-wider">Phát từng đoạn:</span>
+            <button onclick="playHcbLine(1)" class="px-3 py-1 bg-[#FAF6EE] hover:bg-red-50 border border-red-200 text-[#881B1B] font-bold rounded-lg transition-all shadow-sm">
+              Đoạn 1 (Sol)
+            </button>
+            <button onclick="playHcbLine(2)" class="px-3 py-1 bg-[#FAF6EE] hover:bg-blue-50 border border-blue-200 text-blue-800 font-bold rounded-lg transition-all shadow-sm">
+              Đoạn 2 (Fa)
+            </button>
+            <button onclick="playHcbLine(3)" class="px-3 py-1 bg-[#FAF6EE] hover:bg-emerald-50 border border-emerald-200 text-emerald-800 font-bold rounded-lg transition-all shadow-sm">
+              Đoạn 3 (Đô)
+            </button>
+          </div>
+
+          <!-- MAIN SHEET MUSIC CONTAINER (3 VECTOR STAVES) -->
+          <div class="bg-[#FAF6EE] p-4 sm:p-6 rounded-2xl border-2 border-[#E0D5C3] shadow-inner space-y-4">
+            <div class="text-center space-y-1 pb-2 border-b border-[#E0D5C3]">
+              <h3 class="font-serif text-2xl font-bold text-[#292421] tracking-wide uppercase">Hot Cross Buns</h3>
+              <span class="text-xs font-bold text-[#881B1B] uppercase tracking-wider block">Sáo Trúc • Nhịp 2/4</span>
+            </div>
+
+            <!-- Interactive Full SVG Sheet -->
+            <div class="overflow-x-auto bg-white p-3 sm:p-4 rounded-xl border border-[#E0D5C3] shadow-sm">
+              <svg viewBox="0 0 920 370" class="w-full select-none" style="font-family: sans-serif;"><rect x="0" y="0" width="920" height="370" fill="#FAF6EE" rx="14" stroke="#E8DFC8"/><text x="25" y="23" font-size="10.5" font-weight="bold" fill="#881B1B">ĐOẠN 1 (Giọng Sol Trưởng - 1 Dấu Thăng Fa♯)</text><text x="8" y="41" font-size="11" font-style="italic" fill="#6B625B">1</text><line x1="25" y1="35" x2="905" y2="35" stroke="#4A423B" stroke-width="1.2"/><line x1="25" y1="45" x2="905" y2="45" stroke="#4A423B" stroke-width="1.2"/><line x1="25" y1="55" x2="905" y2="55" stroke="#4A423B" stroke-width="1.2"/><line x1="25" y1="65" x2="905" y2="65" stroke="#881B1B" stroke-width="1.2"/><line x1="25" y1="75" x2="905" y2="75" stroke="#4A423B" stroke-width="1.2"/><text x="30" y="71" font-size="44" fill="#193822" font-family="serif">𝄞</text><text x="75" y="36" font-size="20" font-weight="bold" fill="#881B1B">♯</text><text x="98" y="52" font-size="14" font-weight="bold" fill="#292421" font-family="serif">2</text><text x="98" y="70" font-size="14" font-weight="bold" fill="#292421" font-family="serif">4</text><text x="25" y="138" font-size="10.5" font-weight="bold" fill="#881B1B">ĐOẠN 2 (Giọng Fa Trưởng - 1 Dấu Giáng Si♭)</text><text x="8" y="156" font-size="11" font-style="italic" fill="#6B625B">9</text><line x1="25" y1="150" x2="905" y2="150" stroke="#4A423B" stroke-width="1.2"/><line x1="25" y1="160" x2="905" y2="160" stroke="#4A423B" stroke-width="1.2"/><line x1="25" y1="170" x2="905" y2="170" stroke="#4A423B" stroke-width="1.2"/><line x1="25" y1="180" x2="905" y2="180" stroke="#881B1B" stroke-width="1.2"/><line x1="25" y1="190" x2="905" y2="190" stroke="#4A423B" stroke-width="1.2"/><text x="30" y="186" font-size="44" fill="#193822" font-family="serif">𝄞</text><text x="75" y="174" font-size="20" font-weight="bold" fill="#1D4ED8">♭</text><text x="98" y="167" font-size="14" font-weight="bold" fill="#292421" font-family="serif">2</text><text x="98" y="185" font-size="14" font-weight="bold" fill="#292421" font-family="serif">4</text><text x="25" y="253" font-size="10.5" font-weight="bold" fill="#881B1B">ĐOẠN 3 (Giọng Đô Trưởng - Giọng Tự Nhiên)</text><text x="8" y="271" font-size="11" font-style="italic" fill="#6B625B">17</text><line x1="25" y1="265" x2="905" y2="265" stroke="#4A423B" stroke-width="1.2"/><line x1="25" y1="275" x2="905" y2="275" stroke="#4A423B" stroke-width="1.2"/><line x1="25" y1="285" x2="905" y2="285" stroke="#4A423B" stroke-width="1.2"/><line x1="25" y1="295" x2="905" y2="295" stroke="#881B1B" stroke-width="1.2"/><line x1="25" y1="305" x2="905" y2="305" stroke="#4A423B" stroke-width="1.2"/><text x="30" y="301" font-size="44" fill="#193822" font-family="serif">𝄞</text><text x="78" y="282" font-size="14" font-weight="bold" fill="#292421" font-family="serif">2</text><text x="78" y="300" font-size="14" font-weight="bold" fill="#292421" font-family="serif">4</text><line x1="205" y1="35" x2="205" y2="75" stroke="#59524B" stroke-width="1.2"/><line x1="295" y1="35" x2="295" y2="75" stroke="#59524B" stroke-width="1.2"/><line x1="385" y1="35" x2="385" y2="75" stroke="#59524B" stroke-width="1.2"/><line x1="475" y1="35" x2="475" y2="75" stroke="#59524B" stroke-width="1.2"/><line x1="595" y1="35" x2="595" y2="75" stroke="#59524B" stroke-width="1.2"/><line x1="715" y1="35" x2="715" y2="75" stroke="#59524B" stroke-width="1.2"/><line x1="805" y1="35" x2="805" y2="75" stroke="#59524B" stroke-width="1.2"/><line x1="901" y1="35" x2="901" y2="75" stroke="#292421" stroke-width="1.2"/><line x1="905" y1="35" x2="905" y2="75" stroke="#292421" stroke-width="2.6"/><g class="sheet-note-group" id="sn-1_1"><ellipse cx="145" cy="55" rx="5.5" ry="4" fill="#292421" transform="rotate(-15 145 55)"/><line x1="140.5" y1="55" x2="140.5" y2="81" stroke="#292421" stroke-width="1.3"/><text x="145" y="93" font-size="10.5" fill="#59524B" font-style="italic" text-anchor="middle" class="hcb-note-txt">si</text></g><g class="sheet-note-group" id="sn-1_2"><ellipse cx="180" cy="60" rx="5.5" ry="4" fill="#292421" transform="rotate(-15 180 60)"/><line x1="175.5" y1="60" x2="175.5" y2="86" stroke="#292421" stroke-width="1.3"/><text x="180" y="93" font-size="10.5" fill="#59524B" font-style="italic" text-anchor="middle" class="hcb-note-txt">la</text></g><g class="sheet-note-group" id="sn-1_3"><ellipse cx="250" cy="65" rx="5.5" ry="4" fill="none" stroke="#292421" stroke-width="1.6" transform="rotate(-15 250 65)"/><line x1="254.5" y1="65" x2="254.5" y2="39" stroke="#292421" stroke-width="1.3"/><text x="250" y="93" font-size="10.5" fill="#59524B" font-style="italic" text-anchor="middle" class="hcb-note-txt">sol</text></g><g class="sheet-note-group" id="sn-1_4"><ellipse cx="325" cy="55" rx="5.5" ry="4" fill="#292421" transform="rotate(-15 325 55)"/><line x1="320.5" y1="55" x2="320.5" y2="81" stroke="#292421" stroke-width="1.3"/><text x="325" y="93" font-size="10.5" fill="#59524B" font-style="italic" text-anchor="middle" class="hcb-note-txt">si</text></g><g class="sheet-note-group" id="sn-1_5"><ellipse cx="360" cy="60" rx="5.5" ry="4" fill="#292421" transform="rotate(-15 360 60)"/><line x1="355.5" y1="60" x2="355.5" y2="86" stroke="#292421" stroke-width="1.3"/><text x="360" y="93" font-size="10.5" fill="#59524B" font-style="italic" text-anchor="middle" class="hcb-note-txt">la</text></g><g class="sheet-note-group" id="sn-1_6"><ellipse cx="430" cy="65" rx="5.5" ry="4" fill="none" stroke="#292421" stroke-width="1.6" transform="rotate(-15 430 65)"/><line x1="434.5" y1="65" x2="434.5" y2="39" stroke="#292421" stroke-width="1.3"/><text x="430" y="93" font-size="10.5" fill="#59524B" font-style="italic" text-anchor="middle" class="hcb-note-txt">sol</text></g><g class="sheet-note-group" id="sn-1_7"><ellipse cx="500" cy="65" rx="4.8" ry="3.6" fill="#292421" transform="rotate(-15 500 65)"/><text x="500" y="93" font-size="9.5" fill="#59524B" font-style="italic" text-anchor="middle" class="hcb-note-txt">sol</text></g><g class="sheet-note-group" id="sn-1_8"><ellipse cx="522" cy="65" rx="4.8" ry="3.6" fill="#292421" transform="rotate(-15 522 65)"/><text x="522" y="93" font-size="9.5" fill="#59524B" font-style="italic" text-anchor="middle" class="hcb-note-txt">sol</text></g><line x1="504" y1="65" x2="504" y2="43" stroke="#292421" stroke-width="1.3"/><line x1="526" y1="65" x2="526" y2="43" stroke="#292421" stroke-width="1.3"/><line x1="504" y1="43" x2="526" y2="43" stroke="#292421" stroke-width="2.6"/><g class="sheet-note-group" id="sn-1_9"><ellipse cx="548" cy="65" rx="4.8" ry="3.6" fill="#292421" transform="rotate(-15 548 65)"/><text x="548" y="93" font-size="9.5" fill="#59524B" font-style="italic" text-anchor="middle" class="hcb-note-txt">sol</text></g><g class="sheet-note-group" id="sn-1_10"><ellipse cx="570" cy="65" rx="4.8" ry="3.6" fill="#292421" transform="rotate(-15 570 65)"/><text x="570" y="93" font-size="9.5" fill="#59524B" font-style="italic" text-anchor="middle" class="hcb-note-txt">sol</text></g><line x1="552" y1="65" x2="552" y2="43" stroke="#292421" stroke-width="1.3"/><line x1="574" y1="65" x2="574" y2="43" stroke="#292421" stroke-width="1.3"/><line x1="552" y1="43" x2="574" y2="43" stroke="#292421" stroke-width="2.6"/><g class="sheet-note-group" id="sn-1_11"><ellipse cx="620" cy="60" rx="4.8" ry="3.6" fill="#292421" transform="rotate(-15 620 60)"/><text x="620" y="93" font-size="9.5" fill="#59524B" font-style="italic" text-anchor="middle" class="hcb-note-txt">la</text></g><g class="sheet-note-group" id="sn-1_12"><ellipse cx="642" cy="60" rx="4.8" ry="3.6" fill="#292421" transform="rotate(-15 642 60)"/><text x="642" y="93" font-size="9.5" fill="#59524B" font-style="italic" text-anchor="middle" class="hcb-note-txt">la</text></g><line x1="616" y1="60" x2="616" y2="82" stroke="#292421" stroke-width="1.3"/><line x1="638" y1="60" x2="638" y2="82" stroke="#292421" stroke-width="1.3"/><line x1="616" y1="82" x2="638" y2="82" stroke="#292421" stroke-width="2.6"/><g class="sheet-note-group" id="sn-1_13"><ellipse cx="668" cy="60" rx="4.8" ry="3.6" fill="#292421" transform="rotate(-15 668 60)"/><text x="668" y="93" font-size="9.5" fill="#59524B" font-style="italic" text-anchor="middle" class="hcb-note-txt">la</text></g><g class="sheet-note-group" id="sn-1_14"><ellipse cx="690" cy="60" rx="4.8" ry="3.6" fill="#292421" transform="rotate(-15 690 60)"/><text x="690" y="93" font-size="9.5" fill="#59524B" font-style="italic" text-anchor="middle" class="hcb-note-txt">la</text></g><line x1="664" y1="60" x2="664" y2="82" stroke="#292421" stroke-width="1.3"/><line x1="686" y1="60" x2="686" y2="82" stroke="#292421" stroke-width="1.3"/><line x1="664" y1="82" x2="686" y2="82" stroke="#292421" stroke-width="2.6"/><g class="sheet-note-group" id="sn-1_15"><ellipse cx="745" cy="55" rx="5.5" ry="4" fill="#292421" transform="rotate(-15 745 55)"/><line x1="740.5" y1="55" x2="740.5" y2="81" stroke="#292421" stroke-width="1.3"/><text x="745" y="93" font-size="10.5" fill="#59524B" font-style="italic" text-anchor="middle" class="hcb-note-txt">si</text></g><g class="sheet-note-group" id="sn-1_16"><ellipse cx="780" cy="60" rx="5.5" ry="4" fill="#292421" transform="rotate(-15 780 60)"/><line x1="775.5" y1="60" x2="775.5" y2="86" stroke="#292421" stroke-width="1.3"/><text x="780" y="93" font-size="10.5" fill="#59524B" font-style="italic" text-anchor="middle" class="hcb-note-txt">la</text></g><g class="sheet-note-group" id="sn-1_17"><ellipse cx="855" cy="65" rx="5.5" ry="4" fill="none" stroke="#292421" stroke-width="1.6" transform="rotate(-15 855 65)"/><line x1="859.5" y1="65" x2="859.5" y2="39" stroke="#292421" stroke-width="1.3"/><text x="855" y="93" font-size="10.5" fill="#59524B" font-style="italic" text-anchor="middle" class="hcb-note-txt">sol</text></g><line x1="205" y1="150" x2="205" y2="190" stroke="#59524B" stroke-width="1.2"/><line x1="295" y1="150" x2="295" y2="190" stroke="#59524B" stroke-width="1.2"/><line x1="385" y1="150" x2="385" y2="190" stroke="#59524B" stroke-width="1.2"/><line x1="475" y1="150" x2="475" y2="190" stroke="#59524B" stroke-width="1.2"/><line x1="595" y1="150" x2="595" y2="190" stroke="#59524B" stroke-width="1.2"/><line x1="715" y1="150" x2="715" y2="190" stroke="#59524B" stroke-width="1.2"/><line x1="805" y1="150" x2="805" y2="190" stroke="#59524B" stroke-width="1.2"/><line x1="901" y1="150" x2="901" y2="190" stroke="#292421" stroke-width="1.2"/><line x1="905" y1="150" x2="905" y2="190" stroke="#292421" stroke-width="2.6"/><g class="sheet-note-group" id="sn-2_1"><ellipse cx="145" cy="175" rx="5.5" ry="4" fill="#292421" transform="rotate(-15 145 175)"/><line x1="140.5" y1="175" x2="140.5" y2="201" stroke="#292421" stroke-width="1.3"/><text x="145" y="208" font-size="10.5" fill="#59524B" font-style="italic" text-anchor="middle" class="hcb-note-txt">la</text></g><g class="sheet-note-group" id="sn-2_2"><ellipse cx="180" cy="180" rx="5.5" ry="4" fill="#292421" transform="rotate(-15 180 180)"/><line x1="184.5" y1="180" x2="184.5" y2="154" stroke="#292421" stroke-width="1.3"/><text x="180" y="208" font-size="10.5" fill="#59524B" font-style="italic" text-anchor="middle" class="hcb-note-txt">sol</text></g><g class="sheet-note-group" id="sn-2_3"><ellipse cx="250" cy="185" rx="5.5" ry="4" fill="none" stroke="#292421" stroke-width="1.6" transform="rotate(-15 250 185)"/><line x1="254.5" y1="185" x2="254.5" y2="159" stroke="#292421" stroke-width="1.3"/><text x="250" y="208" font-size="10.5" fill="#59524B" font-style="italic" text-anchor="middle" class="hcb-note-txt">fa</text></g><g class="sheet-note-group" id="sn-2_4"><ellipse cx="325" cy="175" rx="5.5" ry="4" fill="#292421" transform="rotate(-15 325 175)"/><line x1="320.5" y1="175" x2="320.5" y2="201" stroke="#292421" stroke-width="1.3"/><text x="325" y="208" font-size="10.5" fill="#59524B" font-style="italic" text-anchor="middle" class="hcb-note-txt">la</text></g><g class="sheet-note-group" id="sn-2_5"><ellipse cx="360" cy="180" rx="5.5" ry="4" fill="#292421" transform="rotate(-15 360 180)"/><line x1="364.5" y1="180" x2="364.5" y2="154" stroke="#292421" stroke-width="1.3"/><text x="360" y="208" font-size="10.5" fill="#59524B" font-style="italic" text-anchor="middle" class="hcb-note-txt">sol</text></g><g class="sheet-note-group" id="sn-2_6"><ellipse cx="430" cy="185" rx="5.5" ry="4" fill="none" stroke="#292421" stroke-width="1.6" transform="rotate(-15 430 185)"/><line x1="434.5" y1="185" x2="434.5" y2="159" stroke="#292421" stroke-width="1.3"/><text x="430" y="208" font-size="10.5" fill="#59524B" font-style="italic" text-anchor="middle" class="hcb-note-txt">fa</text></g><g class="sheet-note-group" id="sn-2_7"><ellipse cx="500" cy="185" rx="4.8" ry="3.6" fill="#292421" transform="rotate(-15 500 185)"/><text x="500" y="208" font-size="9.5" fill="#59524B" font-style="italic" text-anchor="middle" class="hcb-note-txt">fa</text></g><g class="sheet-note-group" id="sn-2_8"><ellipse cx="522" cy="185" rx="4.8" ry="3.6" fill="#292421" transform="rotate(-15 522 185)"/><text x="522" y="208" font-size="9.5" fill="#59524B" font-style="italic" text-anchor="middle" class="hcb-note-txt">fa</text></g><line x1="504" y1="185" x2="504" y2="163" stroke="#292421" stroke-width="1.3"/><line x1="526" y1="185" x2="526" y2="163" stroke="#292421" stroke-width="1.3"/><line x1="504" y1="163" x2="526" y2="163" stroke="#292421" stroke-width="2.6"/><g class="sheet-note-group" id="sn-2_9"><ellipse cx="548" cy="185" rx="4.8" ry="3.6" fill="#292421" transform="rotate(-15 548 185)"/><text x="548" y="208" font-size="9.5" fill="#59524B" font-style="italic" text-anchor="middle" class="hcb-note-txt">fa</text></g><g class="sheet-note-group" id="sn-2_10"><ellipse cx="570" cy="185" rx="4.8" ry="3.6" fill="#292421" transform="rotate(-15 570 185)"/><text x="570" y="208" font-size="9.5" fill="#59524B" font-style="italic" text-anchor="middle" class="hcb-note-txt">fa</text></g><line x1="552" y1="185" x2="552" y2="163" stroke="#292421" stroke-width="1.3"/><line x1="574" y1="185" x2="574" y2="163" stroke="#292421" stroke-width="1.3"/><line x1="552" y1="163" x2="574" y2="163" stroke="#292421" stroke-width="2.6"/><g class="sheet-note-group" id="sn-2_11"><ellipse cx="620" cy="180" rx="4.8" ry="3.6" fill="#292421" transform="rotate(-15 620 180)"/><text x="620" y="208" font-size="9.5" fill="#59524B" font-style="italic" text-anchor="middle" class="hcb-note-txt">sol</text></g><g class="sheet-note-group" id="sn-2_12"><ellipse cx="642" cy="180" rx="4.8" ry="3.6" fill="#292421" transform="rotate(-15 642 180)"/><text x="642" y="208" font-size="9.5" fill="#59524B" font-style="italic" text-anchor="middle" class="hcb-note-txt">sol</text></g><line x1="624" y1="180" x2="624" y2="158" stroke="#292421" stroke-width="1.3"/><line x1="646" y1="180" x2="646" y2="158" stroke="#292421" stroke-width="1.3"/><line x1="624" y1="158" x2="646" y2="158" stroke="#292421" stroke-width="2.6"/><g class="sheet-note-group" id="sn-2_13"><ellipse cx="668" cy="180" rx="4.8" ry="3.6" fill="#292421" transform="rotate(-15 668 180)"/><text x="668" y="208" font-size="9.5" fill="#59524B" font-style="italic" text-anchor="middle" class="hcb-note-txt">sol</text></g><g class="sheet-note-group" id="sn-2_14"><ellipse cx="690" cy="180" rx="4.8" ry="3.6" fill="#292421" transform="rotate(-15 690 180)"/><text x="690" y="208" font-size="9.5" fill="#59524B" font-style="italic" text-anchor="middle" class="hcb-note-txt">sol</text></g><line x1="672" y1="180" x2="672" y2="158" stroke="#292421" stroke-width="1.3"/><line x1="694" y1="180" x2="694" y2="158" stroke="#292421" stroke-width="1.3"/><line x1="672" y1="158" x2="694" y2="158" stroke="#292421" stroke-width="2.6"/><g class="sheet-note-group" id="sn-2_15"><ellipse cx="745" cy="175" rx="5.5" ry="4" fill="#292421" transform="rotate(-15 745 175)"/><line x1="740.5" y1="175" x2="740.5" y2="201" stroke="#292421" stroke-width="1.3"/><text x="745" y="208" font-size="10.5" fill="#59524B" font-style="italic" text-anchor="middle" class="hcb-note-txt">la</text></g><g class="sheet-note-group" id="sn-2_16"><ellipse cx="780" cy="180" rx="5.5" ry="4" fill="#292421" transform="rotate(-15 780 180)"/><line x1="784.5" y1="180" x2="784.5" y2="154" stroke="#292421" stroke-width="1.3"/><text x="780" y="208" font-size="10.5" fill="#59524B" font-style="italic" text-anchor="middle" class="hcb-note-txt">sol</text></g><g class="sheet-note-group" id="sn-2_17"><ellipse cx="855" cy="185" rx="5.5" ry="4" fill="none" stroke="#292421" stroke-width="1.6" transform="rotate(-15 855 185)"/><line x1="859.5" y1="185" x2="859.5" y2="159" stroke="#292421" stroke-width="1.3"/><text x="855" y="208" font-size="10.5" fill="#59524B" font-style="italic" text-anchor="middle" class="hcb-note-txt">fa</text></g><line x1="205" y1="265" x2="205" y2="305" stroke="#59524B" stroke-width="1.2"/><line x1="295" y1="265" x2="295" y2="305" stroke="#59524B" stroke-width="1.2"/><line x1="385" y1="265" x2="385" y2="305" stroke="#59524B" stroke-width="1.2"/><line x1="475" y1="265" x2="475" y2="305" stroke="#59524B" stroke-width="1.2"/><line x1="595" y1="265" x2="595" y2="305" stroke="#59524B" stroke-width="1.2"/><line x1="715" y1="265" x2="715" y2="305" stroke="#59524B" stroke-width="1.2"/><line x1="805" y1="265" x2="805" y2="305" stroke="#59524B" stroke-width="1.2"/><line x1="901" y1="265" x2="901" y2="305" stroke="#292421" stroke-width="1.2"/><line x1="905" y1="265" x2="905" y2="305" stroke="#292421" stroke-width="2.6"/><g class="sheet-note-group" id="sn-3_1"><ellipse cx="145" cy="305" rx="5.5" ry="4" fill="#292421" transform="rotate(-15 145 305)"/><line x1="149.5" y1="305" x2="149.5" y2="279" stroke="#292421" stroke-width="1.3"/><text x="145" y="325" font-size="10.5" fill="#59524B" font-style="italic" text-anchor="middle" class="hcb-note-txt">mi</text></g><g class="sheet-note-group" id="sn-3_2"><ellipse cx="180" cy="310" rx="5.5" ry="4" fill="#292421" transform="rotate(-15 180 310)"/><line x1="184.5" y1="310" x2="184.5" y2="284" stroke="#292421" stroke-width="1.3"/><text x="180" y="325" font-size="10.5" fill="#59524B" font-style="italic" text-anchor="middle" class="hcb-note-txt">re</text></g><g class="sheet-note-group" id="sn-3_3"><line x1="242" y1="315" x2="258" y2="315" stroke="#292421" stroke-width="1.3"/><ellipse cx="250" cy="315" rx="5.5" ry="4" fill="none" stroke="#292421" stroke-width="1.6" transform="rotate(-15 250 315)"/><line x1="254.5" y1="315" x2="254.5" y2="289" stroke="#292421" stroke-width="1.3"/><text x="250" y="325" font-size="10.5" fill="#59524B" font-style="italic" text-anchor="middle" class="hcb-note-txt">do</text></g><g class="sheet-note-group" id="sn-3_4"><ellipse cx="325" cy="305" rx="5.5" ry="4" fill="#292421" transform="rotate(-15 325 305)"/><line x1="329.5" y1="305" x2="329.5" y2="279" stroke="#292421" stroke-width="1.3"/><text x="325" y="325" font-size="10.5" fill="#59524B" font-style="italic" text-anchor="middle" class="hcb-note-txt">mi</text></g><g class="sheet-note-group" id="sn-3_5"><ellipse cx="360" cy="310" rx="5.5" ry="4" fill="#292421" transform="rotate(-15 360 310)"/><line x1="364.5" y1="310" x2="364.5" y2="284" stroke="#292421" stroke-width="1.3"/><text x="360" y="325" font-size="10.5" fill="#59524B" font-style="italic" text-anchor="middle" class="hcb-note-txt">re</text></g><g class="sheet-note-group" id="sn-3_6"><line x1="422" y1="315" x2="438" y2="315" stroke="#292421" stroke-width="1.3"/><ellipse cx="430" cy="315" rx="5.5" ry="4" fill="none" stroke="#292421" stroke-width="1.6" transform="rotate(-15 430 315)"/><line x1="434.5" y1="315" x2="434.5" y2="289" stroke="#292421" stroke-width="1.3"/><text x="430" y="325" font-size="10.5" fill="#59524B" font-style="italic" text-anchor="middle" class="hcb-note-txt">do</text></g><g class="sheet-note-group" id="sn-3_7"><line x1="493" y1="315" x2="507" y2="315" stroke="#292421" stroke-width="1.2"/><ellipse cx="500" cy="315" rx="4.8" ry="3.6" fill="#292421" transform="rotate(-15 500 315)"/><text x="500" y="325" font-size="9.5" fill="#59524B" font-style="italic" text-anchor="middle" class="hcb-note-txt">do</text></g><g class="sheet-note-group" id="sn-3_8"><line x1="515" y1="315" x2="529" y2="315" stroke="#292421" stroke-width="1.2"/><ellipse cx="522" cy="315" rx="4.8" ry="3.6" fill="#292421" transform="rotate(-15 522 315)"/><text x="522" y="325" font-size="9.5" fill="#59524B" font-style="italic" text-anchor="middle" class="hcb-note-txt">do</text></g><line x1="504" y1="315" x2="504" y2="293" stroke="#292421" stroke-width="1.3"/><line x1="526" y1="315" x2="526" y2="293" stroke="#292421" stroke-width="1.3"/><line x1="504" y1="293" x2="526" y2="293" stroke="#292421" stroke-width="2.6"/><g class="sheet-note-group" id="sn-3_9"><line x1="541" y1="315" x2="555" y2="315" stroke="#292421" stroke-width="1.2"/><ellipse cx="548" cy="315" rx="4.8" ry="3.6" fill="#292421" transform="rotate(-15 548 315)"/><text x="548" y="325" font-size="9.5" fill="#59524B" font-style="italic" text-anchor="middle" class="hcb-note-txt">do</text></g><g class="sheet-note-group" id="sn-3_10"><line x1="563" y1="315" x2="577" y2="315" stroke="#292421" stroke-width="1.2"/><ellipse cx="570" cy="315" rx="4.8" ry="3.6" fill="#292421" transform="rotate(-15 570 315)"/><text x="570" y="325" font-size="9.5" fill="#59524B" font-style="italic" text-anchor="middle" class="hcb-note-txt">do</text></g><line x1="552" y1="315" x2="552" y2="293" stroke="#292421" stroke-width="1.3"/><line x1="574" y1="315" x2="574" y2="293" stroke="#292421" stroke-width="1.3"/><line x1="552" y1="293" x2="574" y2="293" stroke="#292421" stroke-width="2.6"/><g class="sheet-note-group" id="sn-3_11"><ellipse cx="620" cy="310" rx="4.8" ry="3.6" fill="#292421" transform="rotate(-15 620 310)"/><text x="620" y="325" font-size="9.5" fill="#59524B" font-style="italic" text-anchor="middle" class="hcb-note-txt">re</text></g><g class="sheet-note-group" id="sn-3_12"><ellipse cx="642" cy="310" rx="4.8" ry="3.6" fill="#292421" transform="rotate(-15 642 310)"/><text x="642" y="325" font-size="9.5" fill="#59524B" font-style="italic" text-anchor="middle" class="hcb-note-txt">re</text></g><line x1="624" y1="310" x2="624" y2="288" stroke="#292421" stroke-width="1.3"/><line x1="646" y1="310" x2="646" y2="288" stroke="#292421" stroke-width="1.3"/><line x1="624" y1="288" x2="646" y2="288" stroke="#292421" stroke-width="2.6"/><g class="sheet-note-group" id="sn-3_13"><ellipse cx="668" cy="310" rx="4.8" ry="3.6" fill="#292421" transform="rotate(-15 668 310)"/><text x="668" y="325" font-size="9.5" fill="#59524B" font-style="italic" text-anchor="middle" class="hcb-note-txt">re</text></g><g class="sheet-note-group" id="sn-3_14"><ellipse cx="690" cy="310" rx="4.8" ry="3.6" fill="#292421" transform="rotate(-15 690 310)"/><text x="690" y="325" font-size="9.5" fill="#59524B" font-style="italic" text-anchor="middle" class="hcb-note-txt">re</text></g><line x1="672" y1="310" x2="672" y2="288" stroke="#292421" stroke-width="1.3"/><line x1="694" y1="310" x2="694" y2="288" stroke="#292421" stroke-width="1.3"/><line x1="672" y1="288" x2="694" y2="288" stroke="#292421" stroke-width="2.6"/><g class="sheet-note-group" id="sn-3_15"><ellipse cx="745" cy="305" rx="5.5" ry="4" fill="#292421" transform="rotate(-15 745 305)"/><line x1="749.5" y1="305" x2="749.5" y2="279" stroke="#292421" stroke-width="1.3"/><text x="745" y="325" font-size="10.5" fill="#59524B" font-style="italic" text-anchor="middle" class="hcb-note-txt">mi</text></g><g class="sheet-note-group" id="sn-3_16"><ellipse cx="780" cy="310" rx="5.5" ry="4" fill="#292421" transform="rotate(-15 780 310)"/><line x1="784.5" y1="310" x2="784.5" y2="284" stroke="#292421" stroke-width="1.3"/><text x="780" y="325" font-size="10.5" fill="#59524B" font-style="italic" text-anchor="middle" class="hcb-note-txt">re</text></g><g class="sheet-note-group" id="sn-3_17"><line x1="847" y1="315" x2="863" y2="315" stroke="#292421" stroke-width="1.3"/><ellipse cx="855" cy="315" rx="5.5" ry="4" fill="none" stroke="#292421" stroke-width="1.6" transform="rotate(-15 855 315)"/><line x1="859.5" y1="315" x2="859.5" y2="289" stroke="#292421" stroke-width="1.3"/><text x="855" y="325" font-size="10.5" fill="#59524B" font-style="italic" text-anchor="middle" class="hcb-note-txt">do</text></g></svg>
+            </div>
+
+            <!-- Step by Step Analysis & Fingering Guide for Hot Cross Buns -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-3 pt-2 text-xs">
+              <div class="p-3.5 bg-red-50/70 rounded-xl border border-red-200 space-y-1.5">
+                <strong class="text-[#881B1B] block font-bold text-sm">Đoạn 1 (Sol Trưởng - 1 Dấu ♯)</strong>
+                <p class="text-[#59524B]">• <strong>Nốt sử dụng:</strong> Si 1, La 1, Sol 1</p>
+                <p class="text-[#59524B]">• <strong>Nhịp 2/4:</strong> Si (1 phách), La (1 phách), Sol (2 phách).</p>
+                <p class="text-[#59524B]">• <strong>Thế bấm:</strong> Si (mở hết), La (bịt lỗ 1), Sol (bịt lỗ 1-2).</p>
+              </div>
+
+              <div class="p-3.5 bg-blue-50/70 rounded-xl border border-blue-200 space-y-1.5">
+                <strong class="text-blue-800 block font-bold text-sm">Đoạn 2 (Fa Trưởng - 1 Dấu ♭)</strong>
+                <p class="text-[#59524B]">• <strong>Nốt sử dụng:</strong> La 1, Sol 1, Fa 1</p>
+                <p class="text-[#59524B]">• <strong>Nhịp 2/4:</strong> La (1 phách), Sol (1 phách), Fa (2 phách).</p>
+                <p class="text-[#59524B]">• <strong>Thế bấm:</strong> La (bịt 1), Sol (bịt 1-2), Fa (bịt 1-2-3).</p>
+              </div>
+
+              <div class="p-3.5 bg-emerald-50/70 rounded-xl border border-emerald-200 space-y-1.5">
+                <strong class="text-emerald-800 block font-bold text-sm">Đoạn 3 (Đô Trưởng - Tự Nhiên)</strong>
+                <p class="text-[#59524B]">• <strong>Nốt sử dụng:</strong> Mi 1, Rê 1, Đô 1</p>
+                <p class="text-[#59524B]">• <strong>Nhịp 2/4:</strong> Mi (1 phách), Rê (1 phách), Đô (2 phách).</p>
+                <p class="text-[#59524B]">• <strong>Thế bấm:</strong> Mi (bịt 4 lỗ), Rê (bịt 5 lỗ), Đô (bịt kín 6 lỗ).</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="text-center pt-2">
+            <button onclick="toggleSectionCollapse('sec7')" class="px-4 py-2 bg-white border border-[#D9CDBB] hover:bg-[#F2E8D7] text-[#881B1B] text-xs font-bold rounded-xl shadow-sm inline-flex items-center gap-1.5">
+              <i class="fa-solid fa-chevron-up"></i> Thu gọn mục 7
+            </button>
+          </div>
+        </div>
+
+      </section>
+
+    </div>
+
+    <!-- Bottom Purchase CTA Banner -->
+    <div class="bg-[#881B1B] text-white rounded-3xl p-8 sm:p-10 shadow-lg mt-12 flex flex-col md:flex-row items-center justify-between gap-6">
+      <div class="space-y-2 text-center md:text-left">
+        <h3 class="font-serif text-2xl sm:text-3xl font-bold">Đặt mua 1 cây sáo chuẩn âm để bắt đầu học sáo</h3>
+        <p class="text-xs sm:text-sm text-red-100/90 max-w-xl">
+          Sáo Trúc Âu Cơ cung cấp trọn bộ sáo trúc C5, D5 chuẩn âm 440Hz kèm giáo trình tặng kèm để bạn dễ dàng tập luyện tại nhà.
+        </p>
+      </div>
+      <a href="https://saotrucauco.com/sao-va-phu-kien" target="_blank" class="shrink-0 px-6 py-3.5 bg-[#E5A93C] hover:bg-[#D9822B] text-[#292421] font-bold rounded-xl shadow hover:shadow-lg transition-all text-xs sm:text-sm uppercase tracking-wider flex items-center gap-2">
+        Xem sáo & phụ kiện <i class="fa-solid fa-arrow-up-right-from-square"></i>
+      </a>
+    </div>
+
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="bg-[#112517] text-white/80 pt-16 pb-8 border-t border-[#193822] mt-auto">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 pb-12 border-b border-white/10">
+        <div class="lg:col-span-4 space-y-4">
+          <div class="flex items-center gap-3">
+            <img src="assets/logo.png" alt="Logo Sáo Trúc Âu Cơ" class="w-11 h-11 rounded-full object-cover border border-white/30 shadow-sm">
+            <div>
+              <span class="block font-serif text-xl font-bold tracking-wide text-white lowercase leading-none">daythoisao.com</span>
+              <span class="block text-[11px] text-emerald-300/80 font-light mt-0.5">Sáo Trúc Âu Cơ</span>
+            </div>
+          </div>
+          <p class="text-xs text-white/70 leading-relaxed max-w-sm">
+            Trang web chia sẻ kiến thức sáo trúc miễn phí được biên soạn bởi Sáo Trúc Âu Cơ với mong muốn giúp mọi người yêu sáo dễ dàng học tập và tiến bộ mỗi ngày.
+          </p>
+        </div>
+        <div class="lg:col-span-4 space-y-3">
+          <h4 class="text-xs font-bold text-white uppercase tracking-wider">CÁC CHUYÊN ĐỀ HƯỚNG DẪN</h4>
+          <ul class="space-y-2 text-xs">
+            <li><a href="lo-trinh-nguoi-moi.html" class="hover:text-amber-300 transition-colors">1. Lộ trình học thổi sáo cho người mới</a></li>
+            <li><a href="doc-not-nhac.html" class="text-amber-300 font-bold">2. Cách đọc nốt nhạc & Nhạc lý cơ bản</a></li>
+            <li><a href="tra-cuu-the-bam.html" class="hover:text-amber-300 transition-colors">3. Công cụ tra cứu thế bấm sáo 6/10 lỗ</a></li>
+            <li><a href="luyen-hoi-khau-hinh.html" class="hover:text-amber-300 transition-colors">4. Hướng dẫn khẩu hình & Kiểm soát hơi</a></li>
+            <li><a href="danh-sach-bai-tap.html" class="hover:text-amber-300 transition-colors">5. Kho cảm âm theo thể loại</a></li>
+            <li><a href="ke-hoach-15-phut.html" class="hover:text-amber-300 transition-colors">6. Kế hoạch luyện tập 15 phút mỗi ngày</a></li>
+          </ul>
+        </div>
+        <div class="lg:col-span-4 space-y-3">
+          <h4 class="text-xs font-bold text-white uppercase tracking-wider">LIÊN HỆ TRỰC TIẾP</h4>
+          <ul class="space-y-2.5 text-xs text-white/70">
+            <li class="flex items-start gap-2"><i class="fa-solid fa-location-dot text-emerald-400 mt-0.5"></i><span>106/72 Hoà Bình, P. Tân Phú, HCM</span></li>
+            <li class="flex items-center gap-2"><i class="fa-solid fa-phone text-emerald-400"></i><a href="tel:0374261368" class="hover:text-white">0374 261 368</a></li>
+            <li class="flex items-center gap-2"><i class="fa-solid fa-envelope text-emerald-400"></i><span>saotrucauco@gmail.com</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="pt-6 text-center text-xs text-white/50 flex flex-col sm:flex-row items-center justify-between gap-2">
+        <p>© 2024 daythoisao.com. Bản quyền thuộc về Sáo Trúc Âu Cơ.</p>
+        <a href="index.html" class="text-amber-400 hover:underline">← Về trang chủ daythoisao.com</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="fixed bottom-6 right-6 z-50 bg-[#292421] text-white px-4 py-3 rounded-xl shadow-xl border border-white/10 text-xs flex items-center gap-2 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none">
+    <i class="fa-solid fa-circle-check text-emerald-400 text-base"></i>
+    <span id="toastMsg">Thông báo</span>
+  </div>
+
+  <!-- ================= JAVASCRIPT MASTER DATA & PLAYBACK ================= -->
+  <script>
+    let audioCtx = null;
+    let isShowingHcbNotes = true;
+    let currentHcbBpm = 85;
+    let hcbPlaybackTimeouts = [];
+    let activeOscillators = [];
+
+    // Track collapse state for all sections 1..7
+    const sectionStates = {
+      sec1: false,
+      sec2: false,
+      sec3: false,
+      sec4: false,
+      sec5: false,
+      sec6: false,
+      sec7: false
+    };
+
+    const sectionLabels = {
+      sec1: { open: "Xem thêm", close: "Thu gọn mục 1" },
+      sec2: { open: "Xem thêm", close: "Thu gọn mục 2" },
+      sec3: { open: "Xem thêm", close: "Thu gọn bảng thế bấm" },
+      sec4: { open: "Xem thêm", close: "Thu gọn mục 4" },
+      sec5: { open: "Xem thêm", close: "Thu gọn mục 5" },
+      sec6: { open: "Xem thêm", close: "Thu gọn mục 6" },
+      sec7: { open: "Xem thêm", close: "Thu gọn mục 7" }
+    };
+
+    function toggleSectionCollapse(secId) {
+      sectionStates[secId] = !sectionStates[secId];
+      const isExpanded = sectionStates[secId];
+      const content = document.getElementById(`content-${secId}`);
+      const btn = document.getElementById(`btn-toggle-${secId}`);
+      const btnText = document.getElementById(`text-${secId}`);
+      const icon = document.getElementById(`icon-${secId}`);
+
+      if (isExpanded) {
+        content.classList.add('expanded');
+        btnText.innerText = sectionLabels[secId].close;
+        icon.className = "fa-solid fa-chevron-up";
+        btn.className = "px-5 py-2.5 bg-[#FAF6EE] hover:bg-[#F2E8D7] text-[#881B1B] border border-[#881B1B] text-xs font-bold rounded-xl shadow flex items-center justify-center gap-2 transition-all";
+      } else {
+        content.classList.remove('expanded');
+        btnText.innerText = sectionLabels[secId].open;
+        icon.className = "fa-solid fa-eye";
+        btn.className = "px-5 py-2.5 bg-[#881B1B] hover:bg-[#701515] text-white text-xs font-bold rounded-xl shadow flex items-center justify-center gap-2 transition-all";
+      }
+    }
+
+    function openSection(secId) {
+      if (!sectionStates[secId]) {
+        toggleSectionCollapse(secId);
+      }
+    }
+
+    // ALL 19 SCALE NOTES (ĐÔ 1 ĐẾN SOL 3) FOR FULL SCALE PLAYBACK
+    const SCALE_19_NOTES = [
+      { name: "Đô 1 (C1)", freq: 261.63 },
+      { name: "Rê 1 (D1)", freq: 293.66 },
+      { name: "Mi 1 (E1)", freq: 329.63 },
+      { name: "Fa 1 (F1)", freq: 349.23 },
+      { name: "Sol 1 (G1)", freq: 392.00 },
+      { name: "La 1 (A1)", freq: 440.00 },
+      { name: "Si 1 (B1)", freq: 493.88 },
+      { name: "Đô 2 (C2)", freq: 523.25 },
+      { name: "Rê 2 (D2)", freq: 587.33 },
+      { name: "Mi 2 (E2)", freq: 659.25 },
+      { name: "Fa 2 (F2)", freq: 698.46 },
+      { name: "Sol 2 (G2)", freq: 783.99 },
+      { name: "La 2 (A2)", freq: 880.00 },
+      { name: "Si 2 (B2)", freq: 987.77 },
+      { name: "Đô 3 (C3)", freq: 1046.50 },
+      { name: "Rê 3 (D3)", freq: 1174.66 },
+      { name: "Mi 3 (E3)", freq: 1318.51 },
+      { name: "Fa 3 (F3)", freq: 1396.91 },
+      { name: "Sol 3 (G3)", freq: 1567.98 }
+    ];
+
+    // NATURAL NOTES + SI GIÁNG (Bb1, Bb2) ACCORDING TO USER DIAGRAMS
+    const NATURAL_FINGERING_CHART = {
+      octave1: [
+        { name: "Đô 1 (C1)", freq: 261.63, holes: [true, true, true, true, true, true] },
+        { name: "Rê 1 (D1)", freq: 293.66, holes: [true, true, true, true, true, false] },
+        { name: "Mi 1 (E1)", freq: 329.63, holes: [true, true, true, true, false, false] },
+        { name: "Fa 1 (F1)", freq: 349.23, holes: [true, true, true, false, false, false] },
+        { name: "Sol 1 (G1)", freq: 392.00, holes: [true, true, false, false, false, false] },
+        { name: "La 1 (A1)", freq: 440.00, holes: [true, false, false, false, false, false] },
+        { name: "Si giáng 1 (Bb1)", freq: 466.16, holes: [false, true, true, true, true, false] },
+        { name: "Si 1 (B1)", freq: 493.88, holes: [false, false, false, false, false, false] }
+      ],
+
+      octave2: [
+        { name: "Đô 2 (C2)", freq: 523.25, holes: [false, true, true, true, true, true] },
+        { name: "Rê 2 (D2)", freq: 587.33, holes: [true, true, true, true, true, false] },
+        { name: "Mi 2 (E2)", freq: 659.25, holes: [true, true, true, true, false, false] },
+        { name: "Fa 2 (F2)", freq: 698.46, holes: [true, true, true, false, false, false] },
+        { name: "Sol 2 (G2)", freq: 783.99, holes: [true, true, false, false, false, false] },
+        { name: "La 2 (A2)", freq: 880.00, holes: [true, false, false, false, false, false] },
+        { name: "Si giáng 2 (Bb2)", freq: 932.33, holes: [false, true, false, false, false, false] },
+        { name: "Si 2 (B2)", freq: 987.77, holes: [false, false, false, false, false, false] }
+      ],
+
+      octave3: [
+        { name: "Đô 3 (C3)", freq: 1046.50, holes: [false, true, true, true, true, true] },
+        { 
+          name: "Rê 3 (D3)", freq: 1174.66, isBranch: true,
+          variants: [
+            { label: "Cách 1", holes: [true, true, false, true, true, false] },
+            { label: "Cách 2", holes: [true, true, false, false, false, true] }
+          ]
+        },
+        { 
+          name: "Mi 3 (E3)", freq: 1318.51, isBranch: true,
+          variants: [
+            { label: "Cách 1", holes: [true, false, true, true, false, true] },
+            { label: "Cách 2", holes: [true, true, true, true, false, true] }
+          ]
+        },
+        { name: "Fa 3 (F3)", freq: 1396.91, holes: [true, false, true, false, false, true] },
+        { 
+          name: "Sol 3 (G3)", freq: 1567.98, isBranch: true,
+          variants: [
+            { label: "Cách 1", holes: [false, true, false, true, true, true] },
+            { label: "Cách 2", holes: [true, true, false, false, false, false] }
+          ]
+        }
+      ]
+    };
+
+    // HOT CROSS BUNS SEQUENCES (Line 1: Sol, Line 2: Fa, Line 3: Do)
+    const HCB_DATA = {
+      line1: [
+        { id: "1_1", name: "Si", freq: 493.88, beats: 1 },
+        { id: "1_2", name: "La", freq: 440.00, beats: 1 },
+        { id: "1_3", name: "Sol", freq: 392.00, beats: 2 },
+        { id: "1_4", name: "Si", freq: 493.88, beats: 1 },
+        { id: "1_5", name: "La", freq: 440.00, beats: 1 },
+        { id: "1_6", name: "Sol", freq: 392.00, beats: 2 },
+        { id: "1_7", name: "Sol", freq: 392.00, beats: 0.5 },
+        { id: "1_8", name: "Sol", freq: 392.00, beats: 0.5 },
+        { id: "1_9", name: "Sol", freq: 392.00, beats: 0.5 },
+        { id: "1_10", name: "Sol", freq: 392.00, beats: 0.5 },
+        { id: "1_11", name: "La", freq: 440.00, beats: 0.5 },
+        { id: "1_12", name: "La", freq: 440.00, beats: 0.5 },
+        { id: "1_13", name: "La", freq: 440.00, beats: 0.5 },
+        { id: "1_14", name: "La", freq: 440.00, beats: 0.5 },
+        { id: "1_15", name: "Si", freq: 493.88, beats: 1 },
+        { id: "1_16", name: "La", freq: 440.00, beats: 1 },
+        { id: "1_17", name: "Sol", freq: 392.00, beats: 2 }
+      ],
+
+      line2: [
+        { id: "2_1", name: "La", freq: 440.00, beats: 1 },
+        { id: "2_2", name: "Sol", freq: 392.00, beats: 1 },
+        { id: "2_3", name: "Fa", freq: 349.23, beats: 2 },
+        { id: "2_4", name: "La", freq: 440.00, beats: 1 },
+        { id: "2_5", name: "Sol", freq: 392.00, beats: 1 },
+        { id: "2_6", name: "Fa", freq: 349.23, beats: 2 },
+        { id: "2_7", name: "Fa", freq: 349.23, beats: 0.5 },
+        { id: "2_8", name: "Fa", freq: 349.23, beats: 0.5 },
+        { id: "2_9", name: "Fa", freq: 349.23, beats: 0.5 },
+        { id: "2_10", name: "Fa", freq: 349.23, beats: 0.5 },
+        { id: "2_11", name: "Sol", freq: 392.00, beats: 0.5 },
+        { id: "2_12", name: "Sol", freq: 392.00, beats: 0.5 },
+        { id: "2_13", name: "Sol", freq: 392.00, beats: 0.5 },
+        { id: "2_14", name: "Sol", freq: 392.00, beats: 0.5 },
+        { id: "2_15", name: "La", freq: 440.00, beats: 1 },
+        { id: "2_16", name: "Sol", freq: 392.00, beats: 1 },
+        { id: "2_17", name: "Fa", freq: 349.23, beats: 2 }
+      ],
+
+      line3: [
+        { id: "3_1", name: "Mi", freq: 329.63, beats: 1 },
+        { id: "3_2", name: "Rê", freq: 293.66, beats: 1 },
+        { id: "3_3", name: "Đô", freq: 261.63, beats: 2 },
+        { id: "3_4", name: "Mi", freq: 329.63, beats: 1 },
+        { id: "3_5", name: "Rê", freq: 293.66, beats: 1 },
+        { id: "3_6", name: "Đô", freq: 261.63, beats: 2 },
+        { id: "3_7", name: "Đô", freq: 261.63, beats: 0.5 },
+        { id: "3_8", name: "Đô", freq: 261.63, beats: 0.5 },
+        { id: "3_9", name: "Đô", freq: 261.63, beats: 0.5 },
+        { id: "3_10", name: "Đô", freq: 261.63, beats: 0.5 },
+        { id: "3_11", name: "Rê", freq: 293.66, beats: 0.5 },
+        { id: "3_12", name: "Rê", freq: 293.66, beats: 0.5 },
+        { id: "3_13", name: "Rê", freq: 293.66, beats: 0.5 },
+        { id: "3_14", name: "Rê", freq: 293.66, beats: 0.5 },
+        { id: "3_15", name: "Mi", freq: 329.63, beats: 1 },
+        { id: "3_16", name: "Rê", freq: 293.66, beats: 1 },
+        { id: "3_17", name: "Đô", freq: 261.63, beats: 2 }
+      ]
+    };
+
+    function getAudioContext() {
+      if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      if (audioCtx.state === 'suspended') audioCtx.resume();
+      return audioCtx;
+    }
+
+    function playTone(freq, startTime, duration) {
+      const ctx = getAudioContext();
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(freq, startTime);
+      gain.gain.setValueAtTime(0.001, startTime);
+      gain.gain.linearRampToValueAtTime(0.28, startTime + 0.02);
+      gain.gain.exponentialRampToValueAtTime(0.0001, startTime + duration);
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start(startTime);
+      osc.stop(startTime + duration);
+      activeOscillators.push(osc);
+      return osc;
+    }
+
+    function playSingleNote(freq, noteName) {
+      const ctx = getAudioContext();
+      playTone(freq, ctx.currentTime, 0.75);
+      showToast(`Đang phát: ${noteName} (${freq.toFixed(1)} Hz)`);
+    }
+
+    function playFullScaleAscending() {
+      const ctx = getAudioContext();
+      const now = ctx.currentTime;
+      const btn = document.getElementById('playScaleBtn');
+      btn.innerHTML = '<i class="fa-solid fa-volume-high animate-pulse"></i> Đang phát thang âm 19 nốt...';
+
+      SCALE_19_NOTES.forEach((n, idx) => {
+        const t = now + idx * 0.45;
+        playTone(n.freq, t, 0.4);
+        setTimeout(() => {
+          document.querySelectorAll('.svg-note-item').forEach(el => el.classList.remove('playing'));
+          const el = document.getElementById(`svg-note-${idx}`);
+          if (el) el.classList.add('playing');
+        }, idx * 450);
+      });
+
+      setTimeout(() => {
+        document.querySelectorAll('.svg-note-item').forEach(el => el.classList.remove('playing'));
+        btn.innerHTML = '<i class="fa-solid fa-play"></i> ▶ Nghe trọn thang âm (Đô 1 ➡️ Sol 3)';
+      }, SCALE_19_NOTES.length * 450 + 200);
+    }
+
+    function renderFluteTube(holes) {
+      return `
+        <div class="flute-tube-row flex items-center justify-between px-3 py-1.5 w-full max-w-[240px]">
+          <div class="hole-blow" title="Lỗ thổi"></div>
+          <div class="flex items-center gap-1.5 ml-2">
+            ${holes.map((isClosed, idx) => `
+              <div class="${isClosed ? 'hole-main-closed' : 'hole-main-open'}" title="Lỗ ${6 - idx}"></div>
+            `).join('')}
+          </div>
+        </div>
+      `;
+    }
+
+    function renderMasterChart() {
+      const el1 = document.getElementById('list-oct-1');
+      el1.innerHTML = NATURAL_FINGERING_CHART.octave1.map(item => `
+        <div class="bg-white p-2.5 rounded-xl border border-[#E0D5C3] shadow-sm flex items-center justify-between gap-2">
+          <span class="font-bold text-xs text-[#292421] w-24 shrink-0">${item.name}</span>
+          ${renderFluteTube(item.holes)}
+          <button onclick="playSingleNote(${item.freq}, '${item.name}')" class="px-2 py-1 bg-[#881B1B] hover:bg-[#701515] text-white text-[11px] font-bold rounded shadow-sm shrink-0">🔊</button>
+        </div>
+      `).join('');
+
+      const el2 = document.getElementById('list-oct-2');
+      el2.innerHTML = NATURAL_FINGERING_CHART.octave2.map(item => `
+        <div class="bg-white p-2.5 rounded-xl border border-[#E0D5C3] shadow-sm flex items-center justify-between gap-2">
+          <span class="font-bold text-xs text-[#193822] w-24 shrink-0">${item.name}</span>
+          ${renderFluteTube(item.holes)}
+          <button onclick="playSingleNote(${item.freq}, '${item.name}')" class="px-2 py-1 bg-[#193822] hover:bg-[#112517] text-white text-[11px] font-bold rounded shadow-sm shrink-0">🔊</button>
+        </div>
+      `).join('');
+
+      const el3 = document.getElementById('list-oct-3');
+      el3.innerHTML = NATURAL_FINGERING_CHART.octave3.map(item => {
+        if (item.isBranch) {
+          return `
+            <div class="bg-white p-2.5 rounded-xl border border-[#E0D5C3] shadow-sm space-y-2">
+              <div class="flex items-center justify-between">
+                <strong class="font-bold text-xs text-[#881B1B]">${item.name}</strong>
+                <button onclick="playSingleNote(${item.freq}, '${item.name}')" class="px-2 py-0.5 bg-[#881B1B] text-white text-[10px] font-bold rounded shadow-sm">🔊 Nghe</button>
+              </div>
+              <div class="space-y-1.5 pl-1 border-l-2 border-red-300">
+                ${item.variants.map(v => `
+                  <div class="flex items-center justify-between gap-2">
+                    <span class="text-[10px] text-[#6B625B] font-semibold w-16 shrink-0">${v.label}:</span>
+                    ${renderFluteTube(v.holes)}
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          `;
+        }
+        return `
+          <div class="bg-white p-2.5 rounded-xl border border-[#E0D5C3] shadow-sm flex items-center justify-between gap-2">
+            <span class="font-bold text-xs text-[#881B1B] w-20 shrink-0">${item.name}</span>
+            ${renderFluteTube(item.holes)}
+            <button onclick="playSingleNote(${item.freq}, '${item.name}')" class="px-2 py-1 bg-[#881B1B] hover:bg-[#701515] text-white text-[11px] font-bold rounded shadow-sm shrink-0">🔊</button>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function filterOctaveView(oct) {
+      const btns = document.querySelectorAll('.octave-tab-btn');
+      btns.forEach(b => b.classList.remove('active'));
+
+      const col1 = document.getElementById('col-oct-1');
+      const col2 = document.getElementById('col-oct-2');
+      const col3 = document.getElementById('col-oct-3');
+
+      if (oct === 'all') {
+        document.getElementById('btn-oct-all').classList.add('active');
+        col1.classList.remove('hidden');
+        col2.classList.remove('hidden');
+        col3.classList.remove('hidden');
+      } else if (oct === 1) {
+        document.getElementById('btn-oct-1').classList.add('active');
+        col1.classList.remove('hidden');
+        col2.classList.add('hidden');
+        col3.classList.add('hidden');
+      } else if (oct === 2) {
+        document.getElementById('btn-oct-2').classList.add('active');
+        col1.classList.add('hidden');
+        col2.classList.remove('hidden');
+        col3.classList.add('hidden');
+      } else if (oct === 3) {
+        document.getElementById('btn-oct-3').classList.add('active');
+        col1.classList.add('hidden');
+        col2.classList.add('hidden');
+        col3.classList.remove('hidden');
+      }
+    }
+
+    function toggleHcbNoteNames() {
+      isShowingHcbNotes = !isShowingHcbNotes;
+      const texts = document.querySelectorAll('.hcb-note-txt');
+      texts.forEach(el => {
+        if (isShowingHcbNotes) el.classList.remove('hidden-txt');
+        else el.classList.add('hidden-txt');
+      });
+      document.getElementById('toggleHcbText').innerText = isShowingHcbNotes ? 'Ẩn tên nốt' : 'Hiện tên nốt';
+      document.getElementById('toggleHcbIcon').className = isShowingHcbNotes ? 'fa-solid fa-eye' : 'fa-solid fa-eye-slash';
+      showToast(isShowingHcbNotes ? 'Đã bật hiển thị tên nốt' : 'Đã ẩn tên nốt (Thử tài thị tấu đọc nốt!)');
+    }
+
+    function updateHcbBpm(val) {
+      currentHcbBpm = parseInt(val);
+      document.getElementById('hcbBpmDisplay').innerText = `${currentHcbBpm} BPM`;
+    }
+
+    function stopHcbPlayback() {
+      hcbPlaybackTimeouts.forEach(t => clearTimeout(t));
+      hcbPlaybackTimeouts = [];
+
+      activeOscillators.forEach(osc => {
+        try {
+          osc.stop();
+          osc.disconnect();
+        } catch(e) {}
+      });
+      activeOscillators = [];
+
+      document.querySelectorAll('.sheet-note-group').forEach(el => el.classList.remove('playing'));
+      
+      const btnText = document.getElementById('playBtnText');
+      if (btnText) btnText.innerText = 'Phát trọn vẹn 3 đoạn';
+      const playBtn = document.getElementById('playHcbFullBtn');
+      if (playBtn) playBtn.innerHTML = '<i class="fa-solid fa-play"></i> <span id="playBtnText">Phát trọn vẹn 3 đoạn</span>';
+
+      showToast("⏹️ Đã dừng phát âm thanh.");
+    }
+
+    function playHcbSequence(notesArray, onComplete) {
+      stopHcbPlayback();
+      const ctx = getAudioContext();
+      const beatDurationSec = 60 / currentHcbBpm;
+      let cumulativeTimeSec = 0;
+
+      notesArray.forEach((note) => {
+        const noteDurationSec = note.beats * beatDurationSec;
+        const startSec = ctx.currentTime + cumulativeTimeSec;
+        const visualDelayMs = cumulativeTimeSec * 1000;
+
+        playTone(note.freq, startSec, noteDurationSec * 0.9);
+
+        const tid = setTimeout(() => {
+          document.querySelectorAll('.sheet-note-group').forEach(el => el.classList.remove('playing'));
+          const el = document.getElementById(`sn-${note.id}`);
+          if (el) el.classList.add('playing');
+        }, visualDelayMs);
+
+        hcbPlaybackTimeouts.push(tid);
+        cumulativeTimeSec += noteDurationSec;
+      });
+
+      const endTid = setTimeout(() => {
+        document.querySelectorAll('.sheet-note-group').forEach(el => el.classList.remove('playing'));
+        const playBtn = document.getElementById('playHcbFullBtn');
+        if (playBtn) playBtn.innerHTML = '<i class="fa-solid fa-play"></i> <span id="playBtnText">Phát trọn vẹn 3 đoạn</span>';
+        if (onComplete) onComplete();
+      }, cumulativeTimeSec * 1000);
+      hcbPlaybackTimeouts.push(endTid);
+    }
+
+    function playHcbLine(lineNum) {
+      const lineData = HCB_DATA[`line${lineNum}`];
+      showToast(`Đang phát Đoạn ${lineNum}...`);
+      playHcbSequence(lineData, () => {
+        showToast(`Đã phát xong Đoạn ${lineNum}!`);
+      });
+    }
+
+    function playHotCrossBunFull() {
+      const fullList = [...HCB_DATA.line1, ...HCB_DATA.line2, ...HCB_DATA.line3];
+      const btn = document.getElementById('playHcbFullBtn');
+      btn.innerHTML = '<i class="fa-solid fa-volume-high animate-pulse"></i> <span id="playBtnText">Đang phát 3 đoạn...</span>';
+      showToast("Đang phát toàn bộ bản nhạc Hot Cross Buns (3 đoạn)...");
+
+      playHcbSequence(fullList, () => {
+        showToast("Đã hoàn thành bài Hot Cross Buns!");
+      });
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      document.getElementById('toastMsg').innerText = msg;
+      toast.classList.remove('translate-y-24', 'opacity-0');
+      toast.classList.add('translate-y-0', 'opacity-100');
+      setTimeout(() => {
+        toast.classList.add('translate-y-24', 'opacity-0');
+        toast.classList.remove('translate-y-0', 'opacity-100');
+      }, 2500);
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      renderMasterChart();
+    });
+  </script>
+  <!-- FIXED MOBILE BOTTOM NAVIGATION BAR -->
+  <div class="fixed bottom-0 left-0 right-0 z-40 bg-[#FAF6EE]/95 border-t border-[#EADFCB] backdrop-blur-md md:hidden px-2 py-1 flex items-center justify-around shadow-lg">
+    <a href="index.html" class="flex flex-col items-center justify-center py-1 px-2 text-[#292421] hover:text-[#881B1B] transition-colors group">
+      <i class="fa-solid fa-house text-base group-hover:scale-110 transition-transform"></i>
+      <span class="text-[10px] font-medium mt-0.5">Trang chủ</span>
+    </a>
+    <a href="lo-trinh-nguoi-moi.html" class="flex flex-col items-center justify-center py-1 px-2 text-[#292421] hover:text-[#881B1B] transition-colors group">
+      <i class="fa-solid fa-compass text-base group-hover:scale-110 transition-transform"></i>
+      <span class="text-[10px] font-medium mt-0.5">Lộ trình</span>
+    </a>
+    <a href="danh-sach-bai-tap.html" class="flex flex-col items-center justify-center py-1 px-2 text-[#292421] hover:text-[#881B1B] transition-colors group">
+      <div class="w-8 h-8 rounded-full bg-[#881B1B] text-white flex items-center justify-center shadow-md -mt-3 mb-0.5 group-hover:scale-105 transition-transform">
+        <i class="fa-solid fa-music text-xs"></i>
+      </div>
+      <span class="text-[10px] font-bold text-[#881B1B]">Cảm âm</span>
+    </a>
+    <a href="tra-cuu-the-bam.html" class="flex flex-col items-center justify-center py-1 px-2 text-[#292421] hover:text-[#881B1B] transition-colors group">
+      <i class="fa-solid fa-hand text-base group-hover:scale-110 transition-transform"></i>
+      <span class="text-[10px] font-medium mt-0.5">Thế bấm</span>
+    </a>
+    <button onclick="toggleMobileMenu()" class="flex flex-col items-center justify-center py-1 px-2 text-[#292421] hover:text-[#881B1B] transition-colors group">
+      <i class="fa-solid fa-bars text-base group-hover:scale-110 transition-transform"></i>
+      <span class="text-[10px] font-medium mt-0.5">Menu</span>
+    </button>
+  </div>
+
+  <script>
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobileMenu');
+      const icon = document.getElementById('mobileMenuIcon');
+      if (menu) {
+        menu.classList.toggle('hidden');
+        if (icon) {
+          if (menu.classList.contains('hidden')) {
+            icon.className = 'fa-solid fa-bars text-xl';
+          } else {
+            icon.className = 'fa-solid fa-xmark text-xl';
+          }
+        }
+      }
+    }
+  </script>
+</body>
+</html>

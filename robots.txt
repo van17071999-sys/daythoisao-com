@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /quan-tri.html
+
+Sitemap: https://daythoisao.com/sitemap.xml

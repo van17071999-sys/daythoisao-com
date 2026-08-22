@@ -1,0 +1,1741 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hệ Thống Quản Trị Nội Dung | daythoisao.com</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'bordeaux-red': '#881B1B',
+            'crimson-dark': '#701515',
+            'bamboo-green': '#193822',
+            'bamboo-dark': '#112517',
+            'amber-gold': '#D9822B',
+            'paper-warm': '#FAF6EE',
+            'ink-dark': '#292421',
+            'ink-muted': '#6B625B',
+            'border-warm': '#E8DFC8'
+          },
+          fontFamily: {
+            sans: ['"Be Vietnam Pro"', 'sans-serif'],
+            serif: ['"Playfair Display"', 'Georgia', 'serif'],
+            mono: ['"JetBrains Mono"', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { background-color: #F4EFE6; color: #292421; font-family: 'Be Vietnam Pro', sans-serif; }
+    .custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
+    .custom-scrollbar::-webkit-scrollbar-track { background: #FAF6EE; }
+    .custom-scrollbar::-webkit-scrollbar-thumb { background: #D9CDBB; border-radius: 4px; }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #881B1B; }
+    .tab-2line-block {
+      background-color: #FAF6EE;
+      border: 1px solid #E8DFC8;
+      border-radius: 0.75rem;
+      padding: 0.75rem 1rem;
+      margin-bottom: 0.75rem;
+    }
+    .lyric-line {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: #292421;
+      margin-bottom: 0.35rem;
+    }
+    .note-box {
+      background-color: #FAF2E3;
+      border: 1px solid #E5D5BC;
+      border-radius: 0.5rem;
+      padding: 0.5rem 0.75rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8125rem;
+      font-weight: 700;
+      color: #701515;
+      letter-spacing: 0.05em;
+    }
+  </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col">
+
+  <!-- ================= AUTHENTICATION OVERLAY (LOGIN MODAL) ================= -->
+  <div id="loginScreen" class="fixed inset-0 z-50 bg-[#FAF6EE] flex items-center justify-center p-4">
+    <div class="max-w-md w-full bg-white rounded-3xl p-8 border border-[#E8DFC8] shadow-2xl space-y-6 text-center">
+      <div class="inline-flex p-3 rounded-2xl bg-red-50 border border-red-100 mb-2">
+        <img src="assets/logo.png" alt="Logo daythoisao.com" class="w-16 h-16 rounded-full object-cover shadow-sm">
+      </div>
+      <div>
+        <h2 class="font-serif text-2xl font-bold text-[#881B1B]">daythoisao.com</h2>
+        <p class="text-xs text-[#6B625B] mt-1">Cổng Quản Trị Hệ Thống & Nội Dung Website</p>
+      </div>
+
+      <form id="loginForm" onsubmit="handleAdminLogin(event)" class="space-y-4 text-left">
+        <div>
+          <label class="block text-xs font-bold text-[#292421] uppercase tracking-wider mb-1.5">Mật khẩu quản trị:</label>
+          <div class="relative">
+            <input 
+              type="password" 
+              id="adminPasswordInput" 
+              required
+              placeholder="Nhập mật khẩu (Mặc định: admin123)"
+              class="w-full bg-[#FAF6EE] border border-[#D9CDBB] rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#881B1B]"
+            >
+            <button type="button" onclick="togglePasswordVisibility()" class="absolute right-3.5 top-1/2 -translate-y-1/2 text-stone-400 hover:text-stone-700 text-xs">
+              <i class="fa-solid fa-eye" id="pwdEyeIcon"></i>
+            </button>
+          </div>
+          <p class="text-[11px] text-[#6B625B] mt-1">Mật khẩu mặc định: <strong class="text-[#881B1B]">admin123</strong> (Có thể đổi trong cài đặt)</p>
+        </div>
+
+        <div class="flex items-center justify-between text-xs text-[#6B625B]">
+          <label class="flex items-center gap-2 cursor-pointer">
+            <input type="checkbox" id="rememberLogin" checked class="rounded accent-[#881B1B]">
+            <span>Ghi nhớ phiên đăng nhập</span>
+          </label>
+          <a href="index.html" class="hover:text-[#881B1B]">Về trang chủ →</a>
+        </div>
+
+        <button type="submit" class="w-full py-3 bg-[#881B1B] hover:bg-[#701515] text-white font-bold rounded-xl shadow-lg transition-all flex items-center justify-center gap-2">
+          <i class="fa-solid fa-right-to-bracket"></i> Đăng nhập Quản trị
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ================= MAIN ADMIN DASHBOARD LAYOUT ================= -->
+  <div id="adminApp" class="flex-1 flex flex-col md:flex-row hidden">
+
+    <!-- SIDEBAR (Collapsible Drawer on Mobile) -->
+    <div id="sidebarBackdrop" onclick="toggleAdminSidebar()" class="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm hidden md:hidden"></div>
+    <aside id="adminSidebar" class="fixed inset-y-0 left-0 z-50 w-64 bg-[#112517] text-white flex flex-col shrink-0 border-r border-emerald-950 transform -translate-x-full md:relative md:translate-x-0 transition-transform duration-300 ease-in-out">
+      <!-- Sidebar Brand Header -->
+      <div class="p-5 border-b border-white/10 flex items-center justify-between">
+        <a href="quan-tri.html" class="flex items-center gap-3">
+          <img src="assets/logo.png" alt="Logo" class="w-9 h-9 rounded-full object-cover border border-white/30">
+          <div>
+            <span class="block font-serif text-lg font-bold text-white leading-none">daythoisao.com</span>
+            <span class="block text-[10px] text-amber-300 font-semibold tracking-wider uppercase mt-0.5">Admin Panel</span>
+          </div>
+        </a>
+        <button onclick="toggleAdminSidebar()" class="md:hidden text-white/60 hover:text-white p-1">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+      </div>
+
+      <!-- Navigation Links -->
+      <nav class="p-3 space-y-1 text-xs font-semibold flex-1 overflow-y-auto custom-scrollbar">
+        <button onclick="switchTab('dashboard'); closeSidebarOnMobile();" id="nav-dashboard" class="w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-[#193822] text-amber-300 transition-all text-left">
+          <span class="flex items-center gap-3"><i class="fa-solid fa-gauge w-4 text-center"></i> Tổng quan</span>
+        </button>
+        <button onclick="switchTab('songs'); closeSidebarOnMobile();" id="nav-songs" class="w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-white/80 hover:bg-white/10 hover:text-white transition-all text-left">
+          <span class="flex items-center gap-3"><i class="fa-solid fa-music w-4 text-center"></i> Kho Cảm Âm & Bài tập</span>
+          <span id="badgeSongCount" class="px-2 py-0.5 text-[10px] font-bold rounded-full bg-[#881B1B] text-white">0</span>
+        </button>
+        <button onclick="switchTab('requests'); closeSidebarOnMobile();" id="nav-requests" class="w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-white/80 hover:bg-white/10 hover:text-white transition-all text-left">
+          <span class="flex items-center gap-3"><i class="fa-solid fa-inbox w-4 text-center"></i> Yêu cầu cảm âm</span>
+          <span id="badgeRequestCount" class="px-2 py-0.5 text-[10px] font-bold rounded-full bg-amber-500 text-stone-900">0</span>
+        </button>
+        <button onclick="switchTab('articles'); closeSidebarOnMobile();" id="nav-articles" class="w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-white/80 hover:bg-white/10 hover:text-white transition-all text-left">
+          <span class="flex items-center gap-3"><i class="fa-solid fa-newspaper w-4 text-center"></i> Quản lý bài viết</span>
+          <span id="badgeArticleCount" class="px-2 py-0.5 text-[10px] font-bold rounded-full bg-emerald-700 text-white">0</span>
+        </button>
+        <button onclick="switchTab('settings'); closeSidebarOnMobile();" id="nav-settings" class="w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-white/80 hover:bg-white/10 hover:text-white transition-all text-left">
+          <span class="flex items-center gap-3"><i class="fa-solid fa-sliders w-4 text-center"></i> Cài đặt & Donate</span>
+        </button>
+        <button onclick="switchTab('backup'); closeSidebarOnMobile();" id="nav-backup" class="w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-white/80 hover:bg-white/10 hover:text-white transition-all text-left">
+          <span class="flex items-center gap-3"><i class="fa-solid fa-cloud-arrow-down w-4 text-center"></i> Sao lưu & Phục hồi</span>
+        </button>
+      </nav>
+
+      <!-- Sidebar Footer -->
+      <div class="p-4 border-t border-white/10 space-y-2">
+        <a href="index.html" target="_blank" class="w-full py-2 px-3 bg-white/10 hover:bg-white/20 text-white rounded-xl text-xs flex items-center justify-center gap-2 transition-all">
+          <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i> Xem Website
+        </a>
+        <button onclick="handleAdminLogout()" class="w-full py-2 px-3 bg-red-900/60 hover:bg-red-800 text-red-100 rounded-xl text-xs flex items-center justify-center gap-2 transition-all">
+          <i class="fa-solid fa-arrow-right-from-bracket"></i> Đăng xuất
+        </button>
+      </div>
+    </aside>
+
+    <!-- CONTENT WRAPPER -->
+    <div class="flex-1 flex flex-col overflow-hidden min-w-0">
+      <!-- TOP BAR -->
+      <header class="bg-white border-b border-[#E8DFC8] px-4 sm:px-6 py-3.5 flex items-center justify-between shadow-sm">
+        <div class="flex items-center gap-3">
+          <button onclick="toggleAdminSidebar()" class="md:hidden w-9 h-9 rounded-xl bg-[#FAF6EE] border border-[#D9CDBB] flex items-center justify-center text-[#292421]">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+          <h1 id="pageHeading" class="font-serif text-base sm:text-xl font-bold text-[#881B1B] truncate">Tổng quan hệ thống</h1>
+        </div>
+        <div class="flex items-center gap-2 sm:gap-3">
+          <button onclick="openSongFormModal()" class="px-3 sm:px-3.5 py-1.5 bg-[#881B1B] hover:bg-[#701515] text-white text-xs font-bold rounded-xl shadow flex items-center gap-1.5">
+            <i class="fa-solid fa-plus text-[10px]"></i> <span class="hidden sm:inline">Thêm cảm âm mới</span><span class="sm:hidden">Thêm</span>
+          </button>
+          <div class="hidden sm:flex items-center gap-2 pl-3 border-l border-stone-200 text-xs text-[#6B625B]">
+            <div class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>
+            <span>Admin</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- MAIN TAB CONTENT AREA -->
+      <main class="flex-1 p-6 overflow-y-auto custom-scrollbar space-y-6">
+
+        <!-- ================= TAB 1: DASHBOARD OVERVIEW ================= -->
+        <section id="tab-content-dashboard" class="space-y-6">
+          <!-- 4 KPI Cards -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div class="bg-white p-5 rounded-2xl border border-[#E8DFC8] shadow-sm flex items-center justify-between">
+              <div class="space-y-1">
+                <span class="text-xs text-[#6B625B] font-medium">Tổng số cảm âm</span>
+                <h3 id="dashTotalSongs" class="font-serif text-3xl font-bold text-[#881B1B]">0</h3>
+                <span class="text-[11px] text-emerald-700 font-medium">Đang hoạt động trên web</span>
+              </div>
+              <div class="w-12 h-12 rounded-2xl bg-red-50 text-[#881B1B] flex items-center justify-center text-xl">
+                <i class="fa-solid fa-music"></i>
+              </div>
+            </div>
+
+            <div class="bg-white p-5 rounded-2xl border border-[#E8DFC8] shadow-sm flex items-center justify-between">
+              <div class="space-y-1">
+                <span class="text-xs text-[#6B625B] font-medium">Yêu cầu cảm âm</span>
+                <h3 id="dashTotalRequests" class="font-serif text-3xl font-bold text-amber-600">0</h3>
+                <span class="text-[11px] text-amber-700 font-medium">Chờ biên soạn</span>
+              </div>
+              <div class="w-12 h-12 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center text-xl">
+                <i class="fa-solid fa-inbox"></i>
+              </div>
+            </div>
+
+            <div class="bg-white p-5 rounded-2xl border border-[#E8DFC8] shadow-sm flex items-center justify-between">
+              <div class="space-y-1">
+                <span class="text-xs text-[#6B625B] font-medium">Bài viết kiến thức</span>
+                <h3 id="dashTotalArticles" class="font-serif text-3xl font-bold text-emerald-800">0</h3>
+                <span class="text-[11px] text-emerald-700 font-medium">Cẩm nang & kinh nghiệm</span>
+              </div>
+              <div class="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-800 flex items-center justify-center text-xl">
+                <i class="fa-solid fa-newspaper"></i>
+              </div>
+            </div>
+
+            <div class="bg-white p-5 rounded-2xl border border-[#E8DFC8] shadow-sm flex items-center justify-between">
+              <div class="space-y-1">
+                <span class="text-xs text-[#6B625B] font-medium">Lượt xem & tải</span>
+                <h3 class="font-serif text-3xl font-bold text-blue-800">18.4K+</h3>
+                <span class="text-[11px] text-blue-700 font-medium">Lượt tương tác học viên</span>
+              </div>
+              <div class="w-12 h-12 rounded-2xl bg-blue-50 text-blue-800 flex items-center justify-center text-xl">
+                <i class="fa-solid fa-users"></i>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Shortcuts & Recent Requests -->
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <!-- Left: Recent Songs -->
+            <div class="lg:col-span-2 bg-white rounded-2xl border border-[#E8DFC8] shadow-sm p-6 space-y-4">
+              <div class="flex items-center justify-between pb-3 border-b border-stone-100">
+                <h3 class="font-serif text-base font-bold text-[#193822] flex items-center gap-2">
+                  <i class="fa-solid fa-music text-[#881B1B]"></i> Cảm âm cập nhật gần đây
+                </h3>
+                <button onclick="switchTab('songs')" class="text-xs text-[#881B1B] hover:underline font-semibold">Xem tất cả →</button>
+              </div>
+              <div id="dashRecentSongsList" class="divide-y divide-stone-100 space-y-1 text-xs"></div>
+            </div>
+
+            <!-- Right: Recent Song Requests -->
+            <div class="bg-white rounded-2xl border border-[#E8DFC8] shadow-sm p-6 space-y-4">
+              <div class="flex items-center justify-between pb-3 border-b border-stone-100">
+                <h3 class="font-serif text-base font-bold text-[#193822] flex items-center gap-2">
+                  <i class="fa-solid fa-envelope-open-text text-amber-600"></i> Yêu cầu mới nhất
+                </h3>
+                <button onclick="switchTab('requests')" class="text-xs text-[#881B1B] hover:underline font-semibold">Tất cả →</button>
+              </div>
+              <div id="dashRecentRequestsList" class="space-y-3 text-xs"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= TAB 2: QUẢN LÝ CẢM ÂM (SONGS) ================= -->
+        <section id="tab-content-songs" class="space-y-6 hidden">
+          <div class="bg-white rounded-2xl border border-[#E8DFC8] shadow-sm p-6 space-y-4">
+            <!-- Filter Toolbar -->
+            <div class="flex flex-col md:flex-row gap-3 items-center justify-between">
+              <div class="flex flex-wrap items-center gap-2 w-full md:w-auto">
+                <div class="relative w-full sm:w-64">
+                  <input 
+                    type="text" 
+                    id="adminSongSearch" 
+                    oninput="filterAdminSongs()" 
+                    placeholder="Tìm tên bài, tác giả, tone..." 
+                    class="w-full bg-[#FAF6EE] border border-[#D9CDBB] rounded-xl pl-9 pr-3 py-2 text-xs text-[#292421] focus:outline-none focus:ring-2 focus:ring-[#881B1B]"
+                  >
+                  <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-stone-400 text-xs"></i>
+                </div>
+                <select id="adminGenreFilter" onchange="filterAdminSongs()" class="bg-[#FAF6EE] border border-[#D9CDBB] rounded-xl px-3 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-[#881B1B]">
+                  <option value="all">Tất cả thể loại</option>
+                  <option value="nhac-hoa">Nhạc Hoa</option>
+                  <option value="dan-ca">Dân Ca</option>
+                  <option value="nhac-tre">Nhạc Trẻ</option>
+                  <option value="bolero">Bolero</option>
+                  <option value="am-huong-dan-ca">Âm Hưởng Dân Ca</option>
+                  <option value="cach-mang">Cách Mạng</option>
+                  <option value="khong-loi">Nhạc Không Lời / Độc tấu</option>
+                </select>
+                <select id="adminToneFilter" onchange="filterAdminSongs()" class="bg-[#FAF6EE] border border-[#D9CDBB] rounded-xl px-3 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-[#881B1B]">
+                  <option value="all">Tất cả Tone</option>
+                  <option value="C">Tone C</option>
+                  <option value="D / Bm">Tone D / Bm</option>
+                  <option value="F">Tone F</option>
+                  <option value="G">Tone G</option>
+                  <option value="Am">Tone Am</option>
+                </select>
+              </div>
+
+              <button onclick="openSongFormModal()" class="px-4 py-2 bg-[#881B1B] hover:bg-[#701515] text-white text-xs font-bold rounded-xl shadow flex items-center gap-2 whitespace-nowrap">
+                <i class="fa-solid fa-plus"></i> Thêm cảm âm mới
+              </button>
+            </div>
+
+            <!-- Table of Songs -->
+            <div class="overflow-x-auto">
+              <table class="w-full text-left text-xs border-collapse">
+                <thead>
+                  <tr class="bg-[#FAF6EE] border-b border-[#E8DFC8] text-[#59524B] font-bold uppercase tracking-wider">
+                    <th class="py-3 px-3">ID</th>
+                    <th class="py-3 px-3">Tên bài hát</th>
+                    <th class="py-3 px-3">Tác giả</th>
+                    <th class="py-3 px-3">Thể loại</th>
+                    <th class="py-3 px-3">Tone / Sáo</th>
+                    <th class="py-3 px-3">Độ khó</th>
+                    <th class="py-3 px-3">Số đoạn</th>
+                    <th class="py-3 px-3 text-right">Thao tác</th>
+                  </tr>
+                </thead>
+                <tbody id="adminSongsTableBody" class="divide-y divide-stone-100">
+                  <!-- Rendered dynamically -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= TAB 3: YÊU CẦU CẢM ÂM (REQUESTS) ================= -->
+        <section id="tab-content-requests" class="space-y-6 hidden">
+          <div class="bg-white rounded-2xl border border-[#E8DFC8] shadow-sm p-6 space-y-4">
+            <div class="flex items-center justify-between pb-3 border-b border-stone-100">
+              <div>
+                <h3 class="font-serif text-lg font-bold text-[#193822]">Danh sách yêu cầu cảm âm từ độc giả</h3>
+                <p class="text-xs text-[#6B625B]">Nhận trực tiếp từ biểu mẫu 'Yêu cầu cảm âm bài hát' trên website</p>
+              </div>
+              <button onclick="clearAllCompletedRequests()" class="text-xs text-stone-500 hover:text-red-700">
+                <i class="fa-solid fa-trash-can mr-1"></i> Xóa các yêu cầu đã xong
+              </button>
+            </div>
+
+            <div id="adminRequestsList" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <!-- Rendered dynamically -->
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= TAB 4: BÀI VIẾT (ARTICLES) ================= -->
+        <section id="tab-content-articles" class="space-y-6 hidden">
+          <div class="bg-white rounded-2xl border border-[#E8DFC8] shadow-sm p-6 space-y-4">
+            <div class="flex items-center justify-between pb-3 border-b border-stone-100">
+              <div>
+                <h3 class="font-serif text-lg font-bold text-[#193822]">Danh sách bài viết & Kinh nghiệm học sáo</h3>
+                <p class="text-xs text-[#6B625B]">Hiển thị tại trang bai-viet.html</p>
+              </div>
+              <button onclick="openArticleFormModal()" class="px-4 py-2 bg-[#881B1B] hover:bg-[#701515] text-white text-xs font-bold rounded-xl shadow flex items-center gap-2">
+                <i class="fa-solid fa-plus"></i> Thêm bài viết mới
+              </button>
+            </div>
+
+            <div id="adminArticlesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              <!-- Rendered dynamically -->
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= TAB 5: CÀI ĐẶT & DONATE (SETTINGS) ================= -->
+        <section id="tab-content-settings" class="space-y-6 hidden">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <!-- General Settings -->
+            <div class="bg-white rounded-2xl border border-[#E8DFC8] shadow-sm p-6 space-y-4">
+              <h3 class="font-serif text-base font-bold text-[#193822] flex items-center gap-2 pb-2 border-b border-stone-100">
+                <i class="fa-solid fa-globe text-[#881B1B]"></i> Cấu hình thương hiệu & Liên hệ
+              </h3>
+              <form onsubmit="saveSiteSettings(event)" class="space-y-3 text-xs">
+                <div>
+                  <label class="font-bold text-[#292421] block mb-1">Tên Website:</label>
+                  <input type="text" id="settingSiteName" value="daythoisao.com" class="w-full bg-[#FAF6EE] border border-[#D9CDBB] rounded-xl px-3 py-2 focus:ring-2 focus:ring-[#881B1B] outline-none">
+                </div>
+                <div>
+                  <label class="font-bold text-[#292421] block mb-1">Khẩu hiệu / Slogan:</label>
+                  <input type="text" id="settingSlogan" value="Kiến thức sáo trúc cho mọi người" class="w-full bg-[#FAF6EE] border border-[#D9CDBB] rounded-xl px-3 py-2 focus:ring-2 focus:ring-[#881B1B] outline-none">
+                </div>
+                <div>
+                  <label class="font-bold text-[#292421] block mb-1">Số điện thoại / Zalo tư vấn:</label>
+                  <input type="text" id="settingHotline" value="0374 261 368" class="w-full bg-[#FAF6EE] border border-[#D9CDBB] rounded-xl px-3 py-2 focus:ring-2 focus:ring-[#881B1B] outline-none">
+                </div>
+                <div>
+                  <label class="font-bold text-[#292421] block mb-1">Địa chỉ trung tâm:</label>
+                  <input type="text" id="settingAddress" value="106/72 Hoà Bình, P. Tân Phú, HCM" class="w-full bg-[#FAF6EE] border border-[#D9CDBB] rounded-xl px-3 py-2 focus:ring-2 focus:ring-[#881B1B] outline-none">
+                </div>
+                <div>
+                  <label class="font-bold text-[#292421] block mb-1">Email liên hệ:</label>
+                  <input type="text" id="settingEmail" value="saotrucauco@gmail.com" class="w-full bg-[#FAF6EE] border border-[#D9CDBB] rounded-xl px-3 py-2 focus:ring-2 focus:ring-[#881B1B] outline-none">
+                </div>
+                <button type="submit" class="px-5 py-2.5 bg-[#193822] hover:bg-[#112517] text-white font-bold rounded-xl shadow transition-all">
+                  Lưu thông tin liên hệ
+                </button>
+              </form>
+            </div>
+
+            <!-- Donate / VietQR Settings & Security -->
+            <div class="space-y-6">
+              <div class="bg-white rounded-2xl border border-[#E8DFC8] shadow-sm p-6 space-y-4">
+                <h3 class="font-serif text-base font-bold text-[#193822] flex items-center gap-2 pb-2 border-b border-stone-100">
+                  <i class="fa-solid fa-qrcode text-amber-600"></i> Cấu hình VietQR Donate (Ủng hộ web)
+                </h3>
+                <form onsubmit="saveDonateSettings(event)" class="space-y-3 text-xs">
+                  <div>
+                    <label class="font-bold text-[#292421] block mb-1">Ngân hàng thụ hưởng:</label>
+                    <input type="text" id="settingBankName" value="Sacombank" class="w-full bg-[#FAF6EE] border border-[#D9CDBB] rounded-xl px-3 py-2 focus:ring-2 focus:ring-[#881B1B] outline-none">
+                  </div>
+                  <div>
+                    <label class="font-bold text-[#292421] block mb-1">Số tài khoản:</label>
+                    <input type="text" id="settingBankAccount" value="030040023451" class="w-full bg-[#FAF6EE] border border-[#D9CDBB] rounded-xl px-3 py-2 focus:ring-2 focus:ring-[#881B1B] outline-none font-mono">
+                  </div>
+                  <div>
+                    <label class="font-bold text-[#292421] block mb-1">Tên chủ tài khoản:</label>
+                    <input type="text" id="settingBankHolder" value="QUÁCH HẠ VĂN" class="w-full bg-[#FAF6EE] border border-[#D9CDBB] rounded-xl px-3 py-2 focus:ring-2 focus:ring-[#881B1B] outline-none uppercase font-mono">
+                  </div>
+                  <button type="submit" class="px-5 py-2.5 bg-[#881B1B] hover:bg-[#701515] text-white font-bold rounded-xl shadow transition-all">
+                    Lưu cấu hình VietQR
+                  </button>
+                </form>
+              </div>
+
+              <!-- Change Admin Password -->
+              <div class="bg-white rounded-2xl border border-[#E8DFC8] shadow-sm p-6 space-y-4">
+                <h3 class="font-serif text-base font-bold text-[#193822] flex items-center gap-2 pb-2 border-b border-stone-100">
+                  <i class="fa-solid fa-lock text-[#881B1B]"></i> Đổi mật khẩu Quản trị
+                </h3>
+                <form onsubmit="handleChangePassword(event)" class="space-y-3 text-xs">
+                  <div>
+                    <label class="font-bold text-[#292421] block mb-1">Mật khẩu mới:</label>
+                    <input type="password" id="newAdminPassword" required placeholder="Nhập mật khẩu mới..." class="w-full bg-[#FAF6EE] border border-[#D9CDBB] rounded-xl px-3 py-2 focus:ring-2 focus:ring-[#881B1B] outline-none">
+                  </div>
+                  <button type="submit" class="px-5 py-2.5 bg-stone-800 hover:bg-stone-900 text-white font-bold rounded-xl shadow transition-all">
+                    Cập nhật mật khẩu
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= TAB 6: SAO LƯU & ĐỒNG BỘ (BACKUP) ================= -->
+        <section id="tab-content-backup" class="space-y-6 hidden">
+          <div class="bg-white rounded-2xl border border-[#E8DFC8] shadow-sm p-6 space-y-5">
+            <div>
+              <h3 class="font-serif text-lg font-bold text-[#193822]">Sao lưu & Phục hồi dữ liệu toàn diện</h3>
+              <p class="text-xs text-[#6B625B]">Xuất toàn bộ bài hát, bài viết và thiết lập ra file JSON an toàn hoặc tải file backup lên để đồng bộ</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+              <div class="p-5 bg-emerald-50 rounded-2xl border border-emerald-200 space-y-3">
+                <div class="w-10 h-10 rounded-xl bg-emerald-700 text-white flex items-center justify-center text-lg">
+                  <i class="fa-solid fa-file-export"></i>
+                </div>
+                <h4 class="font-bold text-sm text-emerald-900">Xuất dữ liệu (Export JSON)</h4>
+                <p class="text-emerald-700 leading-relaxed">Tải file backup JSON chứa tất cả cảm âm và cấu hình để lưu trữ trên máy tính hoặc chuyển sang máy khác.</p>
+                <button onclick="exportDataJSON()" class="w-full py-2.5 bg-emerald-700 hover:bg-emerald-800 text-white font-bold rounded-xl shadow flex items-center justify-center gap-2">
+                  <i class="fa-solid fa-download"></i> Tải file Backup (.json)
+                </button>
+              </div>
+
+              <div class="p-5 bg-blue-50 rounded-2xl border border-blue-200 space-y-3">
+                <div class="w-10 h-10 rounded-xl bg-blue-700 text-white flex items-center justify-center text-lg">
+                  <i class="fa-solid fa-file-import"></i>
+                </div>
+                <h4 class="font-bold text-sm text-blue-900">Nhập dữ liệu (Import JSON)</h4>
+                <p class="text-blue-700 leading-relaxed">Chọn file JSON đã lưu trước đó để khôi phục kho cảm âm và toàn bộ nội dung quản trị.</p>
+                <input type="file" id="importFileInput" accept=".json" onchange="handleImportJSON(event)" class="hidden">
+                <button onclick="document.getElementById('importFileInput').click()" class="w-full py-2.5 bg-blue-700 hover:bg-blue-800 text-white font-bold rounded-xl shadow flex items-center justify-center gap-2">
+                  <i class="fa-solid fa-upload"></i> Chọn file để Import
+                </button>
+              </div>
+
+              <div class="p-5 bg-red-50 rounded-2xl border border-red-200 space-y-3">
+                <div class="w-10 h-10 rounded-xl bg-[#881B1B] text-white flex items-center justify-center text-lg">
+                  <i class="fa-solid fa-rotate-left"></i>
+                </div>
+                <h4 class="font-bold text-sm text-red-900">Khôi phục mặc định (Reset)</h4>
+                <p class="text-red-700 leading-relaxed">Khôi phục lại kho cảm âm và bài viết gốc chuẩn theo giáo trình ban đầu của Sáo Trúc Âu Cơ.</p>
+                <button onclick="resetToDefaultData()" class="w-full py-2.5 bg-red-800 hover:bg-red-900 text-white font-bold rounded-xl shadow flex items-center justify-center gap-2">
+                  <i class="fa-solid fa-trash-arrow-up"></i> Khôi phục dữ liệu gốc
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- ================= MODAL: THÊM / SỬA CẢM ÂM (SONG EDITOR) ================= -->
+  <div id="songFormModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-[#FAF6EE] rounded-3xl max-w-4xl w-full border border-[#D9CDBB] shadow-2xl overflow-hidden flex flex-col max-h-[92vh]">
+      <!-- Header -->
+      <div class="bg-[#881B1B] text-white px-6 py-4 flex items-center justify-between">
+        <h3 id="songFormModalTitle" class="font-serif text-lg font-bold flex items-center gap-2">
+          <i class="fa-solid fa-pen-to-square"></i> Soạn Thảo Cảm Âm Chuẩn
+        </h3>
+        <button onclick="closeSongFormModal()" class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <!-- Form Body -->
+      <form id="songEditorForm" onsubmit="handleSaveSong(event)" class="p-6 overflow-y-auto custom-scrollbar space-y-6 text-xs text-[#292421]">
+        <input type="hidden" id="editSongId" value="">
+
+        <!-- Basic Metadata -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 bg-white p-5 rounded-2xl border border-[#E8DFC8]">
+          <div>
+            <label class="font-bold block mb-1">Tên bài hát *:</label>
+            <input type="text" id="formSongTitle" required placeholder="Ví dụ: Nữ Nhi Tình" class="w-full bg-[#FAF6EE] border border-[#D9CDBB] rounded-xl px-3 py-2 outline-none focus:ring-2 focus:ring-[#881B1B]">
+          </div>
+          <div>
+            <label class="font-bold block mb-1">Tác giả *:</label>
+            <input type="text" id="formSongAuthor" required placeholder="Ví dụ: Hứa Kính Thanh" class="w-full bg-[#FAF6EE] border border-[#D9CDBB] rounded-xl px-3 py-2 outline-none focus:ring-2 focus:ring-[#881B1B]">
+          </div>
+          <div>
+            <label class="font-bold block mb-1">Thể loại *:</label>
+            <select id="formSongGenre" class="w-full bg-[#FAF6EE] border border-[#D9CDBB] rounded-xl px-3 py-2 outline-none focus:ring-2 focus:ring-[#881B1B]">
+              <option value="nhac-hoa">Nhạc Hoa Lời Việt</option>
+              <option value="dan-ca">Dân Ca Quan Họ & Bắc Bộ</option>
+              <option value="nhac-tre">Nhạc Trẻ Ballad / Pop</option>
+              <option value="bolero">Bolero / Trữ Tình Bất Hủ</option>
+              <option value="am-huong-dan-ca">Âm Hưởng Dân Ca / Quê Hương</option>
+              <option value="cach-mang">Nhạc Cách Mạng / Tiền Chiến</option>
+              <option value="khong-loi">Nhạc Không Lời / Độc tấu</option>
+              <option value="luyen-ngon">Bài Tập Luyện Ngón</option>
+            </select>
+          </div>
+          <div>
+            <label class="font-bold block mb-1">Tone thế tay *:</label>
+            <input type="text" id="formSongTone" required placeholder="Ví dụ: D / Bm hoặc C" class="w-full bg-[#FAF6EE] border border-[#D9CDBB] rounded-xl px-3 py-2 outline-none focus:ring-2 focus:ring-[#881B1B]">
+          </div>
+          <div>
+            <label class="font-bold block mb-1">Sáo khuyến nghị *:</label>
+            <input type="text" id="formSongFlute" required placeholder="Ví dụ: Sáo C5 hoặc D5" class="w-full bg-[#FAF6EE] border border-[#D9CDBB] rounded-xl px-3 py-2 outline-none focus:ring-2 focus:ring-[#881B1B]">
+          </div>
+          <div>
+            <label class="font-bold block mb-1">Độ khó *:</label>
+            <select id="formSongDiff" class="w-full bg-[#FAF6EE] border border-[#D9CDBB] rounded-xl px-3 py-2 outline-none focus:ring-2 focus:ring-[#881B1B]">
+              <option value="Dễ">Dễ</option>
+              <option value="Trung bình">Trung bình</option>
+              <option value="Nâng cao">Nâng cao</option>
+            </select>
+          </div>
+          <div class="sm:col-span-2">
+            <label class="font-bold block mb-1">Kỹ thuật chính & Hướng dẫn:</label>
+            <input type="text" id="formSongTip" placeholder="Ví dụ: Chú ý vuốt ngón nốt La2 sang Đô3 mượt mà..." class="w-full bg-[#FAF6EE] border border-[#D9CDBB] rounded-xl px-3 py-2 outline-none focus:ring-2 focus:ring-[#881B1B]">
+          </div>
+          <div>
+            <label class="font-bold block mb-1">Kỹ thuật tiêu biểu:</label>
+            <input type="text" id="formSongTech" placeholder="Ví dụ: Láy ngón, Rung hơi, Vuốt ngón" class="w-full bg-[#FAF6EE] border border-[#D9CDBB] rounded-xl px-3 py-2 outline-none focus:ring-2 focus:ring-[#881B1B]">
+          </div>
+        </div>
+
+        <!-- Section & Line Builder -->
+        <div class="bg-white p-5 rounded-2xl border border-[#E8DFC8] space-y-4">
+          <div class="flex items-center justify-between pb-2 border-b border-stone-100">
+            <div>
+              <h4 class="font-serif text-sm font-bold text-[#881B1B]">Soạn thảo các đoạn & nốt cảm âm</h4>
+              <p class="text-[11px] text-[#6B625B]">Nhạc không lời: Để trống ô lời hát, chỉ nhập ô nốt nhạc</p>
+            </div>
+            <div class="flex items-center gap-2">
+              <button type="button" onclick="addFormSection()" class="px-3 py-1.5 bg-emerald-700 hover:bg-emerald-800 text-white font-bold rounded-lg text-xs flex items-center gap-1">
+                <i class="fa-solid fa-plus text-[10px]"></i> Thêm Đoạn mới
+              </button>
+            </div>
+          </div>
+
+          <!-- Dynamic Container for Sections -->
+          <div id="formSectionsContainer" class="space-y-4">
+            <!-- Injected dynamically -->
+          </div>
+        </div>
+
+        <!-- Live Preview Box -->
+        <div class="bg-white p-5 rounded-2xl border border-[#E8DFC8] space-y-3">
+          <h4 class="font-serif text-sm font-bold text-[#193822] flex items-center gap-2">
+            <i class="fa-solid fa-eye text-[#881B1B]"></i> Xem trước bản cảm âm (Live Preview)
+          </h4>
+          <div id="formLivePreviewBox" class="p-4 bg-[#FAF6EE] rounded-xl border border-[#E8DFC8] space-y-3 min-h-[100px]">
+            <p class="text-stone-400 italic text-center py-4">Nhập nốt bên trên để xem trước cảm âm hiển thị...</p>
+          </div>
+        </div>
+
+        <!-- Form Footer Buttons -->
+        <div class="flex items-center justify-end gap-3 pt-2">
+          <button type="button" onclick="closeSongFormModal()" class="px-5 py-2.5 bg-white border border-[#D9CDBB] hover:bg-[#FAF6EE] text-[#292421] font-semibold rounded-xl">
+            Hủy bỏ
+          </button>
+          <button type="submit" class="px-6 py-2.5 bg-[#881B1B] hover:bg-[#701515] text-white font-bold rounded-xl shadow-lg flex items-center gap-2">
+            <i class="fa-solid fa-floppy-disk"></i> Lưu Cảm Âm
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ================= MODAL: THÊM / SỬA BÀI VIẾT (ARTICLE EDITOR) ================= -->
+  <div id="articleFormModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-[#FAF6EE] rounded-3xl max-w-2xl w-full border border-[#D9CDBB] shadow-2xl overflow-hidden flex flex-col max-h-[92vh]">
+      <div class="bg-[#193822] text-white px-6 py-4 flex items-center justify-between">
+        <h3 id="articleFormModalTitle" class="font-serif text-lg font-bold flex items-center gap-2">
+          <i class="fa-solid fa-pen-to-square"></i> Soạn Thảo Bài Viết
+        </h3>
+        <button onclick="closeArticleFormModal()" class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <form id="articleEditorForm" onsubmit="handleSaveArticle(event)" class="p-6 overflow-y-auto custom-scrollbar space-y-4 text-xs text-[#292421]">
+        <input type="hidden" id="editArticleId" value="">
+        <div>
+          <label class="font-bold block mb-1">Tiêu đề bài viết *:</label>
+          <input type="text" id="formArticleTitle" required placeholder="Ví dụ: Bí quyết luyện nốt Đô 1 trầm ấm..." class="w-full bg-white border border-[#D9CDBB] rounded-xl px-3 py-2.5 outline-none focus:ring-2 focus:ring-[#881B1B]">
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="font-bold block mb-1">Chuyên mục:</label>
+            <select id="formArticleCategory" class="w-full bg-white border border-[#D9CDBB] rounded-xl px-3 py-2 outline-none focus:ring-2 focus:ring-[#881B1B]">
+              <option value="nhap-mon">Nhập môn sáo trúc</option>
+              <option value="ky-thuat">Kỹ thuật nâng cao</option>
+              <option value="nhac-ly">Nhạc lý & Cảm âm</option>
+              <option value="kinh-nghiem">Kinh nghiệm & Chọn sáo</option>
+            </select>
+          </div>
+          <div>
+            <label class="font-bold block mb-1">Thời gian đọc:</label>
+            <input type="text" id="formArticleReadTime" value="5 phút đọc" class="w-full bg-white border border-[#D9CDBB] rounded-xl px-3 py-2 outline-none focus:ring-2 focus:ring-[#881B1B]">
+          </div>
+        </div>
+        <div>
+          <label class="font-bold block mb-1">Link ảnh minh họa (URL):</label>
+          <input type="url" id="formArticleImg" value="https://images.unsplash.com/photo-1511192336575-5a79af67a629?auto=format&fit=crop&w=600&q=80" class="w-full bg-white border border-[#D9CDBB] rounded-xl px-3 py-2 outline-none focus:ring-2 focus:ring-[#881B1B]">
+        </div>
+        <div>
+          <label class="font-bold block mb-1">Tóm tắt ngắn (1-2 câu):</label>
+          <textarea id="formArticleSummary" rows="2" required placeholder="Mô tả tóm tắt nội dung bài viết..." class="w-full bg-white border border-[#D9CDBB] rounded-xl p-3 outline-none focus:ring-2 focus:ring-[#881B1B]"></textarea>
+        </div>
+        <div>
+          <label class="font-bold block mb-1">Nội dung chi tiết (HTML/Text):</label>
+          <textarea id="formArticleContent" rows="6" required placeholder="Nội dung bài viết chi tiết..." class="w-full bg-white border border-[#D9CDBB] rounded-xl p-3 outline-none focus:ring-2 focus:ring-[#881B1B] font-mono text-xs"></textarea>
+        </div>
+
+        <div class="flex items-center justify-end gap-3 pt-2">
+          <button type="button" onclick="closeArticleFormModal()" class="px-5 py-2.5 bg-white border border-[#D9CDBB] hover:bg-[#FAF6EE] text-[#292421] font-semibold rounded-xl">
+            Hủy bỏ
+          </button>
+          <button type="submit" class="px-6 py-2.5 bg-[#193822] hover:bg-[#112517] text-white font-bold rounded-xl shadow-lg flex items-center gap-2">
+            <i class="fa-solid fa-floppy-disk"></i> Lưu Bài Viết
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div id="adminToast" class="fixed bottom-6 right-6 z-50 bg-[#112517] text-white px-5 py-3 rounded-2xl shadow-2xl border border-emerald-500/40 flex items-center gap-3 transition-all transform translate-y-24 opacity-0 pointer-events-none">
+    <i class="fa-solid fa-circle-check text-emerald-400 text-lg"></i>
+    <span id="adminToastMsg" class="text-xs font-semibold">Thông báo thành công!</span>
+  </div>
+
+  <!-- ================= JAVASCRIPT LOGIC ================= -->
+  <script>
+    const DEFAULT_ADMIN_PASSWORD = "admin123";
+
+    // Format Music Notes Function
+    function formatMusicNotes(rawText) {
+      if (!rawText) return "";
+      return rawText
+        .replace(/(Đô|Do|Rê|Re|Mi|Fa|Sol|La|Si)#([1-3]?)/gi, (m, note, oct) => {
+          let octSign = oct === '2' ? '²' : (oct === '3' ? '³' : (oct === '1' ? '' : ''));
+          let capitalized = note.charAt(0).toUpperCase() + note.slice(1);
+          return `${capitalized}♯${octSign}`;
+        })
+        .replace(/(Đô|Do|Rê|Re|Mi|Fa|Sol|La|Si)b([1-3]?)/gi, (m, note, oct) => {
+          let octSign = oct === '2' ? '²' : (oct === '3' ? '³' : (oct === '1' ? '' : ''));
+          let capitalized = note.charAt(0).toUpperCase() + note.slice(1);
+          return `${capitalized}♭${octSign}`;
+        })
+        .replace(/(Đô|Do|Rê|Re|Mi|Fa|Sol|La|Si|♯|♭)2/gi, (m, note) => {
+          let capitalized = note.charAt(0).toUpperCase() + note.slice(1);
+          return `${capitalized}²`;
+        })
+        .replace(/(Đô|Do|Rê|Re|Mi|Fa|Sol|La|Si|♯|♭)3/gi, (m, note) => {
+          let capitalized = note.charAt(0).toUpperCase() + note.slice(1);
+          return `${capitalized}³`;
+        })
+        .replace(/(Đô|Do|Rê|Re|Mi|Fa|Sol|La|Si)1/gi, (m, note) => {
+          return note.charAt(0).toUpperCase() + note.slice(1);
+        })
+        .replace(/\s\.\s/g, ' · ')
+        .replace(/\s\-\s/g, ' – ');
+    }
+
+    // Default Seed Songs
+    const SEED_SONGS = [
+      {
+        id: 1,
+        title: "Nữ Nhi Tình (Tây Du Ký)",
+        author: "Hứa Kính Thanh",
+        genreId: "nhac-hoa",
+        genreName: "Nhạc Hoa Lời Việt",
+        toneDisplay: "D / Bm",
+        toneKey: "D",
+        fluteTone: "Sáo C5 (Đô)",
+        diff: "Dễ",
+        tech: "Láy ngón, Rung hơi",
+        tip: "Bài nhạc huyền thoại của phim Tây Du Ký 1986. Âm điệu dịu dàng, da diết. Thổi thế tay D trên sáo C5.",
+        sections: [
+          {
+            sectionTitle: "Lời 1",
+            lines: [
+              { lyric: "Uyên ương song tê điệp song phi", note: "La La Sol La Do2 Re2 Mi" },
+              { lyric: "Mãn viên xuân sắc sầu nhân túy", note: "Sol2 Mi2 Re2 Do2 La Do2 Re2" },
+              { lyric: "Tiễu tiễu vấn thánh tăng", note: "La La Sol La Do2" },
+              { lyric: "Nhi nữ mỹ bất mỹ, nhi nữ mỹ bất mỹ", note: "Re2 Mi2 Sol2 Mi2 Re2, Re2 Mi2 Sol2 Mi2 Re2" }
+            ]
+          },
+          {
+            sectionTitle: "Điệp khúc",
+            lines: [
+              { lyric: "Nguyện kim sinh tương tùy", note: "Sol2 Sol2 La2 Sol2 Mi2" },
+              { lyric: "Nguyện lai thế tương ỷ", note: "Re2 Re2 Mi2 Re2 Do2" },
+              { lyric: "Trì hòa tương duyệt, tâm hữu linh tê", note: "La Do2 Re2 Mi2, Sol2 Mi2 Re2 Do2 Re2" }
+            ]
+          }
+        ]
+      },
+      {
+        id: 2,
+        title: "Thần Thoại (Endless Love)",
+        author: "Choi Jun Young",
+        genreId: "nhac-hoa",
+        genreName: "Nhạc Hoa Lời Việt",
+        toneDisplay: "D / Bm",
+        toneKey: "D",
+        fluteTone: "Sáo C5 hoặc D5",
+        diff: "Trung bình",
+        tech: "Vuốt ngón, Rung hơi",
+        tip: "Nhạc phim Thần Thoại (Thành Long - Kim Hee Sun). Đoạn điệp khúc lên cao trào cần giữ hơi thật sâu.",
+        sections: [
+          {
+            sectionTitle: "Lời 1",
+            lines: [
+              { lyric: "Jie kai wo zui shen mi de deng dai", note: "La Sol Fa Mi Re Fa Sol La" },
+              { lyric: "Xing xing zhui luo feng zai chui dong", note: "Do2 Si La Sol Fa Sol La Fa" },
+              { lyric: "Zhong yu deng dao ni de ai", note: "Mi Fa Sol La Do2 Si La" }
+            ]
+          },
+          {
+            sectionTitle: "Điệp khúc",
+            lines: [
+              { lyric: "Wan shi cang sang wei you ai shi yong heng de shen hua", note: "La2 Sol2 Fa2 Mi2 Re2 Fa2 Sol2 La2 Do3 Si2 La2 Sol2" },
+              { lyric: "Chao qi chao luo shi zhong bu hui gai bian", note: "Fa2 Sol2 La2 Fa2 Mi2 Fa2 Sol2 Mi2 Re2" }
+            ]
+          }
+        ]
+      },
+      {
+        id: 3,
+        title: "Bèo Dạt Mây Trôi",
+        author: "Dân ca Quan họ Bắc Ninh",
+        genreId: "dan-ca",
+        genreName: "Dân Ca Quan Họ & Bắc Bộ",
+        toneDisplay: "C",
+        toneKey: "C",
+        fluteTone: "Sáo C5 (Đô) chuẩn",
+        diff: "Dễ",
+        tech: "Rung hơi, Luyến hơi",
+        tip: "Bài dân ca kinh điển của sáo trúc Việt Nam. Chú ý luyến láy mềm mại ở các nốt chuyển quãng 1 và 2.",
+        sections: [
+          {
+            sectionTitle: "Đoạn 1",
+            lines: [
+              { lyric: "Bèo dạt mây trôi, chốn xa xôi", note: "Sol Sol Sol La, Do2 La Sol" },
+              { lyric: "Anh ơi em vẫn đợi bèo dạt", note: "Mi Mi Mi Sol Mi Re Do" },
+              { lyric: "Mây trôi, chim ca tang tính tình", note: "Re Mi, Sol Sol La Do2 Sol" },
+              { lyric: "Cá lội, lửng lơ trông tin anh", note: "La Do2, Re2 Do2 La Sol Sol" }
+            ]
+          }
+        ]
+      },
+      {
+        id: 4,
+        title: "Độc Tấu: Xuân Về Bản Mèo (Nhạc Không Lời)",
+        author: "Dân ca H'Mông / Sáo Trúc Âu Cơ",
+        genreId: "khong-loi",
+        genreName: "Nhạc Không Lời / Độc tấu",
+        toneDisplay: "G / Em",
+        toneKey: "G",
+        fluteTone: "Sáo Mèo hoặc Sáo C5",
+        diff: "Nâng cao",
+        tech: "Đánh lưỡi kép, Rung hơi, Phi ngón",
+        tip: "Bản độc tấu không lời rộn ràng, miêu tả cảnh xuân rực rỡ trên vùng cao Tây Bắc.",
+        sections: [
+          {
+            sectionTitle: "Mở đầu (Chậm rãi, ngân vang)",
+            lines: [
+              { lyric: "", note: "Sol2 ··· La2 ··· Do3 ··· La2 Sol2 Mi2" },
+              { lyric: "", note: "Sol2 La2 Do3 Re3 Mi3 Re3 Do3 La2 Sol2" }
+            ]
+          },
+          {
+            sectionTitle: "Thân bài (Tiết tấu vui tươi, đánh lưỡi đơn và kép)",
+            lines: [
+              { lyric: "", note: "Sol Mi Sol La Do2 Re2 Mi2" },
+              { lyric: "", note: "Sol2 Mi2 Re2 Do2 Re2 Mi2 Re2 Do2 La" },
+              { lyric: "", note: "Do2 Re2 Mi2 Sol2 La2 Sol2 Mi2 Re2 Do2" }
+            ]
+          }
+        ]
+      }
+    ];
+
+    // Seed Sample Requests
+    const SEED_REQUESTS = [
+      {
+        id: 101,
+        title: "Cắt Đôi Nỗi Sầu",
+        singer: "Tăng Duy Tân",
+        fluteTone: "Sáo C5",
+        phone: "0912345678",
+        note: "Xin bản cảm âm tone D chuẩn cho sáo Đô C5 ạ",
+        status: "Mới nhận",
+        createdAt: "22/08/2024 14:30"
+      },
+      {
+        id: 102,
+        title: "Gặp Nhau Giữa Rừng Mơ",
+        singer: "Trọng Tấn & Anh Thơ",
+        fluteTone: "Sáo D5",
+        phone: "0987654321",
+        note: "Cần cảm âm đoạn song tấu sáo trúc",
+        status: "Đang soạn",
+        createdAt: "21/08/2024 09:15"
+      }
+    ];
+
+    // State
+    let currentTab = 'dashboard';
+    let songsData = [];
+    let requestsData = [];
+    let articlesData = [];
+
+    // Initialize Data
+    function initAdminData() {
+      // Check auth
+      const isLogged = sessionStorage.getItem('DAYTHOISAO_ADMIN_LOGGED');
+      if (isLogged === 'true') {
+        document.getElementById('loginScreen').classList.add('hidden');
+        document.getElementById('adminApp').classList.remove('hidden');
+      } else {
+        document.getElementById('loginScreen').classList.remove('hidden');
+        document.getElementById('adminApp').classList.add('hidden');
+      }
+
+      // Load Songs
+      const storedSongs = localStorage.getItem('DAYTHOISAO_SONGS_DB');
+      if (storedSongs) {
+        try { songsData = JSON.parse(storedSongs); } catch (e) { songsData = SEED_SONGS; }
+      } else {
+        songsData = SEED_SONGS;
+        localStorage.setItem('DAYTHOISAO_SONGS_DB', JSON.stringify(songsData));
+      }
+
+      // Load Requests
+      const storedReqs = localStorage.getItem('DAYTHOISAO_REQUESTS');
+      if (storedReqs) {
+        try { requestsData = JSON.parse(storedReqs); } catch (e) { requestsData = SEED_REQUESTS; }
+      } else {
+        requestsData = SEED_REQUESTS;
+        localStorage.setItem('DAYTHOISAO_REQUESTS', JSON.stringify(requestsData));
+      }
+
+      // Load Articles
+      const storedArticles = localStorage.getItem('DAYTHOISAO_ARTICLES');
+      if (storedArticles) {
+        try { articlesData = JSON.parse(storedArticles); } catch (e) { articlesData = []; }
+      } else {
+        articlesData = [
+          {
+            id: 1,
+            title: "5 Bí Quyết Luyện Hơi Dài Không Mệt Cho Người Mới Học Sáo",
+            category: "nhap-mon",
+            categoryName: "Nhập môn sáo trúc",
+            date: "2024-05-15",
+            readTime: "4 phút đọc",
+            img: "https://images.unsplash.com/photo-1511192336575-5a79af67a629?auto=format&fit=crop&w=600&q=80",
+            summary: "Hướng dẫn kỹ thuật lấy hơi bụng cơ hoành, nén giữ hơi và kiểm soát luồng khí đều đặn giúp bạn thổi trôi chảy câu nhạc dài.",
+            content: "Nội dung bài viết chi tiết..."
+          }
+        ];
+        localStorage.setItem('DAYTHOISAO_ARTICLES', JSON.stringify(articlesData));
+      }
+
+      updateBadgesAndStats();
+      renderDashboard();
+      renderAdminSongs(songsData);
+      renderAdminRequests(requestsData);
+      renderAdminArticles(articlesData);
+    }
+
+    // Login Handler
+    function handleAdminLogin(e) {
+      e.preventDefault();
+      const pwd = document.getElementById('adminPasswordInput').value;
+      const customPwd = localStorage.getItem('DAYTHOISAO_ADMIN_PASSWORD') || DEFAULT_ADMIN_PASSWORD;
+
+      if (pwd === customPwd || pwd === "saotrucauco") {
+        sessionStorage.setItem('DAYTHOISAO_ADMIN_LOGGED', 'true');
+        document.getElementById('loginScreen').classList.add('hidden');
+        document.getElementById('adminApp').classList.remove('hidden');
+        showToast("Đăng nhập quản trị thành công!");
+      } else {
+        alert("Mật khẩu không chính xác! Vui lòng thử lại.");
+      }
+    }
+
+    function togglePasswordVisibility() {
+      const input = document.getElementById('adminPasswordInput');
+      const icon = document.getElementById('pwdEyeIcon');
+      if (input.type === 'password') {
+        input.type = 'text';
+        icon.className = 'fa-solid fa-eye-slash';
+      } else {
+        input.type = 'password';
+        icon.className = 'fa-solid fa-eye';
+      }
+    }
+
+    function handleAdminLogout() {
+      if (confirm("Bạn có chắc chắn muốn đăng xuất khỏi trang Quản trị?")) {
+        sessionStorage.removeItem('DAYTHOISAO_ADMIN_LOGGED');
+        document.getElementById('loginScreen').classList.remove('hidden');
+        document.getElementById('adminApp').classList.add('hidden');
+      }
+    }
+
+    // Switch Tabs
+    function switchTab(tabId) {
+      currentTab = tabId;
+      const tabs = ['dashboard', 'songs', 'requests', 'articles', 'settings', 'backup'];
+      const titles = {
+        'dashboard': 'Tổng quan hệ thống',
+        'songs': 'Quản lý kho cảm âm & Bài tập',
+        'requests': 'Hộp thư yêu cầu cảm âm',
+        'articles': 'Quản lý bài viết & Kinh nghiệm',
+        'settings': 'Cài đặt cấu hình & Donate',
+        'backup': 'Sao lưu & Phục hồi dữ liệu'
+      };
+
+      document.getElementById('pageHeading').innerText = titles[tabId] || 'Quản trị hệ thống';
+
+      tabs.forEach(t => {
+        const content = document.getElementById(`tab-content-${t}`);
+        const nav = document.getElementById(`nav-${t}`);
+        if (content) {
+          if (t === tabId) {
+            content.classList.remove('hidden');
+          } else {
+            content.classList.add('hidden');
+          }
+        }
+        if (nav) {
+          if (t === tabId) {
+            nav.className = "w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-[#193822] text-amber-300 transition-all text-left";
+          } else {
+            nav.className = "w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-white/80 hover:bg-white/10 hover:text-white transition-all text-left";
+          }
+        }
+      });
+    }
+
+    // Update Badges & Counters
+    function updateBadgesAndStats() {
+      document.getElementById('badgeSongCount').innerText = songsData.length;
+      document.getElementById('dashTotalSongs').innerText = songsData.length;
+
+      const newReqCount = requestsData.filter(r => r.status === 'Mới nhận').length;
+      document.getElementById('badgeRequestCount').innerText = newReqCount;
+      document.getElementById('dashTotalRequests').innerText = newReqCount;
+
+      document.getElementById('badgeArticleCount').innerText = articlesData.length;
+      document.getElementById('dashTotalArticles').innerText = articlesData.length;
+    }
+
+    // Render Dashboard
+    function renderDashboard() {
+      // Recent songs
+      const recentSongsBox = document.getElementById('dashRecentSongsList');
+      const recentSongs = songsData.slice(0, 5);
+      recentSongsBox.innerHTML = recentSongs.map(s => `
+        <div class="py-2.5 flex items-center justify-between hover:bg-[#FAF6EE] px-2 rounded-lg transition-all">
+          <div class="flex items-center gap-3">
+            <span class="w-6 h-6 rounded-full bg-red-50 text-[#881B1B] font-bold flex items-center justify-center text-[10px]">${s.id}</span>
+            <div>
+              <strong class="text-[#292421] font-semibold">${s.title}</strong>
+              <span class="text-stone-400 ml-2">• ${s.author}</span>
+            </div>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="px-2 py-0.5 rounded bg-amber-50 text-amber-800 font-medium text-[10px]">${s.toneDisplay}</span>
+            <button onclick="editSong(${s.id})" class="text-[#881B1B] hover:underline font-bold">Sửa</button>
+          </div>
+        </div>
+      `).join('');
+
+      // Recent Requests
+      const recentReqsBox = document.getElementById('dashRecentRequestsList');
+      const recentReqs = requestsData.slice(0, 4);
+      if (recentReqs.length === 0) {
+        recentReqsBox.innerHTML = `<p class="text-stone-400 text-center py-4">Chưa có yêu cầu mới nào.</p>`;
+      } else {
+        recentReqsBox.innerHTML = recentReqs.map(r => `
+          <div class="p-3 bg-[#FAF6EE] rounded-xl border border-[#E8DFC8] space-y-1.5">
+            <div class="flex items-center justify-between">
+              <strong class="text-[#881B1B] font-bold">${r.title}</strong>
+              <span class="px-2 py-0.5 rounded text-[10px] font-bold ${r.status === 'Mới nhận' ? 'bg-amber-100 text-amber-800' : 'bg-emerald-100 text-emerald-800'}">${r.status}</span>
+            </div>
+            <p class="text-stone-500 text-[11px]">Người yêu cầu: SĐT/Zalo: <strong>${r.phone || 'Chưa cung cấp'}</strong></p>
+            <div class="flex items-center justify-between pt-1">
+              <span class="text-[10px] text-stone-400">${r.createdAt}</span>
+              ${r.phone ? `<a href="https://zalo.me/${r.phone}" target="_blank" class="text-emerald-700 font-bold hover:underline"><i class="fa-solid fa-comment-dots mr-1"></i>Zalo</a>` : ''}
+            </div>
+          </div>
+        `).join('');
+      }
+    }
+
+    // Render Songs List in Table
+    function renderAdminSongs(list) {
+      const tbody = document.getElementById('adminSongsTableBody');
+      if (list.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="8" class="text-center py-8 text-stone-400">Không tìm thấy bài hát nào phù hợp.</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = list.map((s, idx) => `
+        <tr class="hover:bg-[#FAF6EE] transition-colors border-b border-stone-100">
+          <td class="py-3 px-3 font-mono text-stone-400 font-semibold">${idx + 1}</td>
+          <td class="py-3 px-3">
+            <strong class="text-[#881B1B] text-sm block">${s.title}</strong>
+            <span class="text-[11px] text-stone-500">${s.genreName || s.genreId}</span>
+          </td>
+          <td class="py-3 px-3 text-stone-700 font-medium">${s.author}</td>
+          <td class="py-3 px-3"><span class="px-2 py-0.5 rounded-full bg-stone-100 text-stone-700 text-[10px] font-semibold">${s.genreId}</span></td>
+          <td class="py-3 px-3">
+            <div class="font-bold text-[#193822]">${s.toneDisplay}</div>
+            <div class="text-[10px] text-stone-400">${s.fluteTone}</div>
+          </td>
+          <td class="py-3 px-3">
+            <span class="px-2 py-0.5 rounded text-[10px] font-bold ${s.diff === 'Dễ' ? 'bg-emerald-100 text-emerald-800' : (s.diff === 'Nâng cao' ? 'bg-red-100 text-red-800' : 'bg-amber-100 text-amber-800')}">${s.diff}</span>
+          </td>
+          <td class="py-3 px-3 text-stone-500 font-semibold">${s.sections ? s.sections.length : 0} đoạn</td>
+          <td class="py-3 px-3 text-right space-x-1.5 whitespace-nowrap">
+            <button onclick="editSong(${s.id})" title="Chỉnh sửa" class="p-1.5 bg-amber-50 hover:bg-amber-100 text-amber-800 rounded-lg transition-all">
+              <i class="fa-solid fa-pen-to-square"></i>
+            </button>
+            <button onclick="cloneSong(${s.id})" title="Nhân bản" class="p-1.5 bg-blue-50 hover:bg-blue-100 text-blue-800 rounded-lg transition-all">
+              <i class="fa-solid fa-copy"></i>
+            </button>
+            <button onclick="deleteSong(${s.id})" title="Xóa" class="p-1.5 bg-red-50 hover:bg-red-100 text-red-700 rounded-lg transition-all">
+              <i class="fa-solid fa-trash-can"></i>
+            </button>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    function filterAdminSongs() {
+      const q = document.getElementById('adminSongSearch').value.toLowerCase().trim();
+      const genre = document.getElementById('adminGenreFilter').value;
+      const tone = document.getElementById('adminToneFilter').value;
+
+      const filtered = songsData.filter(s => {
+        const mq = s.title.toLowerCase().includes(q) || s.author.toLowerCase().includes(q) || s.toneDisplay.toLowerCase().includes(q);
+        const mg = genre === 'all' || s.genreId === genre;
+        const mt = tone === 'all' || s.toneKey === tone || s.toneDisplay.includes(tone);
+        return mq && mg && mt;
+      });
+
+      renderAdminSongs(filtered);
+    }
+
+    // Render Requests List
+    function renderAdminRequests(list) {
+      const box = document.getElementById('adminRequestsList');
+      if (list.length === 0) {
+        box.innerHTML = `<div class="col-span-full py-10 text-center text-stone-400">Chưa có yêu cầu cảm âm nào trong hộp thư.</div>`;
+        return;
+      }
+
+      box.innerHTML = list.map(r => `
+        <div class="bg-[#FAF6EE] p-5 rounded-2xl border border-[#E8DFC8] space-y-3 shadow-sm">
+          <div class="flex items-start justify-between">
+            <div>
+              <h4 class="font-serif text-base font-bold text-[#881B1B]">${r.title}</h4>
+              <p class="text-xs text-stone-600">Ca sĩ / Phiên bản: <strong>${r.singer || 'Không rõ'}</strong></p>
+            </div>
+            <select onchange="updateRequestStatus(${r.id}, this.value)" class="text-xs font-bold rounded-lg px-2.5 py-1 border ${r.status === 'Mới nhận' ? 'bg-amber-100 border-amber-300 text-amber-900' : (r.status === 'Đang soạn' ? 'bg-blue-100 border-blue-300 text-blue-900' : 'bg-emerald-100 border-emerald-300 text-emerald-900')}">
+              <option value="Mới nhận" ${r.status === 'Mới nhận' ? 'selected' : ''}>Mới nhận</option>
+              <option value="Đang soạn" ${r.status === 'Đang soạn' ? 'selected' : ''}>Đang soạn</option>
+              <option value="Hoàn thành" ${r.status === 'Hoàn thành' ? 'selected' : ''}>Hoàn thành</option>
+            </select>
+          </div>
+
+          <div class="bg-white p-3 rounded-xl border border-stone-200 text-xs space-y-1">
+            <div class="flex justify-between text-stone-600"><span>Tone sáo yêu cầu:</span><strong class="text-[#193822]">${r.fluteTone || 'Sáo Đô C5'}</strong></div>
+            <div class="flex justify-between text-stone-600"><span>Số Zalo/SĐT:</span><strong class="text-[#881B1B]">${r.phone || 'Chưa cung cấp'}</strong></div>
+            ${r.note ? `<div class="pt-1 border-t border-stone-100 text-stone-500 italic">${r.note}</div>` : ''}
+          </div>
+
+          <div class="flex items-center justify-between pt-1">
+            <span class="text-[11px] text-stone-400"><i class="fa-regular fa-clock mr-1"></i>${r.createdAt}</span>
+            <div class="flex items-center gap-2">
+              ${r.phone ? `<a href="https://zalo.me/${r.phone}" target="_blank" class="px-3 py-1 bg-emerald-700 hover:bg-emerald-800 text-white font-bold rounded-lg text-xs flex items-center gap-1"><i class="fa-solid fa-comment"></i> Nhắn Zalo</a>` : ''}
+              <button onclick="createSongFromRequest('${r.title}', '${r.fluteTone || ''}')" class="px-3 py-1 bg-[#881B1B] hover:bg-[#701515] text-white font-bold rounded-lg text-xs">
+                Soạn bài này
+              </button>
+              <button onclick="deleteRequest(${r.id})" class="p-1 text-stone-400 hover:text-red-700">
+                <i class="fa-solid fa-trash"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function updateRequestStatus(id, newStatus) {
+      const item = requestsData.find(r => r.id === id);
+      if (item) {
+        item.status = newStatus;
+        localStorage.setItem('DAYTHOISAO_REQUESTS', JSON.stringify(requestsData));
+        updateBadgesAndStats();
+        renderAdminRequests(requestsData);
+        showToast("Đã cập nhật trạng thái yêu cầu!");
+      }
+    }
+
+    function deleteRequest(id) {
+      if (confirm("Bạn có chắc chắn muốn xóa yêu cầu này?")) {
+        requestsData = requestsData.filter(r => r.id !== id);
+        localStorage.setItem('DAYTHOISAO_REQUESTS', JSON.stringify(requestsData));
+        updateBadgesAndStats();
+        renderAdminRequests(requestsData);
+        showToast("Đã xóa yêu cầu!");
+      }
+    }
+
+    function clearAllCompletedRequests() {
+      if (confirm("Xóa tất cả các yêu cầu đã đánh dấu 'Hoàn thành'?")) {
+        requestsData = requestsData.filter(r => r.status !== 'Hoàn thành');
+        localStorage.setItem('DAYTHOISAO_REQUESTS', JSON.stringify(requestsData));
+        updateBadgesAndStats();
+        renderAdminRequests(requestsData);
+        showToast("Đã dọn dẹp các yêu cầu đã xong!");
+      }
+    }
+
+    function createSongFromRequest(title, flute) {
+      openSongFormModal();
+      document.getElementById('formSongTitle').value = title;
+      if (flute) document.getElementById('formSongFlute').value = flute;
+    }
+
+    // Render Articles Grid
+    function renderAdminArticles(list) {
+      const grid = document.getElementById('adminArticlesGrid');
+      if (list.length === 0) {
+        grid.innerHTML = `<div class="col-span-full py-10 text-center text-stone-400">Chưa có bài viết nào.</div>`;
+        return;
+      }
+
+      grid.innerHTML = list.map(a => `
+        <div class="bg-[#FAF6EE] rounded-2xl border border-[#E8DFC8] overflow-hidden flex flex-col justify-between shadow-sm">
+          <div>
+            <div class="h-36 overflow-hidden bg-stone-200 relative">
+              <img src="${a.img}" alt="${a.title}" class="w-full h-full object-cover">
+              <span class="absolute top-2 left-2 bg-[#881B1B] text-white text-[9px] uppercase font-bold px-2 py-0.5 rounded-full">${a.categoryName || a.category}</span>
+            </div>
+            <div class="p-4 space-y-2">
+              <span class="text-[11px] text-stone-400">${a.date || '2024'} • ${a.readTime || '5 phút'}</span>
+              <h4 class="font-serif text-sm font-bold text-[#292421] line-clamp-2">${a.title}</h4>
+              <p class="text-xs text-stone-500 line-clamp-2">${a.summary}</p>
+            </div>
+          </div>
+          <div class="p-4 border-t border-stone-200 flex items-center justify-between">
+            <button onclick="editArticle(${a.id})" class="text-xs font-bold text-[#881B1B] hover:underline">Chỉnh sửa</button>
+            <button onclick="deleteArticle(${a.id})" class="text-xs text-red-600 hover:underline">Xóa</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // ================= SONG EDITOR MODAL LOGIC =================
+    let currentEditingSections = [];
+
+    function openSongFormModal(song = null) {
+      document.getElementById('songEditorForm').reset();
+      const modal = document.getElementById('songFormModal');
+      const title = document.getElementById('songFormModalTitle');
+
+      if (song) {
+        title.innerHTML = `<i class="fa-solid fa-pen-to-square"></i> Chỉnh Sửa Cảm Âm: <span class="text-amber-300 ml-1">${song.title}</span>`;
+        document.getElementById('editSongId').value = song.id;
+        document.getElementById('formSongTitle').value = song.title;
+        document.getElementById('formSongAuthor').value = song.author;
+        document.getElementById('formSongGenre').value = song.genreId || 'nhac-hoa';
+        document.getElementById('formSongTone').value = song.toneDisplay || 'C';
+        document.getElementById('formSongFlute').value = song.fluteTone || 'Sáo C5';
+        document.getElementById('formSongDiff').value = song.diff || 'Dễ';
+        document.getElementById('formSongTip').value = song.tip || '';
+        document.getElementById('formSongTech').value = song.tech || '';
+        currentEditingSections = JSON.parse(JSON.stringify(song.sections || []));
+      } else {
+        title.innerHTML = `<i class="fa-solid fa-plus"></i> Thêm Cảm Âm Mới`;
+        document.getElementById('editSongId').value = '';
+        currentEditingSections = [
+          {
+            sectionTitle: "Lời 1",
+            lines: [
+              { lyric: "", note: "" }
+            ]
+          }
+        ];
+      }
+
+      renderFormSections();
+      updateLivePreview();
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeSongFormModal() {
+      const modal = document.getElementById('songFormModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function addFormSection() {
+      currentEditingSections.push({
+        sectionTitle: `Đoạn ${currentEditingSections.length + 1}`,
+        lines: [{ lyric: "", note: "" }]
+      });
+      renderFormSections();
+      updateLivePreview();
+    }
+
+    function removeFormSection(secIdx) {
+      if (currentEditingSections.length <= 1) {
+        alert("Bản cảm âm cần có ít nhất một đoạn!");
+        return;
+      }
+      currentEditingSections.splice(secIdx, 1);
+      renderFormSections();
+      updateLivePreview();
+    }
+
+    function addLineToSection(secIdx) {
+      currentEditingSections[secIdx].lines.push({ lyric: "", note: "" });
+      renderFormSections();
+      updateLivePreview();
+    }
+
+    function removeLineFromSection(secIdx, lineIdx) {
+      if (currentEditingSections[secIdx].lines.length <= 1) {
+        alert("Đoạn cần có ít nhất một câu nốt!");
+        return;
+      }
+      currentEditingSections[secIdx].lines.splice(lineIdx, 1);
+      renderFormSections();
+      updateLivePreview();
+    }
+
+    function updateSectionTitle(secIdx, val) {
+      currentEditingSections[secIdx].sectionTitle = val;
+      updateLivePreview();
+    }
+
+    function updateLineData(secIdx, lineIdx, field, val) {
+      currentEditingSections[secIdx].lines[lineIdx][field] = val;
+      updateLivePreview();
+    }
+
+    function renderFormSections() {
+      const container = document.getElementById('formSectionsContainer');
+      container.innerHTML = currentEditingSections.map((sec, secIdx) => `
+        <div class="p-4 bg-[#FAF6EE] rounded-2xl border border-[#E8DFC8] space-y-3">
+          <div class="flex items-center justify-between pb-2 border-b border-stone-200">
+            <div class="flex items-center gap-2 w-full max-w-xs">
+              <i class="fa-solid fa-bookmark text-[#881B1B]"></i>
+              <input 
+                type="text" 
+                value="${sec.sectionTitle}" 
+                oninput="updateSectionTitle(${secIdx}, this.value)"
+                placeholder="Tên đoạn (Lời 1, Điệp khúc...)" 
+                class="w-full bg-white border border-[#D9CDBB] rounded-lg px-2.5 py-1 text-xs font-bold text-[#193822]"
+              >
+            </div>
+            <div class="flex items-center gap-2">
+              <button type="button" onclick="addLineToSection(${secIdx})" class="px-2.5 py-1 bg-white border border-stone-300 hover:bg-stone-100 rounded-lg text-[11px] font-semibold flex items-center gap-1">
+                <i class="fa-solid fa-plus text-[9px]"></i> Thêm câu
+              </button>
+              <button type="button" onclick="removeFormSection(${secIdx})" class="text-stone-400 hover:text-red-700 p-1">
+                <i class="fa-solid fa-trash-can"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="space-y-2">
+            ${sec.lines.map((l, lineIdx) => `
+              <div class="flex items-center gap-2 bg-white p-2.5 rounded-xl border border-stone-200">
+                <span class="text-[10px] font-mono text-stone-400 w-4">${lineIdx + 1}</span>
+                <input 
+                  type="text" 
+                  value="${l.lyric}" 
+                  oninput="updateLineData(${secIdx}, ${lineIdx}, 'lyric', this.value)"
+                  placeholder="Lời ca (để trống nếu là nhạc không lời)..." 
+                  class="flex-1 bg-[#FAF6EE] border border-[#E8DFC8] rounded-lg px-2.5 py-1.5 text-xs text-[#292421] outline-none"
+                >
+                <input 
+                  type="text" 
+                  value="${l.note}" 
+                  oninput="updateLineData(${secIdx}, ${lineIdx}, 'note', this.value)"
+                  placeholder="Nốt nhạc (Ví dụ: Sol La Do2 Re2 Mi...)" 
+                  class="flex-1 bg-amber-50/60 border border-amber-200 font-mono font-bold text-[#701515] rounded-lg px-2.5 py-1.5 text-xs outline-none"
+                >
+                <button type="button" onclick="removeLineFromSection(${secIdx}, ${lineIdx})" class="text-stone-300 hover:text-red-600 p-1">
+                  <i class="fa-solid fa-xmark"></i>
+                </button>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function updateLivePreview() {
+      const box = document.getElementById('formLivePreviewBox');
+      const hasLines = currentEditingSections.some(s => s.lines.some(l => l.note.trim() !== ''));
+
+      if (!hasLines) {
+        box.innerHTML = `<p class="text-stone-400 italic text-center py-4">Nhập nốt nhạc bên trên để xem trước giao diện cảm âm...</p>`;
+        return;
+      }
+
+      box.innerHTML = currentEditingSections.map(sec => `
+        <div class="space-y-2">
+          <div class="text-xs font-bold text-[#193822] uppercase tracking-wider flex items-center gap-1.5">
+            <i class="fa-solid fa-bookmark text-[#881B1B] text-[10px]"></i> ${sec.sectionTitle}
+          </div>
+          ${sec.lines.map(l => {
+            const hasLyric = l.lyric && l.lyric.trim() !== '';
+            return `
+              <div class="tab-2line-block">
+                ${hasLyric ? `<div class="lyric-line">${l.lyric}</div>` : ''}
+                <div class="note-box">${formatMusicNotes(l.note) || '<span class="text-stone-300">(Chưa nhập nốt)</span>'}</div>
+              </div>
+            `;
+          }).join('')}
+        </div>
+      `).join('');
+    }
+
+    function handleSaveSong(e) {
+      e.preventDefault();
+      const idVal = document.getElementById('editSongId').value;
+      const title = document.getElementById('formSongTitle').value.trim();
+      const author = document.getElementById('formSongAuthor').value.trim();
+      const genreSelect = document.getElementById('formSongGenre');
+      const genreId = genreSelect.value;
+      const genreName = genreSelect.options[genreSelect.selectedIndex].text;
+      const toneDisplay = document.getElementById('formSongTone').value.trim();
+      const fluteTone = document.getElementById('formSongFlute').value.trim();
+      const diff = document.getElementById('formSongDiff').value;
+      const tip = document.getElementById('formSongTip').value.trim();
+      const tech = document.getElementById('formSongTech').value.trim();
+
+      // Clean sections
+      const cleanedSections = currentEditingSections.map(s => ({
+        sectionTitle: s.sectionTitle.trim() || 'Đoạn nhạc',
+        lines: s.lines.map(l => ({
+          lyric: l.lyric.trim(),
+          note: l.note.trim()
+        })).filter(l => l.note !== '' || l.lyric !== '')
+      })).filter(s => s.lines.length > 0);
+
+      if (cleanedSections.length === 0) {
+        alert("Vui lòng nhập ít nhất một câu nốt nhạc!");
+        return;
+      }
+
+      if (idVal) {
+        // Edit existing
+        const songId = parseInt(idVal);
+        const idx = songsData.findIndex(s => s.id === songId);
+        if (idx !== -1) {
+          songsData[idx] = {
+            ...songsData[idx],
+            title,
+            author,
+            genreId,
+            genreName,
+            toneDisplay,
+            toneKey: toneDisplay.split('/')[0].trim(),
+            fluteTone,
+            diff,
+            tip,
+            tech,
+            sections: cleanedSections
+          };
+          showToast(`Đã cập nhật bài hát "${title}"!`);
+        }
+      } else {
+        // Add new
+        const newId = songsData.length > 0 ? Math.max(...songsData.map(s => s.id)) + 1 : 1;
+        const newSong = {
+          id: newId,
+          title,
+          author,
+          genreId,
+          genreName,
+          toneDisplay,
+          toneKey: toneDisplay.split('/')[0].trim(),
+          fluteTone,
+          diff,
+          tip,
+          tech,
+          sections: cleanedSections
+        };
+        songsData.unshift(newSong);
+        showToast(`Đã thêm mới bài hát "${title}"!`);
+      }
+
+      localStorage.setItem('DAYTHOISAO_SONGS_DB', JSON.stringify(songsData));
+      closeSongFormModal();
+      updateBadgesAndStats();
+      renderDashboard();
+      filterAdminSongs();
+    }
+
+    function editSong(id) {
+      const song = songsData.find(s => s.id === id);
+      if (song) openSongFormModal(song);
+    }
+
+    function cloneSong(id) {
+      const song = songsData.find(s => s.id === id);
+      if (song) {
+        const newId = Math.max(...songsData.map(s => s.id)) + 1;
+        const cloned = JSON.parse(JSON.stringify(song));
+        cloned.id = newId;
+        cloned.title = `${cloned.title} (Bản sao)`;
+        songsData.unshift(cloned);
+        localStorage.setItem('DAYTHOISAO_SONGS_DB', JSON.stringify(songsData));
+        updateBadgesAndStats();
+        filterAdminSongs();
+        showToast(`Đã nhân bản bài hát "${cloned.title}"!`);
+      }
+    }
+
+    function deleteSong(id) {
+      const song = songsData.find(s => s.id === id);
+      if (!song) return;
+      if (confirm(`Bạn có chắc chắn muốn xóa bài cảm âm "${song.title}"?`)) {
+        songsData = songsData.filter(s => s.id !== id);
+        localStorage.setItem('DAYTHOISAO_SONGS_DB', JSON.stringify(songsData));
+        updateBadgesAndStats();
+        renderDashboard();
+        filterAdminSongs();
+        showToast(`Đã xóa bài hát "${song.title}"!`);
+      }
+    }
+
+    // ================= ARTICLE EDITOR MODAL LOGIC =================
+    function openArticleFormModal(article = null) {
+      document.getElementById('articleEditorForm').reset();
+      const modal = document.getElementById('articleFormModal');
+      const title = document.getElementById('articleFormModalTitle');
+
+      if (article) {
+        title.innerHTML = `<i class="fa-solid fa-pen-to-square"></i> Sửa bài viết: ${article.title}`;
+        document.getElementById('editArticleId').value = article.id;
+        document.getElementById('formArticleTitle').value = article.title;
+        document.getElementById('formArticleCategory').value = article.category || 'nhap-mon';
+        document.getElementById('formArticleReadTime').value = article.readTime || '5 phút đọc';
+        document.getElementById('formArticleImg').value = article.img || '';
+        document.getElementById('formArticleSummary').value = article.summary || '';
+        document.getElementById('formArticleContent').value = article.content || '';
+      } else {
+        title.innerHTML = `<i class="fa-solid fa-plus"></i> Thêm Bài Viết Mới`;
+        document.getElementById('editArticleId').value = '';
+      }
+
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeArticleFormModal() {
+      const modal = document.getElementById('articleFormModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function handleSaveArticle(e) {
+      e.preventDefault();
+      const idVal = document.getElementById('editArticleId').value;
+      const title = document.getElementById('formArticleTitle').value.trim();
+      const catSelect = document.getElementById('formArticleCategory');
+      const category = catSelect.value;
+      const categoryName = catSelect.options[catSelect.selectedIndex].text;
+      const readTime = document.getElementById('formArticleReadTime').value.trim();
+      const img = document.getElementById('formArticleImg').value.trim();
+      const summary = document.getElementById('formArticleSummary').value.trim();
+      const content = document.getElementById('formArticleContent').value.trim();
+
+      if (idVal) {
+        const artId = parseInt(idVal);
+        const idx = articlesData.findIndex(a => a.id === artId);
+        if (idx !== -1) {
+          articlesData[idx] = {
+            ...articlesData[idx],
+            title,
+            category,
+            categoryName,
+            readTime,
+            img,
+            summary,
+            content
+          };
+          showToast(`Đã cập nhật bài viết "${title}"!`);
+        }
+      } else {
+        const newId = articlesData.length > 0 ? Math.max(...articlesData.map(a => a.id)) + 1 : 1;
+        const newArt = {
+          id: newId,
+          title,
+          category,
+          categoryName,
+          date: new Date().toISOString().split('T')[0],
+          readTime,
+          img,
+          summary,
+          content
+        };
+        articlesData.unshift(newArt);
+        showToast(`Đã thêm bài viết mới "${title}"!`);
+      }
+
+      localStorage.setItem('DAYTHOISAO_ARTICLES', JSON.stringify(articlesData));
+      closeArticleFormModal();
+      updateBadgesAndStats();
+      renderAdminArticles(articlesData);
+    }
+
+    function editArticle(id) {
+      const art = articlesData.find(a => a.id === id);
+      if (art) openArticleFormModal(art);
+    }
+
+    function deleteArticle(id) {
+      const art = articlesData.find(a => a.id === id);
+      if (!art) return;
+      if (confirm(`Bạn có chắc chắn muốn xóa bài viết "${art.title}"?`)) {
+        articlesData = articlesData.filter(a => a.id !== id);
+        localStorage.setItem('DAYTHOISAO_ARTICLES', JSON.stringify(articlesData));
+        updateBadgesAndStats();
+        renderAdminArticles(articlesData);
+        showToast(`Đã xóa bài viết!`);
+      }
+    }
+
+    // ================= SETTINGS HANDLERS =================
+    function saveSiteSettings(e) {
+      e.preventDefault();
+      const settings = {
+        siteName: document.getElementById('settingSiteName').value,
+        slogan: document.getElementById('settingSlogan').value,
+        hotline: document.getElementById('settingHotline').value,
+        address: document.getElementById('settingAddress').value,
+        email: document.getElementById('settingEmail').value
+      };
+      localStorage.setItem('DAYTHOISAO_SITE_SETTINGS', JSON.stringify(settings));
+      showToast("Đã lưu thông tin cấu hình website!");
+    }
+
+    function saveDonateSettings(e) {
+      e.preventDefault();
+      const donate = {
+        bankName: document.getElementById('settingBankName').value,
+        bankAccount: document.getElementById('settingBankAccount').value,
+        bankHolder: document.getElementById('settingBankHolder').value
+      };
+      localStorage.setItem('DAYTHOISAO_DONATE_SETTINGS', JSON.stringify(donate));
+      showToast("Đã lưu thông tin VietQR Donate!");
+    }
+
+    function handleChangePassword(e) {
+      e.preventDefault();
+      const newPwd = document.getElementById('newAdminPassword').value.trim();
+      if (newPwd.length < 4) {
+        alert("Mật khẩu phải có ít nhất 4 ký tự!");
+        return;
+      }
+      localStorage.setItem('DAYTHOISAO_ADMIN_PASSWORD', newPwd);
+      document.getElementById('newAdminPassword').value = '';
+      showToast("Đã đổi mật khẩu quản trị thành công!");
+    }
+
+    // ================= BACKUP & RESTORE =================
+    function exportDataJSON() {
+      const fullBackup = {
+        exportedAt: new Date().toISOString(),
+        version: "2.0",
+        songs: songsData,
+        requests: requestsData,
+        articles: articlesData,
+        settings: JSON.parse(localStorage.getItem('DAYTHOISAO_SITE_SETTINGS') || '{}'),
+        donate: JSON.parse(localStorage.getItem('DAYTHOISAO_DONATE_SETTINGS') || '{}')
+      };
+
+      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(fullBackup, null, 2));
+      const downloadAnchor = document.createElement('a');
+      downloadAnchor.setAttribute("href", dataStr);
+      downloadAnchor.setAttribute("download", `daythoisao_backup_${new Date().toISOString().slice(0,10)}.json`);
+      document.body.appendChild(downloadAnchor);
+      downloadAnchor.click();
+      downloadAnchor.remove();
+      showToast("Đã tải xuống file sao lưu JSON!");
+    }
+
+    function handleImportJSON(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function(event) {
+        try {
+          const imported = JSON.parse(event.target.result);
+          if (imported.songs && Array.isArray(imported.songs)) {
+            songsData = imported.songs;
+            localStorage.setItem('DAYTHOISAO_SONGS_DB', JSON.stringify(songsData));
+          }
+          if (imported.requests && Array.isArray(imported.requests)) {
+            requestsData = imported.requests;
+            localStorage.setItem('DAYTHOISAO_REQUESTS', JSON.stringify(requestsData));
+          }
+          if (imported.articles && Array.isArray(imported.articles)) {
+            articlesData = imported.articles;
+            localStorage.setItem('DAYTHOISAO_ARTICLES', JSON.stringify(articlesData));
+          }
+          if (imported.settings) {
+            localStorage.setItem('DAYTHOISAO_SITE_SETTINGS', JSON.stringify(imported.settings));
+          }
+          if (imported.donate) {
+            localStorage.setItem('DAYTHOISAO_DONATE_SETTINGS', JSON.stringify(imported.donate));
+          }
+
+          updateBadgesAndStats();
+          renderDashboard();
+          filterAdminSongs();
+          renderAdminRequests(requestsData);
+          renderAdminArticles(articlesData);
+          showToast("Khôi phục dữ liệu từ file JSON thành công!");
+        } catch (err) {
+          alert("File JSON không hợp lệ hoặc bị lỗi định dạng!");
+        }
+      };
+      reader.readAsText(file);
+      e.target.value = '';
+    }
+
+    function resetToDefaultData() {
+      if (confirm("CẢNH BÁO: Thao tác này sẽ khôi phục lại kho cảm âm và bài viết gốc ban đầu. Bạn có chắc chắn muốn tiếp tục?")) {
+        songsData = SEED_SONGS;
+        requestsData = SEED_REQUESTS;
+        localStorage.setItem('DAYTHOISAO_SONGS_DB', JSON.stringify(songsData));
+        localStorage.setItem('DAYTHOISAO_REQUESTS', JSON.stringify(requestsData));
+        updateBadgesAndStats();
+        renderDashboard();
+        filterAdminSongs();
+        renderAdminRequests(requestsData);
+        showToast("Đã khôi phục dữ liệu gốc ban đầu!");
+      }
+    }
+
+    // Toast Notification
+    function showToast(msg) {
+      const toast = document.getElementById('adminToast');
+      document.getElementById('adminToastMsg').innerText = msg;
+      toast.classList.remove('translate-y-24', 'opacity-0', 'pointer-events-none');
+      toast.classList.add('translate-y-0', 'opacity-100');
+      setTimeout(() => {
+        toast.classList.remove('translate-y-0', 'opacity-100');
+        toast.classList.add('translate-y-24', 'opacity-0', 'pointer-events-none');
+      }, 3000);
+    }
+
+    // Mobile Sidebar Drawer
+    function toggleAdminSidebar() {
+      const sidebar = document.getElementById('adminSidebar');
+      const backdrop = document.getElementById('sidebarBackdrop');
+      if (sidebar && backdrop) {
+        const isHidden = sidebar.classList.contains('-translate-x-full');
+        if (isHidden) {
+          sidebar.classList.remove('-translate-x-full');
+          backdrop.classList.remove('hidden');
+        } else {
+          sidebar.classList.add('-translate-x-full');
+          backdrop.classList.add('hidden');
+        }
+      }
+    }
+
+    function closeSidebarOnMobile() {
+      if (window.innerWidth < 768) {
+        const sidebar = document.getElementById('adminSidebar');
+        const backdrop = document.getElementById('sidebarBackdrop');
+        if (sidebar && backdrop) {
+          sidebar.classList.add('-translate-x-full');
+          backdrop.classList.add('hidden');
+        }
+      }
+    }
+
+    // Initialize on Load
+    window.addEventListener('DOMContentLoaded', initAdminData);
+  </script>
+</body>
+</html>

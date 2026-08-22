@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chương 1: Làm quen sáo trúc | daythoisao.com - Sáo Trúc Âu Cơ</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Cinzel:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'wine-950': '#1F050B',
+            'wine-900': '#2B080F',
+            'wine-800': '#3D0C15',
+            'wine-700': '#4E111C',
+            'wine-600': '#661927',
+            'wine-500': '#852234',
+            'gold-primary': '#D4AF37',
+            'gold-light': '#F4E5A1',
+            'gold-dark': '#9A7D20',
+            'gold-muted': '#C5A059',
+            'cream-bg': '#FDFBF7',
+            'paper-warm': '#FAF6EE',
+            'border-warm': '#EBDDC3',
+            'ink-primary': '#1A0D11',
+            'ink-muted': '#5C4A4F'
+          },
+          fontFamily: {
+            serif: ['"Playfair Display"', 'Georgia', 'serif'],
+            sans: ['"Be Vietnam Pro"', 'sans-serif'],
+            cinzel: ['"Cinzel"', 'serif']
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { background-color: #FAF6EE; color: #1A0D11; font-family: 'Be Vietnam Pro', sans-serif; }
+    .bg-paper-texture {
+      background-color: #FAF6EE;
+      background-image: radial-gradient(#dfd1ba 0.75px, transparent 0.75px), radial-gradient(#dfd1ba 0.75px, #FAF6EE 0.75px);
+      background-size: 30px 30px;
+      background-position: 0 0, 15px 15px;
+    }
+    .flute-body {
+      background: linear-gradient(180deg, #dfa968 0%, #ba7b32 40%, #8e5519 80%, #683b0b 100%);
+      box-shadow: inset 0 2px 4px rgba(255,255,255,0.4), 0 8px 16px rgba(0,0,0,0.18);
+    }
+    .hero-burgundy {
+      background: linear-gradient(135deg, #2B080F 0%, #3D0C15 50%, #1F050B 100%);
+    }
+    .gold-gradient-text {
+      background: linear-gradient(90deg, #F4E5A1 0%, #D4AF37 50%, #F4E5A1 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  </style>
+</head>
+<body class="bg-paper-texture antialiased flex flex-col min-h-screen">
+
+  <!-- TOP LUXURY HEADER -->
+  <header class="bg-[#FAF6EE]/95 sticky top-0 z-50 border-b border-[#EBDDC3] backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-3 group">
+        <div class="w-11 h-11 rounded-full bg-[#3D0C15] flex items-center justify-center border border-[#D4AF37] text-[#D4AF37] text-xl shadow-sm group-hover:scale-105 transition-transform">
+          <i class="fa-solid fa-feather-pointed transform -rotate-45"></i>
+        </div>
+        <div>
+          <span class="block font-serif text-xl sm:text-2xl font-bold tracking-wide text-[#3D0C15] lowercase leading-none">daythoisao.com</span>
+          <span class="block text-[11px] text-[#9A7D20] font-semibold tracking-wider uppercase mt-1">Sáo Trúc Âu Cơ • Khơi Nguồn Âm Sắc</span>
+        </div>
+      </a>
+      <nav class="hidden md:flex items-center space-x-6 lg:space-x-7 text-[14px] font-medium text-[#1A0D11]">
+        <a href="index.html" class="hover:text-[#3D0C15] transition-colors">Trang chủ</a>
+        <a href="chuong-1-lam-quen.html" class="hover:text-[#3D0C15] transition-colors">Chương 1: Làm quen</a>
+        <a href="chuong-2-hoi-tho.html" class="hover:text-[#3D0C15] transition-colors">Chương 2: Hơi & Âm</a>
+        <a href="chuong-3-the-bam.html" class="hover:text-[#3D0C15] transition-colors">Chương 3: Thế bấm</a>
+        <a href="chuong-4-doc-nhac.html" class="hover:text-[#3D0C15] transition-colors">Chương 4: Nhạc lý</a>
+        <a href="chuong-5-luyen-bai.html" class="hover:text-[#3D0C15] transition-colors">Chương 5: Luyện bài</a>
+        <a href="chuong-6-nang-cao.html" class="hover:text-[#3D0C15] transition-colors">Chương 6: Nâng cao</a>
+      </nav>
+      <div class="flex items-center space-x-3">
+        <a href="index.html#contact" class="inline-flex items-center gap-2 px-4 py-2 text-xs font-bold uppercase tracking-wider text-[#FAF6EE] bg-[#3D0C15] hover:bg-[#2B080F] border border-[#D4AF37]/50 rounded-lg shadow-sm hover:shadow transition-all">
+          <i class="fa-solid fa-graduation-cap text-[#D4AF37]"></i> Đăng ký học
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <nav class="flex items-center gap-2 text-xs text-[#5C4A4F] mb-6">
+      <a href="index.html" class="hover:text-[#3D0C15]"><i class="fa-solid fa-house mr-1"></i>Trang chủ</a>
+      <span>/</span>
+      <span class="text-[#3D0C15] font-semibold">Chương 1: Làm quen sáo trúc</span>
+    </nav>
+
+    <div class="hero-burgundy text-white rounded-3xl p-8 sm:p-10 shadow-xl mb-10 relative overflow-hidden border border-[#D4AF37]/30">
+      <div class="max-w-2xl relative z-10 space-y-3">
+        <span class="px-3.5 py-1 bg-[#D4AF37]/20 border border-[#D4AF37]/40 rounded-full text-xs font-bold uppercase tracking-wider text-[#F4E5A1]">Chương 1 • Cơ bản</span>
+        <h1 class="font-serif text-3xl sm:text-4xl font-bold tracking-wide gold-gradient-text">Chương 1: Làm quen sáo trúc</h1>
+        <p class="text-sm text-amber-100/90 leading-relaxed font-light">Giúp người chưa từng học hiểu và sử dụng cây sáo đúng cách.</p>
+      </div>
+      <div class="absolute right-4 bottom-2 opacity-15 text-[#D4AF37] pointer-events-none">
+        <i class="fa-solid fa-feather-pointed text-[180px]"></i>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-2xl p-6 border border-[#EBDDC3] shadow-sm mb-8">
+      <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+        <div class="flex items-center gap-2">
+          <i class="fa-solid fa-bars-progress text-[#3D0C15]"></i>
+          <h3 class="font-bold text-sm text-[#1A0D11]">Tiến độ học tập của bạn:</h3>
+        </div>
+        <span id="progressText" class="font-bold text-sm text-[#3D0C15] bg-[#FAF6EE] px-3 py-1 rounded-full border border-[#EBDDC3]">
+          Bạn đã hoàn thành <span id="completedCount">0</span>/8 bài
+        </span>
+      </div>
+      <div class="w-full bg-[#FAF6EE] h-3.5 rounded-full overflow-hidden border border-[#EBDDC3]">
+        <div id="progressBar" class="bg-gradient-to-r from-[#852234] via-[#3D0C15] to-[#D4AF37] h-full w-0 transition-all duration-500 rounded-full"></div>
+      </div>
+    </div>
+
+    <div class="space-y-4 mb-10">
+      <div class="flex items-center justify-between mb-4 pb-2 border-b border-[#EBDDC3]">
+        <h2 class="font-serif text-xl font-bold text-[#3D0C15]">Danh sách các bài học (8 bài)</h2>
+        <span class="text-xs text-[#9A7D20] font-semibold"><i class="fa-solid fa-lock-open mr-1"></i>Miễn phí toàn bộ</span>
+      </div>
+      
+        <div class="bg-white rounded-2xl border border-[#EBDDC3] shadow-sm overflow-hidden mb-6 transition-all hover:border-[#D4AF37]">
+          <div class="p-6">
+            <div class="flex items-center justify-between gap-3 mb-3">
+              <span class="text-xs font-bold text-[#D4AF37] uppercase tracking-wider bg-[#3D0C15] px-3 py-1 rounded-full">Bài 1</span>
+              <label class="flex items-center gap-2 text-xs text-[#5C4A4F] cursor-pointer font-medium hover:text-[#3D0C15]">
+                <input type="checkbox" class="lesson-check w-4 h-4 rounded text-[#3D0C15] focus:ring-0 cursor-pointer" onchange="updateChapterProgress()">
+                <span>Đã học xong</span>
+              </label>
+            </div>
+            <h3 class="font-serif text-lg sm:text-xl font-bold text-[#3D0C15] mb-2">Bài 1: Các bộ phận cấu tạo của cây sáo trúc</h3>
+            <p class="text-xs sm:text-sm text-[#5C4A4F] leading-relaxed mb-4">Cấu tạo cây sáo trúc truyền thống bao gồm: Đầu sáo bịt nút chặn âm (nút bấc), lỗ thổi (miệng sáo), thân sáo gồm 6 lỗ bấm chính (hoặc 10 lỗ), lỗ định âm (quyết định cao độ chuẩn của cây sáo) và lỗ treo dây trang trí ở đuôi sáo.</p>
+            <div class="bg-[#FAF6EE] p-4 rounded-xl border border-[#EBDDC3]">
+              <h4 class="text-xs font-bold text-[#3D0C15] uppercase tracking-wider mb-2">Điểm mấu chốt:</h4>
+              <ul class="space-y-1.5"><li class='flex items-start gap-2 text-xs text-[#5C4A4F]'><i class='fa-solid fa-circle-check text-[#D4AF37] mt-0.5 shrink-0'></i><span>Nút chặn đầu sáo: Tạo khoang cộng hưởng âm thanh</span></li><li class='flex items-start gap-2 text-xs text-[#5C4A4F]'><i class='fa-solid fa-circle-check text-[#D4AF37] mt-0.5 shrink-0'></i><span>Lỗ thổi: Nơi luồng hơi ma sát tạo dao động sóng âm</span></li><li class='flex items-start gap-2 text-xs text-[#5C4A4F]'><i class='fa-solid fa-circle-check text-[#D4AF37] mt-0.5 shrink-0'></i><span>Lỗ bấm: Thay đổi chiều dài cột khí để tạo cao độ nốt</span></li><li class='flex items-start gap-2 text-xs text-[#5C4A4F]'><i class='fa-solid fa-circle-check text-[#D4AF37] mt-0.5 shrink-0'></i><span>Lỗ định âm: Xác định âm trầm chuẩn nhất (nốt Đô C5)</span></li></ul>
+            </div>
+          </div>
+        </div>
+        
+        <div class="bg-white rounded-2xl border border-[#EBDDC3] shadow-sm overflow-hidden mb-6 transition-all hover:border-[#D4AF37]">
+          <div class="p-6">
+            <div class="flex items-center justify-between gap-3 mb-3">
+              <span class="text-xs font-bold text-[#D4AF37] uppercase tracking-wider bg-[#3D0C15] px-3 py-1 rounded-full">Bài 2</span>
+              <label class="flex items-center gap-2 text-xs text-[#5C4A4F] cursor-pointer font-medium hover:text-[#3D0C15]">
+                <input type="checkbox" class="lesson-check w-4 h-4 rounded text-[#3D0C15] focus:ring-0 cursor-pointer" onchange="updateChapterProgress()">
+                <span>Đã học xong</span>
+              </label>
+            </div>
+            <h3 class="font-serif text-lg sm:text-xl font-bold text-[#3D0C15] mb-2">Bài 2: Phân biệt lỗ thổi, lỗ bấm và lỗ định âm</h3>
+            <p class="text-xs sm:text-sm text-[#5C4A4F] leading-relaxed mb-4">Nhiều người mới nhầm lẫn giữa lỗ định âm ở đuôi và lỗ bấm nốt. Lỗ thổi là lỗ hình bầu dục to nhất nằm gần đầu sáo. 6 lỗ bấm nằm thành một hàng thẳng trên thân. Các lỗ ở đuôi là lỗ thoát hơi định âm, tuyệt đối không dùng tay bịt các lỗ này khi thổi.</p>
+            <div class="bg-[#FAF6EE] p-4 rounded-xl border border-[#EBDDC3]">
+              <h4 class="text-xs font-bold text-[#3D0C15] uppercase tracking-wider mb-2">Điểm mấu chốt:</h4>
+              <ul class="space-y-1.5"><li class='flex items-start gap-2 text-xs text-[#5C4A4F]'><i class='fa-solid fa-circle-check text-[#D4AF37] mt-0.5 shrink-0'></i><span>Lỗ thổi: Đặt môi vào thổi</span></li><li class='flex items-start gap-2 text-xs text-[#5C4A4F]'><i class='fa-solid fa-circle-check text-[#D4AF37] mt-0.5 shrink-0'></i><span>6 lỗ bấm: Dùng 6 ngón tay bịt và mở</span></li><li class='flex items-start gap-2 text-xs text-[#5C4A4F]'><i class='fa-solid fa-circle-check text-[#D4AF37] mt-0.5 shrink-0'></i><span>Lỗ định âm: Để hở tự nhiên cho âm thanh thoát ra</span></li></ul>
+            </div>
+          </div>
+        </div>
+        
+        <div class="bg-white rounded-2xl border border-[#EBDDC3] shadow-sm overflow-hidden mb-6 transition-all hover:border-[#D4AF37]">
+          <div class="p-6">
+            <div class="flex items-center justify-between gap-3 mb-3">
+              <span class="text-xs font-bold text-[#D4AF37] uppercase tracking-wider bg-[#3D0C15] px-3 py-1 rounded-full">Bài 3</span>
+              <label class="flex items-center gap-2 text-xs text-[#5C4A4F] cursor-pointer font-medium hover:text-[#3D0C15]">
+                <input type="checkbox" class="lesson-check w-4 h-4 rounded text-[#3D0C15] focus:ring-0 cursor-pointer" onchange="updateChapterProgress()">
+                <span>Đã học xong</span>
+              </label>
+            </div>
+            <h3 class="font-serif text-lg sm:text-xl font-bold text-[#3D0C15] mb-2">Bài 3: Cách chọn sáo phù hợp cho người mới - Ưu tiên sáo Đô C5</h3>
+            <p class="text-xs sm:text-sm text-[#5C4A4F] leading-relaxed mb-4">Sáo Đô (C5) là cây sáo chuẩn mực quốc dân cho người bắt đầu. Cây sáo C5 có khoảng cách giữa các lỗ vừa phải, không quá xa như sáo Trầm D4/C4 và không quá the thé như sáo Cao G5. Lỗ thổi của sáo nứa C5 rất 'bắt hơi', giúp người mới thổi kêu dễ dàng nhất.</p>
+            <div class="bg-[#FAF6EE] p-4 rounded-xl border border-[#EBDDC3]">
+              <h4 class="text-xs font-bold text-[#3D0C15] uppercase tracking-wider mb-2">Điểm mấu chốt:</h4>
+              <ul class="space-y-1.5"><li class='flex items-start gap-2 text-xs text-[#5C4A4F]'><i class='fa-solid fa-circle-check text-[#D4AF37] mt-0.5 shrink-0'></i><span>Chất liệu khuyên dùng: Nứa Bắc hoặc Nứa Nam già, tròn đều, lòng ống nhẵn</span></li><li class='flex items-start gap-2 text-xs text-[#5C4A4F]'><i class='fa-solid fa-circle-check text-[#D4AF37] mt-0.5 shrink-0'></i><span>Tone chuẩn: Đô C5 (Tần số 440Hz)</span></li><li class='flex items-start gap-2 text-xs text-[#5C4A4F]'><i class='fa-solid fa-circle-check text-[#D4AF37] mt-0.5 shrink-0'></i><span>Độ dày thành ống: 1.8mm - 2.2mm cho âm thanh êm ấm</span></li></ul>
+            </div>
+          </div>
+        </div>
+        
+        <div class="bg-white rounded-2xl border border-[#EBDDC3] shadow-sm overflow-hidden mb-6 transition-all hover:border-[#D4AF37]">
+          <div class="p-6">
+            <div class="flex items-center justify-between gap-3 mb-3">
+              <span class="text-xs font-bold text-[#D4AF37] uppercase tracking-wider bg-[#3D0C15] px-3 py-1 rounded-full">Bài 4</span>
+              <label class="flex items-center gap-2 text-xs text-[#5C4A4F] cursor-pointer font-medium hover:text-[#3D0C15]">
+                <input type="checkbox" class="lesson-check w-4 h-4 rounded text-[#3D0C15] focus:ring-0 cursor-pointer" onchange="updateChapterProgress()">
+                <span>Đã học xong</span>
+              </label>
+            </div>
+            <h3 class="font-serif text-lg sm:text-xl font-bold text-[#3D0C15] mb-2">Bài 4: Tư thế ngồi và đứng chuẩn khi thổi sáo</h3>
+            <p class="text-xs sm:text-sm text-[#5C4A4F] leading-relaxed mb-4">Tư thế đúng giúp luồng hơi lưu thông thẳng từ phổi qua khí quản ra môi mà không bị gấp khúc: Khi đứng, hai chân mở rộng bằng vai, trọng tâm vững vàng. Khi ngồi, giữ lưng thẳng, không dựa sát lưng vào ghế, lồng ngực mở rộng tự nhiên.</p>
+            <div class="bg-[#FAF6EE] p-4 rounded-xl border border-[#EBDDC3]">
+              <h4 class="text-xs font-bold text-[#3D0C15] uppercase tracking-wider mb-2">Điểm mấu chốt:</h4>
+              <ul class="space-y-1.5"><li class='flex items-start gap-2 text-xs text-[#5C4A4F]'><i class='fa-solid fa-circle-check text-[#D4AF37] mt-0.5 shrink-0'></i><span>Lưng luôn thẳng để cơ hoành giãn nở tối đa</span></li><li class='flex items-start gap-2 text-xs text-[#5C4A4F]'><i class='fa-solid fa-circle-check text-[#D4AF37] mt-0.5 shrink-0'></i><span>Hai vai thả lỏng, không gồng rụt vai khi lấy hơi</span></li><li class='flex items-start gap-2 text-xs text-[#5C4A4F]'><i class='fa-solid fa-circle-check text-[#D4AF37] mt-0.5 shrink-0'></i><span>Đầu giữ thẳng, mắt nhìn về phía trước hoặc bản nhạc</span></li></ul>
+            </div>
+          </div>
+        </div>
+        
+        <div class="bg-white rounded-2xl border border-[#EBDDC3] shadow-sm overflow-hidden mb-6 transition-all hover:border-[#D4AF37]">
+          <div class="p-6">
+            <div class="flex items-center justify-between gap-3 mb-3">
+              <span class="text-xs font-bold text-[#D4AF37] uppercase tracking-wider bg-[#3D0C15] px-3 py-1 rounded-full">Bài 5</span>
+              <label class="flex items-center gap-2 text-xs text-[#5C4A4F] cursor-pointer font-medium hover:text-[#3D0C15]">
+                <input type="checkbox" class="lesson-check w-4 h-4 rounded text-[#3D0C15] focus:ring-0 cursor-pointer" onchange="updateChapterProgress()">
+                <span>Đã học xong</span>
+              </label>
+            </div>
+            <h3 class="font-serif text-lg sm:text-xl font-bold text-[#3D0C15] mb-2">Bài 5: Cách cầm sáo đúng chiều & Vị trí đặt ngón tay</h3>
+            <p class="text-xs sm:text-sm text-[#5C4A4F] leading-relaxed mb-4">Chiều cầm sáo: Đầu sáo có nút chặn nằm bên tay trái của bạn (với người thổi sáo thuận tay phải). Tay trái đặt phía trên (gần lỗ thổi), tay phải đặt phía dưới (gần đuôi sáo).</p>
+            <div class="bg-[#FAF6EE] p-4 rounded-xl border border-[#EBDDC3]">
+              <h4 class="text-xs font-bold text-[#3D0C15] uppercase tracking-wider mb-2">Điểm mấu chốt:</h4>
+              <ul class="space-y-1.5"><li class='flex items-start gap-2 text-xs text-[#5C4A4F]'><i class='fa-solid fa-circle-check text-[#D4AF37] mt-0.5 shrink-0'></i><span>Tay trái: Ngón trỏ (T1), ngón giữa (T2), ngón áp út (T3). Ngón cái đỡ phía dưới</span></li><li class='flex items-start gap-2 text-xs text-[#5C4A4F]'><i class='fa-solid fa-circle-check text-[#D4AF37] mt-0.5 shrink-0'></i><span>Tay phải: Ngón trỏ (T4), ngón giữa (T5), ngón áp út (T6). Ngón cái đỡ phía dưới</span></li><li class='flex items-start gap-2 text-xs text-[#5C4A4F]'><i class='fa-solid fa-circle-check text-[#D4AF37] mt-0.5 shrink-0'></i><span>Góc cầm: Nghiêng thân sáo chếch xuống khoảng 30 - 45 độ</span></li></ul>
+            </div>
+          </div>
+        </div>
+        
+        <div class="bg-white rounded-2xl border border-[#EBDDC3] shadow-sm overflow-hidden mb-6 transition-all hover:border-[#D4AF37]">
+          <div class="p-6">
+            <div class="flex items-center justify-between gap-3 mb-3">
+              <span class="text-xs font-bold text-[#D4AF37] uppercase tracking-wider bg-[#3D0C15] px-3 py-1 rounded-full">Bài 6</span>
+              <label class="flex items-center gap-2 text-xs text-[#5C4A4F] cursor-pointer font-medium hover:text-[#3D0C15]">
+                <input type="checkbox" class="lesson-check w-4 h-4 rounded text-[#3D0C15] focus:ring-0 cursor-pointer" onchange="updateChapterProgress()">
+                <span>Đã học xong</span>
+              </label>
+            </div>
+            <h3 class="font-serif text-lg sm:text-xl font-bold text-[#3D0C15] mb-2">Bài 6: Kỹ thuật che kín lỗ bấm bằng đốt ngón tay</h3>
+            <p class="text-xs sm:text-sm text-[#5C4A4F] leading-relaxed mb-4">Sai lầm lớn nhất của người mới là dùng đầu móng tay để bấm khiến lỗ bị hở mép. Hãy dùng phần thịt mềm đầy đặn của đốt ngón tay thứ hai (hoặc giữa đốt 1 và 2) ép nhẹ và phẳng lên lỗ bấm để bịt kín hoàn toàn không lọt gió.</p>
+            <div class="bg-[#FAF6EE] p-4 rounded-xl border border-[#EBDDC3]">
+              <h4 class="text-xs font-bold text-[#3D0C15] uppercase tracking-wider mb-2">Điểm mấu chốt:</h4>
+              <ul class="space-y-1.5"><li class='flex items-start gap-2 text-xs text-[#5C4A4F]'><i class='fa-solid fa-circle-check text-[#D4AF37] mt-0.5 shrink-0'></i><span>Dùng phần đệm thịt mềm của ngón tay</span></li><li class='flex items-start gap-2 text-xs text-[#5C4A4F]'><i class='fa-solid fa-circle-check text-[#D4AF37] mt-0.5 shrink-0'></i><span>Thả lỏng ngón, không gồng cứng</span></li><li class='flex items-start gap-2 text-xs text-[#5C4A4F]'><i class='fa-solid fa-circle-check text-[#D4AF37] mt-0.5 shrink-0'></i><span>Cảm nhận lỗ sáo lún nhẹ vào vân tay để kiểm tra độ kín</span></li></ul>
+            </div>
+          </div>
+        </div>
+        
+        <div class="bg-white rounded-2xl border border-[#EBDDC3] shadow-sm overflow-hidden mb-6 transition-all hover:border-[#D4AF37]">
+          <div class="p-6">
+            <div class="flex items-center justify-between gap-3 mb-3">
+              <span class="text-xs font-bold text-[#D4AF37] uppercase tracking-wider bg-[#3D0C15] px-3 py-1 rounded-full">Bài 7</span>
+              <label class="flex items-center gap-2 text-xs text-[#5C4A4F] cursor-pointer font-medium hover:text-[#3D0C15]">
+                <input type="checkbox" class="lesson-check w-4 h-4 rounded text-[#3D0C15] focus:ring-0 cursor-pointer" onchange="updateChapterProgress()">
+                <span>Đã học xong</span>
+              </label>
+            </div>
+            <h3 class="font-serif text-lg sm:text-xl font-bold text-[#3D0C15] mb-2">Bài 7: Vệ sinh, bảo quản và chống nứt sáo trúc</h3>
+            <p class="text-xs sm:text-sm text-[#5C4A4F] leading-relaxed mb-4">Sáo trúc làm từ vật liệu tự nhiên nên rất nhạy cảm với thời tiết. Tránh phơi sáo dưới ánh nắng gắt hoặc để trong phòng điều hòa lạnh đột ngột. Sau khi thổi xong, hãy lau khô nước đọng bên trong ống sáo bằng que vải mềm và cất vào bao sáo.</p>
+            <div class="bg-[#FAF6EE] p-4 rounded-xl border border-[#EBDDC3]">
+              <h4 class="text-xs font-bold text-[#3D0C15] uppercase tracking-wider mb-2">Điểm mấu chốt:</h4>
+              <ul class="space-y-1.5"><li class='flex items-start gap-2 text-xs text-[#5C4A4F]'><i class='fa-solid fa-circle-check text-[#D4AF37] mt-0.5 shrink-0'></i><span>Tránh nhiệt độ thay đổi đột ngột làm nứt sáo</span></li><li class='flex items-start gap-2 text-xs text-[#5C4A4F]'><i class='fa-solid fa-circle-check text-[#D4AF37] mt-0.5 shrink-0'></i><span>Vệ sinh lòng ống định kỳ bằng cồn y tế nhẹ</span></li><li class='flex items-start gap-2 text-xs text-[#5C4A4F]'><i class='fa-solid fa-circle-check text-[#D4AF37] mt-0.5 shrink-0'></i><span>Quấn chỉ trang trí ở hai đầu sáo để gia cố thân sáo</span></li></ul>
+            </div>
+          </div>
+        </div>
+        
+        <div class="bg-white rounded-2xl border border-[#EBDDC3] shadow-sm overflow-hidden mb-6 transition-all hover:border-[#D4AF37]">
+          <div class="p-6">
+            <div class="flex items-center justify-between gap-3 mb-3">
+              <span class="text-xs font-bold text-[#D4AF37] uppercase tracking-wider bg-[#3D0C15] px-3 py-1 rounded-full">Bài 8</span>
+              <label class="flex items-center gap-2 text-xs text-[#5C4A4F] cursor-pointer font-medium hover:text-[#3D0C15]">
+                <input type="checkbox" class="lesson-check w-4 h-4 rounded text-[#3D0C15] focus:ring-0 cursor-pointer" onchange="updateChapterProgress()">
+                <span>Đã học xong</span>
+              </label>
+            </div>
+            <h3 class="font-serif text-lg sm:text-xl font-bold text-[#3D0C15] mb-2">Bài 8: Tổng hợp những lỗi người mới thường gặp & Cách khắc phục</h3>
+            <p class="text-xs sm:text-sm text-[#5C4A4F] leading-relaxed mb-4">Lỗi 1: Thổi không kêu do môi che quá nhiều lỗ thổi hoặc thổi góc sai. Lỗi 2: Bị xì tiếng do ngón tay bịt hở lỗ. Lỗi 3: Chóng mặt do hít thở sai cách bằng ngực thay vì bằng cơ hoành.</p>
+            <div class="bg-[#FAF6EE] p-4 rounded-xl border border-[#EBDDC3]">
+              <h4 class="text-xs font-bold text-[#3D0C15] uppercase tracking-wider mb-2">Điểm mấu chốt:</h4>
+              <ul class="space-y-1.5"><li class='flex items-start gap-2 text-xs text-[#5C4A4F]'><i class='fa-solid fa-circle-check text-[#D4AF37] mt-0.5 shrink-0'></i><span>Khắc phục thổi xì: Kiểm tra lại từng ngón tay trước gương</span></li><li class='flex items-start gap-2 text-xs text-[#5C4A4F]'><i class='fa-solid fa-circle-check text-[#D4AF37] mt-0.5 shrink-0'></i><span>Khắc phục chóng mặt: Ngồi nghỉ, hít thở sâu bằng bụng</span></li><li class='flex items-start gap-2 text-xs text-[#5C4A4F]'><i class='fa-solid fa-circle-check text-[#D4AF37] mt-0.5 shrink-0'></i><span>Khắc phục mỏi tay: Thả lỏng khớp cổ tay, không bóp chặt sáo</span></li></ul>
+            </div>
+          </div>
+        </div>
+        
+    </div>
+
+    <div class="bg-gradient-to-br from-[#3D0C15] to-[#1F050B] text-white rounded-2xl p-6 sm:p-8 border border-[#D4AF37]/50 shadow-lg mb-10">
+      <div class="flex items-start gap-4">
+        <div class="w-12 h-12 rounded-2xl bg-[#D4AF37] text-[#1F050B] flex items-center justify-center text-xl shrink-0 font-bold shadow">
+          <i class="fa-solid fa-bullseye"></i>
+        </div>
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-[#F4E5A1] block mb-1">BÀI THỰC HÀNH TỔNG KẾT CHƯƠNG</span>
+          <h3 class="font-serif text-lg sm:text-xl font-bold text-white mb-2">Điều kiện hoàn thành chương học</h3>
+          <p class="text-xs sm:text-sm text-amber-100/90 leading-relaxed">Cầm sáo đúng tư thế chuẩn trong 3–5 phút trước gương và tập che kín sáu lỗ bấm (nốt Đô 1) mà không bị hở bất kỳ mép lỗ nào.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-6 border-t border-[#EBDDC3]">
+      <a href="index.html" class="w-full sm:w-auto px-6 py-3.5 bg-white border border-[#EBDDC3] hover:bg-[#FAF6EE] text-[#1A0D11] text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-sm flex items-center justify-center gap-2">
+        <i class="fa-solid fa-chevron-left text-[10px]"></i> Trang chủ
+      </a>
+      <a href="chuong-2-hoi-tho.html" class="w-full sm:w-auto px-6 py-3.5 bg-[#3D0C15] hover:bg-[#2B080F] text-white border border-[#D4AF37]/50 text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2">
+        Chương 2: Hơi thở và thổi âm <i class="fa-solid fa-chevron-right text-[10px]"></i>
+      </a>
+    </div>
+  </main>
+
+  <script>
+    const CHAPTER_KEY = 'flute_chapter_1_progress';
+
+    function updateChapterProgress() {
+      const checks = document.querySelectorAll('.lesson-check');
+      let count = 0;
+      checks.forEach(c => { if(c.checked) count++; });
+      document.getElementById('completedCount').innerText = count;
+      const total = checks.length;
+      const pct = Math.round((count / total) * 100);
+      document.getElementById('progressBar').style.width = pct + '%';
+
+      const state = Array.from(checks).map(c => c.checked);
+      localStorage.setItem(CHAPTER_KEY, JSON.stringify(state));
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const saved = localStorage.getItem(CHAPTER_KEY);
+      if (saved) {
+        try {
+          const arr = JSON.parse(saved);
+          const checks = document.querySelectorAll('.lesson-check');
+          checks.forEach((c, i) => { if(arr[i]) c.checked = true; });
+        } catch(e) {}
+      }
+      updateChapterProgress();
+    });
+  </script>
+
+  <!-- FOOTER -->
+  <footer class="bg-[#1F050B] text-white/80 pt-16 pb-8 border-t-2 border-[#D4AF37]/30 mt-auto">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 pb-12 border-b border-white/10">
+        
+        <div class="lg:col-span-4 space-y-4">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-[#3D0C15] flex items-center justify-center text-[#D4AF37] text-xl border border-[#D4AF37]">
+              <i class="fa-solid fa-feather-pointed transform -rotate-45"></i>
+            </div>
+            <div>
+              <span class="block font-serif text-xl font-bold tracking-wide text-[#FAF6EE] lowercase leading-none">daythoisao.com</span>
+              <span class="block text-[11px] text-[#D4AF37] font-medium tracking-wider mt-0.5">Sáo Trúc Âu Cơ • Khơi Nguồn Âm Sắc</span>
+            </div>
+          </div>
+          <p class="text-xs text-white/70 leading-relaxed max-w-sm">
+            “Hơi Thở Thành Âm — Tâm Hồn Thành Nhạc”. Nền tảng học thổi sáo trúc trực tuyến bài bản, chuẩn mực dành cho mọi người yêu âm nhạc dân tộc.
+          </p>
+          <div class="flex items-center space-x-3 pt-2">
+            <a href="https://youtube.com" target="_blank" class="w-8 h-8 rounded-full bg-white/10 hover:bg-[#D4AF37] hover:text-[#1F050B] flex items-center justify-center transition-colors"><i class="fa-brands fa-youtube text-sm"></i></a>
+            <a href="https://facebook.com" target="_blank" class="w-8 h-8 rounded-full bg-white/10 hover:bg-[#D4AF37] hover:text-[#1F050B] flex items-center justify-center transition-colors"><i class="fa-brands fa-facebook-f text-sm"></i></a>
+            <a href="https://tiktok.com" target="_blank" class="w-8 h-8 rounded-full bg-white/10 hover:bg-[#D4AF37] hover:text-[#1F050B] flex items-center justify-center transition-colors"><i class="fa-brands fa-tiktok text-sm"></i></a>
+          </div>
+        </div>
+
+        <div class="lg:col-span-5 space-y-3">
+          <h4 class="text-xs font-bold text-[#D4AF37] uppercase tracking-wider">HỆ THỐNG 6 CHƯƠNG HỌC TOÀN DIỆN</h4>
+          <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+            <li><a href="chuong-1-lam-quen.html" class="hover:text-[#D4AF37] transition-colors">✦ Chương 1: Làm quen sáo trúc</a></li>
+            <li><a href="chuong-2-hoi-tho.html" class="hover:text-[#D4AF37] transition-colors">✦ Chương 2: Hơi thở & Thổi âm</a></li>
+            <li><a href="chuong-3-the-bam.html" class="hover:text-[#D4AF37] transition-colors">✦ Chương 3: Thế bấm cơ bản</a></li>
+            <li><a href="chuong-4-doc-nhac.html" class="hover:text-[#D4AF37] transition-colors">✦ Chương 4: Đọc nhạc & Cảm âm</a></li>
+            <li><a href="chuong-5-luyen-bai.html" class="hover:text-[#D4AF37] transition-colors">✦ Chương 5: Luyện bài cơ bản</a></li>
+            <li><a href="chuong-6-nang-cao.html" class="hover:text-[#D4AF37] transition-colors">✦ Chương 6: Nâng cao & Biểu diễn</a></li>
+          </ul>
+        </div>
+
+        <div id="contact" class="lg:col-span-3 space-y-3">
+          <h4 class="text-xs font-bold text-[#D4AF37] uppercase tracking-wider">LIÊN HỆ & ĐĂNG KÝ HỌC</h4>
+          <p class="text-xs font-semibold text-[#FAF6EE]">Sáo Trúc Âu Cơ</p>
+          <ul class="space-y-2 text-xs text-white/70">
+            <li class="flex items-start gap-2"><i class="fa-solid fa-location-dot text-[#D4AF37] mt-0.5"></i><span>Số 16, Ngõ 118, Đào Tấn, Ba Đình, Hà Nội</span></li>
+            <li class="flex items-center gap-2"><i class="fa-solid fa-phone text-[#D4AF37]"></i><a href="tel:0967888138" class="hover:text-white">0967 888 138</a></li>
+            <li class="flex items-center gap-2"><i class="fa-solid fa-envelope text-[#D4AF37]"></i><span>saotrucauco@gmail.com</span></li>
+          </ul>
+        </div>
+
+      </div>
+      <div class="pt-6 text-center text-xs text-white/50 flex flex-col sm:flex-row items-center justify-between gap-2">
+        <p>© 2024 daythoisao.com - Sáo Trúc Âu Cơ. Tất cả quyền được bảo lưu.</p>
+        <a href="index.html" class="text-[#D4AF37] hover:underline">← Về trang chủ daythoisao.com</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
