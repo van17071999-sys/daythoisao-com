@@ -351,14 +351,38 @@
         <!-- ================= TAB 4: BÀI VIẾT (ARTICLES) ================= -->
         <section id="tab-content-articles" class="space-y-6 hidden">
           <div class="bg-white rounded-2xl border border-[#E8DFC8] shadow-sm p-6 space-y-4">
-            <div class="flex items-center justify-between pb-3 border-b border-stone-100">
+            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-3 border-b border-stone-100">
               <div>
-                <h3 class="font-serif text-lg font-bold text-[#193822]">Danh sách bài viết & Kinh nghiệm học sáo</h3>
-                <p class="text-xs text-[#6B625B]">Hiển thị tại trang bai-viet.html</p>
+                <h3 class="font-serif text-lg font-bold text-[#193822] flex items-center gap-2">
+                  <i class="fa-solid fa-newspaper text-[#881B1B]"></i> Quản lý bài viết & Thứ tự ưu tiên
+                </h3>
+                <p class="text-xs text-[#6B625B]">Sắp xếp thứ tự hiển thị bằng nút ▲ / ▼ hoặc nhập số thứ tự trong form sửa bài</p>
               </div>
-              <button onclick="openArticleFormModal()" class="px-4 py-2 bg-[#881B1B] hover:bg-[#701515] text-white text-xs font-bold rounded-xl shadow flex items-center gap-2">
-                <i class="fa-solid fa-plus"></i> Thêm bài viết mới
-              </button>
+              <div class="flex items-center gap-2">
+                <button onclick="openArticleFormModal()" class="px-4 py-2 bg-[#881B1B] hover:bg-[#701515] text-white text-xs font-bold rounded-xl shadow flex items-center gap-2">
+                  <i class="fa-solid fa-plus"></i> Thêm bài viết mới
+                </button>
+                <a href="bai-viet.html" target="_blank" class="px-3.5 py-2 bg-[#FAF6EE] hover:bg-[#EADBCA] text-[#292421] border border-[#D9CDBB] text-xs font-semibold rounded-xl flex items-center gap-1.5 transition-all">
+                  <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i> Xem trang bài viết
+                </a>
+              </div>
+            </div>
+
+            <!-- Search in Admin Articles -->
+            <div class="flex items-center justify-between gap-4">
+              <div class="relative w-full max-w-sm">
+                <input 
+                  type="text" 
+                  id="adminArticleSearchInput" 
+                  oninput="handleAdminArticleSearch()" 
+                  placeholder="Tìm bài viết theo tiêu đề hoặc chuyên mục..." 
+                  class="w-full bg-[#FAF6EE] border border-[#D9CDBB] rounded-xl pl-9 pr-3 py-2 text-xs outline-none focus:ring-2 focus:ring-[#881B1B]"
+                >
+                <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-stone-400 text-xs"></i>
+              </div>
+              <span id="adminArticleCountBadge" class="text-xs text-[#6B625B] font-medium hidden sm:inline">
+                Tổng cộng: <strong class="text-[#881B1B]" id="adminArticleTotalNum">8</strong> bài viết
+              </span>
             </div>
 
             <div id="adminArticlesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -657,7 +681,7 @@
 
   <!-- ================= MODAL: THÊM / SỬA BÀI VIẾT (ARTICLE EDITOR) ================= -->
   <div id="articleFormModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-4">
-    <div class="bg-[#FAF6EE] rounded-3xl max-w-2xl w-full border border-[#D9CDBB] shadow-2xl overflow-hidden flex flex-col max-h-[92vh]">
+    <div class="bg-[#FAF6EE] rounded-3xl max-w-3xl w-full border border-[#D9CDBB] shadow-2xl overflow-hidden flex flex-col max-h-[92vh]">
       <div class="bg-[#193822] text-white px-6 py-4 flex items-center justify-between">
         <h3 id="articleFormModalTitle" class="font-serif text-lg font-bold flex items-center gap-2">
           <i class="fa-solid fa-pen-to-square"></i> Soạn Thảo Bài Viết
@@ -669,39 +693,57 @@
 
       <form id="articleEditorForm" onsubmit="handleSaveArticle(event)" class="p-6 overflow-y-auto custom-scrollbar space-y-4 text-xs text-[#292421]">
         <input type="hidden" id="editArticleId" value="">
-        <div>
-          <label class="font-bold block mb-1">Tiêu đề bài viết *:</label>
-          <input type="text" id="formArticleTitle" required placeholder="Ví dụ: Bí quyết luyện nốt Đô 1 trầm ấm..." class="w-full bg-white border border-[#D9CDBB] rounded-xl px-3 py-2.5 outline-none focus:ring-2 focus:ring-[#881B1B]">
+        
+        <div class="grid grid-cols-1 sm:grid-cols-12 gap-3">
+          <div class="sm:col-span-8">
+            <label class="font-bold block mb-1">Tiêu đề bài viết *:</label>
+            <input type="text" id="formArticleTitle" required placeholder="Ví dụ: Bí quyết chọn sáo nứa chuẩn âm..." class="w-full bg-white border border-[#D9CDBB] rounded-xl px-3 py-2.5 outline-none focus:ring-2 focus:ring-[#881B1B]">
+          </div>
+          <div class="sm:col-span-4">
+            <label class="font-bold block mb-1">Thứ tự ưu tiên hiển thị *:</label>
+            <input type="number" id="formArticleOrder" value="1" min="1" max="999" required placeholder="1, 2, 3..." class="w-full bg-white border border-[#D9CDBB] rounded-xl px-3 py-2.5 outline-none focus:ring-2 focus:ring-[#881B1B]">
+            <span class="text-[10px] text-stone-500 mt-0.5 block">Số nhỏ hơn sẽ đứng trước</span>
+          </div>
         </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
           <div>
-            <label class="font-bold block mb-1">Chuyên mục:</label>
+            <label class="font-bold block mb-1">Chuyên mục *:</label>
             <select id="formArticleCategory" class="w-full bg-white border border-[#D9CDBB] rounded-xl px-3 py-2 outline-none focus:ring-2 focus:ring-[#881B1B]">
               <option value="nhap-mon">Nhập môn sáo trúc</option>
-              <option value="ky-thuat">Kỹ thuật nâng cao</option>
+              <option value="ky-thuat-hoi">Kỹ thuật hơi & Khẩu hình</option>
+              <option value="chon-sao">Cách chọn & Bảo quản sáo</option>
               <option value="nhac-ly">Nhạc lý & Cảm âm</option>
-              <option value="kinh-nghiem">Kinh nghiệm & Chọn sáo</option>
+              <option value="nang-cao">Biểu diễn nâng cao</option>
             </select>
           </div>
           <div>
             <label class="font-bold block mb-1">Thời gian đọc:</label>
             <input type="text" id="formArticleReadTime" value="5 phút đọc" class="w-full bg-white border border-[#D9CDBB] rounded-xl px-3 py-2 outline-none focus:ring-2 focus:ring-[#881B1B]">
           </div>
-        </div>
-        <div>
-          <label class="font-bold block mb-1">Link ảnh minh họa (URL):</label>
-          <input type="url" id="formArticleImg" value="https://images.unsplash.com/photo-1511192336575-5a79af67a629?auto=format&fit=crop&w=600&q=80" class="w-full bg-white border border-[#D9CDBB] rounded-xl px-3 py-2 outline-none focus:ring-2 focus:ring-[#881B1B]">
-        </div>
-        <div>
-          <label class="font-bold block mb-1">Tóm tắt ngắn (1-2 câu):</label>
-          <textarea id="formArticleSummary" rows="2" required placeholder="Mô tả tóm tắt nội dung bài viết..." class="w-full bg-white border border-[#D9CDBB] rounded-xl p-3 outline-none focus:ring-2 focus:ring-[#881B1B]"></textarea>
-        </div>
-        <div>
-          <label class="font-bold block mb-1">Nội dung chi tiết (HTML/Text):</label>
-          <textarea id="formArticleContent" rows="6" required placeholder="Nội dung bài viết chi tiết..." class="w-full bg-white border border-[#D9CDBB] rounded-xl p-3 outline-none focus:ring-2 focus:ring-[#881B1B] font-mono text-xs"></textarea>
+          <div>
+            <label class="font-bold block mb-1">Ngày đăng:</label>
+            <input type="date" id="formArticleDate" class="w-full bg-white border border-[#D9CDBB] rounded-xl px-3 py-2 outline-none focus:ring-2 focus:ring-[#881B1B]">
+          </div>
         </div>
 
-        <div class="flex items-center justify-end gap-3 pt-2">
+        <div>
+          <label class="font-bold block mb-1">Link ảnh đại diện bài viết (URL):</label>
+          <input type="url" id="formArticleImg" value="https://images.unsplash.com/photo-1511192336575-5a79af67a629?auto=format&fit=crop&w=600&q=80" class="w-full bg-white border border-[#D9CDBB] rounded-xl px-3 py-2 outline-none focus:ring-2 focus:ring-[#881B1B]">
+        </div>
+
+        <div>
+          <label class="font-bold block mb-1">Tóm tắt ngắn (1-2 câu hiển thị ở danh sách):</label>
+          <textarea id="formArticleSummary" rows="2" required placeholder="Mô tả tóm tắt nội dung bài viết..." class="w-full bg-white border border-[#D9CDBB] rounded-xl p-3 outline-none focus:ring-2 focus:ring-[#881B1B]"></textarea>
+        </div>
+
+        <div>
+          <label class="font-bold block mb-1">Nội dung chi tiết bài viết (Hỗ trợ HTML/Heading/List):</label>
+          <textarea id="formArticleContent" rows="8" required placeholder="Nội dung bài viết chi tiết..." class="w-full bg-white border border-[#D9CDBB] rounded-xl p-3 outline-none focus:ring-2 focus:ring-[#881B1B] font-mono text-xs"></textarea>
+          <span class="text-[10px] text-stone-500 mt-1 block">Hỗ trợ các thẻ: &lt;h4&gt;, &lt;p&gt;, &lt;ul&gt;, &lt;li&gt;, &lt;strong&gt;, &lt;em&gt;</span>
+        </div>
+
+        <div class="flex items-center justify-end gap-3 pt-2 border-t border-stone-200">
           <button type="button" onclick="closeArticleFormModal()" class="px-5 py-2.5 bg-white border border-[#D9CDBB] hover:bg-[#FAF6EE] text-[#292421] font-semibold rounded-xl">
             Hủy bỏ
           </button>
@@ -872,6 +914,191 @@
       }
     ];
 
+    // Seed All 8 Articles
+    const SEED_ARTICLES = [
+      {
+        id: 1,
+        order: 1,
+        title: "Cách chọn sáo trúc phù hợp cho người mới bắt đầu",
+        category: "chon-sao",
+        categoryName: "Cách chọn & Bảo quản sáo",
+        date: "2024-05-10",
+        readTime: "5 phút đọc",
+        img: "https://images.unsplash.com/photo-1511192336575-5a79af67a629?auto=format&fit=crop&w=600&q=80",
+        summary: "Kinh nghiệm chọn sáo chuẩn tone Đô C5, phân biệt nứa Nam và nứa Bắc, độ dày lòng ống để người mới tập thổi kêu dễ dàng nhất.",
+        content: `
+          <h4>1. Vì sao nên ưu tiên sáo Nứa C5 (Tone Đô)?</h4>
+          <p>Khi mới bước vào con đường học thổi sáo, 80% người mới thất bại là do chọn nhầm một cây sáo quá trầm (như D4, C4 thân to tốn nhiều hơi) hoặc cây sáo quá cao (như G5, A5 đòi hỏi mím môi rất chặt). Cây sáo C5 có khoảng cách giữa các lỗ bấm vừa vặn với bàn tay người Việt, lỗ thổi bắt hơi nhanh và cao độ chuẩn để hòa tấu cùng nhạc beat karaoke.</p>
+          
+          <h4>2. Phân biệt Sáo Nứa Bắc và Nứa Nam</h4>
+          <ul>
+            <li><strong>Nứa Bắc:</strong> Thân mỏng hơn, đanh chắc, cho âm sắc trong trẻo, réo rắt và bay bổng. Rất phù hợp với các bản nhạc dân ca Bắc Bộ và nhạc trữ tình.</li>
+            <li><strong>Nứa Nam:</strong> Thân dày, hình thức ống đều đặn, màu vàng óng, âm thanh trầm ấm và đượm tình cảm.</li>
+          </ul>
+
+          <h4>3. Các tiêu chí kiểm tra sáo khi mua</h4>
+          <p>Hãy thổi thử nốt Đô 1 (bịt kín 6 lỗ) và nốt Sol 2 (quãng 2). Nếu nốt Đô trầm phát ra tròn trịa không bị xì, nốt Sol 2 nhẹ nhàng bắt tiếng thì đó là một cây sáo đạt chuẩn cao độ và âm sắc.</p>
+
+          <div class="mt-6 p-5 bg-[#FAF6EE] rounded-2xl border-2 border-[#D4AF37]/60 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="space-y-1 text-center sm:text-left">
+              <span class="text-[10px] uppercase font-bold text-[#881B1B] tracking-wider bg-red-100/80 px-2.5 py-0.5 rounded-full inline-block">
+                <i class="fa-solid fa-bag-shopping mr-1"></i> Gợi ý từ Sáo Trúc Âu Cơ
+              </span>
+              <h5 class="font-serif text-base font-bold text-[#292421]">Tham khảo các dòng sáo & phụ kiện chính hãng</h5>
+              <p class="text-xs text-[#59524B]">Xem ngay các mẫu sáo Nứa C5, sáo Trầm, sáo Dizi, túi nhung và phụ kiện đã được kiểm âm chuẩn xác 440Hz.</p>
+            </div>
+            <a href="https://saotrucauco.com/sao-va-phu-kien" target="_blank" class="shrink-0 px-5 py-2.5 bg-[#881B1B] hover:bg-[#701515] text-white text-xs font-bold rounded-xl shadow hover:shadow-md transition-all flex items-center gap-2">
+              Xem sáo & phụ kiện <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+            </a>
+          </div>
+        `
+      },
+      {
+        id: 2,
+        order: 2,
+        title: "5 Lỗi thường gặp khi thổi sáo và cách khắc phục triệt để",
+        category: "nhap-mon",
+        categoryName: "Nhập môn sáo trúc",
+        date: "2024-05-15",
+        readTime: "6 phút đọc",
+        img: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=600&q=80",
+        summary: "Tổng hợp các lỗi phổ biến: thổi bị xì tiếng, chóng mặt do thở sai, mỏi cổ tay, hở mép lỗ bấm và thổi quãng 2 bị vỡ âm.",
+        content: `
+          <h4>Lỗi 1: Thổi xì nhiều tiếng gió hơn tiếng nhạc</h4>
+          <p><strong>Nguyên nhân:</strong> Khe môi mở quá rộng hoặc hướng luồng hơi không tập trung vào cạnh xé gió của lỗ thổi.<br><strong>Cách sửa:</strong> Mím nhẹ 2 khóe môi, tạo một khe hở nhỏ hình hạt gạo ở giữa và thổi chéo góc 45 độ vào cạnh ngoài của lỗ thổi.</p>
+
+          <h4>Lỗi 2: Bị chóng mặt sau 5 phút thổi</h4>
+          <p><strong>Nguyên nhân:</strong> Hít thở bằng lồng ngực (khi hít vai nhô lên) làm thiếu oxy lên não.<br><strong>Cách sửa:</strong> Tập phương pháp thở cơ hoành (hơi bụng): khi hít vào bụng phình ra, khi thổi ra bụng từ từ xẹp lại, vai giữ cố định.</p>
+
+          <h4>Lỗi 3: Nốt Đô 1 không kêu hoặc bị xì</h4>
+          <p><strong>Nguyên nhân:</strong> Một trong 6 ngón tay bịt hở mép lỗ bấm.<br><strong>Cách sửa:</strong> Sử dụng đốt thịt mềm thứ hai của ngón tay (không dùng đầu móng), thả lỏng bàn tay và ép phẳng nhẹ nhàng lên lỗ sáo.</p>
+        `
+      },
+      {
+        id: 3,
+        order: 3,
+        title: "Bí quyết luyện hơi thở bụng & Kỹ thuật rung hơi (Vibrato)",
+        category: "ky-thuat-hoi",
+        categoryName: "Kỹ thuật hơi & Khẩu hình",
+        date: "2024-05-20",
+        readTime: "7 phút đọc",
+        img: "https://images.unsplash.com/photo-1507838153414-b4b713384a76?auto=format&fit=crop&w=600&q=80",
+        summary: "Phương pháp luyện cơ hoành 4-4-4, cách giữ cột hơi ngân dài trên 20 giây và kỹ thuật rung hơi tạo âm sắc ngọt ngào lay động lòng người.",
+        content: `
+          <h4>1. Phương pháp luyện hơi 4-4-4 hàng ngày</h4>
+          <p>Hơi thở là linh hồn của cây sáo trúc. Hãy dành 5 phút mỗi sáng tập bài tập thở 3 pha:
+          <br>• <strong>Pha 1 (4 giây):</strong> Hít sâu bằng cả mũi và miệng xuống tận đáy phổi, cảm nhận bụng phình to.
+          <br>• <strong>Pha 2 (4 giây):</strong> Nén giữ hơi lại, gồng nhẹ cơ bụng.
+          <br>• <strong>Pha 3 (15 - 25 giây):</strong> Thổi ra một luồng hơi mảnh, đều tăm tắp như sợi chỉ qua khe môi hẹp.</p>
+
+          <h4>2. Kỹ thuật Rung hơi (Vibrato) bằng cơ hoành</h4>
+          <p>Rung hơi chuẩn của sáo trúc Việt Nam không phải dùng cổ họng bóp nghẹt âm thanh, mà là dùng cơ bụng nhấp nhả nhịp nhàng tạo nên làn sóng âm mềm mại 4–6 chu kỳ/giây. Hãy bắt đầu tập ngân nốt Sol 1 dài và nói nhẩm âm 'hơ-hơ-hơ' bằng cơ hoành.</p>
+        `
+      },
+      {
+        id: 4,
+        order: 4,
+        title: "Hướng dẫn đọc nốt nhạc và cách dịch cảm âm bài hát",
+        category: "nhac-ly",
+        categoryName: "Nhạc lý & Cảm âm",
+        date: "2024-05-25",
+        readTime: "6 phút đọc",
+        img: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=600&q=80",
+        summary: "Nắm vững 5 dòng kẻ khuông nhạc, khóa Sol, trường độ nốt đen/trắng/móc đơn và bí quyết tự bắt cảm âm bài hát yêu thích.",
+        content: `
+          <h4>1. 5 Dòng kẻ và 4 khe trên khuông nhạc</h4>
+          <p>Đếm từ dưới lên trên: Dòng 1 là nốt Mi, Dòng 2 là nốt Sol (vị trí khóa Sol), Dòng 3 là nốt Si, Dòng 4 là nốt Rê2, Dòng 5 là nốt Fa2. Khe 1 là Fa, Khe 2 là La, Khe 3 là Đô2, Khe 4 là Mi2.</p>
+
+          <h4>2. Quy ước cảm âm bằng chữ tiếng Việt</h4>
+          <p>Trong giới sáo trúc Việt Nam, các bản nhạc được phiên âm thành chữ cái nốt:
+          <br>• <strong>Quãng 1:</strong> Đô, Rê, Mi, Fa, Sol, La, Si
+          <br>• <strong>Quãng 2:</strong> Đô2, Rê2, Mi2, Fa2, Sol2, La2, Si2
+          <br>• <strong>Quãng 3:</strong> Đô3, Rê3, Mi3</p>
+
+          <h4>3. Các bước tự bắt cảm âm một ca khúc</h4>
+          <p>Nghe kỹ câu hát đầu tiên, tìm nốt nhạc mở đầu bằng cách thổi thử nốt Đô hoặc Sol trên sáo, sau đó lần mò các nốt tiếp theo theo chiều đi lên hoặc đi xuống của giai điệu.</p>
+        `
+      },
+      {
+        id: 5,
+        order: 5,
+        title: "Nghệ thuật luyến láy, vuốt ngón và đập ngón trong dân ca",
+        category: "nang-cao",
+        categoryName: "Biểu diễn nâng cao",
+        date: "2024-06-01",
+        readTime: "8 phút đọc",
+        img: "https://images.unsplash.com/photo-1465847899084-d164df4dedc6?auto=format&fit=crop&w=600&q=80",
+        summary: "Các kỹ thuật đỉnh cao tạo nên chất tình của sáo trúc: Vuốt ngón mượt mà (Glissando), đập ngón sắc sảo và đánh lưỡi kép Ta-Ka tốc độ cao.",
+        content: `
+          <h4>1. Kỹ thuật Vuốt ngón (Glissando)</h4>
+          <p>Để chuyển mượt mà từ nốt Sol lên nốt La trong bài dân ca như 'Bèo dạt mây trôi', bạn không nhấc ngón tay đột ngột mà trượt từ từ ngón tay che nửa lỗ rồi mở hẳn, kết hợp tăng nhẹ áp lực hơi để cao độ trượt uyển chuyển.</p>
+
+          <h4>2. Đập ngón (Tap) tạo điểm nhấn</h4>
+          <p>Dùng ngón tay đập dứt khoát xuống lỗ sáo và nhấc lên ngay lập tức. Âm thanh tạo ra tiếng 'tách' giòn tan mang đậm phong cách sáo Mèo và dân ca Tây Bắc.</p>
+
+          <h4>3. Đánh lưỡi kép (Ta - Ka) chạy nốt nhanh</h4>
+          <p>Phát âm luân phiên đầu lưỡi (Ta) và cuống họng (Ka) giúp bạn thổi các đoạn nhạc có tiết tấu dồn dập 120-160 BPM mà không bị cứng lưỡi.</p>
+        `
+      },
+      {
+        id: 6,
+        order: 6,
+        title: "Kinh nghiệm vệ sinh, chống mốc và chống nứt sáo vào mùa đông",
+        category: "chon-sao",
+        categoryName: "Cách chọn & Bảo quản sáo",
+        date: "2024-06-05",
+        readTime: "4 phút đọc",
+        img: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=600&q=80",
+        summary: "Bảo quản cây sáo trúc tự nhiên luôn sáng bóng, âm thanh không bị ẩm mốc và không bị nứt vỡ khi thời tiết hanh khô.",
+        content: `
+          <h4>1. Vệ sinh lòng ống sáo sau khi thổi</h4>
+          <p>Hơi thở mang theo hơi ẩm ngưng tụ trong lòng ống sáo. Sau khi thổi xong, hãy dùng que quấn vải bông mềm lau khô hoàn toàn bên trong ống trước khi cất vào bao đựng.</p>
+
+          <h4>2. Chống nứt sáo khi thời tiết hanh khô</h4>
+          <p>Vào mùa đông miền Bắc hoặc khi để sáo trong phòng điều hòa lạnh, thân sáo rất dễ bị co ngót và nứt toác. Hãy quấn chỉ cước hoặc dây dù trang trí ở hai đầu sáo để gia cố, và thoa một lớp dầu dừa mỏng lên thân sáo định kỳ.</p>
+        `
+      },
+      {
+        id: 7,
+        order: 7,
+        title: "Lộ trình 30 ngày tự học thổi sáo thành thạo tại nhà",
+        category: "nhap-mon",
+        categoryName: "Nhập môn sáo trúc",
+        date: "2024-06-10",
+        readTime: "6 phút đọc",
+        img: "https://images.unsplash.com/photo-1511192336575-5a79af67a629?auto=format&fit=crop&w=600&q=80",
+        summary: "Kế hoạch chi tiết phân bổ từng tuần: Tuần 1 tạo tiếng & 7 nốt; Tuần 2 chạy ngón & nhịp; Tuần 3 ghép bài hát; Tuần 4 hoàn thiện kỹ thuật.",
+        content: `
+          <h4>Tuần 1: Làm chủ hơi thở & 7 nốt cơ bản</h4>
+          <p>Tập thổi kêu 100% lần thử và bịt kín 6 lỗ bấm thổi nốt Đô 1 trầm ấm không xì.</p>
+
+          <h4>Tuần 2: Luyện chuyển quãng 2 & Đánh lưỡi</h4>
+          <p>Tập thang âm Đô trưởng đi lên và đi xuống, chuyển mượt mà giữa quãng 1 và quãng 2 (Đô 2, Rê 2, Mi 2).</p>
+
+          <h4>Tuần 3 & 4: Thu âm bài hát đầu tiên</h4>
+          <p>Tập hoàn chỉnh các bài hát nhập môn như 'Hà Nội 12 mùa hoa', 'Chúc mừng sinh nhật' và 'Nơi này có anh' cùng nhạc beat nền.</p>
+        `
+      },
+      {
+        id: 8,
+        order: 8,
+        title: "Bí quyết chọn Micro và xử lý âm thanh khi biểu diễn sân khấu",
+        category: "nang-cao",
+        categoryName: "Biểu diễn nâng cao",
+        date: "2024-06-15",
+        readTime: "5 phút đọc",
+        img: "https://images.unsplash.com/photo-1507838153414-b4b713384a76?auto=format&fit=crop&w=600&q=80",
+        summary: "Cách đặt micro đúng góc 45 độ tránh tiếng gió rít, chỉnh vang Echo/Reverb và phong thái tự tin trước đám đông.",
+        content: `
+          <h4>1. Vị trí đặt Micro chuẩn xác</h4>
+          <p>Đặt đầu micro cách lỗ thổi khoảng 5 - 10cm, nghiêng một góc 45 độ so với phương thổi gió. Tránh chĩa thẳng trực tiếp micro vào luồng hơi thoát ra sẽ gây tiếng ù gió khó chịu.</p>
+
+          <h4>2. Cân chỉnh hiệu ứng Reverb & Delay</h4>
+          <p>Tiếng sáo trúc cần độ vang không gian (Reverb) vừa phải để âm thanh thêm phần bay bổng, thanh thoát như giữa núi rừng quê hương.</p>
+        `
+      }
+    ];
+
     // Seed Sample Requests
     const SEED_REQUESTS = [
       {
@@ -932,26 +1159,29 @@
         localStorage.setItem('DAYTHOISAO_REQUESTS', JSON.stringify(requestsData));
       }
 
-      // Load Articles
+      // Load Articles (Seed All 8 Articles)
       const storedArticles = localStorage.getItem('DAYTHOISAO_ARTICLES');
       if (storedArticles) {
-        try { articlesData = JSON.parse(storedArticles); } catch (e) { articlesData = []; }
-      } else {
-        articlesData = [
-          {
-            id: 1,
-            title: "5 Bí Quyết Luyện Hơi Dài Không Mệt Cho Người Mới Học Sáo",
-            category: "nhap-mon",
-            categoryName: "Nhập môn sáo trúc",
-            date: "2024-05-15",
-            readTime: "4 phút đọc",
-            img: "https://images.unsplash.com/photo-1511192336575-5a79af67a629?auto=format&fit=crop&w=600&q=80",
-            summary: "Hướng dẫn kỹ thuật lấy hơi bụng cơ hoành, nén giữ hơi và kiểm soát luồng khí đều đặn giúp bạn thổi trôi chảy câu nhạc dài.",
-            content: "Nội dung bài viết chi tiết..."
+        try { 
+          articlesData = JSON.parse(storedArticles); 
+          if (!Array.isArray(articlesData) || articlesData.length < 8) {
+            // merge or fallback to seed
+            const existingIds = new Set(articlesData.map(a => a.id));
+            SEED_ARTICLES.forEach(sa => {
+              if (!existingIds.has(sa.id)) articlesData.push(sa);
+            });
+            localStorage.setItem('DAYTHOISAO_ARTICLES', JSON.stringify(articlesData));
           }
-        ];
+        } catch (e) { 
+          articlesData = SEED_ARTICLES; 
+          localStorage.setItem('DAYTHOISAO_ARTICLES', JSON.stringify(articlesData));
+        }
+      } else {
+        articlesData = SEED_ARTICLES;
         localStorage.setItem('DAYTHOISAO_ARTICLES', JSON.stringify(articlesData));
       }
+
+      articlesData.sort((a, b) => (a.order || 999) - (b.order || 999));
 
       updateBadgesAndStats();
       renderDashboard();
@@ -1224,33 +1454,102 @@
       if (flute) document.getElementById('formSongFlute').value = flute;
     }
 
-    // Render Articles Grid
+    // Render Admin Articles Grid & Priority Management
     function renderAdminArticles(list) {
       const grid = document.getElementById('adminArticlesGrid');
+      const badgeCount = document.getElementById('badgeArticleCount');
+      const totalNum = document.getElementById('adminArticleTotalNum');
+      if (badgeCount) badgeCount.innerText = articlesData.length;
+      if (totalNum) totalNum.innerText = articlesData.length;
+
+      if (!grid) return;
       if (list.length === 0) {
-        grid.innerHTML = `<div class="col-span-full py-10 text-center text-stone-400">Chưa có bài viết nào.</div>`;
+        grid.innerHTML = `<div class="col-span-full py-10 text-center text-stone-400 text-xs">Chưa có bài viết nào phù hợp.</div>`;
         return;
       }
 
-      grid.innerHTML = list.map(a => `
-        <div class="bg-[#FAF6EE] rounded-2xl border border-[#E8DFC8] overflow-hidden flex flex-col justify-between shadow-sm">
+      grid.innerHTML = list.map((a, idx) => `
+        <div class="bg-[#FAF6EE] rounded-2xl border border-[#E8DFC8] overflow-hidden flex flex-col justify-between shadow-sm hover:border-[#881B1B] transition-all">
           <div>
             <div class="h-36 overflow-hidden bg-stone-200 relative">
-              <img src="${a.img}" alt="${a.title}" class="w-full h-full object-cover">
-              <span class="absolute top-2 left-2 bg-[#881B1B] text-white text-[9px] uppercase font-bold px-2 py-0.5 rounded-full">${a.categoryName || a.category}</span>
+              <img src="${a.img || 'https://images.unsplash.com/photo-1511192336575-5a79af67a629?auto=format&fit=crop&w=600&q=80'}" alt="${a.title}" class="w-full h-full object-cover">
+              <div class="absolute top-2 left-2 flex items-center gap-1.5">
+                <span class="bg-[#881B1B] text-white text-[9px] uppercase font-bold px-2.5 py-0.5 rounded-full shadow">
+                  ${a.categoryName || a.category}
+                </span>
+                <span class="bg-amber-600 text-white text-[9px] font-bold px-2 py-0.5 rounded-full shadow" title="Thứ tự ưu tiên">
+                  #${a.order || idx + 1}
+                </span>
+              </div>
             </div>
             <div class="p-4 space-y-2">
-              <span class="text-[11px] text-stone-400">${a.date || '2024'} • ${a.readTime || '5 phút'}</span>
+              <div class="flex items-center justify-between text-[11px] text-stone-500">
+                <span>${a.date || '2024'} • ${a.readTime || '5 phút'}</span>
+                <span class="font-bold text-[#193822]">Ưu tiên: #${a.order || idx + 1}</span>
+              </div>
               <h4 class="font-serif text-sm font-bold text-[#292421] line-clamp-2">${a.title}</h4>
-              <p class="text-xs text-stone-500 line-clamp-2">${a.summary}</p>
+              <p class="text-xs text-stone-500 line-clamp-2 leading-relaxed">${a.summary}</p>
             </div>
           </div>
-          <div class="p-4 border-t border-stone-200 flex items-center justify-between">
-            <button onclick="editArticle(${a.id})" class="text-xs font-bold text-[#881B1B] hover:underline">Chỉnh sửa</button>
-            <button onclick="deleteArticle(${a.id})" class="text-xs text-red-600 hover:underline">Xóa</button>
+
+          <div class="p-3.5 bg-white border-t border-[#E8DFC8] flex flex-wrap items-center justify-between gap-2">
+            <!-- Priority Up/Down Controls -->
+            <div class="flex items-center gap-1">
+              <button onclick="moveArticlePriority(${a.id}, -1)" class="w-7 h-7 rounded-lg bg-[#FAF6EE] hover:bg-[#EADBCA] text-[#881B1B] border border-[#D9CDBB] flex items-center justify-center text-xs transition-colors" title="Đẩy lên trước (Ưu tiên cao hơn)">
+                <i class="fa-solid fa-arrow-up"></i>
+              </button>
+              <button onclick="moveArticlePriority(${a.id}, 1)" class="w-7 h-7 rounded-lg bg-[#FAF6EE] hover:bg-[#EADBCA] text-[#881B1B] border border-[#D9CDBB] flex items-center justify-center text-xs transition-colors" title="Đẩy xuống sau">
+                <i class="fa-solid fa-arrow-down"></i>
+              </button>
+            </div>
+
+            <!-- Action links -->
+            <div class="flex items-center gap-2">
+              <a href="bai-viet-chi-tiet.html?id=${a.id}" target="_blank" class="px-2.5 py-1 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 text-[11px] font-bold rounded-lg border border-emerald-200 transition-colors flex items-center gap-1">
+                <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i> Xem trang
+              </a>
+              <button onclick="editArticle(${a.id})" class="px-2.5 py-1 bg-[#881B1B]/10 hover:bg-[#881B1B] text-[#881B1B] hover:text-white text-[11px] font-bold rounded-lg transition-colors">
+                Sửa
+              </button>
+              <button onclick="deleteArticle(${a.id})" class="px-2 py-1 text-red-600 hover:text-red-800 hover:bg-red-50 text-[11px] font-bold rounded-lg transition-colors">
+                Xóa
+              </button>
+            </div>
           </div>
         </div>
       `).join('');
+    }
+
+    function handleAdminArticleSearch() {
+      const q = (document.getElementById('adminArticleSearchInput')?.value || '').toLowerCase().trim();
+      const filtered = articlesData.filter(a => {
+        return a.title.toLowerCase().includes(q) || (a.summary || '').toLowerCase().includes(q) || (a.categoryName || '').toLowerCase().includes(q);
+      });
+      renderAdminArticles(filtered);
+    }
+
+    function moveArticlePriority(id, direction) {
+      articlesData.sort((a, b) => (a.order || 999) - (b.order || 999));
+      const idx = articlesData.findIndex(a => a.id === id);
+      if (idx === -1) return;
+      const targetIdx = idx + direction;
+      if (targetIdx < 0 || targetIdx >= articlesData.length) return;
+
+      // Assign sequential normalized order first
+      articlesData.forEach((a, i) => {
+        a.order = i + 1;
+      });
+
+      // Swap
+      const temp = articlesData[idx].order;
+      articlesData[idx].order = articlesData[targetIdx].order;
+      articlesData[targetIdx].order = temp;
+
+      // Re-sort
+      articlesData.sort((a, b) => (a.order || 999) - (b.order || 999));
+      localStorage.setItem('DAYTHOISAO_ARTICLES', JSON.stringify(articlesData));
+      renderAdminArticles(articlesData);
+      showToast(`Đã thay đổi thứ tự ưu tiên của bài viết!`);
     }
 
     // ================= SONG EDITOR MODAL LOGIC =================
@@ -1543,14 +1842,18 @@
         title.innerHTML = `<i class="fa-solid fa-pen-to-square"></i> Sửa bài viết: ${article.title}`;
         document.getElementById('editArticleId').value = article.id;
         document.getElementById('formArticleTitle').value = article.title;
+        document.getElementById('formArticleOrder').value = article.order || 1;
         document.getElementById('formArticleCategory').value = article.category || 'nhap-mon';
         document.getElementById('formArticleReadTime').value = article.readTime || '5 phút đọc';
+        document.getElementById('formArticleDate').value = article.date || new Date().toISOString().split('T')[0];
         document.getElementById('formArticleImg').value = article.img || '';
         document.getElementById('formArticleSummary').value = article.summary || '';
         document.getElementById('formArticleContent').value = article.content || '';
       } else {
         title.innerHTML = `<i class="fa-solid fa-plus"></i> Thêm Bài Viết Mới`;
         document.getElementById('editArticleId').value = '';
+        document.getElementById('formArticleOrder').value = articlesData.length + 1;
+        document.getElementById('formArticleDate').value = new Date().toISOString().split('T')[0];
       }
 
       modal.classList.remove('hidden');
@@ -1567,11 +1870,13 @@
       e.preventDefault();
       const idVal = document.getElementById('editArticleId').value;
       const title = document.getElementById('formArticleTitle').value.trim();
+      const order = parseInt(document.getElementById('formArticleOrder').value) || 1;
       const catSelect = document.getElementById('formArticleCategory');
       const category = catSelect.value;
       const categoryName = catSelect.options[catSelect.selectedIndex].text;
-      const readTime = document.getElementById('formArticleReadTime').value.trim();
-      const img = document.getElementById('formArticleImg').value.trim();
+      const readTime = document.getElementById('formArticleReadTime').value.trim() || '5 phút đọc';
+      const dateVal = document.getElementById('formArticleDate').value || new Date().toISOString().split('T')[0];
+      const img = document.getElementById('formArticleImg').value.trim() || 'https://images.unsplash.com/photo-1511192336575-5a79af67a629?auto=format&fit=crop&w=600&q=80';
       const summary = document.getElementById('formArticleSummary').value.trim();
       const content = document.getElementById('formArticleContent').value.trim();
 
@@ -1582,9 +1887,11 @@
           articlesData[idx] = {
             ...articlesData[idx],
             title,
+            order,
             category,
             categoryName,
             readTime,
+            date: dateVal,
             img,
             summary,
             content
@@ -1595,22 +1902,25 @@
         const newId = articlesData.length > 0 ? Math.max(...articlesData.map(a => a.id)) + 1 : 1;
         const newArt = {
           id: newId,
+          order,
           title,
           category,
           categoryName,
-          date: new Date().toISOString().split('T')[0],
+          date: dateVal,
           readTime,
           img,
           summary,
           content
         };
-        articlesData.unshift(newArt);
+        articlesData.push(newArt);
         showToast(`Đã thêm bài viết mới "${title}"!`);
       }
 
+      articlesData.sort((a, b) => (a.order || 999) - (b.order || 999));
       localStorage.setItem('DAYTHOISAO_ARTICLES', JSON.stringify(articlesData));
       closeArticleFormModal();
       updateBadgesAndStats();
+      renderDashboard();
       renderAdminArticles(articlesData);
     }
 
@@ -1624,8 +1934,10 @@
       if (!art) return;
       if (confirm(`Bạn có chắc chắn muốn xóa bài viết "${art.title}"?`)) {
         articlesData = articlesData.filter(a => a.id !== id);
+        articlesData.sort((a, b) => (a.order || 999) - (b.order || 999));
         localStorage.setItem('DAYTHOISAO_ARTICLES', JSON.stringify(articlesData));
         updateBadgesAndStats();
+        renderDashboard();
         renderAdminArticles(articlesData);
         showToast(`Đã xóa bài viết!`);
       }

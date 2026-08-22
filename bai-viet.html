@@ -459,11 +459,25 @@
     ];
 
     let currentCategory = 'all';
+    let articlesList = [];
+
+    function getLiveArticles() {
+      try {
+        const stored = localStorage.getItem('DAYTHOISAO_ARTICLES');
+        if (stored) {
+          const parsed = JSON.parse(stored);
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            return parsed.sort((a, b) => (a.order || 999) - (b.order || 999));
+          }
+        }
+      } catch (e) {}
+      return ARTICLES.sort((a, b) => (a.order || 999) - (b.order || 999));
+    }
 
     function renderArticles(list) {
       const grid = document.getElementById('articlesGrid');
       const countNum = document.getElementById('countNumber');
-      countNum.innerText = list.length;
+      if (countNum) countNum.innerText = list.length;
 
       if (list.length === 0) {
         grid.innerHTML = `
@@ -477,22 +491,22 @@
       }
 
       grid.innerHTML = list.map(item => `
-        <article class="bg-white rounded-2xl border border-[#E8DFC8] overflow-hidden shadow-sm article-card flex flex-col justify-between">
+        <article class="bg-white rounded-2xl border border-[#E8DFC8] overflow-hidden shadow-sm article-card flex flex-col justify-between hover:border-[#881B1B] transition-all">
           <div>
-            <div class="h-48 overflow-hidden relative bg-stone-100">
-              <img src="${item.img}" alt="${item.title}" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+            <a href="bai-viet-chi-tiet.html?id=${item.id}" class="block h-48 overflow-hidden relative bg-stone-100 group">
+              <img src="${item.img}" alt="${item.title}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
               <span class="absolute top-3 left-3 bg-[#881B1B] text-white text-[10px] uppercase font-bold px-2.5 py-1 rounded-full shadow">
-                ${item.categoryName}
+                ${item.categoryName || item.category}
               </span>
-            </div>
+            </a>
             <div class="p-5">
               <div class="flex items-center gap-3 text-[11px] text-[#6B625B] mb-2">
                 <span><i class="fa-regular fa-calendar text-[#881B1B] mr-1"></i>${item.date}</span>
                 <span>•</span>
                 <span><i class="fa-regular fa-clock text-[#881B1B] mr-1"></i>${item.readTime}</span>
               </div>
-              <h3 class="font-serif text-base sm:text-lg font-bold text-[#292421] hover:text-[#881B1B] transition-colors leading-snug mb-2 cursor-pointer" onclick="openArticleModal(${item.id})">
-                ${item.title}
+              <h3 class="font-serif text-base sm:text-lg font-bold text-[#292421] hover:text-[#881B1B] transition-colors leading-snug mb-2">
+                <a href="bai-viet-chi-tiet.html?id=${item.id}">${item.title}</a>
               </h3>
               <p class="text-xs text-[#59524B] line-clamp-3 leading-relaxed">
                 ${item.summary}
@@ -501,9 +515,9 @@
           </div>
           <div class="px-5 pb-5 pt-2 border-t border-[#F2EADA] flex items-center justify-between">
             <span class="text-[11px] font-semibold text-[#881B1B]"><i class="fa-solid fa-feather mr-1"></i>Sáo Trúc Âu Cơ</span>
-            <button onclick="openArticleModal(${item.id})" class="px-3.5 py-1.5 bg-[#FAF6EE] hover:bg-[#881B1B] text-[#881B1B] hover:text-white border border-[#E0D5C3] hover:border-[#881B1B] text-xs font-semibold rounded-lg transition-all flex items-center gap-1">
-              Đọc tiếp <i class="fa-solid fa-arrow-right text-[9px]"></i>
-            </button>
+            <a href="bai-viet-chi-tiet.html?id=${item.id}" class="px-3.5 py-1.5 bg-[#FAF6EE] hover:bg-[#881B1B] text-[#881B1B] hover:text-white border border-[#E0D5C3] hover:border-[#881B1B] text-xs font-semibold rounded-lg transition-all flex items-center gap-1 shadow-sm">
+              Đọc bài viết <i class="fa-solid fa-arrow-right text-[9px]"></i>
+            </a>
           </div>
         </article>
       `).join('');
@@ -511,9 +525,10 @@
 
     function filterArticles() {
       const q = document.getElementById('articleSearchInput').value.toLowerCase().trim();
-      const filtered = ARTICLES.filter(item => {
+      const filtered = articlesList.filter(item => {
         const matchCat = currentCategory === 'all' || item.category === currentCategory;
-        const matchQuery = item.title.toLowerCase().includes(q) || item.summary.toLowerCase().includes(q) || item.categoryName.toLowerCase().includes(q);
+        const catName = item.categoryName || '';
+        const matchQuery = item.title.toLowerCase().includes(q) || item.summary.toLowerCase().includes(q) || catName.toLowerCase().includes(q);
         return matchCat && matchQuery;
       });
       renderArticles(filtered);
@@ -532,39 +547,9 @@
       filterArticles();
     }
 
-    function openArticleModal(id) {
-      const item = ARTICLES.find(a => a.id === id);
-      if (!item) return;
-      document.getElementById('modalArticleCategory').innerText = item.categoryName + " • " + item.readTime;
-      document.getElementById('modalArticleTitle').innerText = item.title;
-      document.getElementById('modalArticleBody').innerHTML = `
-        <div class="h-56 sm:h-64 rounded-2xl overflow-hidden mb-6 bg-stone-100">
-          <img src="${item.img}" alt="${item.title}" class="w-full h-full object-cover">
-        </div>
-        <div class="p-4 bg-amber-50/80 border border-amber-200 rounded-xl text-xs sm:text-sm text-amber-900 font-medium mb-6">
-          <strong>Tóm tắt:</strong> ${item.summary}
-        </div>
-        <div class="space-y-4 text-xs sm:text-sm leading-relaxed text-[#292421]">
-          ${item.content}
-        </div>
-      `;
-      document.getElementById('articleModal').classList.remove('hidden');
-      document.getElementById('articleModal').classList.add('flex');
-    }
-
-    function closeArticleModal() {
-      document.getElementById('articleModal').classList.add('hidden');
-      document.getElementById('articleModal').classList.remove('flex');
-    }
-
-    // Close on click outside
-    window.addEventListener('click', (e) => {
-      const modal = document.getElementById('articleModal');
-      if (e.target === modal) closeArticleModal();
-    });
-
     window.addEventListener('DOMContentLoaded', () => {
-      renderArticles(ARTICLES);
+      articlesList = getLiveArticles();
+      renderArticles(articlesList);
     });
   </script>
   <!-- FIXED MOBILE BOTTOM NAVIGATION BAR -->
