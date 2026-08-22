@@ -481,31 +481,71 @@
       }
     ];
 
+    // Slug generator helper
+    function generateSlug(text) {
+      if (!text) return '';
+      return text
+        .toString()
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .replace(/[đĐ]/g, 'd')
+        .replace(/[^a-z0-9\s-]/g, '')
+        .trim()
+        .replace(/[\s_]+/g, '-')
+        .replace(/-+/g, '-');
+    }
+
     function getAllArticles() {
       try {
         const stored = localStorage.getItem('DAYTHOISAO_ARTICLES');
         if (stored) {
           const parsed = JSON.parse(stored);
           if (Array.isArray(parsed) && parsed.length > 0) {
+            parsed.forEach((a, i) => {
+              if (!a.slug) a.slug = generateSlug(a.title);
+            });
             return parsed.sort((a, b) => (a.order || 999) - (b.order || 999));
           }
         }
       } catch (e) {}
+      DEFAULT_ARTICLES.forEach((a, i) => {
+        if (!a.slug) a.slug = generateSlug(a.title);
+      });
       return DEFAULT_ARTICLES;
     }
 
     function initDetailPage() {
       const urlParams = new URLSearchParams(window.location.search);
-      const articleId = parseInt(urlParams.get('id')) || 1;
+      const slugParam = urlParams.get('slug');
+      const articleId = parseInt(urlParams.get('id'));
       const articles = getAllArticles();
-      const article = articles.find(a => a.id === articleId) || articles[0];
+      
+      let article = null;
+      if (slugParam) {
+        article = articles.find(a => (a.slug || generateSlug(a.title)) === slugParam);
+      }
+      if (!article && articleId) {
+        article = articles.find(a => a.id === articleId);
+      }
+      if (!article) {
+        article = articles[0];
+      }
 
       if (!article) return;
+
+      const currentSlug = article.slug || generateSlug(article.title);
 
       // Update Page SEO Metadata
       document.title = `${article.title} - Dạy Thổi Sáo | daythoisao.com`;
       const descEl = document.getElementById('pageDescription');
       if (descEl) descEl.content = article.summary;
+
+      // Update canonical and og url
+      const canonicalEl = document.getElementById('pageCanonical');
+      if (canonicalEl) canonicalEl.href = `https://daythoisao.com/bai-viet-chi-tiet.html?slug=${currentSlug}`;
+      const ogUrlEl = document.getElementById('ogUrl');
+      if (ogUrlEl) ogUrlEl.content = `https://daythoisao.com/bai-viet-chi-tiet.html?slug=${currentSlug}`;
 
       // Breadcrumb & Headings
       document.getElementById('breadcrumbCategory').innerText = article.categoryName || article.category;
@@ -542,8 +582,10 @@
         related = related.slice(0, 3);
       }
 
-      grid.innerHTML = related.map(item => `
-        <a href="bai-viet-chi-tiet.html?id=${item.id}" class="bg-white rounded-2xl border border-[#E8DFC8] overflow-hidden shadow-sm hover:-translate-y-1.5 hover:shadow-md hover:border-[#881B1B] transition-all flex flex-col justify-between group">
+      grid.innerHTML = related.map(item => {
+        const itemSlug = item.slug || generateSlug(item.title);
+        return `
+        <a href="bai-viet-chi-tiet.html?slug=${itemSlug}" class="bg-white rounded-2xl border border-[#E8DFC8] overflow-hidden shadow-sm hover:-translate-y-1.5 hover:shadow-md hover:border-[#881B1B] transition-all flex flex-col justify-between group">
           <div>
             <div class="h-36 overflow-hidden bg-stone-100 relative">
               <img src="${item.img}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
@@ -563,7 +605,8 @@
             Đọc bài viết <i class="fa-solid fa-arrow-right text-[10px]"></i>
           </div>
         </a>
-      `).join('');
+      `;
+      }).join('');
     }
 
     function shareArticle(type) {

@@ -461,16 +461,37 @@
     let currentCategory = 'all';
     let articlesList = [];
 
+    // Slug generator helper
+    function generateSlug(text) {
+      if (!text) return '';
+      return text
+        .toString()
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .replace(/[đĐ]/g, 'd')
+        .replace(/[^a-z0-9\s-]/g, '')
+        .trim()
+        .replace(/[\s_]+/g, '-')
+        .replace(/-+/g, '-');
+    }
+
     function getLiveArticles() {
       try {
         const stored = localStorage.getItem('DAYTHOISAO_ARTICLES');
         if (stored) {
           const parsed = JSON.parse(stored);
           if (Array.isArray(parsed) && parsed.length > 0) {
+            parsed.forEach((a, i) => {
+              if (!a.slug) a.slug = generateSlug(a.title);
+            });
             return parsed.sort((a, b) => (a.order || 999) - (b.order || 999));
           }
         }
       } catch (e) {}
+      ARTICLES.forEach((a, i) => {
+        if (!a.slug) a.slug = generateSlug(a.title);
+      });
       return ARTICLES.sort((a, b) => (a.order || 999) - (b.order || 999));
     }
 
@@ -490,10 +511,12 @@
         return;
       }
 
-      grid.innerHTML = list.map(item => `
+      grid.innerHTML = list.map(item => {
+        const itemSlug = item.slug || generateSlug(item.title);
+        return `
         <article class="bg-white rounded-2xl border border-[#E8DFC8] overflow-hidden shadow-sm article-card flex flex-col justify-between hover:border-[#881B1B] transition-all">
           <div>
-            <a href="bai-viet-chi-tiet.html?id=${item.id}" class="block h-48 overflow-hidden relative bg-stone-100 group">
+            <a href="bai-viet-chi-tiet.html?slug=${itemSlug}" class="block h-48 overflow-hidden relative bg-stone-100 group">
               <img src="${item.img}" alt="${item.title}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
               <span class="absolute top-3 left-3 bg-[#881B1B] text-white text-[10px] uppercase font-bold px-2.5 py-1 rounded-full shadow">
                 ${item.categoryName || item.category}
@@ -506,7 +529,7 @@
                 <span><i class="fa-regular fa-clock text-[#881B1B] mr-1"></i>${item.readTime}</span>
               </div>
               <h3 class="font-serif text-base sm:text-lg font-bold text-[#292421] hover:text-[#881B1B] transition-colors leading-snug mb-2">
-                <a href="bai-viet-chi-tiet.html?id=${item.id}">${item.title}</a>
+                <a href="bai-viet-chi-tiet.html?slug=${itemSlug}">${item.title}</a>
               </h3>
               <p class="text-xs text-[#59524B] line-clamp-3 leading-relaxed">
                 ${item.summary}
@@ -515,12 +538,13 @@
           </div>
           <div class="px-5 pb-5 pt-2 border-t border-[#F2EADA] flex items-center justify-between">
             <span class="text-[11px] font-semibold text-[#881B1B]"><i class="fa-solid fa-feather mr-1"></i>Sáo Trúc Âu Cơ</span>
-            <a href="bai-viet-chi-tiet.html?id=${item.id}" class="px-3.5 py-1.5 bg-[#FAF6EE] hover:bg-[#881B1B] text-[#881B1B] hover:text-white border border-[#E0D5C3] hover:border-[#881B1B] text-xs font-semibold rounded-lg transition-all flex items-center gap-1 shadow-sm">
+            <a href="bai-viet-chi-tiet.html?slug=${itemSlug}" class="px-3.5 py-1.5 bg-[#FAF6EE] hover:bg-[#881B1B] text-[#881B1B] hover:text-white border border-[#E0D5C3] hover:border-[#881B1B] text-xs font-semibold rounded-lg transition-all flex items-center gap-1 shadow-sm">
               Đọc bài viết <i class="fa-solid fa-arrow-right text-[9px]"></i>
             </a>
           </div>
         </article>
-      `).join('');
+      `;
+      }).join('');
     }
 
     function filterArticles() {

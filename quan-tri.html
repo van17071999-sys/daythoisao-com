@@ -697,12 +697,53 @@
         <div class="grid grid-cols-1 sm:grid-cols-12 gap-3">
           <div class="sm:col-span-8">
             <label class="font-bold block mb-1">Tiêu đề bài viết *:</label>
-            <input type="text" id="formArticleTitle" required placeholder="Ví dụ: Bí quyết chọn sáo nứa chuẩn âm..." class="w-full bg-white border border-[#D9CDBB] rounded-xl px-3 py-2.5 outline-none focus:ring-2 focus:ring-[#881B1B]">
+            <input type="text" id="formArticleTitle" required oninput="autoGenerateArticleSlug()" placeholder="Ví dụ: Cách chọn sáo trúc phù hợp cho người mới bắt đầu..." class="w-full bg-white border border-[#D9CDBB] rounded-xl px-3 py-2.5 outline-none focus:ring-2 focus:ring-[#881B1B]">
           </div>
           <div class="sm:col-span-4">
             <label class="font-bold block mb-1">Thứ tự ưu tiên hiển thị *:</label>
             <input type="number" id="formArticleOrder" value="1" min="1" max="999" required placeholder="1, 2, 3..." class="w-full bg-white border border-[#D9CDBB] rounded-xl px-3 py-2.5 outline-none focus:ring-2 focus:ring-[#881B1B]">
             <span class="text-[10px] text-stone-500 mt-0.5 block">Số nhỏ hơn sẽ đứng trước</span>
+          </div>
+        </div>
+
+        <!-- URL SLUG / ĐƯỜNG DẪN TĨNH CHUẨN SEO -->
+        <div>
+          <div class="flex items-center justify-between mb-1">
+            <label class="font-bold">Đường dẫn tĩnh / URL Slug (Tối ưu SEO Google) *:</label>
+            <button type="button" onclick="regenerateSlugFromTitle()" class="text-[11px] text-[#881B1B] hover:underline font-bold flex items-center gap-1">
+              <i class="fa-solid fa-arrows-rotate"></i> Tạo lại từ tiêu đề
+            </button>
+          </div>
+          <div class="flex items-center rounded-xl border border-[#D9CDBB] bg-white overflow-hidden focus-within:ring-2 focus-within:ring-[#881B1B]">
+            <span class="px-3 py-2.5 bg-[#FAF6EE] text-[#6B625B] font-mono text-[11px] border-r border-[#D9CDBB] select-none whitespace-nowrap font-medium">
+              daythoisao.com/bai-viet/
+            </span>
+            <input 
+              type="text" 
+              id="formArticleSlug" 
+              required 
+              oninput="updateSeoPreview()" 
+              placeholder="cach-chon-sao-truc-phu-hop-cho-nguoi-moi-bat-dau" 
+              class="w-full bg-transparent px-3 py-2 outline-none font-mono text-xs text-[#881B1B] font-bold"
+            >
+          </div>
+          <span class="text-[10px] text-stone-500 mt-1 block">Cấu trúc link thân thiện với công cụ tìm kiếm, viết liền không dấu ngăn cách bằng dấu gạch ngang.</span>
+        </div>
+
+        <!-- GOOGLE SERP PREVIEW BOX -->
+        <div class="p-3.5 bg-[#FAF6EE] rounded-xl border border-[#D9CDBB] space-y-1.5 shadow-inner">
+          <div class="flex items-center justify-between text-[10px] uppercase font-bold text-stone-500">
+            <span><i class="fa-brands fa-google text-[#4285F4] mr-1"></i> Xem trước kết quả tìm kiếm Google (SERP Preview)</span>
+            <span class="text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded-full text-[9px]">Chuẩn SEO</span>
+          </div>
+          <div class="text-[#1a0dab] font-serif text-sm font-bold line-clamp-1 hover:underline cursor-pointer" id="seoPreviewTitle">
+            Tiêu đề bài viết - Sáo Trúc Âu Cơ
+          </div>
+          <div class="text-[#006621] text-[11px] font-mono line-clamp-1" id="seoPreviewUrl">
+            https://daythoisao.com/bai-viet/cach-chon-sao-truc-phu-hop
+          </div>
+          <div class="text-[#4d5156] text-[11px] line-clamp-2 leading-relaxed" id="seoPreviewSnippet">
+            Đoạn tóm tắt bài viết sẽ xuất hiện ở đây làm thẻ mô tả meta description trên Google...
           </div>
         </div>
 
@@ -733,8 +774,8 @@
         </div>
 
         <div>
-          <label class="font-bold block mb-1">Tóm tắt ngắn (1-2 câu hiển thị ở danh sách):</label>
-          <textarea id="formArticleSummary" rows="2" required placeholder="Mô tả tóm tắt nội dung bài viết..." class="w-full bg-white border border-[#D9CDBB] rounded-xl p-3 outline-none focus:ring-2 focus:ring-[#881B1B]"></textarea>
+          <label class="font-bold block mb-1">Tóm tắt ngắn / Meta Description (1-2 câu):</label>
+          <textarea id="formArticleSummary" rows="2" required oninput="updateSeoPreview()" placeholder="Mô tả tóm tắt nội dung bài viết..." class="w-full bg-white border border-[#D9CDBB] rounded-xl p-3 outline-none focus:ring-2 focus:ring-[#881B1B]"></textarea>
         </div>
 
         <div>
@@ -914,11 +955,12 @@
       }
     ];
 
-    // Seed All 8 Articles
+    // Seed All 8 Articles with SEO Slug
     const SEED_ARTICLES = [
       {
         id: 1,
         order: 1,
+        slug: "cach-chon-sao-truc-phu-hop-cho-nguoi-moi-bat-dau",
         title: "Cách chọn sáo trúc phù hợp cho người mới bắt đầu",
         category: "chon-sao",
         categoryName: "Cách chọn & Bảo quản sáo",
@@ -956,6 +998,7 @@
       {
         id: 2,
         order: 2,
+        slug: "5-loi-thuong-gap-khi-thoi-sao-va-cach-khac-phuc-triet-de",
         title: "5 Lỗi thường gặp khi thổi sáo và cách khắc phục triệt để",
         category: "nhap-mon",
         categoryName: "Nhập môn sáo trúc",
@@ -977,6 +1020,7 @@
       {
         id: 3,
         order: 3,
+        slug: "bi-quyet-luyen-hoi-tho-bung-va-ky-thuat-rung-hoi-vibrato",
         title: "Bí quyết luyện hơi thở bụng & Kỹ thuật rung hơi (Vibrato)",
         category: "ky-thuat-hoi",
         categoryName: "Kỹ thuật hơi & Khẩu hình",
@@ -998,6 +1042,7 @@
       {
         id: 4,
         order: 4,
+        slug: "huong-dan-doc-not-nhac-va-cach-dich-cam-am-bai-hat",
         title: "Hướng dẫn đọc nốt nhạc và cách dịch cảm âm bài hát",
         category: "nhac-ly",
         categoryName: "Nhạc lý & Cảm âm",
@@ -1022,6 +1067,7 @@
       {
         id: 5,
         order: 5,
+        slug: "nghe-thuat-luyen-lay-vuot-ngon-va-dap-ngon-trong-dan-ca",
         title: "Nghệ thuật luyến láy, vuốt ngón và đập ngón trong dân ca",
         category: "nang-cao",
         categoryName: "Biểu diễn nâng cao",
@@ -1043,6 +1089,7 @@
       {
         id: 6,
         order: 6,
+        slug: "kinh-nghiem-ve-sinh-chong-moc-va-chong-nut-sao-mua-dong",
         title: "Kinh nghiệm vệ sinh, chống mốc và chống nứt sáo vào mùa đông",
         category: "chon-sao",
         categoryName: "Cách chọn & Bảo quản sáo",
@@ -1061,6 +1108,7 @@
       {
         id: 7,
         order: 7,
+        slug: "lo-trinh-30-ngay-tu-hoc-thoi-sao-thanh-thao-tai-nha",
         title: "Lộ trình 30 ngày tự học thổi sáo thành thạo tại nhà",
         category: "nhap-mon",
         categoryName: "Nhập môn sáo trúc",
@@ -1082,6 +1130,7 @@
       {
         id: 8,
         order: 8,
+        slug: "bi-quyet-chon-micro-va-xu-ly-am-thanh-bieu-dien-san-khau",
         title: "Bí quyết chọn Micro và xử lý âm thanh khi biểu diễn sân khấu",
         category: "nang-cao",
         categoryName: "Biểu diễn nâng cao",
@@ -1098,6 +1147,21 @@
         `
       }
     ];
+
+    // Slug generator helper
+    function generateSlug(text) {
+      if (!text) return '';
+      return text
+        .toString()
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '') // Bỏ dấu tiếng Việt
+        .replace(/[đĐ]/g, 'd')
+        .replace(/[^a-z0-9\s-]/g, '') // Bỏ ký tự đặc biệt
+        .trim()
+        .replace(/[\s_]+/g, '-') // Đổi khoảng trắng thành dấu gạch ngang
+        .replace(/-+/g, '-'); // Gộp nhiều gạch ngang
+    }
 
     // Seed Sample Requests
     const SEED_REQUESTS = [
@@ -1159,19 +1223,24 @@
         localStorage.setItem('DAYTHOISAO_REQUESTS', JSON.stringify(requestsData));
       }
 
-      // Load Articles (Seed All 8 Articles)
+      // Load Articles (Seed All 8 Articles with Slugs)
       const storedArticles = localStorage.getItem('DAYTHOISAO_ARTICLES');
       if (storedArticles) {
         try { 
           articlesData = JSON.parse(storedArticles); 
           if (!Array.isArray(articlesData) || articlesData.length < 8) {
-            // merge or fallback to seed
+            // merge missing
             const existingIds = new Set(articlesData.map(a => a.id));
             SEED_ARTICLES.forEach(sa => {
               if (!existingIds.has(sa.id)) articlesData.push(sa);
             });
-            localStorage.setItem('DAYTHOISAO_ARTICLES', JSON.stringify(articlesData));
           }
+          // Ensure all items have slug
+          articlesData.forEach((a, i) => {
+            if (!a.slug) a.slug = generateSlug(a.title);
+            if (!a.order) a.order = i + 1;
+          });
+          localStorage.setItem('DAYTHOISAO_ARTICLES', JSON.stringify(articlesData));
         } catch (e) { 
           articlesData = SEED_ARTICLES; 
           localStorage.setItem('DAYTHOISAO_ARTICLES', JSON.stringify(articlesData));
@@ -1468,7 +1537,9 @@
         return;
       }
 
-      grid.innerHTML = list.map((a, idx) => `
+      grid.innerHTML = list.map((a, idx) => {
+        const itemSlug = a.slug || generateSlug(a.title);
+        return `
         <div class="bg-[#FAF6EE] rounded-2xl border border-[#E8DFC8] overflow-hidden flex flex-col justify-between shadow-sm hover:border-[#881B1B] transition-all">
           <div>
             <div class="h-36 overflow-hidden bg-stone-200 relative">
@@ -1489,6 +1560,13 @@
               </div>
               <h4 class="font-serif text-sm font-bold text-[#292421] line-clamp-2">${a.title}</h4>
               <p class="text-xs text-stone-500 line-clamp-2 leading-relaxed">${a.summary}</p>
+              
+              <!-- Link mô tả tĩnh SEO -->
+              <div class="mt-2.5 text-[11px] font-mono bg-emerald-50/90 text-emerald-900 px-2.5 py-1.5 rounded-xl border border-emerald-200 line-clamp-1 flex items-center gap-1.5" title="daythoisao.com/bai-viet/${itemSlug}">
+                <i class="fa-solid fa-link text-[10px] text-emerald-600 shrink-0"></i>
+                <span class="text-stone-400 shrink-0">/bai-viet/</span>
+                <span class="font-bold text-emerald-800 truncate">${itemSlug}</span>
+              </div>
             </div>
           </div>
 
@@ -1505,7 +1583,7 @@
 
             <!-- Action links -->
             <div class="flex items-center gap-2">
-              <a href="bai-viet-chi-tiet.html?id=${a.id}" target="_blank" class="px-2.5 py-1 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 text-[11px] font-bold rounded-lg border border-emerald-200 transition-colors flex items-center gap-1">
+              <a href="bai-viet-chi-tiet.html?slug=${itemSlug}" target="_blank" class="px-2.5 py-1 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 text-[11px] font-bold rounded-lg border border-emerald-200 transition-colors flex items-center gap-1">
                 <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i> Xem trang
               </a>
               <button onclick="editArticle(${a.id})" class="px-2.5 py-1 bg-[#881B1B]/10 hover:bg-[#881B1B] text-[#881B1B] hover:text-white text-[11px] font-bold rounded-lg transition-colors">
@@ -1517,7 +1595,8 @@
             </div>
           </div>
         </div>
-      `).join('');
+      `;
+      }).join('');
     }
 
     function handleAdminArticleSearch() {
@@ -1832,16 +1911,20 @@
       }
     }
 
-    // ================= ARTICLE EDITOR MODAL LOGIC =================
+    // ================= ARTICLE EDITOR MODAL LOGIC & SEO =================
+    let isSlugManualEdited = false;
+
     function openArticleFormModal(article = null) {
       document.getElementById('articleEditorForm').reset();
       const modal = document.getElementById('articleFormModal');
       const title = document.getElementById('articleFormModalTitle');
 
       if (article) {
+        isSlugManualEdited = true;
         title.innerHTML = `<i class="fa-solid fa-pen-to-square"></i> Sửa bài viết: ${article.title}`;
         document.getElementById('editArticleId').value = article.id;
         document.getElementById('formArticleTitle').value = article.title;
+        document.getElementById('formArticleSlug').value = article.slug || generateSlug(article.title);
         document.getElementById('formArticleOrder').value = article.order || 1;
         document.getElementById('formArticleCategory').value = article.category || 'nhap-mon';
         document.getElementById('formArticleReadTime').value = article.readTime || '5 phút đọc';
@@ -1850,14 +1933,48 @@
         document.getElementById('formArticleSummary').value = article.summary || '';
         document.getElementById('formArticleContent').value = article.content || '';
       } else {
+        isSlugManualEdited = false;
         title.innerHTML = `<i class="fa-solid fa-plus"></i> Thêm Bài Viết Mới`;
         document.getElementById('editArticleId').value = '';
+        document.getElementById('formArticleSlug').value = '';
         document.getElementById('formArticleOrder').value = articlesData.length + 1;
         document.getElementById('formArticleDate').value = new Date().toISOString().split('T')[0];
       }
 
+      updateSeoPreview();
       modal.classList.remove('hidden');
       modal.classList.add('flex');
+    }
+
+    function autoGenerateArticleSlug() {
+      const title = document.getElementById('formArticleTitle').value.trim();
+      const slugInput = document.getElementById('formArticleSlug');
+      if (!isSlugManualEdited || !slugInput.value.trim()) {
+        slugInput.value = generateSlug(title);
+      }
+      updateSeoPreview();
+    }
+
+    function regenerateSlugFromTitle() {
+      const title = document.getElementById('formArticleTitle').value.trim();
+      document.getElementById('formArticleSlug').value = generateSlug(title);
+      isSlugManualEdited = false;
+      updateSeoPreview();
+      showToast("Đã tạo lại đường dẫn tĩnh từ tiêu đề!");
+    }
+
+    function updateSeoPreview() {
+      const title = document.getElementById('formArticleTitle')?.value.trim() || 'Tiêu đề bài viết';
+      const slug = document.getElementById('formArticleSlug')?.value.trim() || 'duong-dan-bai-viet';
+      const summary = document.getElementById('formArticleSummary')?.value.trim() || 'Đoạn tóm tắt bài viết sẽ xuất hiện ở đây làm thẻ mô tả meta description trên Google...';
+
+      const prevTitle = document.getElementById('seoPreviewTitle');
+      const prevUrl = document.getElementById('seoPreviewUrl');
+      const prevSnippet = document.getElementById('seoPreviewSnippet');
+
+      if (prevTitle) prevTitle.innerText = `${title} - Sáo Trúc Âu Cơ`;
+      if (prevUrl) prevUrl.innerText = `https://daythoisao.com/bai-viet/${slug}`;
+      if (prevSnippet) prevSnippet.innerText = summary;
     }
 
     function closeArticleFormModal() {
@@ -1870,6 +1987,8 @@
       e.preventDefault();
       const idVal = document.getElementById('editArticleId').value;
       const title = document.getElementById('formArticleTitle').value.trim();
+      let slug = document.getElementById('formArticleSlug').value.trim();
+      if (!slug) slug = generateSlug(title);
       const order = parseInt(document.getElementById('formArticleOrder').value) || 1;
       const catSelect = document.getElementById('formArticleCategory');
       const category = catSelect.value;
@@ -1887,6 +2006,7 @@
           articlesData[idx] = {
             ...articlesData[idx],
             title,
+            slug,
             order,
             category,
             categoryName,
@@ -1903,6 +2023,7 @@
         const newArt = {
           id: newId,
           order,
+          slug,
           title,
           category,
           categoryName,
