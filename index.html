@@ -1321,29 +1321,44 @@
     }
 
     function getAudioContext() {
-      if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-      if (audioCtx.state === "suspended") audioCtx.resume();
+      try {
+        if (!audioCtx) {
+          const AudioCtx = window.AudioContext || window.webkitAudioContext;
+          if (AudioCtx) {
+            audioCtx = new AudioCtx();
+          }
+        }
+        if (audioCtx && audioCtx.state === "suspended") {
+          audioCtx.resume();
+        }
+      } catch (e) {
+        console.log("AudioContext init error:", e);
+      }
       return audioCtx;
     }
 
     function playFluteTone(frequency, noteName) {
       try {
+        if (!frequency || isNaN(frequency)) return;
         const ctx = getAudioContext();
+        if (!ctx) return;
         const now = ctx.currentTime;
+
         const masterGain = ctx.createGain();
         masterGain.gain.setValueAtTime(0.001, now);
-        masterGain.gain.linearRampToValueAtTime(0.3, now + 0.08);
+        masterGain.gain.linearRampToValueAtTime(0.35, now + 0.05);
         masterGain.gain.exponentialRampToValueAtTime(0.0001, now + 1.2);
 
         const filter = ctx.createBiquadFilter();
         filter.type = "lowpass";
-        filter.frequency.setValueAtTime(frequency * 2.8, now);
-        filter.Q.setValueAtTime(2.0, now);
+        filter.frequency.setValueAtTime(Math.min(frequency * 2.8, 12000), now);
+        filter.Q.setValueAtTime(1.5, now);
 
         const osc1 = ctx.createOscillator();
         osc1.type = "sine";
         osc1.frequency.setValueAtTime(frequency, now);
 
+        // Vibrato Effect
         const vibrato = ctx.createOscillator();
         const vibratoGain = ctx.createGain();
         vibrato.frequency.setValueAtTime(5.5, now);
@@ -1357,7 +1372,7 @@
         osc2.type = "triangle";
         osc2.frequency.setValueAtTime(frequency * 2, now);
         const osc2Gain = ctx.createGain();
-        osc2Gain.gain.setValueAtTime(0.12, now);
+        osc2Gain.gain.setValueAtTime(0.1, now);
 
         osc1.connect(filter);
         osc2.connect(osc2Gain);
@@ -1372,54 +1387,58 @@
 
         showToast(`Đang phát nốt: ${noteName || "Âm sáo"}`);
       } catch (err) {
-        console.log("Audio err", err);
+        console.log("Audio play error:", err);
       }
     }
 
     function playCurrentNote() {
-      const note = ADV_NOTES[currentNoteIndex];
-      playFluteTone(note.freq, note.name);
+      const note = ADV_NOTES[currentNoteIndex] || ADV_NOTES[0];
+      if (note) {
+        playFluteTone(note.freq, note.name);
+      }
     }
 
     function setOctave(oct) {
-      currentOctave = oct;
+      currentOctave = parseInt(oct);
       ['oct1Btn', 'oct2Btn', 'oct3Btn'].forEach((id, idx) => {
         const btn = document.getElementById(id);
         if (btn) {
-          if (idx + 1 === oct) {
+          if (idx + 1 === currentOctave) {
             btn.className = "px-3 py-1 rounded-lg text-xs font-bold bg-[#881B1B] text-white shadow-sm transition-all";
           } else {
             btn.className = "px-3 py-1 rounded-lg text-xs font-bold text-[#59524B] hover:bg-white transition-all";
           }
         }
       });
-      const firstNote = ADV_NOTES.find(n => n.octave === oct);
+      const firstNote = ADV_NOTES.find(n => n.octave === currentOctave);
       if (firstNote) {
         currentNoteIndex = ADV_NOTES.indexOf(firstNote);
       }
       renderNoteSelectors();
       updateFingeringChart();
+      playCurrentNote();
     }
 
     function renderNoteSelectors() {
       const container = document.getElementById("noteSelectorButtons");
+      if (!container) return;
       const filtered = ADV_NOTES.filter(n => n.octave === currentOctave);
       container.innerHTML = filtered.map((note) => {
         const realIdx = ADV_NOTES.indexOf(note);
         const isActive = realIdx === currentNoteIndex;
         return `
-          <button onclick="selectNote(${realIdx})" class="flex flex-col items-center justify-center py-2 px-1 rounded-xl transition-all border ${
-            isActive ? "bg-[#881B1B] text-white border-[#701515] shadow-md scale-105" : "bg-[#FAF6EE] text-[#59524B] border-[#E0D5C3] hover:bg-[#F2E8D7] hover:text-[#881B1B]"
+          <button type="button" onclick="selectNote(${realIdx})" class="flex flex-col items-center justify-center py-2 px-1 rounded-xl transition-all border cursor-pointer select-none ${
+            isActive ? "bg-[#881B1B] text-white border-[#701515] shadow-md scale-105 font-bold" : "bg-[#FAF6EE] text-[#59524B] border-[#E0D5C3] hover:bg-[#F2E8D7] hover:text-[#881B1B]"
           }">
-            <span class="font-bold text-xs sm:text-sm">${note.name}</span>
-            <span class="text-[10px] opacity-80">(${note.id})</span>
+            <span class="font-bold text-xs sm:text-sm pointer-events-none">${note.name}</span>
+            <span class="text-[10px] opacity-80 pointer-events-none">(${note.id})</span>
           </button>
         `;
       }).join("");
     }
 
     function selectNote(idx) {
-      currentNoteIndex = idx;
+      currentNoteIndex = parseInt(idx);
       renderNoteSelectors();
       updateFingeringChart();
       playCurrentNote();
@@ -1427,31 +1446,51 @@
 
     function setFluteType(type) {
       currentFluteType = type;
-      document.getElementById("flute6Btn").className = type === "6" ? "px-2.5 py-0.5 rounded-md font-semibold bg-[#881B1B] text-white transition-all" : "px-2.5 py-0.5 rounded-md font-medium text-[#59524B] hover:text-[#881B1B] transition-all";
-      document.getElementById("flute10Btn").className = type === "10" ? "px-2.5 py-0.5 rounded-md font-semibold bg-[#881B1B] text-white transition-all" : "px-2.5 py-0.5 rounded-md font-medium text-[#59524B] hover:text-[#881B1B] transition-all";
+      const f6 = document.getElementById("flute6Btn");
+      const f10 = document.getElementById("flute10Btn");
+      if (f6) f6.className = type === "6" ? "px-2.5 py-0.5 rounded-md font-semibold bg-[#881B1B] text-white transition-all" : "px-2.5 py-0.5 rounded-md font-medium text-[#59524B] hover:text-[#881B1B] transition-all";
+      if (f10) f10.className = type === "10" ? "px-2.5 py-0.5 rounded-md font-semibold bg-[#881B1B] text-white transition-all" : "px-2.5 py-0.5 rounded-md font-medium text-[#59524B] hover:text-[#881B1B] transition-all";
       updateFingeringChart();
     }
 
     function updateFingeringChart() {
-      const note = ADV_NOTES[currentNoteIndex];
-      document.getElementById("currentNoteTitle").innerText = `${note.name} (${note.id})`;
+      const note = ADV_NOTES[currentNoteIndex] || ADV_NOTES[0];
+      if (!note) return;
+
+      const titleEl = document.getElementById("currentNoteTitle");
+      if (titleEl) {
+        titleEl.innerText = `${note.name} (${note.id})`;
+      }
+
       const tipBox = document.getElementById("advNoteTipBox");
       if (tipBox) {
         tipBox.innerHTML = `<strong>Kỹ thuật bấm & thổi:</strong> ${note.tip}`;
       }
+
       const tubeHoles = document.getElementById("fluteTubeHoles");
-      tubeHoles.innerHTML = note.holes.map(st => {
-        let style = st === true ? "bg-[#1b0d03] ring-2 ring-[#881B1B]/70" : (st === "half" ? "bg-gradient-to-r from-[#1b0d03] to-amber-200 ring-2 ring-amber-500" : "bg-amber-100 border-2 border-[#522c07]");
-        return `<div class="w-4 h-4 rounded-full ${style} shadow-inner"></div>`;
-      }).join("");
+      if (tubeHoles) {
+        tubeHoles.innerHTML = note.holes.map((st, i) => {
+          let style = st === true ? "bg-[#1b0d03] ring-2 ring-[#881B1B]/70" : (st === "half" ? "bg-gradient-to-r from-[#1b0d03] to-amber-200 ring-2 ring-amber-500" : "bg-amber-100 border-2 border-[#522c07]");
+          return `<button type="button" onclick="playFluteTone(${note.freq}, '${note.name}')" class="w-4 h-4 rounded-full ${style} shadow-inner cursor-pointer hover:scale-125 transition-transform" title="Lỗ ${i+1}: Bấm để nghe"></button>`;
+        }).join("");
+      }
 
       const container = document.getElementById("fingeringCircles");
-      const labels = ["T1 (Trỏ T)", "T2 (Giữa T)", "T3 (Áp T)", "T4 (Trỏ P)", "T5 (Giữa P)", "T6 (Áp P)"];
-      container.innerHTML = note.holes.map((st, i) => {
-        let dot = st === true ? `<div class="w-8 h-8 rounded-full bg-[#292421] mx-auto border-2 border-[#1a1715] flex items-center justify-center text-white text-[10px] shadow">⚫</div>` : (st === "half" ? `<div class="w-8 h-8 rounded-full bg-gradient-to-r from-[#292421] from-50% to-white to-50% mx-auto border-2 border-[#292421] flex items-center justify-center text-amber-900 text-[10px] shadow">◐</div>` : `<div class="w-8 h-8 rounded-full bg-white mx-auto border-2 border-[#292421] flex items-center justify-center text-[#292421] text-[10px] shadow">⚪</div>`);
-        return `<div class="flex flex-col items-center"><span class="text-[10px] font-bold text-[#6B625B] mb-1 truncate">${labels[i]}</span>${dot}</div>`;
-      }).join("");
+      if (container) {
+        const labels = ["T1 (Trỏ T)", "T2 (Giữa T)", "T3 (Áp T)", "T4 (Trỏ P)", "T5 (Giữa P)", "T6 (Áp P)"];
+        container.innerHTML = note.holes.map((st, i) => {
+          let dot = st === true ? `<div class="w-8 h-8 rounded-full bg-[#292421] mx-auto border-2 border-[#1a1715] flex items-center justify-center text-white text-[10px] shadow">⚫</div>` : (st === "half" ? `<div class="w-8 h-8 rounded-full bg-gradient-to-r from-[#292421] from-50% to-white to-50% mx-auto border-2 border-[#292421] flex items-center justify-center text-amber-900 text-[10px] shadow">◐</div>` : `<div class="w-8 h-8 rounded-full bg-white mx-auto border-2 border-[#292421] flex items-center justify-center text-[#292421] text-[10px] shadow">⚪</div>`);
+          return `<button type="button" onclick="playFluteTone(${note.freq}, '${note.name}')" class="flex flex-col items-center cursor-pointer group hover:scale-105 transition-transform"><span class="text-[10px] font-bold text-[#6B625B] group-hover:text-[#881B1B] mb-1 truncate">${labels[i]}</span>${dot}</button>`;
+        }).join("");
+      }
     }
+
+    // Expose functions to global scope
+    window.selectNote = selectNote;
+    window.setOctave = setOctave;
+    window.setFluteType = setFluteType;
+    window.playCurrentNote = playCurrentNote;
+    window.playFluteTone = playFluteTone;
 
     function renderSongTabs(songs) {
       const container = document.getElementById("songTabList");
