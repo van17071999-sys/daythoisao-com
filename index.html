@@ -281,105 +281,65 @@
   </header>
 
   <!-- ================= HERO SECTION ================= -->
-  <section id="hero" class="relative overflow-hidden pt-10 pb-16 lg:pt-16 lg:pb-20 border-b border-[#EADFCB]/60">
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
-      
-      <!-- Top Badge -->
-      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#EEDBCA]/70 border border-[#D9C4A6] text-xs font-bold text-[#881B1B] shadow-sm">
-        <i class="fa-solid fa-music text-amber-700"></i> Âm nhạc truyền thống & Hiện đại
+  <section id="hero" class="relative overflow-hidden pt-8 pb-16 lg:pt-14 lg:pb-24 border-b border-[#EADFCB]/60">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <!-- Left Hero Content (Căn lệch trái như cũ) -->
+        <div class="lg:col-span-6 space-y-6">
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#EEDBCA]/60 border border-[#D9C4A6] text-xs font-semibold text-[#881B1B]">
+            <i class="fa-solid fa-music"></i> Âm nhạc truyền thống & Hiện đại
+          </div>
+
+          <h1 class="font-serif text-4xl sm:text-5xl lg:text-[54px] leading-[1.18] font-bold text-[#881B1B]">
+            Học thổi sáo<br>
+            <span class="text-[#20402C]">từ những nốt nhạc</span><br>
+            đầu tiên
+          </h1>
+
+          <p class="text-[#59524B] text-base sm:text-lg leading-relaxed max-w-xl">
+            Kho kiến thức sáo trúc <strong class="text-[#292421] font-semibold">miễn phí</strong>, <strong class="text-[#292421] font-semibold">dễ hiểu</strong> và <strong class="text-[#292421] font-semibold">bài bản</strong> được biên soạn bởi <span class="text-[#881B1B] font-semibold">Sáo Trúc Âu Cơ</span> dành cho mọi người.
+          </p>
+
+          <!-- Search Input Box -->
+          <div class="relative max-w-lg">
+            <form onsubmit="handleHeroSearch(event)" class="relative">
+              <input 
+                id="heroSearchInput"
+                type="text" 
+                placeholder="Tìm cảm âm, kỹ thuật hoặc bài học..." 
+                class="w-full bg-white border border-[#D9CDBB] rounded-xl pl-5 pr-14 py-4 text-sm sm:text-base text-[#292421] placeholder-[#9C9388] shadow-sm focus:outline-none focus:ring-2 focus:ring-[#881B1B] focus:border-transparent transition-all"
+              >
+              <button 
+                type="submit" 
+                class="absolute right-2.5 top-1/2 -translate-y-1/2 w-10 h-10 rounded-lg bg-[#FAF6EE] text-[#59524B] hover:text-[#881B1B] hover:bg-[#EADBCA] flex items-center justify-center transition-colors"
+              >
+                <i class="fa-solid fa-magnifying-glass text-lg"></i>
+              </button>
+            </form>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="flex flex-wrap gap-4 pt-2">
+            <a 
+              href="lo-trinh-nguoi-moi.html" 
+              class="inline-flex items-center gap-2 px-6 py-3.5 bg-[#881B1B] hover:bg-[#701515] text-white font-medium rounded-xl shadow-md hover:shadow-lg transition-all text-sm sm:text-base"
+            >
+              <i class="fa-solid fa-book-open"></i> Bắt đầu học miễn phí
+            </a>
+            <a 
+              href="danh-sach-bai-tap.html" 
+              class="inline-flex items-center gap-2 px-6 py-3.5 bg-white hover:bg-[#F4ECE0] text-[#292421] border border-[#D9CDBB] font-medium rounded-xl shadow-sm hover:shadow transition-all text-sm sm:text-base"
+            >
+              <i class="fa-solid fa-music text-[#881B1B]"></i> Tìm cảm âm bài hát
+            </a>
+          </div>
+        </div>
+
+        <!-- Right Side (Để trống phần vừa xóa) -->
+        <div class="hidden lg:block lg:col-span-6"></div>
+
       </div>
-
-      <!-- Main Heading -->
-      <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl leading-[1.15] font-bold text-[#881B1B] max-w-4xl mx-auto tracking-tight">
-        Học Thổi Sáo Trúc<br>
-        <span class="text-[#20402C]">Từ Những Nốt Nhạc Đầu Tiên</span>
-      </h1>
-
-      <!-- Subtitle -->
-      <p class="text-[#59524B] text-base sm:text-lg leading-relaxed max-w-2xl mx-auto">
-        Kho kiến thức sáo trúc <strong class="text-[#292421] font-semibold">miễn phí</strong>, <strong class="text-[#292421] font-semibold">dễ hiểu</strong> và <strong class="text-[#292421] font-semibold">bài bản</strong> được biên soạn bởi <span class="text-[#881B1B] font-bold">Sáo Trúc Âu Cơ</span> dành cho mọi người.
-      </p>
-
-      <!-- Search Input Box -->
-      <div class="max-w-xl mx-auto">
-        <form onsubmit="handleHeroSearch(event)" class="relative">
-          <input 
-            id="heroSearchInput"
-            type="text" 
-            placeholder="Tìm cảm âm bài hát, kỹ thuật hoặc bài học..." 
-            class="w-full bg-white border-2 border-[#D9CDBB] rounded-2xl pl-5 pr-14 py-4 text-sm sm:text-base text-[#292421] placeholder-[#9C9388] shadow-md focus:outline-none focus:ring-2 focus:ring-[#881B1B] focus:border-transparent transition-all"
-          >
-          <button 
-            type="submit" 
-            class="absolute right-2.5 top-1/2 -translate-y-1/2 w-11 h-11 rounded-xl bg-[#881B1B] hover:bg-[#701515] text-white flex items-center justify-center transition-colors shadow-sm"
-          >
-            <i class="fa-solid fa-magnifying-glass text-base"></i>
-          </button>
-        </form>
-      </div>
-
-      <!-- Action Buttons -->
-      <div class="flex flex-wrap justify-center gap-4 pt-1">
-        <a 
-          href="lo-trinh-nguoi-moi.html" 
-          class="inline-flex items-center gap-2 px-7 py-3.5 bg-[#881B1B] hover:bg-[#701515] text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all text-sm sm:text-base"
-        >
-          <i class="fa-solid fa-book-open"></i> Bắt đầu học miễn phí
-        </a>
-        <a 
-          href="danh-sach-bai-tap.html" 
-          class="inline-flex items-center gap-2 px-7 py-3.5 bg-white hover:bg-[#F4ECE0] text-[#292421] border border-[#D9CDBB] font-bold rounded-xl shadow-sm hover:shadow transition-all text-sm sm:text-base"
-        >
-          <i class="fa-solid fa-music text-[#881B1B]"></i> Tìm cảm âm bài hát
-        </a>
-        <a 
-          href="gioi-thieu.html" 
-          class="inline-flex items-center gap-2 px-6 py-3.5 bg-[#FAF6EE] hover:bg-[#EADBCA] text-[#292421] border border-[#D9CDBB] font-semibold rounded-xl transition-all text-sm sm:text-base"
-        >
-          <i class="fa-solid fa-circle-info text-[#20402C]"></i> Giới thiệu
-        </a>
-      </div>
-
-      <!-- 4 Highlight Badges -->
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-3.5 pt-6 max-w-4xl mx-auto text-left">
-        <a href="lo-trinh-nguoi-moi.html" class="p-3.5 bg-white/90 rounded-2xl border border-[#D9CDBB] shadow-sm hover:border-[#881B1B] transition-all group flex items-center gap-3">
-          <div class="w-10 h-10 rounded-xl bg-[#881B1B]/10 text-[#881B1B] flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
-            <i class="fa-solid fa-graduation-cap"></i>
-          </div>
-          <div>
-            <div class="font-bold text-xs text-[#292421]">6 Chương bài bản</div>
-            <div class="text-[10px] text-[#6B625B]">Học từ con số 0</div>
-          </div>
-        </a>
-        <a href="danh-sach-bai-tap.html" class="p-3.5 bg-white/90 rounded-2xl border border-[#D9CDBB] shadow-sm hover:border-[#881B1B] transition-all group flex items-center gap-3">
-          <div class="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-800 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
-            <i class="fa-solid fa-music"></i>
-          </div>
-          <div>
-            <div class="font-bold text-xs text-[#292421]">500+ Cảm âm chuẩn</div>
-            <div class="text-[10px] text-[#6B625B]">2 dòng nốt & lời</div>
-          </div>
-        </a>
-        <a href="tra-cuu-the-bam.html" class="p-3.5 bg-white/90 rounded-2xl border border-[#D9CDBB] shadow-sm hover:border-[#881B1B] transition-all group flex items-center gap-3">
-          <div class="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-800 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
-            <i class="fa-solid fa-hand"></i>
-          </div>
-          <div>
-            <div class="font-bold text-xs text-[#292421]">Thế bấm 6 lỗ</div>
-            <div class="text-[10px] text-[#6B625B]">Đồ họa trực quan</div>
-          </div>
-        </a>
-        <a href="gioi-thieu.html" class="p-3.5 bg-white/90 rounded-2xl border border-[#D9CDBB] shadow-sm hover:border-[#881B1B] transition-all group flex items-center gap-3">
-          <div class="w-10 h-10 rounded-xl bg-stone-500/10 text-[#881B1B] flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
-            <i class="fa-solid fa-award"></i>
-          </div>
-          <div>
-            <div class="font-bold text-xs text-[#292421]">Sáo Trúc Âu Cơ</div>
-            <div class="text-[10px] text-[#6B625B]">8+ năm giảng dạy</div>
-          </div>
-        </a>
-      </div>
-
     </div>
   </section>
 
