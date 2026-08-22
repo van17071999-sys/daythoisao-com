@@ -334,9 +334,9 @@
           </div>
         </div>
 
-        <!-- Right Hero Visual: Giới thiệu Người Sáng Lập -->
-        <div class="lg:col-span-6 relative flex justify-center items-center">
-          <div class="relative w-full max-w-md sm:max-w-lg bg-gradient-to-br from-[#FAF6EE] via-[#F5ECE0] to-[#EADBCA] rounded-3xl p-6 sm:p-7 border-2 border-[#D9C4A6] shadow-xl overflow-hidden flex flex-col justify-between space-y-5">
+        <!-- Right Hero Visual: Khối Người Sáng Lập (Mặc định: Đang cập nhật) -->
+        <div id="heroFounderSection" class="lg:col-span-6 relative flex justify-center items-center">
+          <div class="relative w-full max-w-md sm:max-w-lg bg-gradient-to-br from-[#FAF6EE] via-[#F5ECE0] to-[#EADBCA] rounded-3xl p-6 sm:p-8 border-2 border-[#D9C4A6] shadow-xl overflow-hidden flex flex-col justify-between space-y-6">
             
             <!-- Background watermark lines -->
             <div class="absolute inset-0 opacity-10 pointer-events-none p-6 space-y-4">
@@ -347,13 +347,15 @@
               <div class="border-b border-gray-900 h-2"></div>
             </div>
 
-            <!-- Header Badge & Stamp -->
+            <!-- Header Badge & Status -->
             <div class="flex justify-between items-start z-10">
               <div class="flex items-center gap-2">
                 <span class="text-xs uppercase tracking-widest text-[#881B1B] font-bold bg-[#881B1B]/10 px-3.5 py-1.5 rounded-full border border-[#881B1B]/20 flex items-center gap-1.5 shadow-sm">
-                  <i class="fa-solid fa-award text-[#E5A93C]"></i> Người Sáng Lập
+                  <i class="fa-solid fa-user-tie text-[#881B1B]"></i> Người Sáng Lập
                 </span>
-                <span class="text-[11px] text-[#59524B] font-medium hidden sm:inline-block">daythoisao.com</span>
+                <span class="inline-flex items-center gap-1.5 text-[11px] font-bold text-amber-800 bg-amber-100/90 px-3 py-1 rounded-full border border-amber-300 shadow-sm">
+                  <i class="fa-solid fa-clock-rotate-left text-[10px]"></i> Đang cập nhật
+                </span>
               </div>
               <div class="w-10 h-14 border-2 border-[#881B1B] text-[#881B1B] flex flex-col items-center justify-center text-[10px] font-bold tracking-tighter bg-red-50/80 rotate-2 shadow-inner rounded-sm">
                 <span>ÂU</span>
@@ -361,58 +363,35 @@
               </div>
             </div>
 
-            <!-- Founder Profile Info -->
-            <div class="z-10 flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-5 text-center sm:text-left">
-              <div class="relative shrink-0">
-                <div class="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-gradient-to-tr from-[#193822] via-[#20402C] to-[#3B6B48] text-amber-200 flex items-center justify-center shadow-lg border-2 border-white">
-                  <i class="fa-solid fa-user-graduate text-3xl sm:text-4xl text-amber-100"></i>
-                </div>
-                <span class="absolute -bottom-2 -right-2 w-7 h-7 rounded-full bg-[#881B1B] text-white text-xs flex items-center justify-center font-bold shadow-md border-2 border-white" title="Giảng viên">
-                  <i class="fa-solid fa-music text-[10px]"></i>
-                </span>
+            <!-- Updating State Body -->
+            <div class="z-10 py-3 text-center sm:text-left flex flex-col sm:flex-row items-center gap-4 sm:gap-5">
+              <div class="w-20 h-20 sm:w-22 sm:h-22 rounded-2xl bg-gradient-to-tr from-[#881B1B]/10 via-[#FAF6EE] to-[#EADBCA] border-2 border-dashed border-[#881B1B]/40 flex items-center justify-center text-[#881B1B] shrink-0 shadow-inner">
+                <i class="fa-solid fa-user-gear text-3xl sm:text-4xl text-[#881B1B]/70"></i>
               </div>
-              <div class="space-y-1">
-                <span class="text-[11px] font-bold uppercase tracking-wider text-[#881B1B]">Chủ nhiệm & Giảng viên</span>
-                <h3 class="font-serif text-2xl font-bold text-[#292421]">Thầy Quách Hạ Văn</h3>
+              <div class="space-y-1.5">
+                <h3 class="font-serif text-xl sm:text-2xl font-bold text-[#292421]">Thông Tin Người Sáng Lập</h3>
                 <p class="text-xs text-[#59524B] leading-relaxed">
-                  Hơn 8 năm tâm huyết nghiên cứu, giảng dạy và xây dựng hệ thống giáo trình tự học sáo trúc thực chiến, dễ hiểu từ số 0.
+                  Nội dung giới thiệu chi tiết về Người sáng lập & Đội ngũ Giảng viên đang được cập nhật và hoàn thiện.
                 </p>
               </div>
             </div>
 
-            <!-- 3 Highlights Stats -->
-            <div class="z-10 grid grid-cols-3 gap-2.5 pt-1">
-              <div class="bg-white/85 backdrop-blur-sm p-2.5 rounded-xl border border-[#D9CDBB] text-center shadow-sm">
-                <div class="font-serif font-bold text-[#881B1B] text-sm sm:text-base">5.000+</div>
-                <div class="text-[10px] text-[#6B625B] font-medium leading-tight mt-0.5">Học viên toàn quốc</div>
-              </div>
-              <div class="bg-white/85 backdrop-blur-sm p-2.5 rounded-xl border border-[#D9CDBB] text-center shadow-sm">
-                <div class="font-serif font-bold text-[#193822] text-sm sm:text-base">500+</div>
-                <div class="text-[10px] text-[#6B625B] font-medium leading-tight mt-0.5">Cảm âm chuẩn 2 dòng</div>
-              </div>
-              <div class="bg-white/85 backdrop-blur-sm p-2.5 rounded-xl border border-[#D9CDBB] text-center shadow-sm">
-                <div class="font-serif font-bold text-amber-700 text-sm sm:text-base">100%</div>
-                <div class="text-[10px] text-[#6B625B] font-medium leading-tight mt-0.5">Kiểm âm chuẩn 440Hz</div>
-              </div>
-            </div>
-
-            <!-- Founder Quote & Action Box -->
-            <div class="z-10 bg-white/95 backdrop-blur-sm rounded-2xl p-3.5 border border-[#D9CDBB] shadow-sm flex flex-col sm:flex-row items-center justify-between gap-3">
-              <div class="text-left space-y-0.5 w-full sm:w-auto">
-                <p class="text-[11px] italic text-[#59524B] leading-snug">
-                  <i class="fa-solid fa-quote-left text-[#881B1B]/40 text-xs mr-1"></i>
-                  Âm nhạc truyền thống sẽ sống mãi khi được truyền dạy bằng cả sự tận tâm.
-                </p>
-                <div class="text-[10px] text-[#881B1B] font-semibold flex items-center gap-1.5 pt-0.5">
-                  <i class="fa-solid fa-location-dot"></i> Lớp học: 106/72 Hòa Bình, Tân Phú, TP.HCM
+            <!-- Notification & Quick Contact -->
+            <div class="z-10 bg-white/95 backdrop-blur-sm rounded-2xl p-4 border border-[#D9CDBB] shadow-sm flex flex-col sm:flex-row items-center justify-between gap-3">
+              <div class="text-left space-y-1 w-full sm:w-auto">
+                <div class="text-xs font-bold text-[#193822] flex items-center gap-1.5">
+                  <i class="fa-solid fa-headset text-[#881B1B]"></i> Hỗ trợ & Tư vấn khóa học:
+                </div>
+                <div class="text-[11px] text-[#59524B] flex items-center gap-1.5">
+                  <i class="fa-solid fa-location-dot text-[#881B1B]"></i> 106/72 Hòa Bình, Tân Phú, TP.HCM
                 </div>
               </div>
               <a 
                 href="https://zalo.me/0374261368" 
                 target="_blank" 
-                class="shrink-0 w-full sm:w-auto px-4 py-2 bg-[#881B1B] hover:bg-[#701515] text-white text-xs font-bold rounded-xl shadow transition-all flex items-center justify-center gap-1.5"
+                class="shrink-0 w-full sm:w-auto px-4 py-2.5 bg-[#881B1B] hover:bg-[#701515] text-white text-xs font-bold rounded-xl shadow transition-all flex items-center justify-center gap-1.5"
               >
-                <i class="fa-solid fa-phone text-[10px]"></i> Zalo Thầy Văn
+                <i class="fa-solid fa-phone text-[10px]"></i> Zalo: 0374 261 368
               </a>
             </div>
 
@@ -1739,6 +1718,92 @@
         }
       }
     }
+
+    // Dynamic Founder Section Handler (Controlled via Admin)
+    function initFounderSection() {
+      try {
+        const saved = JSON.parse(localStorage.getItem('DAYTHOISAO_FOUNDER_SETTINGS') || '{}');
+        const container = document.getElementById('heroFounderSection');
+        if (!container) return;
+
+        if (saved.visibility === 'public') {
+          const name = saved.name || "Thầy Quách Hạ Văn";
+          const title = saved.title || "Chủ nhiệm & Giảng viên Sáo Trúc Âu Cơ";
+          const bio = saved.bio || "Hơn 8 năm tâm huyết nghiên cứu, giảng dạy và xây dựng hệ thống giáo trình tự học sáo trúc thực chiến, dễ hiểu từ số 0.";
+          const zalo = saved.zalo || "0374 261 368";
+
+          container.innerHTML = `
+            <div class="relative w-full max-w-md sm:max-w-lg bg-gradient-to-br from-[#FAF6EE] via-[#F5ECE0] to-[#EADBCA] rounded-3xl p-6 sm:p-7 border-2 border-[#D9C4A6] shadow-xl overflow-hidden flex flex-col justify-between space-y-5">
+              <div class="absolute inset-0 opacity-10 pointer-events-none p-6 space-y-4">
+                <div class="border-b border-gray-900 h-2"></div>
+                <div class="border-b border-gray-900 h-2"></div>
+                <div class="border-b border-gray-900 h-2"></div>
+                <div class="border-b border-gray-900 h-2"></div>
+              </div>
+              <div class="flex justify-between items-start z-10">
+                <div class="flex items-center gap-2">
+                  <span class="text-xs uppercase tracking-widest text-[#881B1B] font-bold bg-[#881B1B]/10 px-3.5 py-1.5 rounded-full border border-[#881B1B]/20 flex items-center gap-1.5 shadow-sm">
+                    <i class="fa-solid fa-award text-[#E5A93C]"></i> Người Sáng Lập
+                  </span>
+                  <span class="text-[11px] text-[#59524B] font-medium hidden sm:inline-block">daythoisao.com</span>
+                </div>
+                <div class="w-10 h-14 border-2 border-[#881B1B] text-[#881B1B] flex flex-col items-center justify-center text-[10px] font-bold tracking-tighter bg-red-50/80 rotate-2 shadow-inner rounded-sm">
+                  <span>ÂU</span>
+                  <span>CƠ</span>
+                </div>
+              </div>
+              <div class="z-10 flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-5 text-center sm:text-left">
+                <div class="relative shrink-0">
+                  <div class="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-gradient-to-tr from-[#193822] via-[#20402C] to-[#3B6B48] text-amber-200 flex items-center justify-center shadow-lg border-2 border-white">
+                    <i class="fa-solid fa-user-graduate text-3xl sm:text-4xl text-amber-100"></i>
+                  </div>
+                  <span class="absolute -bottom-2 -right-2 w-7 h-7 rounded-full bg-[#881B1B] text-white text-xs flex items-center justify-center font-bold shadow-md border-2 border-white">
+                    <i class="fa-solid fa-music text-[10px]"></i>
+                  </span>
+                </div>
+                <div class="space-y-1">
+                  <span class="text-[11px] font-bold uppercase tracking-wider text-[#881B1B]">${title}</span>
+                  <h3 class="font-serif text-2xl font-bold text-[#292421]">${name}</h3>
+                  <p class="text-xs text-[#59524B] leading-relaxed">${bio}</p>
+                </div>
+              </div>
+              <div class="z-10 grid grid-cols-3 gap-2.5 pt-1">
+                <div class="bg-white/85 backdrop-blur-sm p-2.5 rounded-xl border border-[#D9CDBB] text-center shadow-sm">
+                  <div class="font-serif font-bold text-[#881B1B] text-sm sm:text-base">5.000+</div>
+                  <div class="text-[10px] text-[#6B625B] font-medium leading-tight mt-0.5">Học viên toàn quốc</div>
+                </div>
+                <div class="bg-white/85 backdrop-blur-sm p-2.5 rounded-xl border border-[#D9CDBB] text-center shadow-sm">
+                  <div class="font-serif font-bold text-[#193822] text-sm sm:text-base">500+</div>
+                  <div class="text-[10px] text-[#6B625B] font-medium leading-tight mt-0.5">Cảm âm chuẩn 2 dòng</div>
+                </div>
+                <div class="bg-white/85 backdrop-blur-sm p-2.5 rounded-xl border border-[#D9CDBB] text-center shadow-sm">
+                  <div class="font-serif font-bold text-amber-700 text-sm sm:text-base">100%</div>
+                  <div class="text-[10px] text-[#6B625B] font-medium leading-tight mt-0.5">Kiểm âm chuẩn 440Hz</div>
+                </div>
+              </div>
+              <div class="z-10 bg-white/95 backdrop-blur-sm rounded-2xl p-3.5 border border-[#D9CDBB] shadow-sm flex flex-col sm:flex-row items-center justify-between gap-3">
+                <div class="text-left space-y-0.5 w-full sm:w-auto">
+                  <p class="text-[11px] italic text-[#59524B] leading-snug">
+                    <i class="fa-solid fa-quote-left text-[#881B1B]/40 text-xs mr-1"></i>
+                    Âm nhạc truyền thống sẽ sống mãi khi được truyền dạy bằng cả sự tận tâm.
+                  </p>
+                  <div class="text-[10px] text-[#881B1B] font-semibold flex items-center gap-1.5 pt-0.5">
+                    <i class="fa-solid fa-location-dot"></i> Lớp học: 106/72 Hòa Bình, Tân Phú, TP.HCM
+                  </div>
+                </div>
+                <a href="https://zalo.me/${zalo.replace(/\\s+/g, '')}" target="_blank" class="shrink-0 w-full sm:w-auto px-4 py-2 bg-[#881B1B] hover:bg-[#701515] text-white text-xs font-bold rounded-xl shadow transition-all flex items-center justify-center gap-1.5">
+                  <i class="fa-solid fa-phone text-[10px]"></i> Zalo Thầy Văn
+                </a>
+              </div>
+            </div>
+          `;
+        }
+      } catch (e) {
+        console.warn(e);
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', initFounderSection);
   </script>
 </body>
 </html>

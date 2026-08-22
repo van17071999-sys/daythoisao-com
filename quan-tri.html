@@ -427,7 +427,57 @@
                 </form>
               </div>
 
-              <!-- Change Admin Password -->
+              <!-- Founder Settings -->
+            <div class="bg-white rounded-2xl border border-[#E8DFC8] shadow-sm p-6 space-y-4">
+              <div class="flex items-center justify-between pb-2 border-b border-stone-100">
+                <h3 class="font-serif text-base font-bold text-[#193822] flex items-center gap-2">
+                  <i class="fa-solid fa-user-tie text-[#881B1B]"></i> Cấu hình Người Sáng Lập
+                </h3>
+                <span class="text-[10px] uppercase font-bold text-amber-700 bg-amber-50 px-2 py-0.5 rounded border border-amber-200">Trang chủ</span>
+              </div>
+              <form onsubmit="saveFounderSettings(event)" class="space-y-3 text-xs">
+                <div>
+                  <label class="font-bold text-[#292421] block mb-1.5">Chế độ hiển thị trên Trang chủ:</label>
+                  <div class="grid grid-cols-2 gap-2">
+                    <label class="flex items-center gap-2 p-2.5 rounded-xl border border-[#D9CDBB] bg-[#FAF6EE] cursor-pointer hover:border-[#881B1B] transition-all">
+                      <input type="radio" name="founderVisibility" value="private" id="founderVisPrivate" checked class="accent-[#881B1B]">
+                      <div>
+                        <div class="font-bold text-[#881B1B]">🔒 Riêng tư / Tạm ẩn</div>
+                        <div class="text-[10px] text-[#6B625B]">Hiện "Đang cập nhật"</div>
+                      </div>
+                    </label>
+                    <label class="flex items-center gap-2 p-2.5 rounded-xl border border-[#D9CDBB] bg-[#FAF6EE] cursor-pointer hover:border-[#881B1B] transition-all">
+                      <input type="radio" name="founderVisibility" value="public" id="founderVisPublic" class="accent-[#881B1B]">
+                      <div>
+                        <div class="font-bold text-emerald-800">🌐 Công khai</div>
+                        <div class="text-[10px] text-[#6B625B]">Hiện thông tin chi tiết</div>
+                      </div>
+                    </label>
+                  </div>
+                </div>
+                <div>
+                  <label class="font-bold text-[#292421] block mb-1">Tên Người Sáng Lập:</label>
+                  <input type="text" id="settingFounderName" value="Thầy Quách Hạ Văn" class="w-full bg-[#FAF6EE] border border-[#D9CDBB] rounded-xl px-3 py-2 focus:ring-2 focus:ring-[#881B1B] outline-none">
+                </div>
+                <div>
+                  <label class="font-bold text-[#292421] block mb-1">Chức vụ / Danh xưng:</label>
+                  <input type="text" id="settingFounderTitle" value="Chủ nhiệm & Giảng viên Sáo Trúc Âu Cơ" class="w-full bg-[#FAF6EE] border border-[#D9CDBB] rounded-xl px-3 py-2 focus:ring-2 focus:ring-[#881B1B] outline-none">
+                </div>
+                <div>
+                  <label class="font-bold text-[#292421] block mb-1">Giới thiệu tóm tắt:</label>
+                  <textarea id="settingFounderBio" rows="2" class="w-full bg-[#FAF6EE] border border-[#D9CDBB] rounded-xl px-3 py-2 focus:ring-2 focus:ring-[#881B1B] outline-none resize-none">Hơn 8 năm tâm huyết nghiên cứu, giảng dạy và xây dựng hệ thống giáo trình tự học sáo trúc thực chiến, dễ hiểu từ số 0.</textarea>
+                </div>
+                <div>
+                  <label class="font-bold text-[#292421] block mb-1">Số Hotline / Zalo:</label>
+                  <input type="text" id="settingFounderZalo" value="0374 261 368" class="w-full bg-[#FAF6EE] border border-[#D9CDBB] rounded-xl px-3 py-2 focus:ring-2 focus:ring-[#881B1B] outline-none">
+                </div>
+                <button type="submit" class="px-5 py-2.5 bg-[#881B1B] hover:bg-[#701515] text-white font-bold rounded-xl shadow transition-all">
+                  Lưu cấu hình Người Sáng Lập
+                </button>
+              </form>
+            </div>
+
+            <!-- Change Admin Password -->
               <div class="bg-white rounded-2xl border border-[#E8DFC8] shadow-sm p-6 space-y-4">
                 <h3 class="font-serif text-base font-bold text-[#193822] flex items-center gap-2 pb-2 border-b border-stone-100">
                   <i class="fa-solid fa-lock text-[#881B1B]"></i> Đổi mật khẩu Quản trị
@@ -908,6 +958,7 @@
       renderAdminSongs(songsData);
       renderAdminRequests(requestsData);
       renderAdminArticles(articlesData);
+      loadFounderSettings();
     }
 
     // Login Handler
@@ -1594,6 +1645,35 @@
       showToast("Đã lưu thông tin cấu hình website!");
     }
 
+    function saveFounderSettings(e) {
+      e.preventDefault();
+      const visibility = document.querySelector('input[name="founderVisibility"]:checked')?.value || 'private';
+      const founder = {
+        visibility: visibility,
+        name: document.getElementById('settingFounderName').value,
+        title: document.getElementById('settingFounderTitle').value,
+        bio: document.getElementById('settingFounderBio').value,
+        zalo: document.getElementById('settingFounderZalo').value
+      };
+      localStorage.setItem('DAYTHOISAO_FOUNDER_SETTINGS', JSON.stringify(founder));
+      showToast("Đã lưu cấu hình Người Sáng Lập!");
+    }
+
+    function loadFounderSettings() {
+      const saved = JSON.parse(localStorage.getItem('DAYTHOISAO_FOUNDER_SETTINGS') || '{"visibility":"private"}');
+      if (saved.visibility === 'public') {
+        const pub = document.getElementById('founderVisPublic');
+        if (pub) pub.checked = true;
+      } else {
+        const pri = document.getElementById('founderVisPrivate');
+        if (pri) pri.checked = true;
+      }
+      if (saved.name && document.getElementById('settingFounderName')) document.getElementById('settingFounderName').value = saved.name;
+      if (saved.title && document.getElementById('settingFounderTitle')) document.getElementById('settingFounderTitle').value = saved.title;
+      if (saved.bio && document.getElementById('settingFounderBio')) document.getElementById('settingFounderBio').value = saved.bio;
+      if (saved.zalo && document.getElementById('settingFounderZalo')) document.getElementById('settingFounderZalo').value = saved.zalo;
+    }
+
     function saveDonateSettings(e) {
       e.preventDefault();
       const donate = {
@@ -1626,6 +1706,7 @@
         requests: requestsData,
         articles: articlesData,
         settings: JSON.parse(localStorage.getItem('DAYTHOISAO_SITE_SETTINGS') || '{}'),
+        founder: JSON.parse(localStorage.getItem('DAYTHOISAO_FOUNDER_SETTINGS') || '{"visibility":"private"}'),
         donate: JSON.parse(localStorage.getItem('DAYTHOISAO_DONATE_SETTINGS') || '{}')
       };
 
@@ -1662,6 +1743,9 @@
           if (imported.settings) {
             localStorage.setItem('DAYTHOISAO_SITE_SETTINGS', JSON.stringify(imported.settings));
           }
+          if (imported.founder) {
+            localStorage.setItem('DAYTHOISAO_FOUNDER_SETTINGS', JSON.stringify(imported.founder));
+          }
           if (imported.donate) {
             localStorage.setItem('DAYTHOISAO_DONATE_SETTINGS', JSON.stringify(imported.donate));
           }
@@ -1671,6 +1755,7 @@
           filterAdminSongs();
           renderAdminRequests(requestsData);
           renderAdminArticles(articlesData);
+          loadFounderSettings();
           showToast("Khôi phục dữ liệu từ file JSON thành công!");
         } catch (err) {
           alert("File JSON không hợp lệ hoặc bị lỗi định dạng!");
