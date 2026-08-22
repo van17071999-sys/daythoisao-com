@@ -584,10 +584,63 @@
       }
 
       // Content
-      document.getElementById('articleContent').innerHTML = article.content || '<p>Nội dung bài viết đang được hoàn thiện...</p>';
+      document.getElementById('articleContent').innerHTML = parseArticleContent(article.content || '<p>Nội dung bài viết đang được hoàn thiện...</p>');
+    }
 
-      // Render Related Articles
-      renderRelatedArticles(articles, article.id, article.category);
+    // Robust Markdown & Text to HTML Parser for Website Display
+    function parseArticleContent(rawText) {
+      if (!rawText) return '<p class="text-stone-400 italic">Chưa có nội dung bài viết...</p>';
+      
+      let text = rawText;
+
+      // 1. Convert Markdown headers
+      text = text.replace(/^### (.*$)/gim, '<h3 class="font-serif text-lg sm:text-xl font-bold text-[#881B1B] mt-5 mb-2">$1</h3>');
+      text = text.replace(/^## (.*$)/gim, '<h2 class="font-serif text-xl sm:text-2xl font-bold text-[#881B1B] mt-6 mb-2">$1</h2>');
+      text = text.replace(/^# (.*$)/gim, '<h2 class="font-serif text-2xl sm:text-3xl font-bold text-[#881B1B] mt-6 mb-2">$1</h2>');
+
+      // 2. Convert Bold + Italic (***text***)
+      text = text.replace(/\*\*\*(.*?)\*\*\*/g, '<strong class="font-serif text-base sm:text-lg font-bold text-[#881B1B] italic block my-2.5">$1</strong>');
+      
+      // 3. Convert Bold (**text**)
+      text = text.replace(/\*\*(.*?)\*\*/g, '<strong class="font-bold text-[#292421]">$1</strong>');
+      
+      // 4. Convert Italic (*text*)
+      text = text.replace(/\*(.*?)\*/g, '<em class="italic text-[#59524B]">$1</em>');
+
+      // 5. Convert Blockquotes (> text)
+      text = text.replace(/^\> (.*$)/gim, '<blockquote class="border-l-4 border-[#881B1B] bg-[#FAF6EE] p-4 rounded-r-xl italic my-3.5 text-[#292421]">$1</blockquote>');
+
+      // 6. Convert Images (![alt](url))
+      text = text.replace(/\!\[(.*?)\]\((.*?)\)/g, '<div class="my-4 rounded-2xl overflow-hidden border border-[#E8DFC8] shadow-sm"><img src="$2" alt="$1" class="w-full h-auto object-cover"><div class="p-2 bg-[#FAF6EE] text-xs text-[#6B625B] text-center italic">$1</div></div>');
+
+      // 7. Convert Links ([text](url))
+      text = text.replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank" class="text-[#881B1B] hover:underline font-semibold">$1</a>');
+
+      // 8. Split by paragraphs (double line break) while preserving single line breaks inside
+      const blocks = text.split(/\n\s*\n/);
+      const formattedBlocks = blocks.map(block => {
+        block = block.trim();
+        if (!block) return '';
+        // If block already begins with HTML block tag
+        if (/^<(h[1-6]|ul|ol|blockquote|div|table|p|strong)/i.test(block)) {
+          return block;
+        }
+        // Unordered list
+        if (/^[-*]\s+/m.test(block)) {
+          const items = block.split(/\n/).map(l => l.replace(/^[-*]\s+/, '').trim()).filter(Boolean);
+          return `<ul class="list-disc pl-5 space-y-1.5 my-2.5 text-[#292421]">${items.map(i => `<li>${i}</li>`).join('')}</ul>`;
+        }
+        // Ordered list
+        if (/^\d+\.\s+/m.test(block)) {
+          const items = block.split(/\n/).map(l => l.replace(/^\d+\.\s+/, '').trim()).filter(Boolean);
+          return `<ol class="list-decimal pl-5 space-y-1.5 my-2.5 text-[#292421]">${items.map(i => `<li>${i}</li>`).join('')}</ol>`;
+        }
+        // Convert single newlines inside paragraph to <br> to preserve exact spacing
+        const withBr = block.replace(/\n/g, '<br>');
+        return `<p class="mb-3 text-[#292421] leading-relaxed text-sm sm:text-base">${withBr}</p>`;
+      }).filter(Boolean);
+
+      return formattedBlocks.join('\n');
     }
 
     function renderRelatedArticles(allList, currentId, currentCategory) {

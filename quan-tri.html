@@ -680,28 +680,28 @@
   </div>
 
   <!-- ================= MODAL: THÊM / SỬA BÀI VIẾT (ARTICLE EDITOR) ================= -->
-  <div id="articleFormModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-4">
-    <div class="bg-[#FAF6EE] rounded-3xl max-w-3xl w-full border border-[#D9CDBB] shadow-2xl overflow-hidden flex flex-col max-h-[92vh]">
-      <div class="bg-[#193822] text-white px-6 py-4 flex items-center justify-between">
+  <div id="articleFormModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-3 sm:p-4">
+    <div class="bg-[#FAF6EE] rounded-3xl max-w-5xl w-full border border-[#D9CDBB] shadow-2xl overflow-hidden flex flex-col max-h-[94vh]">
+      <div class="bg-[#193822] text-white px-6 py-4 flex items-center justify-between shrink-0">
         <h3 id="articleFormModalTitle" class="font-serif text-lg font-bold flex items-center gap-2">
           <i class="fa-solid fa-pen-to-square"></i> Soạn Thảo Bài Viết
         </h3>
-        <button onclick="closeArticleFormModal()" class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center">
+        <button onclick="closeArticleFormModal()" class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors">
           <i class="fa-solid fa-xmark"></i>
         </button>
       </div>
 
-      <form id="articleEditorForm" onsubmit="handleSaveArticle(event)" class="p-6 overflow-y-auto custom-scrollbar space-y-4 text-xs text-[#292421]">
+      <form id="articleEditorForm" onsubmit="handleSaveArticle(event)" class="p-4 sm:p-6 overflow-y-auto custom-scrollbar space-y-4 text-xs text-[#292421]">
         <input type="hidden" id="editArticleId" value="">
         
         <div class="grid grid-cols-1 sm:grid-cols-12 gap-3">
           <div class="sm:col-span-8">
             <label class="font-bold block mb-1">Tiêu đề bài viết *:</label>
-            <input type="text" id="formArticleTitle" required oninput="autoGenerateArticleSlug()" placeholder="Ví dụ: Cách chọn sáo trúc phù hợp cho người mới bắt đầu..." class="w-full bg-white border border-[#D9CDBB] rounded-xl px-3 py-2.5 outline-none focus:ring-2 focus:ring-[#881B1B]">
+            <input type="text" id="formArticleTitle" required oninput="autoGenerateArticleSlug()" placeholder="Ví dụ: Cách chọn sáo trúc phù hợp cho người mới bắt đầu..." class="w-full bg-white border border-[#D9CDBB] rounded-xl px-3 py-2.5 outline-none focus:ring-2 focus:ring-[#881B1B] text-xs">
           </div>
           <div class="sm:col-span-4">
             <label class="font-bold block mb-1">Thứ tự ưu tiên hiển thị *:</label>
-            <input type="number" id="formArticleOrder" value="1" min="1" max="999" required placeholder="1, 2, 3..." class="w-full bg-white border border-[#D9CDBB] rounded-xl px-3 py-2.5 outline-none focus:ring-2 focus:ring-[#881B1B]">
+            <input type="number" id="formArticleOrder" value="1" min="1" max="999" required placeholder="1, 2, 3..." class="w-full bg-white border border-[#D9CDBB] rounded-xl px-3 py-2.5 outline-none focus:ring-2 focus:ring-[#881B1B] text-xs">
             <span class="text-[10px] text-stone-500 mt-0.5 block">Số nhỏ hơn sẽ đứng trước</span>
           </div>
         </div>
@@ -750,7 +750,7 @@
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
           <div>
             <label class="font-bold block mb-1">Chuyên mục *:</label>
-            <select id="formArticleCategory" class="w-full bg-white border border-[#D9CDBB] rounded-xl px-3 py-2 outline-none focus:ring-2 focus:ring-[#881B1B]">
+            <select id="formArticleCategory" class="w-full bg-white border border-[#D9CDBB] rounded-xl px-3 py-2 outline-none focus:ring-2 focus:ring-[#881B1B] text-xs">
               <option value="nhap-mon">Nhập môn sáo trúc</option>
               <option value="ky-thuat-hoi">Kỹ thuật hơi & Khẩu hình</option>
               <option value="chon-sao">Cách chọn & Bảo quản sáo</option>
@@ -760,35 +760,128 @@
           </div>
           <div>
             <label class="font-bold block mb-1">Thời gian đọc:</label>
-            <input type="text" id="formArticleReadTime" value="5 phút đọc" class="w-full bg-white border border-[#D9CDBB] rounded-xl px-3 py-2 outline-none focus:ring-2 focus:ring-[#881B1B]">
+            <input type="text" id="formArticleReadTime" value="5 phút đọc" class="w-full bg-white border border-[#D9CDBB] rounded-xl px-3 py-2 outline-none focus:ring-2 focus:ring-[#881B1B] text-xs">
           </div>
           <div>
             <label class="font-bold block mb-1">Ngày đăng:</label>
-            <input type="date" id="formArticleDate" class="w-full bg-white border border-[#D9CDBB] rounded-xl px-3 py-2 outline-none focus:ring-2 focus:ring-[#881B1B]">
+            <input type="date" id="formArticleDate" class="w-full bg-white border border-[#D9CDBB] rounded-xl px-3 py-2 outline-none focus:ring-2 focus:ring-[#881B1B] text-xs">
           </div>
         </div>
 
         <div>
           <label class="font-bold block mb-1">Link ảnh đại diện bài viết (URL):</label>
-          <input type="url" id="formArticleImg" value="https://images.unsplash.com/photo-1511192336575-5a79af67a629?auto=format&fit=crop&w=600&q=80" class="w-full bg-white border border-[#D9CDBB] rounded-xl px-3 py-2 outline-none focus:ring-2 focus:ring-[#881B1B]">
+          <input type="url" id="formArticleImg" value="https://images.unsplash.com/photo-1511192336575-5a79af67a629?auto=format&fit=crop&w=600&q=80" class="w-full bg-white border border-[#D9CDBB] rounded-xl px-3 py-2 outline-none focus:ring-2 focus:ring-[#881B1B] text-xs">
         </div>
 
         <div>
           <label class="font-bold block mb-1">Tóm tắt ngắn / Meta Description (1-2 câu):</label>
-          <textarea id="formArticleSummary" rows="2" required oninput="updateSeoPreview()" placeholder="Mô tả tóm tắt nội dung bài viết..." class="w-full bg-white border border-[#D9CDBB] rounded-xl p-3 outline-none focus:ring-2 focus:ring-[#881B1B]"></textarea>
+          <textarea id="formArticleSummary" rows="2" required oninput="updateSeoPreview()" placeholder="Mô tả tóm tắt nội dung bài viết..." class="w-full bg-white border border-[#D9CDBB] rounded-xl p-3 outline-none focus:ring-2 focus:ring-[#881B1B] text-xs"></textarea>
         </div>
 
-        <div>
-          <label class="font-bold block mb-1">Nội dung chi tiết bài viết (Hỗ trợ HTML/Heading/List):</label>
-          <textarea id="formArticleContent" rows="8" required placeholder="Nội dung bài viết chi tiết..." class="w-full bg-white border border-[#D9CDBB] rounded-xl p-3 outline-none focus:ring-2 focus:ring-[#881B1B] font-mono text-xs"></textarea>
-          <span class="text-[10px] text-stone-500 mt-1 block">Hỗ trợ các thẻ: &lt;h4&gt;, &lt;p&gt;, &lt;ul&gt;, &lt;li&gt;, &lt;strong&gt;, &lt;em&gt;</span>
+        <!-- ================= RICH ARTICLE CONTENT EDITOR WITH LIVE PREVIEW ================= -->
+        <div class="space-y-3 pt-2">
+          <!-- Editor Header & View Mode Switcher -->
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <label class="font-bold block text-[#292421]">Nội dung bài viết chi tiết *</label>
+            <div class="flex items-center gap-1 bg-[#FAF6EE] p-1 rounded-xl border border-[#D9CDBB]">
+              <button type="button" onclick="setArticleEditorMode('edit')" id="btnModeEdit" class="px-3 py-1 text-xs font-semibold rounded-lg transition-all text-[#6B625B] hover:text-[#292421]">
+                ✏️ Soạn thảo
+              </button>
+              <button type="button" onclick="setArticleEditorMode('split')" id="btnModeSplit" class="px-3 py-1 text-xs rounded-lg transition-all bg-white text-[#881B1B] shadow-sm font-bold border border-[#E8DFC8]">
+                👁️ Soạn thảo & Xem trước (Live)
+              </button>
+            </div>
+          </div>
+
+          <!-- Formatting Toolbar -->
+          <div class="flex flex-wrap items-center gap-1.5 p-2 bg-white rounded-xl border border-[#D9CDBB] shadow-sm">
+            <button type="button" onclick="insertArticleFormat('bold')" class="px-2.5 py-1.5 bg-[#FAF6EE] hover:bg-[#EADBCA] text-[#292421] hover:text-[#881B1B] font-bold rounded-lg border border-[#E0D5C3] transition-all flex items-center gap-1 text-[11px]" title="In đậm (**chữ**)">
+              <strong>B</strong> Đậm
+            </button>
+            <button type="button" onclick="insertArticleFormat('italic')" class="px-2.5 py-1.5 bg-[#FAF6EE] hover:bg-[#EADBCA] text-[#292421] hover:text-[#881B1B] font-serif italic rounded-lg border border-[#E0D5C3] transition-all flex items-center gap-1 text-[11px]" title="In nghiêng (*chữ*)">
+              <em>I</em> Nghiêng
+            </button>
+            <button type="button" onclick="insertArticleFormat('bold-italic')" class="px-2.5 py-1.5 bg-[#FEF3C7] hover:bg-[#FDE68A] text-[#92400E] font-bold italic rounded-lg border border-[#F59E0B]/40 transition-all flex items-center gap-1 text-[11px] shadow-sm" title="Vừa đậm vừa nghiêng (***chữ***)">
+              <strong><em>BI</em></strong> Đậm & Nghiêng
+            </button>
+            <div class="w-px h-5 bg-stone-300 mx-0.5"></div>
+            <button type="button" onclick="insertArticleFormat('h2')" class="px-2.5 py-1.5 bg-[#FAF6EE] hover:bg-[#EADBCA] text-[#292421] hover:text-[#881B1B] font-bold rounded-lg border border-[#E0D5C3] transition-all flex items-center gap-1 text-[11px]" title="Tiêu đề lớn (## Tiêu đề)">
+              <span class="bg-[#881B1B]/10 text-[#881B1B] px-1 rounded text-[10px]">H2</span> Tiêu đề lớn
+            </button>
+            <button type="button" onclick="insertArticleFormat('h3')" class="px-2.5 py-1.5 bg-[#FAF6EE] hover:bg-[#EADBCA] text-[#292421] hover:text-[#881B1B] font-bold rounded-lg border border-[#E0D5C3] transition-all flex items-center gap-1 text-[11px]" title="Tiêu đề vừa (### Tiêu đề)">
+              <span class="bg-[#193822]/10 text-[#193822] px-1 rounded text-[10px]">H3</span> Tiêu đề vừa
+            </button>
+            <button type="button" onclick="insertArticleFormat('list')" class="px-2.5 py-1.5 bg-[#FAF6EE] hover:bg-[#EADBCA] text-[#292421] hover:text-[#881B1B] font-medium rounded-lg border border-[#E0D5C3] transition-all flex items-center gap-1 text-[11px]" title="Danh sách gạch đầu dòng">
+              • Danh sách
+            </button>
+            <button type="button" onclick="insertArticleFormat('numlist')" class="px-2.5 py-1.5 bg-[#FAF6EE] hover:bg-[#EADBCA] text-[#292421] hover:text-[#881B1B] font-medium rounded-lg border border-[#E0D5C3] transition-all flex items-center gap-1 text-[11px]" title="Danh sách đánh số thứ tự">
+              1. Đánh số
+            </button>
+            <button type="button" onclick="insertArticleFormat('quote')" class="px-2.5 py-1.5 bg-[#FAF6EE] hover:bg-[#EADBCA] text-[#292421] hover:text-[#881B1B] font-serif rounded-lg border border-[#E0D5C3] transition-all flex items-center gap-1 text-[11px]" title="Đoạn văn trích dẫn">
+              ❝ Trích dẫn
+            </button>
+            <button type="button" onclick="insertArticleFormat('link')" class="px-2.5 py-1.5 bg-[#FAF6EE] hover:bg-[#EADBCA] text-[#292421] hover:text-[#881B1B] font-medium rounded-lg border border-[#E0D5C3] transition-all flex items-center gap-1 text-[11px]" title="Chèn đường liên kết">
+              🔗 Link
+            </button>
+            <button type="button" onclick="insertArticleFormat('image')" class="px-2.5 py-1.5 bg-[#FAF6EE] hover:bg-[#EADBCA] text-[#292421] hover:text-[#881B1B] font-medium rounded-lg border border-[#E0D5C3] transition-all flex items-center gap-1 text-[11px]" title="Chèn hình ảnh">
+              🖼️ Ảnh
+            </button>
+            <button type="button" onclick="insertArticleFormat('newline')" class="px-2.5 py-1.5 bg-[#FAF6EE] hover:bg-[#EADBCA] text-[#292421] hover:text-[#881B1B] font-medium rounded-lg border border-[#E0D5C3] transition-all flex items-center gap-1 text-[11px]" title="Xuống dòng / Tạo khoảng cách">
+              ↵ Dòng trống
+            </button>
+          </div>
+
+          <!-- Instruction & Tip Box -->
+          <div class="p-3 sm:p-3.5 bg-[#FFFBEB] rounded-xl border border-[#FDE68A] text-xs text-[#92400E] space-y-1.5 shadow-sm">
+            <div class="font-bold flex items-center gap-1.5 text-[#B45309]">
+              💡 <span>Hướng dẫn định dạng văn bản & khoảng cách:</span>
+            </div>
+            <div class="space-y-1 pl-4 text-[11px] text-[#78350F] leading-relaxed">
+              <p><strong>In đậm:</strong> Gõ <code class="bg-[#FEF3C7] text-[#B45309] px-1 py-0.5 rounded font-mono font-bold">**chữ in đậm**</code> hoặc bôi đen rồi bấm nút <strong>B</strong>.</p>
+              <p><strong>In nghiêng:</strong> Gõ <code class="bg-[#FEF3C7] text-[#B45309] px-1 py-0.5 rounded font-mono font-bold">*chữ in nghiêng*</code> hoặc bôi đen rồi bấm nút <em>I</em>.</p>
+              <p><strong>Vừa đậm vừa nghiêng:</strong> Gõ <code class="bg-[#FEF3C7] text-[#B45309] px-1 py-0.5 rounded font-mono font-bold">***chữ vừa đậm vừa nghiêng***</code> hoặc bấm nút <strong><em>BI</em></strong>.</p>
+              <p><strong>Khoảng cách dòng:</strong> Mỗi lần nhấn Enter xuống dòng hoặc cách 1 dòng trống, hệ thống sẽ <strong>giữ nguyên 100% khoảng cách</strong> hiển thị trên website như lúc bạn nhập!</p>
+            </div>
+          </div>
+
+          <!-- Split-Pane: Editor on Left, Live Preview on Right -->
+          <div id="editorSplitGrid" class="grid grid-cols-1 lg:grid-cols-2 gap-3 items-stretch">
+            <!-- Left: Textarea -->
+            <div class="flex flex-col">
+              <textarea 
+                id="formArticleContent" 
+                rows="14" 
+                required 
+                oninput="renderArticleLivePreview()" 
+                placeholder="Nhập nội dung bài viết chi tiết tại đây...&#10;&#10;***Tìm lớp học thổi sáo tại Tân Phú, Tân Bình, TPHCM?***&#10;&#10;Bạn đang sinh sống tại quận Tân Phú, Tân Bình hoặc khu vực TPHCM và muốn tìm một lớp học thổi sáo dành cho người mới?..." 
+                class="w-full h-full min-h-[300px] max-h-[460px] bg-white border border-[#D9CDBB] rounded-xl p-3.5 outline-none focus:ring-2 focus:ring-[#881B1B] font-mono text-xs leading-relaxed custom-scrollbar"
+              ></textarea>
+            </div>
+
+            <!-- Right: Live Preview Box -->
+            <div id="livePreviewContainer" class="flex flex-col bg-white rounded-xl border border-[#D9CDBB] overflow-hidden shadow-sm">
+              <div class="bg-[#FAF6EE] border-b border-[#E8DFC8] px-3.5 py-2 flex items-center justify-between">
+                <span class="text-[11px] font-bold text-[#881B1B] uppercase tracking-wide flex items-center gap-1.5">
+                  <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                  👁️ XEM TRƯỚC HIỂN THỊ THỰC TẾ TRÊN WEBSITE (LIVE PREVIEW):
+                </span>
+                <span class="text-[10px] text-stone-400 font-mono">Live render</span>
+              </div>
+              <div 
+                id="articleLivePreviewBox" 
+                class="article-content p-4 sm:p-5 overflow-y-auto max-h-[420px] custom-scrollbar text-xs sm:text-sm text-[#292421] leading-relaxed space-y-3 font-sans bg-white"
+              >
+                <!-- Live content will be rendered here -->
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div class="flex items-center justify-end gap-3 pt-2 border-t border-stone-200">
-          <button type="button" onclick="closeArticleFormModal()" class="px-5 py-2.5 bg-white border border-[#D9CDBB] hover:bg-[#FAF6EE] text-[#292421] font-semibold rounded-xl">
+        <div class="flex items-center justify-end gap-3 pt-3 border-t border-stone-200">
+          <button type="button" onclick="closeArticleFormModal()" class="px-5 py-2.5 bg-white border border-[#D9CDBB] hover:bg-[#FAF6EE] text-[#292421] font-semibold rounded-xl transition-colors">
             Hủy bỏ
           </button>
-          <button type="submit" class="px-6 py-2.5 bg-[#193822] hover:bg-[#112517] text-white font-bold rounded-xl shadow-lg flex items-center gap-2">
+          <button type="submit" class="px-6 py-2.5 bg-[#193822] hover:bg-[#112517] text-white font-bold rounded-xl shadow-lg flex items-center gap-2 transition-all">
             <i class="fa-solid fa-floppy-disk"></i> Lưu Bài Viết
           </button>
         </div>
@@ -1911,8 +2004,169 @@
       }
     }
 
-    // ================= ARTICLE EDITOR MODAL LOGIC & SEO =================
+    // ================= ARTICLE EDITOR MODAL LOGIC, LIVE PREVIEW & SEO =================
     let isSlugManualEdited = false;
+    let currentEditorMode = 'split'; // 'edit' or 'split'
+
+    // Robust Markdown & Text to HTML Parser for Articles
+    function parseArticleContent(rawText) {
+      if (!rawText) return '<p class="text-stone-400 italic">Chưa có nội dung bài viết...</p>';
+      
+      let text = rawText;
+
+      // 1. Convert Markdown headers
+      text = text.replace(/^### (.*$)/gim, '<h3 class="font-serif text-lg font-bold text-[#881B1B] mt-5 mb-2">$1</h3>');
+      text = text.replace(/^## (.*$)/gim, '<h2 class="font-serif text-xl font-bold text-[#881B1B] mt-6 mb-2">$1</h2>');
+      text = text.replace(/^# (.*$)/gim, '<h2 class="font-serif text-2xl font-bold text-[#881B1B] mt-6 mb-2">$1</h2>');
+
+      // 2. Convert Bold + Italic (***text***)
+      text = text.replace(/\*\*\*(.*?)\*\*\*/g, '<strong class="font-serif text-base sm:text-lg font-bold text-[#881B1B] italic block my-2">$1</strong>');
+      
+      // 3. Convert Bold (**text**)
+      text = text.replace(/\*\*(.*?)\*\*/g, '<strong class="font-bold text-[#292421]">$1</strong>');
+      
+      // 4. Convert Italic (*text*)
+      text = text.replace(/\*(.*?)\*/g, '<em class="italic text-[#59524B]">$1</em>');
+
+      // 5. Convert Blockquotes (> text)
+      text = text.replace(/^\> (.*$)/gim, '<blockquote class="border-l-4 border-[#881B1B] bg-[#FAF6EE] p-3.5 rounded-r-xl italic my-3 text-[#292421]">$1</blockquote>');
+
+      // 6. Convert Images (![alt](url))
+      text = text.replace(/\!\[(.*?)\]\((.*?)\)/g, '<div class="my-4 rounded-2xl overflow-hidden border border-[#E8DFC8] shadow-sm"><img src="$2" alt="$1" class="w-full h-auto object-cover"><div class="p-2 bg-[#FAF6EE] text-[11px] text-[#6B625B] text-center italic">$1</div></div>');
+
+      // 7. Convert Links ([text](url))
+      text = text.replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank" class="text-[#881B1B] hover:underline font-semibold">$1</a>');
+
+      // 8. Split by paragraphs (double line break) while preserving single line breaks inside
+      const blocks = text.split(/\n\s*\n/);
+      const formattedBlocks = blocks.map(block => {
+        block = block.trim();
+        if (!block) return '';
+        // If block already begins with HTML block tag
+        if (/^<(h[1-6]|ul|ol|blockquote|div|table|p|strong)/i.test(block)) {
+          return block;
+        }
+        // Unordered list
+        if (/^[-*]\s+/m.test(block)) {
+          const items = block.split(/\n/).map(l => l.replace(/^[-*]\s+/, '').trim()).filter(Boolean);
+          return `<ul class="list-disc pl-5 space-y-1.5 my-2.5 text-[#292421]">${items.map(i => `<li>${i}</li>`).join('')}</ul>`;
+        }
+        // Ordered list
+        if (/^\d+\.\s+/m.test(block)) {
+          const items = block.split(/\n/).map(l => l.replace(/^\d+\.\s+/, '').trim()).filter(Boolean);
+          return `<ol class="list-decimal pl-5 space-y-1.5 my-2.5 text-[#292421]">${items.map(i => `<li>${i}</li>`).join('')}</ol>`;
+        }
+        // Convert single newlines inside paragraph to <br> to preserve exact spacing
+        const withBr = block.replace(/\n/g, '<br>');
+        return `<p class="mb-3 text-[#292421] leading-relaxed text-xs sm:text-sm">${withBr}</p>`;
+      }).filter(Boolean);
+
+      return formattedBlocks.join('\n');
+    }
+
+    function renderArticleLivePreview() {
+      const textarea = document.getElementById('formArticleContent');
+      const previewBox = document.getElementById('articleLivePreviewBox');
+      if (textarea && previewBox) {
+        previewBox.innerHTML = parseArticleContent(textarea.value);
+      }
+    }
+
+    function setArticleEditorMode(mode) {
+      currentEditorMode = mode;
+      const grid = document.getElementById('editorSplitGrid');
+      const liveContainer = document.getElementById('livePreviewContainer');
+      const btnEdit = document.getElementById('btnModeEdit');
+      const btnSplit = document.getElementById('btnModeSplit');
+
+      if (mode === 'edit') {
+        if (grid) grid.className = 'grid grid-cols-1 gap-3 items-stretch';
+        if (liveContainer) liveContainer.classList.add('hidden');
+        if (btnEdit) btnEdit.className = 'px-3 py-1 text-xs rounded-lg transition-all bg-white text-[#881B1B] shadow-sm font-bold border border-[#E8DFC8]';
+        if (btnSplit) btnSplit.className = 'px-3 py-1 text-xs font-semibold rounded-lg transition-all text-[#6B625B] hover:text-[#292421]';
+      } else {
+        if (grid) grid.className = 'grid grid-cols-1 lg:grid-cols-2 gap-3 items-stretch';
+        if (liveContainer) liveContainer.classList.remove('hidden');
+        if (btnSplit) btnSplit.className = 'px-3 py-1 text-xs rounded-lg transition-all bg-white text-[#881B1B] shadow-sm font-bold border border-[#E8DFC8]';
+        if (btnEdit) btnEdit.className = 'px-3 py-1 text-xs font-semibold rounded-lg transition-all text-[#6B625B] hover:text-[#292421]';
+        renderArticleLivePreview();
+      }
+    }
+
+    function insertArticleFormat(type) {
+      const textarea = document.getElementById('formArticleContent');
+      if (!textarea) return;
+      const start = textarea.selectionStart;
+      const end = textarea.selectionEnd;
+      const selText = textarea.value.substring(start, end);
+      let replacement = '';
+      let cursorOffset = 0;
+
+      switch(type) {
+        case 'bold':
+          replacement = `**${selText || 'chữ in đậm'}**`;
+          cursorOffset = selText ? replacement.length : 2;
+          break;
+        case 'italic':
+          replacement = `*${selText || 'chữ in nghiêng'}*`;
+          cursorOffset = selText ? replacement.length : 1;
+          break;
+        case 'bold-italic':
+          replacement = `***${selText || 'chữ vừa đậm vừa nghiêng'}***`;
+          cursorOffset = selText ? replacement.length : 3;
+          break;
+        case 'h2':
+          replacement = `\n## ${selText || 'Tiêu đề lớn'}\n`;
+          cursorOffset = replacement.length;
+          break;
+        case 'h3':
+          replacement = `\n### ${selText || 'Tiêu đề vừa'}\n`;
+          cursorOffset = replacement.length;
+          break;
+        case 'list':
+          replacement = `\n- ${selText || 'Mục danh sách 1'}\n- Mục danh sách 2\n`;
+          cursorOffset = replacement.length;
+          break;
+        case 'numlist':
+          replacement = `\n1. ${selText || 'Mục số 1'}\n2. Mục số 2\n`;
+          cursorOffset = replacement.length;
+          break;
+        case 'quote':
+          replacement = `\n> ${selText || 'Đoạn văn trích dẫn nổi bật...'}\n`;
+          cursorOffset = replacement.length;
+          break;
+        case 'link':
+          const url = prompt('Nhập đường link URL (https://...):', 'https://');
+          if (url) {
+            replacement = `[${selText || 'Tên đường dẫn'}](${url})`;
+          } else {
+            return;
+          }
+          break;
+        case 'image':
+          const imgUrl = prompt('Nhập đường link hình ảnh (URL):', 'https://');
+          if (imgUrl) {
+            const altText = prompt('Nhập chú thích / mô tả ảnh:', selText || 'Hình minh họa bài viết');
+            replacement = `\n![${altText || 'Hình ảnh'}](${imgUrl})\n`;
+          } else {
+            return;
+          }
+          break;
+        case 'newline':
+          replacement = '\n\n';
+          cursorOffset = 2;
+          break;
+      }
+
+      textarea.focus();
+      const textBefore = textarea.value.substring(0, start);
+      const textAfter = textarea.value.substring(end);
+      textarea.value = textBefore + replacement + textAfter;
+      textarea.selectionStart = start + (cursorOffset || replacement.length);
+      textarea.selectionEnd = start + (cursorOffset || replacement.length);
+      
+      renderArticleLivePreview();
+    }
 
     function openArticleFormModal(article = null) {
       document.getElementById('articleEditorForm').reset();
@@ -1939,9 +2193,12 @@
         document.getElementById('formArticleSlug').value = '';
         document.getElementById('formArticleOrder').value = articlesData.length + 1;
         document.getElementById('formArticleDate').value = new Date().toISOString().split('T')[0];
+        document.getElementById('formArticleContent').value = '';
       }
 
+      setArticleEditorMode('split');
       updateSeoPreview();
+      renderArticleLivePreview();
       modal.classList.remove('hidden');
       modal.classList.add('flex');
     }
