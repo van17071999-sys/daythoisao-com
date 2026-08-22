@@ -334,80 +334,86 @@
           </div>
         </div>
 
-        <!-- Right Hero Visual -->
+        <!-- Right Hero Visual: Giới thiệu Người Sáng Lập -->
         <div class="lg:col-span-6 relative flex justify-center items-center">
-          <div class="relative w-full max-w-md sm:max-w-lg aspect-[4/3] sm:aspect-[1.1/1] bg-[#F5EFE3] rounded-3xl p-6 sm:p-8 border border-[#DCCFB7] shadow-xl overflow-hidden flex flex-col justify-between">
+          <div class="relative w-full max-w-md sm:max-w-lg bg-gradient-to-br from-[#FAF6EE] via-[#F5ECE0] to-[#EADBCA] rounded-3xl p-6 sm:p-7 border-2 border-[#D9C4A6] shadow-xl overflow-hidden flex flex-col justify-between space-y-5">
             
-            <div class="absolute inset-0 opacity-15 pointer-events-none p-6 space-y-4">
+            <!-- Background watermark lines -->
+            <div class="absolute inset-0 opacity-10 pointer-events-none p-6 space-y-4">
               <div class="border-b border-gray-900 h-2"></div>
               <div class="border-b border-gray-900 h-2"></div>
               <div class="border-b border-gray-900 h-2"></div>
               <div class="border-b border-gray-900 h-2"></div>
               <div class="border-b border-gray-900 h-2"></div>
-              <p class="font-serif italic text-xs text-right mt-2 text-gray-700">Sáo Trúc Âu Cơ - Nhạc phẩm quê hương</p>
             </div>
 
+            <!-- Header Badge & Stamp -->
             <div class="flex justify-between items-start z-10">
-              <div class="flex items-center gap-3">
-                <span class="text-xs uppercase tracking-widest text-[#20402C] font-semibold bg-[#20402C]/10 px-3 py-1 rounded-full border border-[#20402C]/20">
-                  <i class="fa-solid fa-leaf text-emerald-700 mr-1"></i> Sáo Nứa C5 (Đô)
+              <div class="flex items-center gap-2">
+                <span class="text-xs uppercase tracking-widest text-[#881B1B] font-bold bg-[#881B1B]/10 px-3.5 py-1.5 rounded-full border border-[#881B1B]/20 flex items-center gap-1.5 shadow-sm">
+                  <i class="fa-solid fa-award text-[#E5A93C]"></i> Người Sáng Lập
                 </span>
+                <span class="text-[11px] text-[#59524B] font-medium hidden sm:inline-block">daythoisao.com</span>
               </div>
-              <div class="w-10 h-14 border-2 border-[#881B1B] text-[#881B1B] flex flex-col items-center justify-center text-[10px] font-bold tracking-tighter bg-red-50/70 rotate-3 shadow-inner rounded-sm">
+              <div class="w-10 h-14 border-2 border-[#881B1B] text-[#881B1B] flex flex-col items-center justify-center text-[10px] font-bold tracking-tighter bg-red-50/80 rotate-2 shadow-inner rounded-sm">
                 <span>ÂU</span>
                 <span>CƠ</span>
               </div>
             </div>
 
-            <!-- Flute Tube Body Graphic -->
-            <div class="my-auto z-10 py-4">
-              <div class="relative transform -rotate-[24deg] translate-y-2 scale-90 sm:scale-100 transition-transform hover:rotate-[20deg] duration-500">
-                <div class="w-[340px] sm:w-[420px] h-10 rounded-full flute-body relative flex items-center justify-between px-3 border border-[#522c07]">
-                  <div class="w-1.5 h-full bg-[#462306] opacity-60 absolute left-8"></div>
-                  <div class="w-2 h-full bg-[#462306] opacity-70 absolute left-28"></div>
-                  <div class="w-1.5 h-full bg-[#462306] opacity-60 absolute right-24"></div>
-
-                  <!-- Mouth Hole -->
-                  <div class="relative group/hole cursor-pointer" onclick="playFluteTone(261.63, 'Đô 1 (C4)')" title="Nhấp để nghe âm sắc sáo">
-                    <div class="w-6 h-6 rounded-full bg-[#1b0d03] border-2 border-[#8d541c] shadow-inner flex items-center justify-center">
-                      <span class="w-2 h-2 rounded-full bg-red-400 opacity-60 animate-ping"></span>
-                    </div>
-                  </div>
-
-                  <div class="w-5 h-full bg-[#881B1B] flex flex-col justify-around py-0.5">
-                    <div class="h-0.5 bg-amber-400/80"></div>
-                    <div class="h-0.5 bg-amber-400/80"></div>
-                  </div>
-
-                  <!-- 6 Holes -->
-                  <div class="flex items-center gap-4 sm:gap-6 pr-4">
-                    <button onclick="playFluteTone(261.63, 'Đô 1')" class="w-5 h-5 rounded-full bg-[#1e0e03] border border-[#a46624] hover:ring-2 hover:ring-red-500 shadow-inner transition-all flex items-center justify-center text-[8px] text-amber-200" title="T1: Đô"></button>
-                    <button onclick="playFluteTone(293.66, 'Rê 1')" class="w-5 h-5 rounded-full bg-[#1e0e03] border border-[#a46624] hover:ring-2 hover:ring-red-500 shadow-inner transition-all flex items-center justify-center text-[8px] text-amber-200" title="T2: Rê"></button>
-                    <button onclick="playFluteTone(329.63, 'Mi 1')" class="w-5 h-5 rounded-full bg-[#1e0e03] border border-[#a46624] hover:ring-2 hover:ring-red-500 shadow-inner transition-all flex items-center justify-center text-[8px] text-amber-200" title="T3: Mi"></button>
-                    <button onclick="playFluteTone(349.23, 'Fa 1')" class="w-5 h-5 rounded-full bg-[#1e0e03] border border-[#a46624] hover:ring-2 hover:ring-red-500 shadow-inner transition-all flex items-center justify-center text-[8px] text-amber-200" title="T4: Fa"></button>
-                    <button onclick="playFluteTone(392.00, 'Sol 1')" class="w-5 h-5 rounded-full bg-[#1e0e03] border border-[#a46624] hover:ring-2 hover:ring-red-500 shadow-inner transition-all flex items-center justify-center text-[8px] text-amber-200" title="T5: Sol"></button>
-                    <button onclick="playFluteTone(440.00, 'La 1')" class="w-5 h-5 rounded-full bg-[#1e0e03] border border-[#a46624] hover:ring-2 hover:ring-red-500 shadow-inner transition-all flex items-center justify-center text-[8px] text-amber-200" title="T6: La"></button>
-                  </div>
-
-                  <div class="relative">
-                    <div class="w-4 h-full bg-[#462306] rounded-r-full"></div>
-                  </div>
+            <!-- Founder Profile Info -->
+            <div class="z-10 flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-5 text-center sm:text-left">
+              <div class="relative shrink-0">
+                <div class="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-gradient-to-tr from-[#193822] via-[#20402C] to-[#3B6B48] text-amber-200 flex items-center justify-center shadow-lg border-2 border-white">
+                  <i class="fa-solid fa-user-graduate text-3xl sm:text-4xl text-amber-100"></i>
                 </div>
+                <span class="absolute -bottom-2 -right-2 w-7 h-7 rounded-full bg-[#881B1B] text-white text-xs flex items-center justify-center font-bold shadow-md border-2 border-white" title="Giảng viên">
+                  <i class="fa-solid fa-music text-[10px]"></i>
+                </span>
+              </div>
+              <div class="space-y-1">
+                <span class="text-[11px] font-bold uppercase tracking-wider text-[#881B1B]">Chủ nhiệm & Giảng viên</span>
+                <h3 class="font-serif text-2xl font-bold text-[#292421]">Thầy Quách Hạ Văn</h3>
+                <p class="text-xs text-[#59524B] leading-relaxed">
+                  Hơn 8 năm tâm huyết nghiên cứu, giảng dạy và xây dựng hệ thống giáo trình tự học sáo trúc thực chiến, dễ hiểu từ số 0.
+                </p>
               </div>
             </div>
 
-            <!-- Audio Tester -->
-            <div class="z-10 bg-white/90 backdrop-blur-sm rounded-xl p-3.5 border border-[#D9CDBB] flex items-center justify-between">
-              <div class="flex items-center gap-3">
-                <button onclick="playDemoMelody()" id="demoPlayBtn" class="w-10 h-10 rounded-full bg-[#881B1B] text-white flex items-center justify-center shadow hover:scale-105 transition-transform" title="Nghe thử bài mẫu sáo trúc">
-                  <i class="fa-solid fa-play text-sm ml-0.5" id="demoPlayIcon"></i>
-                </button>
-                <div>
-                  <h4 class="text-xs font-bold text-[#292421]">Nghe thử âm sắc sáo nứa C5</h4>
-                  <p class="text-[11px] text-[#6B625B]" id="audioStatusText">Bấm nút để nghe câu hò quê hương</p>
+            <!-- 3 Highlights Stats -->
+            <div class="z-10 grid grid-cols-3 gap-2.5 pt-1">
+              <div class="bg-white/85 backdrop-blur-sm p-2.5 rounded-xl border border-[#D9CDBB] text-center shadow-sm">
+                <div class="font-serif font-bold text-[#881B1B] text-sm sm:text-base">5.000+</div>
+                <div class="text-[10px] text-[#6B625B] font-medium leading-tight mt-0.5">Học viên toàn quốc</div>
+              </div>
+              <div class="bg-white/85 backdrop-blur-sm p-2.5 rounded-xl border border-[#D9CDBB] text-center shadow-sm">
+                <div class="font-serif font-bold text-[#193822] text-sm sm:text-base">500+</div>
+                <div class="text-[10px] text-[#6B625B] font-medium leading-tight mt-0.5">Cảm âm chuẩn 2 dòng</div>
+              </div>
+              <div class="bg-white/85 backdrop-blur-sm p-2.5 rounded-xl border border-[#D9CDBB] text-center shadow-sm">
+                <div class="font-serif font-bold text-amber-700 text-sm sm:text-base">100%</div>
+                <div class="text-[10px] text-[#6B625B] font-medium leading-tight mt-0.5">Kiểm âm chuẩn 440Hz</div>
+              </div>
+            </div>
+
+            <!-- Founder Quote & Action Box -->
+            <div class="z-10 bg-white/95 backdrop-blur-sm rounded-2xl p-3.5 border border-[#D9CDBB] shadow-sm flex flex-col sm:flex-row items-center justify-between gap-3">
+              <div class="text-left space-y-0.5 w-full sm:w-auto">
+                <p class="text-[11px] italic text-[#59524B] leading-snug">
+                  <i class="fa-solid fa-quote-left text-[#881B1B]/40 text-xs mr-1"></i>
+                  Âm nhạc truyền thống sẽ sống mãi khi được truyền dạy bằng cả sự tận tâm.
+                </p>
+                <div class="text-[10px] text-[#881B1B] font-semibold flex items-center gap-1.5 pt-0.5">
+                  <i class="fa-solid fa-location-dot"></i> Lớp học: 106/72 Hòa Bình, Tân Phú, TP.HCM
                 </div>
               </div>
-              <span class="text-[11px] px-2.5 py-1 bg-amber-50 text-amber-800 border border-amber-200 rounded-md font-medium">Âm chuẩn 440Hz</span>
+              <a 
+                href="https://zalo.me/0374261368" 
+                target="_blank" 
+                class="shrink-0 w-full sm:w-auto px-4 py-2 bg-[#881B1B] hover:bg-[#701515] text-white text-xs font-bold rounded-xl shadow transition-all flex items-center justify-center gap-1.5"
+              >
+                <i class="fa-solid fa-phone text-[10px]"></i> Zalo Thầy Văn
+              </a>
             </div>
 
           </div>
