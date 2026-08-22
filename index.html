@@ -285,7 +285,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         
-        <!-- Left Hero Content -->
+        <!-- Left Hero Content (Căn lệch trái như cũ) -->
         <div class="lg:col-span-6 space-y-6">
           <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#EEDBCA]/60 border border-[#D9C4A6] text-xs font-semibold text-[#881B1B]">
             <i class="fa-solid fa-music"></i> Âm nhạc truyền thống & Hiện đại
@@ -336,222 +336,146 @@
           </div>
         </div>
 
-        <!-- Right Hero Visual -->
-        <div class="lg:col-span-6 relative flex justify-center items-center">
-          <div class="relative w-full max-w-md sm:max-w-lg aspect-[4/3] sm:aspect-[1.1/1] bg-[#F5EFE3] rounded-3xl p-6 sm:p-8 border border-[#DCCFB7] shadow-xl overflow-hidden flex flex-col justify-between">
-            
-            <div class="absolute inset-0 opacity-15 pointer-events-none p-6 space-y-4">
-              <div class="border-b border-gray-900 h-2"></div>
-              <div class="border-b border-gray-900 h-2"></div>
-              <div class="border-b border-gray-900 h-2"></div>
-              <div class="border-b border-gray-900 h-2"></div>
-              <div class="border-b border-gray-900 h-2"></div>
-              <p class="font-serif italic text-xs text-right mt-2 text-gray-700">Sáo Trúc Âu Cơ - Nhạc phẩm quê hương</p>
-            </div>
-
-            <div class="flex justify-between items-start z-10">
-              <div class="flex items-center gap-3">
-                <span class="text-xs uppercase tracking-widest text-[#20402C] font-semibold bg-[#20402C]/10 px-3 py-1 rounded-full border border-[#20402C]/20">
-                  <i class="fa-solid fa-leaf text-emerald-700 mr-1"></i> Sáo Nứa C5 (Đô)
-                </span>
-              </div>
-              <div class="w-10 h-14 border-2 border-[#881B1B] text-[#881B1B] flex flex-col items-center justify-center text-[10px] font-bold tracking-tighter bg-red-50/70 rotate-3 shadow-inner rounded-sm">
-                <span>ÂU</span>
-                <span>CƠ</span>
-              </div>
-            </div>
-
-            <!-- Flute Tube Body Graphic -->
-            <div class="my-auto z-10 py-4">
-              <div class="relative transform -rotate-[24deg] translate-y-2 scale-90 sm:scale-100 transition-transform hover:rotate-[20deg] duration-500">
-                <div class="w-[340px] sm:w-[420px] h-10 rounded-full flute-body relative flex items-center justify-between px-3 border border-[#522c07]">
-                  <div class="w-1.5 h-full bg-[#462306] opacity-60 absolute left-8"></div>
-                  <div class="w-2 h-full bg-[#462306] opacity-70 absolute left-28"></div>
-                  <div class="w-1.5 h-full bg-[#462306] opacity-60 absolute right-24"></div>
-
-                  <!-- Mouth Hole -->
-                  <div class="relative group/hole cursor-pointer" onclick="playFluteTone(261.63, 'Đô 1 (C4)')" title="Nhấp để nghe âm sắc sáo">
-                    <div class="w-6 h-6 rounded-full bg-[#1b0d03] border-2 border-[#8d541c] shadow-inner flex items-center justify-center">
-                      <span class="w-2 h-2 rounded-full bg-red-400 opacity-60 animate-ping"></span>
-                    </div>
-                  </div>
-
-                  <div class="w-5 h-full bg-[#881B1B] flex flex-col justify-around py-0.5">
-                    <div class="h-0.5 bg-amber-400/80"></div>
-                    <div class="h-0.5 bg-amber-400/80"></div>
-                  </div>
-
-                  <!-- 6 Holes -->
-                  <div class="flex items-center gap-4 sm:gap-6 pr-4">
-                    <button onclick="playFluteTone(261.63, 'Đô 1')" class="w-5 h-5 rounded-full bg-[#1e0e03] border border-[#a46624] hover:ring-2 hover:ring-red-500 shadow-inner transition-all flex items-center justify-center text-[8px] text-amber-200" title="T1: Đô"></button>
-                    <button onclick="playFluteTone(293.66, 'Rê 1')" class="w-5 h-5 rounded-full bg-[#1e0e03] border border-[#a46624] hover:ring-2 hover:ring-red-500 shadow-inner transition-all flex items-center justify-center text-[8px] text-amber-200" title="T2: Rê"></button>
-                    <button onclick="playFluteTone(329.63, 'Mi 1')" class="w-5 h-5 rounded-full bg-[#1e0e03] border border-[#a46624] hover:ring-2 hover:ring-red-500 shadow-inner transition-all flex items-center justify-center text-[8px] text-amber-200" title="T3: Mi"></button>
-                    <button onclick="playFluteTone(349.23, 'Fa 1')" class="w-5 h-5 rounded-full bg-[#1e0e03] border border-[#a46624] hover:ring-2 hover:ring-red-500 shadow-inner transition-all flex items-center justify-center text-[8px] text-amber-200" title="T4: Fa"></button>
-                    <button onclick="playFluteTone(392.00, 'Sol 1')" class="w-5 h-5 rounded-full bg-[#1e0e03] border border-[#a46624] hover:ring-2 hover:ring-red-500 shadow-inner transition-all flex items-center justify-center text-[8px] text-amber-200" title="T5: Sol"></button>
-                    <button onclick="playFluteTone(440.00, 'La 1')" class="w-5 h-5 rounded-full bg-[#1e0e03] border border-[#a46624] hover:ring-2 hover:ring-red-500 shadow-inner transition-all flex items-center justify-center text-[8px] text-amber-200" title="T6: La"></button>
-                  </div>
-
-                  <div class="relative">
-                    <div class="w-4 h-full bg-[#462306] rounded-r-full"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Audio Tester -->
-            <div class="z-10 bg-white/90 backdrop-blur-sm rounded-xl p-3.5 border border-[#D9CDBB] flex items-center justify-between">
-              <div class="flex items-center gap-3">
-                <button onclick="playDemoMelody()" id="demoPlayBtn" class="w-10 h-10 rounded-full bg-[#881B1B] text-white flex items-center justify-center shadow hover:scale-105 transition-transform" title="Nghe thử bài mẫu sáo trúc">
-                  <i class="fa-solid fa-play text-sm ml-0.5" id="demoPlayIcon"></i>
-                </button>
-                <div>
-                  <h4 class="text-xs font-bold text-[#292421]">Nghe thử âm sắc sáo nứa C5</h4>
-                  <p class="text-[11px] text-[#6B625B]" id="audioStatusText">Bấm nút để nghe câu hò quê hương</p>
-                </div>
-              </div>
-              <span class="text-[11px] px-2.5 py-1 bg-amber-50 text-amber-800 border border-amber-200 rounded-md font-medium">Âm chuẩn 440Hz</span>
-            </div>
-
-          </div>
-        </div>
+        <!-- Right Side (Để trống phần vừa xóa) -->
+        <div class="hidden lg:block lg:col-span-6"></div>
 
       </div>
     </div>
   </section>
 
   <!-- ================= SECTION 2: BẠN ĐANG GẶP KHÓ KHĂN GÌ? (6 DEDICATED GUIDES) ================= -->
-  <section id="kho-khan" class="py-16 bg-[#FAF6EE] border-b border-[#EADFCB]/60">
+  <section id="kho-khan" class="py-10 sm:py-16 bg-[#FAF6EE] border-b border-[#EADFCB]/60">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <!-- Section Title with ornamental line -->
-      <div class="flex items-center justify-center mb-12">
-        <div class="h-px bg-[#D9CDBB] w-12 sm:w-24"></div>
-        <div class="flex items-center gap-2.5 mx-4">
-          <i class="fa-solid fa-book-bookmark text-[#881B1B] text-lg"></i>
-          <h2 class="font-serif text-2xl sm:text-3xl font-bold text-[#292421] text-center tracking-tight">
+      <div class="flex items-center justify-center mb-8 sm:mb-12">
+        <div class="h-px bg-[#D9CDBB] w-8 sm:w-24"></div>
+        <div class="flex items-center gap-2.5 mx-3 sm:mx-4">
+          <i class="fa-solid fa-book-bookmark text-[#881B1B] text-base sm:text-lg"></i>
+          <h2 class="font-serif text-xl sm:text-2xl lg:text-3xl font-bold text-[#292421] text-center tracking-tight">
             Bạn đang gặp khó khăn gì?
           </h2>
         </div>
-        <div class="h-px bg-[#D9CDBB] w-12 sm:w-24"></div>
+        <div class="h-px bg-[#D9CDBB] w-8 sm:w-24"></div>
       </div>
 
-      <!-- 6 Problem Cards Grid with Direct Links & Hover "Xem hướng dẫn →" -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-4 sm:gap-6">
+      <!-- 6 Problem Cards Grid - Tối ưu 2 cột trên Mobile, 3 cột trên Tablet, 6 cột trên Desktop -->
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4 lg:gap-6">
         
-        <!-- Card 1: Không biết bắt đầu từ đâu -> lo-trinh-nguoi-moi.html -->
-        <a href="lo-trinh-nguoi-moi.html" class="problem-card bg-white rounded-2xl p-6 text-center border border-[#E8DFC8] shadow-sm flex flex-col items-center justify-between group cursor-pointer">
-          <div class="w-14 h-14 rounded-full bg-[#193822] text-white flex items-center justify-center mb-4 shadow-sm group-hover:scale-110 group-hover:bg-[#881B1B] transition-all">
-            <i class="fa-solid fa-music text-xl"></i>
+        <!-- Card 1: Không biết bắt đầu từ đâu -->
+        <a href="lo-trinh-nguoi-moi.html" class="problem-card bg-white rounded-2xl p-3.5 sm:p-5 lg:p-6 text-center border border-[#E8DFC8] shadow-sm flex flex-col items-center justify-between group cursor-pointer hover:border-[#881B1B] transition-all">
+          <div class="w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-[#193822] text-white flex items-center justify-center mb-2.5 sm:mb-4 shadow-sm group-hover:scale-105 group-hover:bg-[#881B1B] transition-all">
+            <i class="fa-solid fa-music text-base sm:text-xl"></i>
           </div>
           <div>
-            <h3 class="font-bold text-[#292421] group-hover:text-[#881B1B] text-sm sm:text-base mb-1.5 leading-snug transition-colors">
+            <h3 class="font-bold text-[#292421] group-hover:text-[#881B1B] text-xs sm:text-sm lg:text-base mb-1 leading-snug transition-colors">
               Không biết bắt đầu từ đâu
             </h3>
-            <p class="text-xs text-[#6B625B] leading-relaxed mb-3">
+            <p class="hidden sm:block text-xs text-[#6B625B] leading-relaxed mb-3">
               Chưa có nền tảng, khó tự học.
             </p>
           </div>
-          <div class="pt-2 border-t border-[#F2EADA] w-full text-center">
+          <div class="hidden sm:block pt-2 border-t border-[#F2EADA] w-full text-center">
             <span class="text-xs font-semibold text-[#881B1B] inline-flex items-center gap-1 group-hover:translate-x-1 transition-transform">
               Xem hướng dẫn <i class="fa-solid fa-arrow-right text-[10px]"></i>
             </span>
           </div>
         </a>
 
-        <!-- Card 2: Không đọc được nhạc -> doc-not-nhac.html -->
-        <a href="doc-not-nhac.html" class="problem-card bg-white rounded-2xl p-6 text-center border border-[#E8DFC8] shadow-sm flex flex-col items-center justify-between group cursor-pointer">
-          <div class="w-14 h-14 rounded-full bg-[#881B1B] text-white flex items-center justify-center mb-4 shadow-sm group-hover:scale-110 group-hover:bg-[#193822] transition-all">
-            <i class="fa-solid fa-file-waveform text-xl"></i>
+        <!-- Card 2: Không đọc được nhạc -->
+        <a href="doc-not-nhac.html" class="problem-card bg-white rounded-2xl p-3.5 sm:p-5 lg:p-6 text-center border border-[#E8DFC8] shadow-sm flex flex-col items-center justify-between group cursor-pointer hover:border-[#881B1B] transition-all">
+          <div class="w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-[#881B1B] text-white flex items-center justify-center mb-2.5 sm:mb-4 shadow-sm group-hover:scale-105 group-hover:bg-[#193822] transition-all">
+            <i class="fa-solid fa-file-waveform text-base sm:text-xl"></i>
           </div>
           <div>
-            <h3 class="font-bold text-[#292421] group-hover:text-[#881B1B] text-sm sm:text-base mb-1.5 leading-snug transition-colors">
+            <h3 class="font-bold text-[#292421] group-hover:text-[#881B1B] text-xs sm:text-sm lg:text-base mb-1 leading-snug transition-colors">
               Không đọc được nhạc
             </h3>
-            <p class="text-xs text-[#6B625B] leading-relaxed mb-3">
+            <p class="hidden sm:block text-xs text-[#6B625B] leading-relaxed mb-3">
               Gặp khó khăn khi đọc ký hiệu âm nhạc.
             </p>
           </div>
-          <div class="pt-2 border-t border-[#F2EADA] w-full text-center">
+          <div class="hidden sm:block pt-2 border-t border-[#F2EADA] w-full text-center">
             <span class="text-xs font-semibold text-[#881B1B] inline-flex items-center gap-1 group-hover:translate-x-1 transition-transform">
               Xem hướng dẫn <i class="fa-solid fa-arrow-right text-[10px]"></i>
             </span>
           </div>
         </a>
 
-        <!-- Card 3: Bấm sai thế, không ra tiếng -> tra-cuu-the-bam.html -->
-        <a href="tra-cuu-the-bam.html" class="problem-card bg-white rounded-2xl p-6 text-center border border-[#E8DFC8] shadow-sm flex flex-col items-center justify-between group cursor-pointer">
-          <div class="w-14 h-14 rounded-full bg-[#193822] text-white flex items-center justify-center mb-4 shadow-sm group-hover:scale-110 group-hover:bg-[#881B1B] transition-all">
-            <i class="fa-solid fa-hand-point-down text-xl"></i>
+        <!-- Card 3: Bấm sai thế, không ra tiếng -->
+        <a href="tra-cuu-the-bam.html" class="problem-card bg-white rounded-2xl p-3.5 sm:p-5 lg:p-6 text-center border border-[#E8DFC8] shadow-sm flex flex-col items-center justify-between group cursor-pointer hover:border-[#881B1B] transition-all">
+          <div class="w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-[#193822] text-white flex items-center justify-center mb-2.5 sm:mb-4 shadow-sm group-hover:scale-105 group-hover:bg-[#881B1B] transition-all">
+            <i class="fa-solid fa-hand-point-down text-base sm:text-xl"></i>
           </div>
           <div>
-            <h3 class="font-bold text-[#292421] group-hover:text-[#881B1B] text-sm sm:text-base mb-1.5 leading-snug transition-colors">
+            <h3 class="font-bold text-[#292421] group-hover:text-[#881B1B] text-xs sm:text-sm lg:text-base mb-1 leading-snug transition-colors">
               Bấm sai thế, không ra tiếng
             </h3>
-            <p class="text-xs text-[#6B625B] leading-relaxed mb-3">
+            <p class="hidden sm:block text-xs text-[#6B625B] leading-relaxed mb-3">
               Không rõ cách đặt tay, âm không chuẩn.
             </p>
           </div>
-          <div class="pt-2 border-t border-[#F2EADA] w-full text-center">
+          <div class="hidden sm:block pt-2 border-t border-[#F2EADA] w-full text-center">
             <span class="text-xs font-semibold text-[#881B1B] inline-flex items-center gap-1 group-hover:translate-x-1 transition-transform">
               Xem hướng dẫn <i class="fa-solid fa-arrow-right text-[10px]"></i>
             </span>
           </div>
         </a>
 
-        <!-- Card 4: Âm thanh yếu, không hay -> luyen-hoi-khau-hinh.html -->
-        <a href="luyen-hoi-khau-hinh.html" class="problem-card bg-white rounded-2xl p-6 text-center border border-[#E8DFC8] shadow-sm flex flex-col items-center justify-between group cursor-pointer">
-          <div class="w-14 h-14 rounded-full bg-[#881B1B] text-white flex items-center justify-center mb-4 shadow-sm group-hover:scale-110 group-hover:bg-[#193822] transition-all">
-            <i class="fa-solid fa-wave-square text-xl"></i>
+        <!-- Card 4: Âm thanh yếu, không hay -->
+        <a href="luyen-hoi-khau-hinh.html" class="problem-card bg-white rounded-2xl p-3.5 sm:p-5 lg:p-6 text-center border border-[#E8DFC8] shadow-sm flex flex-col items-center justify-between group cursor-pointer hover:border-[#881B1B] transition-all">
+          <div class="w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-[#881B1B] text-white flex items-center justify-center mb-2.5 sm:mb-4 shadow-sm group-hover:scale-105 group-hover:bg-[#193822] transition-all">
+            <i class="fa-solid fa-wave-square text-base sm:text-xl"></i>
           </div>
           <div>
-            <h3 class="font-bold text-[#292421] group-hover:text-[#881B1B] text-sm sm:text-base mb-1.5 leading-snug transition-colors">
+            <h3 class="font-bold text-[#292421] group-hover:text-[#881B1B] text-xs sm:text-sm lg:text-base mb-1 leading-snug transition-colors">
               Âm thanh yếu, không hay
             </h3>
-            <p class="text-xs text-[#6B625B] leading-relaxed mb-3">
+            <p class="hidden sm:block text-xs text-[#6B625B] leading-relaxed mb-3">
               Thổi không vang, khó kiểm soát hơi thở.
             </p>
           </div>
-          <div class="pt-2 border-t border-[#F2EADA] w-full text-center">
+          <div class="hidden sm:block pt-2 border-t border-[#F2EADA] w-full text-center">
             <span class="text-xs font-semibold text-[#881B1B] inline-flex items-center gap-1 group-hover:translate-x-1 transition-transform">
               Xem hướng dẫn <i class="fa-solid fa-arrow-right text-[10px]"></i>
             </span>
           </div>
         </a>
 
-        <!-- Card 5: Không biết bài nào phù hợp -> danh-sach-bai-tap.html -->
-        <a href="danh-sach-bai-tap.html" class="problem-card bg-white rounded-2xl p-6 text-center border border-[#E8DFC8] shadow-sm flex flex-col items-center justify-between group cursor-pointer">
-          <div class="w-14 h-14 rounded-full bg-[#193822] text-white flex items-center justify-center mb-4 shadow-sm group-hover:scale-110 group-hover:bg-[#881B1B] transition-all">
-            <i class="fa-solid fa-circle-question text-xl"></i>
+        <!-- Card 5: Không biết bài nào phù hợp -->
+        <a href="danh-sach-bai-tap.html" class="problem-card bg-white rounded-2xl p-3.5 sm:p-5 lg:p-6 text-center border border-[#E8DFC8] shadow-sm flex flex-col items-center justify-between group cursor-pointer hover:border-[#881B1B] transition-all">
+          <div class="w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-[#193822] text-white flex items-center justify-center mb-2.5 sm:mb-4 shadow-sm group-hover:scale-105 group-hover:bg-[#881B1B] transition-all">
+            <i class="fa-solid fa-circle-question text-base sm:text-xl"></i>
           </div>
           <div>
-            <h3 class="font-bold text-[#292421] group-hover:text-[#881B1B] text-sm sm:text-base mb-1.5 leading-snug transition-colors">
+            <h3 class="font-bold text-[#292421] group-hover:text-[#881B1B] text-xs sm:text-sm lg:text-base mb-1 leading-snug transition-colors">
               Không biết bài nào phù hợp
             </h3>
-            <p class="text-xs text-[#6B625B] leading-relaxed mb-3">
+            <p class="hidden sm:block text-xs text-[#6B625B] leading-relaxed mb-3">
               Chưa chọn được bài vừa sức để luyện.
             </p>
           </div>
-          <div class="pt-2 border-t border-[#F2EADA] w-full text-center">
+          <div class="hidden sm:block pt-2 border-t border-[#F2EADA] w-full text-center">
             <span class="text-xs font-semibold text-[#881B1B] inline-flex items-center gap-1 group-hover:translate-x-1 transition-transform">
               Xem hướng dẫn <i class="fa-solid fa-arrow-right text-[10px]"></i>
             </span>
           </div>
         </a>
 
-        <!-- Card 6: Thiếu kiên nhẫn, dễ nản -> ke-hoach-15-phut.html -->
-        <a href="ke-hoach-15-phut.html" class="problem-card bg-white rounded-2xl p-6 text-center border border-[#E8DFC8] shadow-sm flex flex-col items-center justify-between group cursor-pointer">
-          <div class="w-14 h-14 rounded-full bg-[#881B1B] text-white flex items-center justify-center mb-4 shadow-sm group-hover:scale-110 group-hover:bg-[#193822] transition-all">
-            <i class="fa-solid fa-bullseye text-xl"></i>
+        <!-- Card 6: Thiếu kiên nhẫn, dễ nản -->
+        <a href="ke-hoach-15-phut.html" class="problem-card bg-white rounded-2xl p-3.5 sm:p-5 lg:p-6 text-center border border-[#E8DFC8] shadow-sm flex flex-col items-center justify-between group cursor-pointer hover:border-[#881B1B] transition-all">
+          <div class="w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-[#881B1B] text-white flex items-center justify-center mb-2.5 sm:mb-4 shadow-sm group-hover:scale-105 group-hover:bg-[#193822] transition-all">
+            <i class="fa-solid fa-bullseye text-base sm:text-xl"></i>
           </div>
           <div>
-            <h3 class="font-bold text-[#292421] group-hover:text-[#881B1B] text-sm sm:text-base mb-1.5 leading-snug transition-colors">
+            <h3 class="font-bold text-[#292421] group-hover:text-[#881B1B] text-xs sm:text-sm lg:text-base mb-1 leading-snug transition-colors">
               Thiếu kiên nhẫn, dễ nản
             </h3>
-            <p class="text-xs text-[#6B625B] leading-relaxed mb-3">
+            <p class="hidden sm:block text-xs text-[#6B625B] leading-relaxed mb-3">
               Luyện mãi không tiến bộ, mất động lực.
             </p>
           </div>
-          <div class="pt-2 border-t border-[#F2EADA] w-full text-center">
+          <div class="hidden sm:block pt-2 border-t border-[#F2EADA] w-full text-center">
             <span class="text-xs font-semibold text-[#881B1B] inline-flex items-center gap-1 group-hover:translate-x-1 transition-transform">
               Xem hướng dẫn <i class="fa-solid fa-arrow-right text-[10px]"></i>
             </span>
@@ -563,92 +487,98 @@
   </section>
 
   <!-- ================= SECTION 3: LỘ TRÌNH DÀNH CHO NGƯỜI MỚI ================= -->
-  <section id="lo-trinh" class="py-16 bg-[#FAF6EE] border-b border-[#EADFCB]/60">
+  <section id="lo-trinh" class="py-10 sm:py-16 bg-[#FAF6EE] border-b border-[#EADFCB]/60">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
-      <div class="flex items-center justify-center mb-14">
-        <div class="h-px bg-[#D9CDBB] w-12 sm:w-24"></div>
-        <div class="flex items-center gap-2.5 mx-4">
-          <i class="fa-solid fa-seedling text-[#2D5E3B] text-xl"></i>
-          <h2 class="font-serif text-2xl sm:text-3xl font-bold text-[#292421] text-center tracking-tight">
+      <div class="flex items-center justify-center mb-8 sm:mb-14">
+        <div class="h-px bg-[#D9CDBB] w-8 sm:w-24"></div>
+        <div class="flex items-center gap-2.5 mx-3 sm:mx-4">
+          <i class="fa-solid fa-seedling text-[#2D5E3B] text-lg sm:text-xl"></i>
+          <h2 class="font-serif text-xl sm:text-2xl lg:text-3xl font-bold text-[#292421] text-center tracking-tight">
             Lộ trình dành cho người mới
           </h2>
         </div>
-        <div class="h-px bg-[#D9CDBB] w-12 sm:w-24"></div>
+        <div class="h-px bg-[#D9CDBB] w-8 sm:w-24"></div>
       </div>
 
-      <!-- Roadmap Flow 6 Steps -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-6 relative">
+      <!-- Roadmap Flow 6 Steps - Tối ưu 3 cột trên Mobile (2 hàng x 3 cột), 6 cột trên Desktop -->
+      <div class="grid grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-6 relative">
         
+        <!-- Step 1 -->
         <a href="lo-trinh-nguoi-moi.html" class="relative flex flex-col items-center text-center group cursor-pointer">
-          <div class="relative mb-3">
-            <div class="w-8 h-8 rounded-full bg-[#193822] text-white font-bold text-sm flex items-center justify-center mx-auto mb-2 shadow">1</div>
-            <div class="w-16 h-16 rounded-2xl bg-white border border-[#E8DFC8] flex items-center justify-center text-[#2D5E3B] group-hover:bg-[#193822] group-hover:text-white transition-all shadow-sm">
-              <i class="fa-solid fa-leaf text-2xl"></i>
+          <div class="relative mb-2 sm:mb-3">
+            <div class="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-[#193822] text-white font-bold text-xs sm:text-sm flex items-center justify-center mx-auto mb-1.5 sm:mb-2 shadow">1</div>
+            <div class="w-12 h-12 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl bg-white border border-[#E8DFC8] flex items-center justify-center text-[#2D5E3B] group-hover:bg-[#193822] group-hover:text-white transition-all shadow-sm">
+              <i class="fa-solid fa-leaf text-lg sm:text-2xl"></i>
             </div>
           </div>
-          <h3 class="font-bold text-[#292421] group-hover:text-[#881B1B] text-sm mb-1">Làm quen sáo trúc</h3>
-          <p class="text-xs text-[#6B625B] leading-relaxed">Hiểu về sáo, cách cầm sáo và tư thế đúng.</p>
+          <h3 class="font-bold text-[#292421] group-hover:text-[#881B1B] text-[11px] sm:text-sm mb-0.5 sm:mb-1 leading-tight">Làm quen sáo trúc</h3>
+          <p class="hidden sm:block text-xs text-[#6B625B] leading-relaxed">Hiểu về sáo, cách cầm sáo và tư thế đúng.</p>
           <div class="hidden lg:block absolute -right-3 top-10 text-[#C4B59D]"><i class="fa-solid fa-chevron-right text-xs"></i></div>
         </a>
 
+        <!-- Step 2 -->
         <a href="luyen-hoi-khau-hinh.html" class="relative flex flex-col items-center text-center group cursor-pointer">
-          <div class="relative mb-3">
-            <div class="w-8 h-8 rounded-full bg-[#881B1B] text-white font-bold text-sm flex items-center justify-center mx-auto mb-2 shadow">2</div>
-            <div class="w-16 h-16 rounded-2xl bg-white border border-[#E8DFC8] flex items-center justify-center text-[#881B1B] group-hover:bg-[#881B1B] group-hover:text-white transition-all shadow-sm">
-              <i class="fa-solid fa-wind text-2xl"></i>
+          <div class="relative mb-2 sm:mb-3">
+            <div class="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-[#881B1B] text-white font-bold text-xs sm:text-sm flex items-center justify-center mx-auto mb-1.5 sm:mb-2 shadow">2</div>
+            <div class="w-12 h-12 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl bg-[#881B1B] text-white border border-[#881B1B] flex items-center justify-center transition-all shadow-sm">
+              <i class="fa-solid fa-wind text-lg sm:text-2xl"></i>
             </div>
           </div>
-          <h3 class="font-bold text-[#292421] group-hover:text-[#881B1B] text-sm mb-1">Hơi thở & Thổi âm</h3>
-          <p class="text-xs text-[#6B625B] leading-relaxed">Kỹ thuật lấy hơi, thổi âm cơ bản.</p>
+          <h3 class="font-bold text-[#881B1B] text-[11px] sm:text-sm mb-0.5 sm:mb-1 leading-tight">Hơi thở & Thổi âm</h3>
+          <p class="hidden sm:block text-xs text-[#6B625B] leading-relaxed">Kỹ thuật lấy hơi, thổi âm cơ bản.</p>
           <div class="hidden lg:block absolute -right-3 top-10 text-[#C4B59D]"><i class="fa-solid fa-chevron-right text-xs"></i></div>
         </a>
 
+        <!-- Step 3 -->
         <a href="tra-cuu-the-bam.html" class="relative flex flex-col items-center text-center group cursor-pointer">
-          <div class="relative mb-3">
-            <div class="w-8 h-8 rounded-full bg-[#193822] text-white font-bold text-sm flex items-center justify-center mx-auto mb-2 shadow">3</div>
-            <div class="w-16 h-16 rounded-2xl bg-white border border-[#E8DFC8] flex items-center justify-center text-[#2D5E3B] group-hover:bg-[#193822] group-hover:text-white transition-all shadow-sm">
-              <i class="fa-solid fa-hand-holding text-2xl"></i>
+          <div class="relative mb-2 sm:mb-3">
+            <div class="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-[#193822] text-white font-bold text-xs sm:text-sm flex items-center justify-center mx-auto mb-1.5 sm:mb-2 shadow">3</div>
+            <div class="w-12 h-12 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl bg-white border border-[#E8DFC8] flex items-center justify-center text-[#2D5E3B] group-hover:bg-[#193822] group-hover:text-white transition-all shadow-sm">
+              <i class="fa-solid fa-hand-holding text-lg sm:text-2xl"></i>
             </div>
           </div>
-          <h3 class="font-bold text-[#292421] group-hover:text-[#881B1B] text-sm mb-1">Thế bấm cơ bản</h3>
-          <p class="text-xs text-[#6B625B] leading-relaxed">Học 7 nốt nhạc đầu tiên và các thế bấm cơ bản.</p>
+          <h3 class="font-bold text-[#292421] group-hover:text-[#881B1B] text-[11px] sm:text-sm mb-0.5 sm:mb-1 leading-tight">Thế bấm cơ bản</h3>
+          <p class="hidden sm:block text-xs text-[#6B625B] leading-relaxed">Học 7 nốt nhạc đầu tiên và các thế bấm cơ bản.</p>
           <div class="hidden lg:block absolute -right-3 top-10 text-[#C4B59D]"><i class="fa-solid fa-chevron-right text-xs"></i></div>
         </a>
 
+        <!-- Step 4 -->
         <a href="doc-not-nhac.html" class="relative flex flex-col items-center text-center group cursor-pointer">
-          <div class="relative mb-3">
-            <div class="w-8 h-8 rounded-full bg-[#881B1B] text-white font-bold text-sm flex items-center justify-center mx-auto mb-2 shadow">4</div>
-            <div class="w-16 h-16 rounded-2xl bg-white border border-[#E8DFC8] flex items-center justify-center text-[#881B1B] group-hover:bg-[#881B1B] group-hover:text-white transition-all shadow-sm">
-              <i class="fa-solid fa-music text-2xl"></i>
+          <div class="relative mb-2 sm:mb-3">
+            <div class="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-[#881B1B] text-white font-bold text-xs sm:text-sm flex items-center justify-center mx-auto mb-1.5 sm:mb-2 shadow">4</div>
+            <div class="w-12 h-12 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl bg-white border border-[#E8DFC8] flex items-center justify-center text-[#881B1B] group-hover:bg-[#881B1B] group-hover:text-white transition-all shadow-sm">
+              <i class="fa-solid fa-music text-lg sm:text-2xl"></i>
             </div>
           </div>
-          <h3 class="font-bold text-[#292421] group-hover:text-[#881B1B] text-sm mb-1">Đọc nhạc & Cảm âm</h3>
-          <p class="text-xs text-[#6B625B] leading-relaxed">Đọc nốt nhạc, tập cảm âm các mẫu đơn giản.</p>
+          <h3 class="font-bold text-[#292421] group-hover:text-[#881B1B] text-[11px] sm:text-sm mb-0.5 sm:mb-1 leading-tight">Đọc nhạc & Cảm âm</h3>
+          <p class="hidden sm:block text-xs text-[#6B625B] leading-relaxed">Đọc nốt nhạc, tập cảm âm các mẫu đơn giản.</p>
           <div class="hidden lg:block absolute -right-3 top-10 text-[#C4B59D]"><i class="fa-solid fa-chevron-right text-xs"></i></div>
         </a>
 
+        <!-- Step 5 -->
         <a href="danh-sach-bai-tap.html" class="relative flex flex-col items-center text-center group cursor-pointer">
-          <div class="relative mb-3">
-            <div class="w-8 h-8 rounded-full bg-[#193822] text-white font-bold text-sm flex items-center justify-center mx-auto mb-2 shadow">5</div>
-            <div class="w-16 h-16 rounded-2xl bg-white border border-[#E8DFC8] flex items-center justify-center text-[#2D5E3B] group-hover:bg-[#193822] group-hover:text-white transition-all shadow-sm">
-              <i class="fa-solid fa-book-open text-2xl"></i>
+          <div class="relative mb-2 sm:mb-3">
+            <div class="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-[#193822] text-white font-bold text-xs sm:text-sm flex items-center justify-center mx-auto mb-1.5 sm:mb-2 shadow">5</div>
+            <div class="w-12 h-12 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl bg-white border border-[#E8DFC8] flex items-center justify-center text-[#2D5E3B] group-hover:bg-[#193822] group-hover:text-white transition-all shadow-sm">
+              <i class="fa-solid fa-book-open text-lg sm:text-2xl"></i>
             </div>
           </div>
-          <h3 class="font-bold text-[#292421] group-hover:text-[#881B1B] text-sm mb-1">Luyện bài cơ bản</h3>
-          <p class="text-xs text-[#6B625B] leading-relaxed">Các bài luyện tập giúp củng cố kỹ năng.</p>
+          <h3 class="font-bold text-[#292421] group-hover:text-[#881B1B] text-[11px] sm:text-sm mb-0.5 sm:mb-1 leading-tight">Luyện bài cơ bản</h3>
+          <p class="hidden sm:block text-xs text-[#6B625B] leading-relaxed">Các bài luyện tập giúp củng cố kỹ năng.</p>
           <div class="hidden lg:block absolute -right-3 top-10 text-[#C4B59D]"><i class="fa-solid fa-chevron-right text-xs"></i></div>
         </a>
 
+        <!-- Step 6 -->
         <a href="ke-hoach-15-phut.html" class="relative flex flex-col items-center text-center group cursor-pointer">
-          <div class="relative mb-3">
-            <div class="w-8 h-8 rounded-full bg-[#881B1B] text-white font-bold text-sm flex items-center justify-center mx-auto mb-2 shadow">6</div>
-            <div class="w-16 h-16 rounded-2xl bg-white border border-[#E8DFC8] flex items-center justify-center text-[#881B1B] group-hover:bg-[#881B1B] group-hover:text-white transition-all shadow-sm">
-              <i class="fa-solid fa-bullseye text-2xl"></i>
+          <div class="relative mb-2 sm:mb-3">
+            <div class="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-[#881B1B] text-white font-bold text-xs sm:text-sm flex items-center justify-center mx-auto mb-1.5 sm:mb-2 shadow">6</div>
+            <div class="w-12 h-12 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl bg-white border border-[#E8DFC8] flex items-center justify-center text-[#881B1B] group-hover:bg-[#881B1B] group-hover:text-white transition-all shadow-sm">
+              <i class="fa-solid fa-bullseye text-lg sm:text-2xl"></i>
             </div>
           </div>
-          <h3 class="font-bold text-[#292421] group-hover:text-[#881B1B] text-sm mb-1">Nâng cao & Biểu diễn</h3>
-          <p class="text-xs text-[#6B625B] leading-relaxed">Kỹ thuật nâng cao và kế hoạch 15p hàng ngày.</p>
+          <h3 class="font-bold text-[#292421] group-hover:text-[#881B1B] text-[11px] sm:text-sm mb-0.5 sm:mb-1 leading-tight">Nâng cao & Biểu diễn</h3>
+          <p class="hidden sm:block text-xs text-[#6B625B] leading-relaxed">Kỹ thuật nâng cao và kế hoạch 15p hàng ngày.</p>
         </a>
 
       </div>
