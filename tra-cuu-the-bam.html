@@ -263,15 +263,25 @@
       document.getElementById('advSelectedName').innerText = `${note.name} (${note.id})`;
       document.getElementById('advNoteTipBox').innerHTML = `<strong>Kỹ thuật bấm & thổi:</strong> ${note.tip}`;
       const tubeHoles = document.getElementById('advFluteHoles');
-      tubeHoles.innerHTML = note.holes.map(st => {
-        let cls = st === true ? 'bg-[#1b0d03] ring-2 ring-[#881B1B]' : (st === 'half' ? 'bg-gradient-to-r from-[#1b0d03] to-amber-200 ring-2 ring-amber-500' : 'bg-amber-100 border-2 border-[#522c07]');
-        return `<div class="w-5 h-5 rounded-full ${cls} shadow-inner"></div>`;
+      tubeHoles.innerHTML = note.holes.map((st, i) => {
+        let cls = st === true 
+          ? 'bg-[#110802] ring-2 ring-[#881B1B]/80 shadow-inner' 
+          : (st === 'half' 
+              ? 'bg-gradient-to-r from-[#110802] from-50% to-white to-50% border-2 border-[#110802] ring-2 ring-amber-400 shadow-md' 
+              : 'bg-white border-2 border-[#110802] shadow-md ring-2 ring-white/90'
+            );
+        return `<button type="button" onclick="playTone(${note.freq})" class="w-5 h-5 rounded-full ${cls} cursor-pointer hover:scale-125 transition-transform" title="Lỗ ${i+1}: ${st === true ? 'Bịt kín' : (st === 'half' ? 'Bịt 1/2' : 'Mở')} - Bấm để nghe"></button>`;
       }).join('');
       const fingers = document.getElementById('advFingersDisplay');
       const labels = ['T1 (Trỏ T)', 'T2 (Giữa T)', 'T3 (Áp út T)', 'T4 (Trỏ P)', 'T5 (Giữa P)', 'T6 (Áp út P)'];
       fingers.innerHTML = note.holes.map((st, idx) => {
-        let icon = st === true ? '<div class="w-9 h-9 rounded-full bg-[#292421] text-white mx-auto flex items-center justify-center font-bold text-xs shadow">⚫</div>' : (st === 'half' ? '<div class="w-9 h-9 rounded-full bg-gradient-to-r from-[#292421] from-50% to-white to-50% border-2 border-[#292421] mx-auto flex items-center justify-center font-bold text-xs shadow">◐</div>' : '<div class="w-9 h-9 rounded-full bg-white border-2 border-[#292421] text-[#292421] mx-auto flex items-center justify-center font-bold text-xs shadow">⚪</div>');
-        return `<div><span class="text-[11px] font-bold text-[#6B625B] block mb-1.5">${labels[idx]}</span>${icon}</div>`;
+        let icon = st === true 
+          ? '<div class="w-9 h-9 rounded-full bg-[#110802] text-white mx-auto flex items-center justify-center font-bold text-xs shadow-md ring-1 ring-[#881B1B]/40">⚫</div>' 
+          : (st === 'half' 
+              ? '<div class="w-9 h-9 rounded-full bg-gradient-to-r from-[#110802] from-50% to-white to-50% border-2 border-[#110802] mx-auto flex items-center justify-center font-bold text-xs shadow-md ring-1 ring-amber-400">◐</div>' 
+              : '<div class="w-9 h-9 rounded-full bg-white border-2 border-[#110802] text-[#110802] mx-auto flex items-center justify-center font-bold text-xs shadow-md ring-2 ring-stone-300">⚪</div>'
+            );
+        return `<button type="button" onclick="playTone(${note.freq})" class="flex flex-col items-center cursor-pointer group hover:scale-105 transition-transform"><span class="text-[11px] font-bold text-[#6B625B] group-hover:text-[#881B1B] block mb-1.5">${labels[idx]}</span>${icon}</button>`;
       }).join('');
     }
     function selectAdvNote(idx) {

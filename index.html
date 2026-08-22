@@ -1470,8 +1470,13 @@
       const tubeHoles = document.getElementById("fluteTubeHoles");
       if (tubeHoles) {
         tubeHoles.innerHTML = note.holes.map((st, i) => {
-          let style = st === true ? "bg-[#1b0d03] ring-2 ring-[#881B1B]/70" : (st === "half" ? "bg-gradient-to-r from-[#1b0d03] to-amber-200 ring-2 ring-amber-500" : "bg-amber-100 border-2 border-[#522c07]");
-          return `<button type="button" onclick="playFluteTone(${note.freq}, '${note.name}')" class="w-4 h-4 rounded-full ${style} shadow-inner cursor-pointer hover:scale-125 transition-transform" title="Lỗ ${i+1}: Bấm để nghe"></button>`;
+          let style = st === true 
+            ? "bg-[#110802] ring-2 ring-[#881B1B]/80 shadow-inner" 
+            : (st === "half" 
+                ? "bg-gradient-to-r from-[#110802] from-50% to-white to-50% border-2 border-[#110802] ring-2 ring-amber-400 shadow-md" 
+                : "bg-white border-2 border-[#110802] shadow-md ring-2 ring-white/90"
+              );
+          return `<button type="button" onclick="playFluteTone(${note.freq}, '${note.name}')" class="w-5 h-5 rounded-full ${style} cursor-pointer hover:scale-125 transition-transform" title="Lỗ ${i+1}: ${st === true ? 'Bịt kín' : (st === 'half' ? 'Bịt 1/2' : 'Mở')} - Bấm để nghe"></button>`;
         }).join("");
       }
 
@@ -1479,7 +1484,12 @@
       if (container) {
         const labels = ["T1 (Trỏ T)", "T2 (Giữa T)", "T3 (Áp T)", "T4 (Trỏ P)", "T5 (Giữa P)", "T6 (Áp P)"];
         container.innerHTML = note.holes.map((st, i) => {
-          let dot = st === true ? `<div class="w-8 h-8 rounded-full bg-[#292421] mx-auto border-2 border-[#1a1715] flex items-center justify-center text-white text-[10px] shadow">⚫</div>` : (st === "half" ? `<div class="w-8 h-8 rounded-full bg-gradient-to-r from-[#292421] from-50% to-white to-50% mx-auto border-2 border-[#292421] flex items-center justify-center text-amber-900 text-[10px] shadow">◐</div>` : `<div class="w-8 h-8 rounded-full bg-white mx-auto border-2 border-[#292421] flex items-center justify-center text-[#292421] text-[10px] shadow">⚪</div>`);
+          let dot = st === true 
+            ? `<div class="w-8 h-8 rounded-full bg-[#110802] mx-auto border-2 border-[#110802] flex items-center justify-center text-white text-[10px] shadow-md ring-1 ring-[#881B1B]/40">⚫</div>` 
+            : (st === "half" 
+                ? `<div class="w-8 h-8 rounded-full bg-gradient-to-r from-[#110802] from-50% to-white to-50% mx-auto border-2 border-[#110802] flex items-center justify-center text-amber-900 text-[10px] shadow-md ring-1 ring-amber-400">◐</div>` 
+                : `<div class="w-8 h-8 rounded-full bg-white mx-auto border-2 border-[#110802] flex items-center justify-center text-[#110802] text-[10px] shadow-md ring-2 ring-stone-300">⚪</div>`
+              );
           return `<button type="button" onclick="playFluteTone(${note.freq}, '${note.name}')" class="flex flex-col items-center cursor-pointer group hover:scale-105 transition-transform"><span class="text-[10px] font-bold text-[#6B625B] group-hover:text-[#881B1B] mb-1 truncate">${labels[i]}</span>${dot}</button>`;
         }).join("");
       }
