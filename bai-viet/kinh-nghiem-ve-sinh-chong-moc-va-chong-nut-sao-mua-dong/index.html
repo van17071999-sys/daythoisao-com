@@ -191,10 +191,10 @@
         </div>
 
         <!-- Dynamic HTML Content -->
-        <div id="articleContent" class="article-content text-sm sm:text-base text-[#292421] leading-relaxed space-y-4"><h4>1. Vệ sinh lòng ống sáo sau khi thổi</h4>
-<p>Hơi thở mang theo hơi ẩm ngưng tụ trong lòng ống sáo. Sau khi thổi xong, hãy dùng que quấn vải bông mềm lau khô hoàn toàn bên trong ống trước khi cất vào bao đựng.</p>
-<h4>2. Chống nứt sáo khi thời tiết hanh khô</h4>
-<p>Vào mùa đông miền Bắc hoặc khi để sáo trong phòng điều hòa lạnh, thân sáo rất dễ bị co ngót và nứt toác. Hãy quấn chỉ cước hoặc dây dù trang trí ở hai đầu sáo để gia cố, và thoa một lớp dầu dừa mỏng lên thân sáo định kỳ.</p></div>
+        <div id="articleContent" class="article-content text-sm sm:text-base text-[#292421] leading-relaxed"><h3 class="font-serif text-lg sm:text-xl font-bold text-[#881B1B] mt-8 mb-3.5 leading-snug">1. Vệ sinh lòng ống sáo sau khi thổi</h3>
+<p class="mb-5 text-[#292421] leading-relaxed text-sm sm:text-base">Hơi thở mang theo hơi ẩm ngưng tụ trong lòng ống sáo. Sau khi thổi xong, hãy dùng que quấn vải bông mềm lau khô hoàn toàn bên trong ống trước khi cất vào bao đựng.</p>
+<h3 class="font-serif text-lg sm:text-xl font-bold text-[#881B1B] mt-8 mb-3.5 leading-snug">2. Chống nứt sáo khi thời tiết hanh khô</h3>
+<p class="mb-5 text-[#292421] leading-relaxed text-sm sm:text-base">Vào mùa đông miền Bắc hoặc khi để sáo trong phòng điều hòa lạnh, thân sáo rất dễ bị co ngót và nứt toác. Hãy quấn chỉ cước hoặc dây dù trang trí ở hai đầu sáo để gia cố, và thoa một lớp dầu dừa mỏng lên thân sáo định kỳ.</p></div>
 
         <!-- Author Profile Box -->
         <div class="pt-6 border-t border-[#EADFCB] flex flex-col sm:flex-row items-center justify-between gap-6 bg-[#FAF6EE] p-6 rounded-2xl border border-[#D9CDBB]">
@@ -590,55 +590,114 @@
     function parseArticleContent(rawText) {
       if (!rawText) return '<p class="text-stone-400 italic">Chưa có nội dung bài viết...</p>';
       
-      let text = rawText;
-
-      // 1. Convert Markdown headers
-      text = text.replace(/^### (.*$)/gim, '<h3 class="font-serif text-lg sm:text-xl font-bold text-[#881B1B] mt-5 mb-2">$1</h3>');
-      text = text.replace(/^## (.*$)/gim, '<h2 class="font-serif text-xl sm:text-2xl font-bold text-[#881B1B] mt-6 mb-2">$1</h2>');
-      text = text.replace(/^# (.*$)/gim, '<h2 class="font-serif text-2xl sm:text-3xl font-bold text-[#881B1B] mt-6 mb-2">$1</h2>');
-
-      // 2. Convert Bold + Italic (***text***)
-      text = text.replace(/\*\*\*(.*?)\*\*\*/g, '<strong class="font-serif text-base sm:text-lg font-bold text-[#881B1B] italic block my-2.5">$1</strong>');
+      // Normalize line endings
+      let text = rawText.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
       
-      // 3. Convert Bold (**text**)
-      text = text.replace(/\*\*(.*?)\*\*/g, '<strong class="font-bold text-[#292421]">$1</strong>');
+      // Split into blocks separated by 2 or more newlines
+      const rawBlocks = text.split(/\n{2,}/);
+      const formattedBlocks = [];
       
-      // 4. Convert Italic (*text*)
-      text = text.replace(/\*(.*?)\*/g, '<em class="italic text-[#59524B]">$1</em>');
-
-      // 5. Convert Blockquotes (> text)
-      text = text.replace(/^\> (.*$)/gim, '<blockquote class="border-l-4 border-[#881B1B] bg-[#FAF6EE] p-4 rounded-r-xl italic my-3.5 text-[#292421]">$1</blockquote>');
-
-      // 6. Convert Images (![alt](url))
-      text = text.replace(/\!\[(.*?)\]\((.*?)\)/g, '<div class="my-4 rounded-2xl overflow-hidden border border-[#E8DFC8] shadow-sm"><img src="$2" alt="$1" class="w-full h-auto object-cover"><div class="p-2 bg-[#FAF6EE] text-xs text-[#6B625B] text-center italic">$1</div></div>');
-
-      // 7. Convert Links ([text](url))
-      text = text.replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank" class="text-[#881B1B] hover:underline font-semibold">$1</a>');
-
-      // 8. Split by paragraphs (double line break) while preserving single line breaks inside
-      const blocks = text.split(/\n\s*\n/);
-      const formattedBlocks = blocks.map(block => {
+      for (let block of rawBlocks) {
         block = block.trim();
-        if (!block) return '';
-        // If block already begins with HTML block tag
-        if (/^<(h[1-6]|ul|ol|blockquote|div|table|p|strong)/i.test(block)) {
-          return block;
+        if (!block) continue;
+        
+        // 1. Heading 1 / 2 / 3
+        if (/^###\s+(.*)$/i.test(block)) {
+          const headingText = block.replace(/^###\s+/, '').trim();
+          formattedBlocks.push(`<h3 class="font-serif text-lg sm:text-xl font-bold text-[#881B1B] mt-8 mb-3.5 leading-snug">${headingText}</h3>`);
+          continue;
         }
-        // Unordered list
+        if (/^##\s+(.*)$/i.test(block)) {
+          const headingText = block.replace(/^##\s+/, '').trim();
+          formattedBlocks.push(`<h2 class="font-serif text-xl sm:text-2xl font-bold text-[#881B1B] mt-9 mb-4 leading-snug">${headingText}</h2>`);
+          continue;
+        }
+        if (/^#\s+(.*)$/i.test(block)) {
+          const headingText = block.replace(/^#\s+/, '').trim();
+          formattedBlocks.push(`<h2 class="font-serif text-2xl sm:text-3xl font-bold text-[#881B1B] mt-9 mb-4 leading-snug">${headingText}</h2>`);
+          continue;
+        }
+        
+        // 2. Standalone Bold Italic Heading (***Title***)
+        if (/^\*\*\*(.*?)\*\*\*$/s.test(block)) {
+          const titleText = block.replace(/^\*\*\*/, '').replace(/\*\*\*$/, '').trim();
+          formattedBlocks.push(`<div class="font-serif text-base sm:text-lg font-bold text-[#881B1B] italic mt-7 mb-3 leading-snug">${titleText}</div>`);
+          continue;
+        }
+        
+        // 3. Standalone Bold Heading (**1. Title** or **Title**)
+        if (/^\*\*(.*?)\*\*$/s.test(block)) {
+          const titleText = block.replace(/^\*\*/, '').replace(/\*\*$/, '').trim();
+          formattedBlocks.push(`<h3 class="font-serif text-base sm:text-lg font-bold text-[#881B1B] mt-7 mb-3 leading-snug">${titleText}</h3>`);
+          continue;
+        }
+        
+        // 4. Standalone Numbered Heading without bold (e.g. "1. Đặt môi đúng vị trí" on a single line)
+        if (/^\d+\.\s+[^\n]+$/.test(block)) {
+          formattedBlocks.push(`<h3 class="font-serif text-base sm:text-lg font-bold text-[#881B1B] mt-7 mb-3 leading-snug">${block}</h3>`);
+          continue;
+        }
+        
+        // 5. Blockquote (> Text)
+        if (/^>\s+/m.test(block)) {
+          const quoteText = block.split(/\n/).map(l => l.replace(/^>\s*/, '')).join('<br>');
+          formattedBlocks.push(`<blockquote class="border-l-4 border-[#881B1B] bg-[#FAF6EE] p-4 sm:p-5 rounded-r-2xl italic my-5 text-[#292421] leading-relaxed shadow-sm">${quoteText}</blockquote>`);
+          continue;
+        }
+        
+        // 6. Standalone Image (![alt](url))
+        if (/^!\[(.*?)\]\((.*?)\)$/.test(block)) {
+          const m = block.match(/^!\[(.*?)\]\((.*?)\)$/);
+          const alt = m[1] || 'Hình minh họa bài viết';
+          const url = m[2];
+          formattedBlocks.push(`<div class="my-6 rounded-2xl overflow-hidden border border-[#E8DFC8] shadow-sm"><img src="${url}" alt="${alt}" class="w-full h-auto object-cover"><div class="p-3 bg-[#FAF6EE] text-xs text-[#6B625B] text-center italic">${alt}</div></div>`);
+          continue;
+        }
+        
+        // 7. Unordered list (- Item)
         if (/^[-*]\s+/m.test(block)) {
           const items = block.split(/\n/).map(l => l.replace(/^[-*]\s+/, '').trim()).filter(Boolean);
-          return `<ul class="list-disc pl-5 space-y-1.5 my-2.5 text-[#292421]">${items.map(i => `<li>${i}</li>`).join('')}</ul>`;
+          const lis = items.map(i => {
+            let parsed = i;
+            parsed = parsed.replace(/\*\*\*(.*?)\*\*\*/g, '<strong class="font-serif text-[#881B1B] italic">$1</strong>');
+            parsed = parsed.replace(/\*\*(.*?)\*\*/g, '<strong class="font-bold text-[#292421]">$1</strong>');
+            parsed = parsed.replace(/\*(.*?)\*/g, '<em class="italic text-[#59524B]">$1</em>');
+            parsed = parsed.replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank" class="text-[#881B1B] hover:underline font-semibold">$1</a>');
+            return `<li>${parsed}</li>`;
+          }).join('');
+          formattedBlocks.push(`<ul class="list-disc pl-6 space-y-2.5 my-4 text-[#292421] leading-relaxed">${lis}</ul>`);
+          continue;
         }
-        // Ordered list
-        if (/^\d+\.\s+/m.test(block)) {
+        
+        // 8. Ordered list (1. Item\n2. Item)
+        if (/^\d+\.\s+/m.test(block) && block.includes('\n')) {
           const items = block.split(/\n/).map(l => l.replace(/^\d+\.\s+/, '').trim()).filter(Boolean);
-          return `<ol class="list-decimal pl-5 space-y-1.5 my-2.5 text-[#292421]">${items.map(i => `<li>${i}</li>`).join('')}</ol>`;
+          const lis = items.map(i => {
+            let parsed = i;
+            parsed = parsed.replace(/\*\*\*(.*?)\*\*\*/g, '<strong class="font-serif text-[#881B1B] italic">$1</strong>');
+            parsed = parsed.replace(/\*\*(.*?)\*\*/g, '<strong class="font-bold text-[#292421]">$1</strong>');
+            parsed = parsed.replace(/\*(.*?)\*/g, '<em class="italic text-[#59524B]">$1</em>');
+            parsed = parsed.replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank" class="text-[#881B1B] hover:underline font-semibold">$1</a>');
+            return `<li>${parsed}</li>`;
+          }).join('');
+          formattedBlocks.push(`<ol class="list-decimal pl-6 space-y-2.5 my-4 text-[#292421] leading-relaxed">${lis}</ol>`);
+          continue;
         }
-        // Convert single newlines inside paragraph to <br> to preserve exact spacing
-        const withBr = block.replace(/\n/g, '<br>');
-        return `<p class="mb-3 text-[#292421] leading-relaxed text-sm sm:text-base">${withBr}</p>`;
-      }).filter(Boolean);
-
+        
+        // 9. Regular text paragraph with inline markdown & line breaks
+        let p = block;
+        p = p.replace(/\*\*\*(.*?)\*\*\*/g, '<strong class="font-serif text-[#881B1B] italic">$1</strong>');
+        p = p.replace(/\*\*(.*?)\*\*/g, '<strong class="font-bold text-[#292421]">$1</strong>');
+        p = p.replace(/\*(.*?)\*/g, '<em class="italic text-[#59524B]">$1</em>');
+        p = p.replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank" class="text-[#881B1B] hover:underline font-semibold">$1</a>');
+        p = p.replace(/!\[(.*?)\]\((.*?)\)/g, '<div class="my-4 rounded-xl overflow-hidden border border-[#E8DFC8]"><img src="$2" alt="$1" class="w-full h-auto"><div class="p-2 bg-[#FAF6EE] text-xs text-center italic">$1</div></div>');
+        
+        // Single newlines inside a paragraph become <br> to preserve exact spacing
+        p = p.replace(/\n/g, '<br>');
+        
+        formattedBlocks.push(`<p class="mb-5 text-[#292421] leading-relaxed text-sm sm:text-base">${p}</p>`);
+      }
+      
       return formattedBlocks.join('\n');
     }
 
