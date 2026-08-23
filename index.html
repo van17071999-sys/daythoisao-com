@@ -1082,10 +1082,10 @@
             Trang web chia sẻ kiến thức sáo trúc miễn phí được biên soạn bởi Sáo Trúc Âu Cơ với mong muốn giúp mọi người yêu sáo dễ dàng học tập và tiến bộ mỗi ngày.
           </p>
 
-          <div class="flex items-center space-x-3 pt-2">
-            <a href="https://youtube.com" target="_blank" class="w-8 h-8 rounded-full bg-white/10 hover:bg-[#881B1B] hover:text-white flex items-center justify-center transition-colors"><i class="fa-brands fa-youtube text-sm"></i></a>
-            <a href="https://facebook.com" target="_blank" class="w-8 h-8 rounded-full bg-white/10 hover:bg-[#1877F2] hover:text-white flex items-center justify-center transition-colors"><i class="fa-brands fa-facebook-f text-sm"></i></a>
-            <a href="https://tiktok.com" target="_blank" class="w-8 h-8 rounded-full bg-white/10 hover:bg-black hover:text-white flex items-center justify-center transition-colors"><i class="fa-brands fa-tiktok text-sm"></i></a>
+          <div class="flex items-center space-x-3 pt-2" id="footerSocialLinks">
+            <a href="https://youtube.com" id="footerLinkYoutube" target="_blank" class="w-8 h-8 rounded-full bg-white/10 hover:bg-[#881B1B] hover:text-white flex items-center justify-center transition-colors" title="YouTube"><i class="fa-brands fa-youtube text-sm"></i></a>
+            <a href="https://facebook.com" id="footerLinkFacebook" target="_blank" class="w-8 h-8 rounded-full bg-white/10 hover:bg-[#1877F2] hover:text-white flex items-center justify-center transition-colors" title="Facebook"><i class="fa-brands fa-facebook-f text-sm"></i></a>
+            <a href="https://tiktok.com" id="footerLinkTiktok" target="_blank" class="w-8 h-8 rounded-full bg-white/10 hover:bg-black hover:text-white flex items-center justify-center transition-colors" title="TikTok"><i class="fa-brands fa-tiktok text-sm"></i></a>
           </div>
         </div>
 
@@ -1671,10 +1671,26 @@
       }, 3000);
     }
 
+    function loadFooterSocialLinks() {
+      try {
+        const stored = localStorage.getItem('DAYTHOISAO_SOCIAL_LINKS');
+        if (stored) {
+          const links = JSON.parse(stored);
+          const yt = document.getElementById('footerLinkYoutube');
+          const fb = document.getElementById('footerLinkFacebook');
+          const tt = document.getElementById('footerLinkTiktok');
+          if (yt && links.youtube) yt.href = links.youtube;
+          if (fb && links.facebook) fb.href = links.facebook;
+          if (tt && links.tiktok) tt.href = links.tiktok;
+        }
+      } catch (e) {}
+    }
+
     window.addEventListener("DOMContentLoaded", () => {
       renderNoteSelectors();
       updateFingeringChart();
       renderSongTabs(SONGS_DATA);
+      loadFooterSocialLinks();
     });
   </script>
   <!-- FIXED MOBILE BOTTOM NAVIGATION BAR -->

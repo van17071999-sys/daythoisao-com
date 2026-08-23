@@ -505,21 +505,72 @@
               </form>
             </div>
 
-            <!-- Change Admin Password -->
-              <div class="bg-white rounded-2xl border border-[#E8DFC8] shadow-sm p-6 space-y-4">
-                <h3 class="font-serif text-base font-bold text-[#193822] flex items-center gap-2 pb-2 border-b border-stone-100">
-                  <i class="fa-solid fa-lock text-[#881B1B]"></i> Đổi mật khẩu Quản trị
+            <!-- Social & Platform Links Settings -->
+            <div class="bg-white rounded-2xl border border-[#E8DFC8] shadow-sm p-6 space-y-4">
+              <div class="flex items-center justify-between pb-2 border-b border-stone-100">
+                <h3 class="font-serif text-base font-bold text-[#193822] flex items-center gap-2">
+                  <i class="fa-solid fa-share-nodes text-[#881B1B]"></i> Cấu hình Liên kết các Nền tảng (Mạng Xã Hội)
                 </h3>
-                <form onsubmit="handleChangePassword(event)" class="space-y-3 text-xs">
-                  <div>
-                    <label class="font-bold text-[#292421] block mb-1">Mật khẩu mới:</label>
-                    <input type="password" id="newAdminPassword" required placeholder="Nhập mật khẩu mới..." class="w-full bg-[#FAF6EE] border border-[#D9CDBB] rounded-xl px-3 py-2 focus:ring-2 focus:ring-[#881B1B] outline-none">
-                  </div>
-                  <button type="submit" class="px-5 py-2.5 bg-stone-800 hover:bg-stone-900 text-white font-bold rounded-xl shadow transition-all">
-                    Cập nhật mật khẩu
-                  </button>
-                </form>
+                <span class="text-[10px] uppercase font-bold text-[#881B1B] bg-red-50 px-2 py-0.5 rounded border border-red-200">Footer & Mạng Xã Hội</span>
               </div>
+              <p class="text-xs text-[#6B625B]">Quản lý đường dẫn các kênh truyền thông chính thức của Sáo Trúc Âu Cơ hiển thị tại chân trang (Footer) và các mục kết nối của website.</p>
+              
+              <form onsubmit="saveSocialSettings(event)" class="space-y-3.5 text-xs">
+                <div>
+                  <label class="font-bold text-[#292421] flex items-center gap-1.5 mb-1">
+                    <i class="fa-brands fa-youtube text-red-600 text-sm"></i> Kênh YouTube:
+                  </label>
+                  <input type="url" id="settingSocialYoutube" placeholder="https://youtube.com/@saotrucauco" class="w-full bg-[#FAF6EE] border border-[#D9CDBB] rounded-xl px-3 py-2 focus:ring-2 focus:ring-[#881B1B] outline-none">
+                </div>
+
+                <div>
+                  <label class="font-bold text-[#292421] flex items-center gap-1.5 mb-1">
+                    <i class="fa-brands fa-facebook-f text-blue-600 text-sm"></i> Trang Facebook / Fanpage:
+                  </label>
+                  <input type="url" id="settingSocialFacebook" placeholder="https://facebook.com/saotrucauco" class="w-full bg-[#FAF6EE] border border-[#D9CDBB] rounded-xl px-3 py-2 focus:ring-2 focus:ring-[#881B1B] outline-none">
+                </div>
+
+                <div>
+                  <label class="font-bold text-[#292421] flex items-center gap-1.5 mb-1">
+                    <i class="fa-brands fa-tiktok text-stone-900 text-sm"></i> Kênh TikTok:
+                  </label>
+                  <input type="url" id="settingSocialTiktok" placeholder="https://tiktok.com/@saotrucauco" class="w-full bg-[#FAF6EE] border border-[#D9CDBB] rounded-xl px-3 py-2 focus:ring-2 focus:ring-[#881B1B] outline-none">
+                </div>
+
+                <div>
+                  <label class="font-bold text-[#292421] flex items-center gap-1.5 mb-1">
+                    <i class="fa-solid fa-phone text-emerald-600 text-sm"></i> Số Hotline / Zalo tư vấn:
+                  </label>
+                  <input type="text" id="settingSocialZalo" placeholder="https://zalo.me/0374261368 hoặc 0374 261 368" class="w-full bg-[#FAF6EE] border border-[#D9CDBB] rounded-xl px-3 py-2 focus:ring-2 focus:ring-[#881B1B] outline-none">
+                </div>
+
+                <div>
+                  <label class="font-bold text-[#292421] flex items-center gap-1.5 mb-1">
+                    <i class="fa-solid fa-globe text-[#193822] text-sm"></i> Website Mua sáo & Sheet nhạc:
+                  </label>
+                  <input type="url" id="settingSocialWebsite" placeholder="https://saotrucauco.com" class="w-full bg-[#FAF6EE] border border-[#D9CDBB] rounded-xl px-3 py-2 focus:ring-2 focus:ring-[#881B1B] outline-none">
+                </div>
+
+                <button type="submit" class="px-5 py-2.5 bg-[#881B1B] hover:bg-[#701515] text-white font-bold rounded-xl shadow transition-all flex items-center gap-2">
+                  <i class="fa-solid fa-floppy-disk"></i> Lưu liên kết các nền tảng
+                </button>
+              </form>
+            </div>
+
+            <!-- Change Admin Password -->
+            <div class="bg-white rounded-2xl border border-[#E8DFC8] shadow-sm p-6 space-y-4">
+              <h3 class="font-serif text-base font-bold text-[#193822] flex items-center gap-2 pb-2 border-b border-stone-100">
+                <i class="fa-solid fa-lock text-[#881B1B]"></i> Đổi mật khẩu Quản trị
+              </h3>
+              <form onsubmit="handleChangePassword(event)" class="space-y-3 text-xs">
+                <div>
+                  <label class="font-bold text-[#292421] block mb-1">Mật khẩu mới:</label>
+                  <input type="password" id="newAdminPassword" required placeholder="Nhập mật khẩu mới..." class="w-full bg-[#FAF6EE] border border-[#D9CDBB] rounded-xl px-3 py-2 focus:ring-2 focus:ring-[#881B1B] outline-none">
+                </div>
+                <button type="submit" class="px-5 py-2.5 bg-stone-800 hover:bg-stone-900 text-white font-bold rounded-xl shadow transition-all">
+                  Cập nhật mật khẩu
+                </button>
+              </form>
             </div>
           </div>
         </section>
@@ -1355,6 +1406,7 @@
       renderAdminRequests(requestsData);
       renderAdminArticles(articlesData);
       loadFounderSettings();
+      loadSocialSettings();
     }
 
     // Login Handler
@@ -2428,6 +2480,36 @@
       if (saved.zalo && document.getElementById('settingFounderZalo')) document.getElementById('settingFounderZalo').value = saved.zalo;
     }
 
+    const DEFAULT_SOCIAL_LINKS = {
+      youtube: 'https://youtube.com',
+      facebook: 'https://facebook.com',
+      tiktok: 'https://tiktok.com',
+      zalo: '0374 261 368',
+      website: 'https://saotrucauco.com'
+    };
+
+    function saveSocialSettings(e) {
+      e.preventDefault();
+      const social = {
+        youtube: document.getElementById('settingSocialYoutube').value.trim() || DEFAULT_SOCIAL_LINKS.youtube,
+        facebook: document.getElementById('settingSocialFacebook').value.trim() || DEFAULT_SOCIAL_LINKS.facebook,
+        tiktok: document.getElementById('settingSocialTiktok').value.trim() || DEFAULT_SOCIAL_LINKS.tiktok,
+        zalo: document.getElementById('settingSocialZalo').value.trim() || DEFAULT_SOCIAL_LINKS.zalo,
+        website: document.getElementById('settingSocialWebsite').value.trim() || DEFAULT_SOCIAL_LINKS.website
+      };
+      localStorage.setItem('DAYTHOISAO_SOCIAL_LINKS', JSON.stringify(social));
+      showToast("Đã lưu cấu hình liên kết các nền tảng!");
+    }
+
+    function loadSocialSettings() {
+      const saved = JSON.parse(localStorage.getItem('DAYTHOISAO_SOCIAL_LINKS') || JSON.stringify(DEFAULT_SOCIAL_LINKS));
+      if (document.getElementById('settingSocialYoutube')) document.getElementById('settingSocialYoutube').value = saved.youtube || '';
+      if (document.getElementById('settingSocialFacebook')) document.getElementById('settingSocialFacebook').value = saved.facebook || '';
+      if (document.getElementById('settingSocialTiktok')) document.getElementById('settingSocialTiktok').value = saved.tiktok || '';
+      if (document.getElementById('settingSocialZalo')) document.getElementById('settingSocialZalo').value = saved.zalo || '';
+      if (document.getElementById('settingSocialWebsite')) document.getElementById('settingSocialWebsite').value = saved.website || '';
+    }
+
     function saveDonateSettings(e) {
       e.preventDefault();
       const donate = {
@@ -2461,6 +2543,7 @@
         articles: articlesData,
         settings: JSON.parse(localStorage.getItem('DAYTHOISAO_SITE_SETTINGS') || '{}'),
         founder: JSON.parse(localStorage.getItem('DAYTHOISAO_FOUNDER_SETTINGS') || '{"visibility":"private"}'),
+        social: JSON.parse(localStorage.getItem('DAYTHOISAO_SOCIAL_LINKS') || JSON.stringify(DEFAULT_SOCIAL_LINKS)),
         donate: JSON.parse(localStorage.getItem('DAYTHOISAO_DONATE_SETTINGS') || '{}')
       };
 
@@ -2500,6 +2583,9 @@
           if (imported.founder) {
             localStorage.setItem('DAYTHOISAO_FOUNDER_SETTINGS', JSON.stringify(imported.founder));
           }
+          if (imported.social) {
+            localStorage.setItem('DAYTHOISAO_SOCIAL_LINKS', JSON.stringify(imported.social));
+          }
           if (imported.donate) {
             localStorage.setItem('DAYTHOISAO_DONATE_SETTINGS', JSON.stringify(imported.donate));
           }
@@ -2510,6 +2596,7 @@
           renderAdminRequests(requestsData);
           renderAdminArticles(articlesData);
           loadFounderSettings();
+          loadSocialSettings();
           showToast("Khôi phục dữ liệu từ file JSON thành công!");
         } catch (err) {
           alert("File JSON không hợp lệ hoặc bị lỗi định dạng!");
