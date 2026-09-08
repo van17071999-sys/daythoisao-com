@@ -214,6 +214,9 @@
           <button onclick="selectGenre('cach-mang')" class="genre-btn px-4 py-2 rounded-xl text-xs font-bold bg-[#FAF6EE] text-[#59524B] hover:bg-[#EADBCA] transition-all border border-[#E0D5C3]" data-genre="cach-mang">
             ⭐ Nhạc Cách Mạng / Tiền Chiến
           </button>
+          <button onclick="selectGenre('khong-loi')" class="genre-btn px-4 py-2 rounded-xl text-xs font-bold bg-[#FAF6EE] text-[#59524B] hover:bg-[#EADBCA] transition-all border border-[#E0D5C3]" data-genre="khong-loi">
+            🎵 Độc Tấu Không Lời / Tây Bắc
+          </button>
           <button onclick="selectGenre('luyen-ngon')" class="genre-btn px-4 py-2 rounded-xl text-xs font-bold bg-[#FAF6EE] text-[#59524B] hover:bg-[#EADBCA] transition-all border border-[#E0D5C3]" data-genre="luyen-ngon">
             🎯 Bài Tập Luyện Ngón & Lưỡi Kép
           </button>
@@ -589,7 +592,7 @@
         .replace(/\s\-\s/g, ' – ');
     }
 
-    const SONGS_DB = [
+    const DEFAULT_SONGS_DB = [
       {
         id: 1,
         title: "Nữ Nhi Tình (Tây Du Ký)",
@@ -599,7 +602,7 @@
         toneKey: "C-Am",
         toneDisplay: "C / Am",
         fluteTone: "Sáo C5 (Tone Đô)",
-        diff: "Dễ / Cơ bản",
+        diff: "Dễ",
         tech: "Rung hơi, Luyến nốt quãng 2, Ngân phách",
         tip: "Thổi bằng sáo Nứa C5 (Đô), nhịp 2/4 chậm rãi, luyến nhẹ nhàng giữa các nốt Sol lên Do² và Re² sang Mi².",
         sections: [
@@ -628,7 +631,7 @@
         title: "Hà Nội 12 mùa hoa",
         author: "Giáng Son",
         genreId: "am-huong-dan-ca",
-        genreName: "Âm hưởng dân ca",
+        genreName: "Âm Hưởng Dân Ca",
         toneKey: "C-Am",
         toneDisplay: "C / Am",
         fluteTone: "Sáo C5 (Đô)",
@@ -658,7 +661,7 @@
         title: "Nơi này có anh",
         author: "Sơn Tùng M-TP",
         genreId: "nhac-tre",
-        genreName: "Nhạc Trẻ Ballad",
+        genreName: "Nhạc Trẻ Ballad / Pop",
         toneKey: "D-Bm",
         toneDisplay: "D / Bm",
         fluteTone: "Sáo C5 hoặc D5",
@@ -718,7 +721,7 @@
         title: "Qua cầu gió bay",
         author: "Dân ca Quan họ Bắc Ninh",
         genreId: "dan-ca",
-        genreName: "Dân Ca Quan Họ",
+        genreName: "Dân Ca Quan Họ & Bắc Bộ",
         toneKey: "F-Dm",
         toneDisplay: "F / Dm",
         fluteTone: "Sáo C5 / F4",
@@ -738,23 +741,24 @@
       },
       {
         id: 6,
-        title: "Bèo dạt mây trôi",
+        title: "Bèo Dạt Mây Trôi",
         author: "Dân ca Đồng bằng Bắc Bộ",
         genreId: "dan-ca",
-        genreName: "Dân Ca Bắc Bộ",
-        toneKey: "A-F#m",
-        toneDisplay: "A / F#m",
-        fluteTone: "Sáo A4 (La trầm) / C5",
-        diff: "Khó",
-        tech: "Rung hơi cơ hoành, Đập ngón (Tap)",
-        tip: "Thế tay A / F#m, rung hơi sâu ở bụng tạo độ da diết, nốt La ngân dài.",
+        genreName: "Dân Ca Quan Họ & Bắc Bộ",
+        toneKey: "C-Am",
+        toneDisplay: "C / Am",
+        fluteTone: "Sáo C5 (Đô) chuẩn",
+        diff: "Dễ",
+        tech: "Rung hơi cơ hoành, Luyến nốt",
+        tip: "Bài dân ca kinh điển của sáo trúc Việt Nam. Chú ý luyến láy mềm mại ở các nốt chuyển quãng 1 và 2.",
         sections: [
           {
-            sectionTitle: "Giai điệu luyến",
+            sectionTitle: "Đoạn 1",
             lines: [
-              { lyric: "Bèo dạt mây trôi chốn xa xôi", note: "(Rung) La  Si  Do2  Mi2  Re2  Do2  Si  La" },
-              { lyric: "Anh ơi em vẫn đợi người", note: "Sol  La  Do2  Re2  Mi2  Sol2" },
-              { lyric: "Trông ngóng cánh chim bay về đâu", note: "Mi2  Re2  Do2  Si  La" }
+              { lyric: "Bèo dạt mây trôi, chốn xa xôi", note: "Sol Sol Sol La, Do2 La Sol" },
+              { lyric: "Anh ơi em vẫn đợi bèo dạt", note: "Mi Mi Mi Sol Mi Re Do" },
+              { lyric: "Mây trôi, chim ca tang tính tình", note: "Re Mi, Sol Sol La Do2 Sol" },
+              { lyric: "Cá lội, lửng lơ trông tin anh", note: "La Do2, Re2 Do2 La Sol Sol" }
             ]
           }
         ]
@@ -764,7 +768,7 @@
         title: "Em ơi Hà Nội phố",
         author: "Phú Quang",
         genreId: "bolero",
-        genreName: "Trữ Tình",
+        genreName: "Trữ Tình Bất Hủ",
         toneKey: "Bb-Gm",
         toneDisplay: "Bb / Gm",
         fluteTone: "Sáo Bb4 / C5",
@@ -785,7 +789,7 @@
       {
         id: 8,
         title: "Độ ta không độ nàng",
-        author: "Nhạc Hoa lời Việt",
+        author: "Nhạc Hoa Lời Việt",
         genreId: "nhac-hoa",
         genreName: "Nhạc Hoa Lời Việt",
         toneKey: "F-Dm",
@@ -807,10 +811,40 @@
       },
       {
         id: 9,
+        title: "Thần Thoại (Endless Love)",
+        author: "Choi Jun Young",
+        genreId: "nhac-hoa",
+        genreName: "Nhạc Hoa Lời Việt",
+        toneKey: "D-Bm",
+        toneDisplay: "D / Bm",
+        fluteTone: "Sáo C5 hoặc D5",
+        diff: "Trung bình",
+        tech: "Vuốt ngón, Rung hơi, Quãng 3",
+        tip: "Nhạc phim Thần Thoại. Đoạn điệp khúc lên cao trào cần giữ hơi thật sâu.",
+        sections: [
+          {
+            sectionTitle: "Lời 1",
+            lines: [
+              { lyric: "Jie kai wo zui shen mi de deng dai", note: "La Sol Fa Mi Re Fa Sol La" },
+              { lyric: "Xing xing zhui luo feng zai chui dong", note: "Do2 Si La Sol Fa Sol La Fa" },
+              { lyric: "Zhong yu deng dao ni de ai", note: "Mi Fa Sol La Do2 Si La" }
+            ]
+          },
+          {
+            sectionTitle: "Điệp khúc",
+            lines: [
+              { lyric: "Wan shi cang sang wei you ai shi yong heng de shen hua", note: "La2 Sol2 Fa2 Mi2 Re2 Fa2 Sol2 La2 Do3 Si2 La2 Sol2" },
+              { lyric: "Chao qi chao luo shi zhong bu hui gai bian", note: "Fa2 Sol2 La2 Fa2 Mi2 Fa2 Sol2 Mi2 Re2" }
+            ]
+          }
+        ]
+      },
+      {
+        id: 10,
         title: "Tiến về Hà Nội",
         author: "Văn Cao",
         genreId: "cach-mang",
-        genreName: "Nhạc Cách Mạng",
+        genreName: "Nhạc Cách Mạng / Tiền Chiến",
         toneKey: "C-Am",
         toneDisplay: "C / Am",
         fluteTone: "Sáo C5 (Tone Đô)",
@@ -829,11 +863,11 @@
         ]
       },
       {
-        id: 10,
+        id: 11,
         title: "Lòng mẹ",
         author: "Y Vân",
         genreId: "am-huong-dan-ca",
-        genreName: "Âm hưởng dân ca",
+        genreName: "Âm Hưởng Dân Ca / Quê Hương",
         toneKey: "C-Am",
         toneDisplay: "C / Am",
         fluteTone: "Sáo C5 / D5",
@@ -852,11 +886,11 @@
         ]
       },
       {
-        id: 11,
+        id: 12,
         title: "Bài ca đất phương Nam",
         author: "Lư Nhất Vũ - Lê Giang",
         genreId: "am-huong-dan-ca",
-        genreName: "Âm hưởng dân ca",
+        genreName: "Âm Hưởng Dân Ca / Quê Hương",
         toneKey: "G-Em",
         toneDisplay: "G / Em",
         fluteTone: "Sáo G4 (Sol trầm) / C5",
@@ -875,14 +909,44 @@
         ]
       },
       {
-        id: 12,
+        id: 13,
+        title: "Độc Tấu: Xuân Về Bản Mèo",
+        author: "Dân ca H'Mông / Sáo Trúc Âu Cơ",
+        genreId: "khong-loi",
+        genreName: "Nhạc Không Lời / Độc tấu",
+        toneKey: "G-Em",
+        toneDisplay: "G / Em",
+        fluteTone: "Sáo Mèo hoặc Sáo C5",
+        diff: "Nâng cao",
+        tech: "Đánh lưỡi kép, Rung hơi, Phi ngón",
+        tip: "Bản độc tấu không lời rộn ràng, miêu tả cảnh xuân rực rỡ trên vùng cao Tây Bắc.",
+        sections: [
+          {
+            sectionTitle: "Mở đầu (Chậm rãi, ngân vang)",
+            lines: [
+              { lyric: "", note: "Sol2 ··· La2 ··· Do3 ··· La2 Sol2 Mi2" },
+              { lyric: "", note: "Sol2 La2 Do3 Re3 Mi3 Re3 Do3 La2 Sol2" }
+            ]
+          },
+          {
+            sectionTitle: "Thân bài (Tiết tấu vui tươi, đánh lưỡi đơn và kép)",
+            lines: [
+              { lyric: "", note: "Sol Mi Sol La Do2 Re2 Mi2" },
+              { lyric: "", note: "Sol2 Mi2 Re2 Do2 Re2 Mi2 Re2 Do2 La" },
+              { lyric: "", note: "Do2 Re2 Mi2 Sol2 La2 Sol2 Mi2 Re2 Do2" }
+            ]
+          }
+        ]
+      },
+      {
+        id: 14,
         title: "Bài tập chạy ngón Thang âm Đô trưởng",
         author: "Giáo trình Âu Cơ",
         genreId: "luyen-ngon",
-        genreName: "Luyện Ngón",
+        genreName: "Bài Tập Luyện Ngón",
         toneKey: "C-Am",
         toneDisplay: "C / Am",
-        fluteTone: "Sáo C5",
+        fluteTone: "Sáo C5 (Đô)",
         diff: "Dễ",
         tech: "Chạy ngón 8 nốt, Luyện tốc độ",
         tip: "Chạy đều ngón từ chậm đến nhanh, giữ nhịp đập chân đều đặn 60-100 BPM.",
@@ -903,6 +967,23 @@
         ]
       }
     ];
+
+    let SONGS_DB = [...DEFAULT_SONGS_DB];
+
+    function getActiveSongsDB() {
+      try {
+        const stored = localStorage.getItem('DAYTHOISAO_SONGS_DB');
+        if (stored) {
+          const parsed = JSON.parse(stored);
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            SONGS_DB = parsed;
+            return parsed;
+          }
+        }
+      } catch (e) {}
+      SONGS_DB = [...DEFAULT_SONGS_DB];
+      return SONGS_DB;
+    }
 
     let currentGenre = 'all';
     let selectedSongItem = null;
@@ -1020,10 +1101,11 @@
       const q = document.getElementById('searchInput').value.toLowerCase().trim();
       const tone = document.getElementById('toneFilterSelect').value;
       const diff = document.getElementById('diffFilterSelect').value;
+      const allSongs = getActiveSongsDB();
 
-      const filtered = SONGS_DB.filter(song => {
+      const filtered = allSongs.filter(song => {
         const matchGenre = currentGenre === 'all' || song.genreId === currentGenre;
-        const textToSearch = (song.title + " " + song.author + " " + song.genreName + " " + song.tip).toLowerCase();
+        const textToSearch = (song.title + " " + song.author + " " + (song.genreName || "") + " " + (song.tip || "")).toLowerCase();
         const matchQuery = textToSearch.includes(q);
         const matchTone = tone === 'all' || song.toneKey === tone || song.toneDisplay === tone;
         const matchDiff = diff === 'all' || song.diff.includes(diff);
@@ -1052,6 +1134,7 @@
         'bolero': 'Danh sách cảm âm: Bolero / Trữ Tình Bất Hủ',
         'am-huong-dan-ca': 'Danh sách cảm âm: Âm Hưởng Dân Ca / Quê Hương',
         'cach-mang': 'Danh sách cảm âm: Nhạc Cách Mạng / Tiền Chiến',
+        'khong-loi': 'Danh sách cảm âm: Độc Tấu Không Lời / Nhạc Không Lời',
         'luyen-ngon': 'Danh sách bài tập: Luyện Ngón'
       };
       document.getElementById('currentListHeaderTitle').innerText = genreTitles[genreId] || 'Danh sách cảm âm sáo trúc';
@@ -1060,41 +1143,46 @@
     }
 
     function openSongDetailModal(id) {
-      const item = SONGS_DB.find(s => s.id === id);
+      const allSongs = getActiveSongsDB();
+      const item = allSongs.find(s => s.id === id);
       if (!item) return;
       selectedSongItem = item;
 
-      document.getElementById('modalSongBadge').innerText = `Tone thế tay: ${item.toneDisplay} • Thể loại: ${item.genreName}`;
+      document.getElementById('modalSongBadge').innerText = `Tone thế tay: ${item.toneDisplay} • Thể loại: ${item.genreName || ''}`;
       document.getElementById('modalSongTitle').innerText = item.title;
       document.getElementById('modalToneVal').innerText = item.toneDisplay;
       document.getElementById('modalFluteVal').innerText = item.fluteTone;
       document.getElementById('modalDiffVal').innerText = item.diff;
       document.getElementById('modalTechVal').innerText = item.tech || 'Rung hơi';
       document.getElementById('modalSongAuthor').innerText = `Tác giả: ${item.author}`;
-      document.getElementById('modalSongTip').innerText = item.tip;
+      document.getElementById('modalSongTip').innerText = item.tip || 'Thổi đúng cao độ và nhịp phách.';
 
       // Render 2-line structure or note-only for instrumental music
       const tabBox = document.getElementById('modal2LineTabContent');
-      tabBox.innerHTML = item.sections.map(sec => {
-        const linesHtml = sec.lines.map(l => {
-          const hasLyric = l.lyric && l.lyric.trim() !== '' && l.lyric.trim() !== '-';
+      if (item.sections && Array.isArray(item.sections) && item.sections.length > 0) {
+        tabBox.innerHTML = item.sections.map(sec => {
+          const linesHtml = (sec.lines || []).map(l => {
+            const hasLyric = l.lyric && l.lyric.trim() !== '' && l.lyric.trim() !== '-';
+            return `
+              <div class="tab-2line-block">
+                ${hasLyric ? `<div class="lyric-line">${l.lyric}</div>` : ''}
+                <div class="note-box">${formatMusicNotes(l.note)}</div>
+              </div>
+            `;
+          }).join('');
+
           return `
-            <div class="tab-2line-block">
-              ${hasLyric ? `<div class="lyric-line">${l.lyric}</div>` : ''}
-              <div class="note-box">${formatMusicNotes(l.note)}</div>
+            <div class="mb-4">
+              <div class="text-xs font-bold text-[#193822] uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                <i class="fa-solid fa-bookmark text-[#881B1B] text-[10px]"></i> ${sec.sectionTitle}
+              </div>
+              ${linesHtml}
             </div>
           `;
         }).join('');
-
-        return `
-          <div class="mb-4">
-            <div class="text-xs font-bold text-[#193822] uppercase tracking-wider mb-2 flex items-center gap-1.5">
-              <i class="fa-solid fa-bookmark text-[#881B1B] text-[10px]"></i> ${sec.sectionTitle}
-            </div>
-            ${linesHtml}
-          </div>
-        `;
-      }).join('');
+      } else {
+        tabBox.innerHTML = '<p class="text-xs text-stone-500 italic">Đang cập nhật nội dung cảm âm...</p>';
+      }
 
       document.getElementById('songModal').classList.remove('hidden');
       document.getElementById('songModal').classList.add('flex');
@@ -1195,17 +1283,7 @@
     });
 
     window.addEventListener('DOMContentLoaded', () => {
-      try {
-        const storedSongs = localStorage.getItem('DAYTHOISAO_SONGS_DB');
-        if (storedSongs) {
-          const parsed = JSON.parse(storedSongs);
-          if (Array.isArray(parsed) && parsed.length > 0) {
-            renderSongsList(parsed);
-            return;
-          }
-        }
-      } catch (e) {}
-      renderSongsList(SONGS_DB);
+      applyFilter();
     });
   </script>
   <!-- FIXED MOBILE BOTTOM NAVIGATION BAR -->

@@ -286,28 +286,36 @@
                   <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-stone-400 text-xs"></i>
                 </div>
                 <select id="adminGenreFilter" onchange="filterAdminSongs()" class="bg-[#FAF6EE] border border-[#D9CDBB] rounded-xl px-3 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-[#881B1B]">
-                  <option value="all">Tất cả thể loại</option>
-                  <option value="nhac-hoa">Nhạc Hoa</option>
-                  <option value="dan-ca">Dân Ca</option>
-                  <option value="nhac-tre">Nhạc Trẻ</option>
-                  <option value="bolero">Bolero</option>
-                  <option value="am-huong-dan-ca">Âm Hưởng Dân Ca</option>
-                  <option value="cach-mang">Cách Mạng</option>
+                  <option value="all">Tất cả thể loại (14+ bài)</option>
+                  <option value="nhac-hoa">Nhạc Hoa Lời Việt</option>
+                  <option value="dan-ca">Dân Ca Quan Họ & Bắc Bộ</option>
+                  <option value="nhac-tre">Nhạc Trẻ Ballad / Pop</option>
+                  <option value="bolero">Bolero / Trữ Tình Bất Hủ</option>
+                  <option value="am-huong-dan-ca">Âm Hưởng Dân Ca / Quê Hương</option>
+                  <option value="cach-mang">Nhạc Cách Mạng / Tiền Chiến</option>
                   <option value="khong-loi">Nhạc Không Lời / Độc tấu</option>
+                  <option value="luyen-ngon">Bài Tập Luyện Ngón</option>
                 </select>
                 <select id="adminToneFilter" onchange="filterAdminSongs()" class="bg-[#FAF6EE] border border-[#D9CDBB] rounded-xl px-3 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-[#881B1B]">
-                  <option value="all">Tất cả Tone</option>
-                  <option value="C">Tone C</option>
-                  <option value="D / Bm">Tone D / Bm</option>
-                  <option value="F">Tone F</option>
-                  <option value="G">Tone G</option>
-                  <option value="Am">Tone Am</option>
+                  <option value="all">Tất cả Tone thế tay</option>
+                  <option value="C">Tone C / Am (Đô trưởng / La thứ)</option>
+                  <option value="D">Tone D / Bm (Rê trưởng / Si thứ)</option>
+                  <option value="F">Tone F / Dm (Fa trưởng / Rê thứ)</option>
+                  <option value="G">Tone G / Em (Sol trưởng / Mi thứ)</option>
+                  <option value="A">Tone A / F#m (La trưởng / Fa# thứ)</option>
+                  <option value="Bb">Tone Bb / Gm (Si giáng / Sol thứ)</option>
+                  <option value="E">Tone E / C#m (Mi trưởng / Đô# thứ)</option>
                 </select>
               </div>
 
-              <button onclick="openSongFormModal()" class="px-4 py-2 bg-[#881B1B] hover:bg-[#701515] text-white text-xs font-bold rounded-xl shadow flex items-center gap-2 whitespace-nowrap">
-                <i class="fa-solid fa-plus"></i> Thêm cảm âm mới
-              </button>
+              <div class="flex items-center gap-2">
+                <button onclick="openSongFormModal()" class="px-4 py-2 bg-[#881B1B] hover:bg-[#701515] text-white text-xs font-bold rounded-xl shadow flex items-center gap-2 whitespace-nowrap transition-all">
+                  <i class="fa-solid fa-plus"></i> Thêm cảm âm mới
+                </button>
+                <a href="danh-sach-bai-tap.html" target="_blank" class="px-3.5 py-2 bg-[#FAF6EE] hover:bg-[#EADBCA] text-[#292421] border border-[#D9CDBB] text-xs font-semibold rounded-xl flex items-center gap-1.5 transition-all whitespace-nowrap">
+                  <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i> Xem trên Web
+                </a>
+              </div>
             </div>
 
             <!-- Table of Songs -->
@@ -626,108 +634,165 @@
   </div>
 
   <!-- ================= MODAL: THÊM / SỬA CẢM ÂM (SONG EDITOR) ================= -->
-  <div id="songFormModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-4">
-    <div class="bg-[#FAF6EE] rounded-3xl max-w-4xl w-full border border-[#D9CDBB] shadow-2xl overflow-hidden flex flex-col max-h-[92vh]">
+  <div id="songFormModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-3 sm:p-4">
+    <div class="bg-[#FAF6EE] rounded-3xl max-w-5xl w-full border border-[#D9CDBB] shadow-2xl overflow-hidden flex flex-col max-h-[94vh]">
       <!-- Header -->
-      <div class="bg-[#881B1B] text-white px-6 py-4 flex items-center justify-between">
-        <h3 id="songFormModalTitle" class="font-serif text-lg font-bold flex items-center gap-2">
+      <div class="bg-[#881B1B] text-white px-5 sm:px-6 py-4 flex items-center justify-between shrink-0">
+        <h3 id="songFormModalTitle" class="font-serif text-base sm:text-lg font-bold flex items-center gap-2">
           <i class="fa-solid fa-pen-to-square"></i> Soạn Thảo Cảm Âm Chuẩn
         </h3>
-        <button onclick="closeSongFormModal()" class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center">
+        <button onclick="closeSongFormModal()" class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors">
           <i class="fa-solid fa-xmark"></i>
         </button>
       </div>
 
       <!-- Form Body -->
-      <form id="songEditorForm" onsubmit="handleSaveSong(event)" class="p-6 overflow-y-auto custom-scrollbar space-y-6 text-xs text-[#292421]">
+      <form id="songEditorForm" onsubmit="handleSaveSong(event)" class="p-4 sm:p-6 overflow-y-auto custom-scrollbar space-y-5 text-xs text-[#292421]">
         <input type="hidden" id="editSongId" value="">
 
-        <!-- Basic Metadata -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 bg-white p-5 rounded-2xl border border-[#E8DFC8]">
-          <div>
-            <label class="font-bold block mb-1">Tên bài hát *:</label>
-            <input type="text" id="formSongTitle" required placeholder="Ví dụ: Nữ Nhi Tình" class="w-full bg-[#FAF6EE] border border-[#D9CDBB] rounded-xl px-3 py-2 outline-none focus:ring-2 focus:ring-[#881B1B]">
-          </div>
-          <div>
-            <label class="font-bold block mb-1">Tác giả *:</label>
-            <input type="text" id="formSongAuthor" required placeholder="Ví dụ: Hứa Kính Thanh" class="w-full bg-[#FAF6EE] border border-[#D9CDBB] rounded-xl px-3 py-2 outline-none focus:ring-2 focus:ring-[#881B1B]">
-          </div>
-          <div>
-            <label class="font-bold block mb-1">Thể loại *:</label>
-            <select id="formSongGenre" class="w-full bg-[#FAF6EE] border border-[#D9CDBB] rounded-xl px-3 py-2 outline-none focus:ring-2 focus:ring-[#881B1B]">
-              <option value="nhac-hoa">Nhạc Hoa Lời Việt</option>
-              <option value="dan-ca">Dân Ca Quan Họ & Bắc Bộ</option>
-              <option value="nhac-tre">Nhạc Trẻ Ballad / Pop</option>
-              <option value="bolero">Bolero / Trữ Tình Bất Hủ</option>
-              <option value="am-huong-dan-ca">Âm Hưởng Dân Ca / Quê Hương</option>
-              <option value="cach-mang">Nhạc Cách Mạng / Tiền Chiến</option>
-              <option value="khong-loi">Nhạc Không Lời / Độc tấu</option>
-              <option value="luyen-ngon">Bài Tập Luyện Ngón</option>
-            </select>
-          </div>
-          <div>
-            <label class="font-bold block mb-1">Tone thế tay *:</label>
-            <input type="text" id="formSongTone" required placeholder="Ví dụ: D / Bm hoặc C" class="w-full bg-[#FAF6EE] border border-[#D9CDBB] rounded-xl px-3 py-2 outline-none focus:ring-2 focus:ring-[#881B1B]">
-          </div>
-          <div>
-            <label class="font-bold block mb-1">Sáo khuyến nghị *:</label>
-            <input type="text" id="formSongFlute" required placeholder="Ví dụ: Sáo C5 hoặc D5" class="w-full bg-[#FAF6EE] border border-[#D9CDBB] rounded-xl px-3 py-2 outline-none focus:ring-2 focus:ring-[#881B1B]">
-          </div>
-          <div>
-            <label class="font-bold block mb-1">Độ khó *:</label>
-            <select id="formSongDiff" class="w-full bg-[#FAF6EE] border border-[#D9CDBB] rounded-xl px-3 py-2 outline-none focus:ring-2 focus:ring-[#881B1B]">
-              <option value="Dễ">Dễ</option>
-              <option value="Trung bình">Trung bình</option>
-              <option value="Nâng cao">Nâng cao</option>
-            </select>
-          </div>
-          <div class="sm:col-span-2">
-            <label class="font-bold block mb-1">Kỹ thuật chính & Hướng dẫn:</label>
-            <input type="text" id="formSongTip" placeholder="Ví dụ: Chú ý vuốt ngón nốt La2 sang Đô3 mượt mà..." class="w-full bg-[#FAF6EE] border border-[#D9CDBB] rounded-xl px-3 py-2 outline-none focus:ring-2 focus:ring-[#881B1B]">
-          </div>
-          <div>
-            <label class="font-bold block mb-1">Kỹ thuật tiêu biểu:</label>
-            <input type="text" id="formSongTech" placeholder="Ví dụ: Láy ngón, Rung hơi, Vuốt ngón" class="w-full bg-[#FAF6EE] border border-[#D9CDBB] rounded-xl px-3 py-2 outline-none focus:ring-2 focus:ring-[#881B1B]">
+        <!-- Basic Metadata Card -->
+        <div class="bg-white p-4 sm:p-5 rounded-2xl border border-[#E8DFC8] space-y-3">
+          <h4 class="font-serif text-xs font-bold text-[#881B1B] uppercase tracking-wider flex items-center gap-1.5 pb-2 border-b border-stone-100">
+            <i class="fa-solid fa-circle-info"></i> 1. Thông tin bài hát & Tone sáo
+          </h4>
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+            <div>
+              <label class="font-bold block mb-1">Tên bài hát *:</label>
+              <input type="text" id="formSongTitle" required placeholder="Ví dụ: Nữ Nhi Tình" class="w-full bg-[#FAF6EE] border border-[#D9CDBB] rounded-xl px-3 py-2 outline-none focus:ring-2 focus:ring-[#881B1B]">
+            </div>
+            <div>
+              <label class="font-bold block mb-1">Tác giả *:</label>
+              <input type="text" id="formSongAuthor" required placeholder="Ví dụ: Hứa Kính Thanh" class="w-full bg-[#FAF6EE] border border-[#D9CDBB] rounded-xl px-3 py-2 outline-none focus:ring-2 focus:ring-[#881B1B]">
+            </div>
+            <div>
+              <label class="font-bold block mb-1">Thể loại *:</label>
+              <select id="formSongGenre" class="w-full bg-[#FAF6EE] border border-[#D9CDBB] rounded-xl px-3 py-2 outline-none focus:ring-2 focus:ring-[#881B1B]">
+                <option value="nhac-hoa">Nhạc Hoa Lời Việt</option>
+                <option value="dan-ca">Dân Ca Quan Họ & Bắc Bộ</option>
+                <option value="nhac-tre">Nhạc Trẻ Ballad / Pop</option>
+                <option value="bolero">Bolero / Trữ Tình Bất Hủ</option>
+                <option value="am-huong-dan-ca">Âm Hưởng Dân Ca / Quê Hương</option>
+                <option value="cach-mang">Nhạc Cách Mạng / Tiền Chiến</option>
+                <option value="khong-loi">Nhạc Không Lời / Độc tấu</option>
+                <option value="luyen-ngon">Bài Tập Luyện Ngón</option>
+              </select>
+            </div>
+            <div>
+              <label class="font-bold block mb-1">Tone thế tay *:</label>
+              <input type="text" id="formSongTone" required placeholder="Ví dụ: C / Am hoặc D / Bm" class="w-full bg-[#FAF6EE] border border-[#D9CDBB] rounded-xl px-3 py-2 outline-none focus:ring-2 focus:ring-[#881B1B]">
+            </div>
+            <div>
+              <label class="font-bold block mb-1">Sáo khuyến nghị *:</label>
+              <input type="text" id="formSongFlute" required placeholder="Ví dụ: Sáo C5 (Tone Đô) hoặc D5" class="w-full bg-[#FAF6EE] border border-[#D9CDBB] rounded-xl px-3 py-2 outline-none focus:ring-2 focus:ring-[#881B1B]">
+            </div>
+            <div>
+              <label class="font-bold block mb-1">Độ khó *:</label>
+              <select id="formSongDiff" class="w-full bg-[#FAF6EE] border border-[#D9CDBB] rounded-xl px-3 py-2 outline-none focus:ring-2 focus:ring-[#881B1B]">
+                <option value="Dễ">Dễ (Người mới tập)</option>
+                <option value="Trung bình">Trung bình (Đã biết thổi quãng 2)</option>
+                <option value="Nâng cao">Nâng cao / Khó (Đòi hỏi kỹ thuật cao)</option>
+              </select>
+            </div>
+            <div class="sm:col-span-2">
+              <label class="font-bold block mb-1">Kỹ thuật chính & Hướng dẫn:</label>
+              <input type="text" id="formSongTip" placeholder="Ví dụ: Chú ý vuốt ngón nốt La2 sang Đô3 mượt mà, giữ hơi sâu..." class="w-full bg-[#FAF6EE] border border-[#D9CDBB] rounded-xl px-3 py-2 outline-none focus:ring-2 focus:ring-[#881B1B]">
+            </div>
+            <div>
+              <label class="font-bold block mb-1">Kỹ thuật tiêu biểu:</label>
+              <input type="text" id="formSongTech" placeholder="Ví dụ: Láy ngón, Rung hơi, Vuốt ngón" class="w-full bg-[#FAF6EE] border border-[#D9CDBB] rounded-xl px-3 py-2 outline-none focus:ring-2 focus:ring-[#881B1B]">
+            </div>
           </div>
         </div>
 
-        <!-- Section & Line Builder -->
-        <div class="bg-white p-5 rounded-2xl border border-[#E8DFC8] space-y-4">
-          <div class="flex items-center justify-between pb-2 border-b border-stone-100">
+        <!-- Section & Line Builder with 2 Modes -->
+        <div class="bg-white p-4 sm:p-5 rounded-2xl border border-[#E8DFC8] space-y-3">
+          <div class="flex flex-wrap items-center justify-between gap-2 pb-2 border-b border-stone-100">
             <div>
-              <h4 class="font-serif text-sm font-bold text-[#881B1B]">Soạn thảo các đoạn & nốt cảm âm</h4>
-              <p class="text-[11px] text-[#6B625B]">Nhạc không lời: Để trống ô lời hát, chỉ nhập ô nốt nhạc</p>
+              <h4 class="font-serif text-xs font-bold text-[#881B1B] uppercase tracking-wider flex items-center gap-1.5">
+                <i class="fa-solid fa-music"></i> 2. Nội dung lời bài hát & Nốt cảm âm
+              </h4>
+              <p class="text-[11px] text-[#6B625B]">Hỗ trợ soạn từng câu hoặc dán nhanh toàn bộ bài cảm âm</p>
             </div>
-            <div class="flex items-center gap-2">
-              <button type="button" onclick="addFormSection()" class="px-3 py-1.5 bg-emerald-700 hover:bg-emerald-800 text-white font-bold rounded-lg text-xs flex items-center gap-1">
-                <i class="fa-solid fa-plus text-[10px]"></i> Thêm Đoạn mới
+            <div class="flex items-center gap-1 bg-[#FAF6EE] p-1 rounded-xl border border-[#D9CDBB]">
+              <button type="button" onclick="setSongEditorMode('visual')" id="btnSongModeVisual" class="px-3 py-1 text-xs rounded-lg transition-all bg-white text-[#881B1B] shadow-sm font-bold border border-[#E8DFC8]">
+                🧩 Từng câu trực quan
+              </button>
+              <button type="button" onclick="setSongEditorMode('text')" id="btnSongModeText" class="px-3 py-1 text-xs font-semibold rounded-lg transition-all text-[#6B625B] hover:text-[#292421]">
+                📝 Nhập nhanh văn bản
               </button>
             </div>
           </div>
 
-          <!-- Dynamic Container for Sections -->
-          <div id="formSectionsContainer" class="space-y-4">
-            <!-- Injected dynamically -->
+          <!-- Quick Note Toolbar -->
+          <div class="flex flex-wrap items-center gap-1.5 p-2 bg-[#FAF6EE] rounded-xl border border-[#E0D5C3]">
+            <span class="text-[10px] font-bold text-[#881B1B] uppercase mr-1">Chèn nhanh:</span>
+            <button type="button" onclick="insertNoteSymbol('Do')" class="px-2 py-1 bg-white hover:bg-[#EADBCA] text-[#292421] font-bold rounded-md border border-[#D9CDBB] text-[11px]">Đô</button>
+            <button type="button" onclick="insertNoteSymbol('Re')" class="px-2 py-1 bg-white hover:bg-[#EADBCA] text-[#292421] font-bold rounded-md border border-[#D9CDBB] text-[11px]">Rê</button>
+            <button type="button" onclick="insertNoteSymbol('Mi')" class="px-2 py-1 bg-white hover:bg-[#EADBCA] text-[#292421] font-bold rounded-md border border-[#D9CDBB] text-[11px]">Mi</button>
+            <button type="button" onclick="insertNoteSymbol('Fa')" class="px-2 py-1 bg-white hover:bg-[#EADBCA] text-[#292421] font-bold rounded-md border border-[#D9CDBB] text-[11px]">Fa</button>
+            <button type="button" onclick="insertNoteSymbol('Sol')" class="px-2 py-1 bg-white hover:bg-[#EADBCA] text-[#292421] font-bold rounded-md border border-[#D9CDBB] text-[11px]">Sol</button>
+            <button type="button" onclick="insertNoteSymbol('La')" class="px-2 py-1 bg-white hover:bg-[#EADBCA] text-[#292421] font-bold rounded-md border border-[#D9CDBB] text-[11px]">La</button>
+            <button type="button" onclick="insertNoteSymbol('Si')" class="px-2 py-1 bg-white hover:bg-[#EADBCA] text-[#292421] font-bold rounded-md border border-[#D9CDBB] text-[11px]">Si</button>
+            <div class="w-px h-4 bg-stone-300 mx-0.5"></div>
+            <button type="button" onclick="insertNoteSymbol('2')" class="px-2 py-1 bg-amber-100 hover:bg-amber-200 text-amber-900 font-bold rounded-md border border-amber-300 text-[11px]" title="Quãng 2 (²)">Quãng 2 (²)</button>
+            <button type="button" onclick="insertNoteSymbol('3')" class="px-2 py-1 bg-amber-100 hover:bg-amber-200 text-amber-900 font-bold rounded-md border border-amber-300 text-[11px]" title="Quãng 3 (³)">Quãng 3 (³)</button>
+            <button type="button" onclick="insertNoteSymbol('#')" class="px-2 py-1 bg-stone-100 hover:bg-stone-200 text-stone-800 font-bold rounded-md border border-stone-300 text-[11px]" title="Dấu Thăng (♯)">♯ Thăng</button>
+            <button type="button" onclick="insertNoteSymbol('b')" class="px-2 py-1 bg-stone-100 hover:bg-stone-200 text-stone-800 font-bold rounded-md border border-stone-300 text-[11px]" title="Dấu Giáng (♭)">♭ Giáng</button>
+            <button type="button" onclick="insertNoteSymbol(' · ')" class="px-2 py-1 bg-stone-100 hover:bg-stone-200 text-stone-800 font-bold rounded-md border border-stone-300 text-[11px]" title="Dấu ngăn nốt (·)">· Ngăn</button>
+          </div>
+
+          <!-- Mode 1: Visual Sections Container -->
+          <div id="songEditorVisualArea" class="space-y-3">
+            <div id="formSectionsContainer" class="space-y-3">
+              <!-- Injected dynamically -->
+            </div>
+            <button type="button" onclick="addFormSection()" class="w-full py-2.5 bg-[#FAF6EE] hover:bg-[#EADBCA] border-2 border-dashed border-[#D9CDBB] text-[#881B1B] font-bold rounded-xl text-xs flex items-center justify-center gap-1.5 transition-colors">
+              <i class="fa-solid fa-plus"></i> Thêm Đoạn Mới (Đoạn 2, Điệp khúc...)
+            </button>
+          </div>
+
+          <!-- Mode 2: Quick Textarea Area -->
+          <div id="songEditorTextArea" class="space-y-2 hidden">
+            <div class="p-3 bg-[#FFFBEB] rounded-xl border border-[#FDE68A] text-xs text-[#92400E] space-y-1">
+              <strong>💡 Hướng dẫn nhập nhanh / Dán cảm âm:</strong>
+              <p class="text-[11px] leading-relaxed">Nhập hoặc dán trực tiếp toàn bộ bài hát. Sử dụng <code class="bg-[#FEF3C7] px-1 py-0.5 rounded font-mono font-bold">[Tên đoạn]</code> để chia đoạn, sau đó là dòng Lời và dòng Nốt (hoặc chỉ nốt nếu là nhạc không lời).</p>
+            </div>
+            <textarea 
+              id="formSongQuickText" 
+              rows="12" 
+              oninput="handleQuickTextInput()"
+              placeholder="[Đoạn 1]&#10;Uyên ương song phi bướm lượn cùng hoa&#10;Sol1  La1  Do2  Re2  Mi2  Re2  Do2  Re2&#10;&#10;Sắc đẹp nghiêng nước nghiêng thành mỹ nhân&#10;Mi2  Sol2  La2  Sol2  Mi2  Re2  Do2  La1&#10;&#10;[Điệp khúc]&#10;Nguyện cùng chàng kết tóc se duyên&#10;Do2  Re2  Mi2  Sol2  La2  Sol2  Mi2" 
+              class="w-full bg-[#FAF6EE] border border-[#D9CDBB] rounded-xl p-3 font-mono text-xs text-[#292421] outline-none focus:ring-2 focus:ring-[#881B1B] leading-relaxed custom-scrollbar"
+            ></textarea>
+            <div class="flex items-center justify-end">
+              <button type="button" onclick="convertQuickTextToVisual()" class="px-4 py-2 bg-[#193822] hover:bg-[#112517] text-white font-bold rounded-xl text-xs flex items-center gap-1.5 shadow transition-all">
+                <i class="fa-solid fa-arrows-rotate"></i> Chuyển đổi sang từng câu trực quan
+              </button>
+            </div>
           </div>
         </div>
 
         <!-- Live Preview Box -->
-        <div class="bg-white p-5 rounded-2xl border border-[#E8DFC8] space-y-3">
-          <h4 class="font-serif text-sm font-bold text-[#193822] flex items-center gap-2">
-            <i class="fa-solid fa-eye text-[#881B1B]"></i> Xem trước bản cảm âm (Live Preview)
-          </h4>
-          <div id="formLivePreviewBox" class="p-4 bg-[#FAF6EE] rounded-xl border border-[#E8DFC8] space-y-3 min-h-[100px]">
+        <div class="bg-white p-4 sm:p-5 rounded-2xl border border-[#E8DFC8] space-y-3">
+          <div class="flex items-center justify-between pb-2 border-b border-stone-100">
+            <h4 class="font-serif text-xs font-bold text-[#193822] uppercase tracking-wider flex items-center gap-1.5">
+              <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+              👁️ Xem trước giao diện thực tế trên website (Live Preview)
+            </h4>
+            <span class="text-[10px] text-stone-400 font-mono">2-Line Sheet Format</span>
+          </div>
+          <div id="formLivePreviewBox" class="p-4 bg-[#FAF6EE] rounded-xl border border-[#E8DFC8] space-y-3 min-h-[100px] max-h-[320px] overflow-y-auto custom-scrollbar">
             <p class="text-stone-400 italic text-center py-4">Nhập nốt bên trên để xem trước cảm âm hiển thị...</p>
           </div>
         </div>
 
         <!-- Form Footer Buttons -->
-        <div class="flex items-center justify-end gap-3 pt-2">
-          <button type="button" onclick="closeSongFormModal()" class="px-5 py-2.5 bg-white border border-[#D9CDBB] hover:bg-[#FAF6EE] text-[#292421] font-semibold rounded-xl">
+        <div class="flex items-center justify-end gap-3 pt-2 shrink-0 border-t border-stone-200">
+          <button type="button" onclick="closeSongFormModal()" class="px-5 py-2.5 bg-white border border-[#D9CDBB] hover:bg-[#FAF6EE] text-[#292421] font-semibold rounded-xl transition-colors">
             Hủy bỏ
           </button>
-          <button type="submit" class="px-6 py-2.5 bg-[#881B1B] hover:bg-[#701515] text-white font-bold rounded-xl shadow-lg flex items-center gap-2">
-            <i class="fa-solid fa-floppy-disk"></i> Lưu Cảm Âm
+          <button type="submit" class="px-6 py-2.5 bg-[#881B1B] hover:bg-[#701515] text-white font-bold rounded-xl shadow-lg flex items-center gap-2 transition-all">
+            <i class="fa-solid fa-floppy-disk"></i> Lưu Cảm Âm Vào Hệ Thống
           </button>
         </div>
       </form>
@@ -983,7 +1048,7 @@
         .replace(/\s\-\s/g, ' – ');
     }
 
-    // Default Seed Songs
+    // Default Seed Songs (Full 14 Classic Tracks)
     const SEED_SONGS = [
       {
         id: 1,
@@ -991,44 +1056,228 @@
         author: "Hứa Kính Thanh",
         genreId: "nhac-hoa",
         genreName: "Nhạc Hoa Lời Việt",
-        toneDisplay: "D / Bm",
-        toneKey: "D",
-        fluteTone: "Sáo C5 (Đô)",
+        toneKey: "C-Am",
+        toneDisplay: "C / Am",
+        fluteTone: "Sáo C5 (Tone Đô)",
         diff: "Dễ",
-        tech: "Láy ngón, Rung hơi",
-        tip: "Bài nhạc huyền thoại của phim Tây Du Ký 1986. Âm điệu dịu dàng, da diết. Thổi thế tay D trên sáo C5.",
+        tech: "Rung hơi, Luyến nốt quãng 2, Ngân phách",
+        tip: "Thổi bằng sáo Nứa C5 (Đô), nhịp 2/4 chậm rãi, luyến nhẹ nhàng giữa các nốt Sol lên Do² và Re² sang Mi².",
         sections: [
           {
-            sectionTitle: "Lời 1",
+            sectionTitle: "Đoạn 1",
             lines: [
-              { lyric: "Uyên ương song tê điệp song phi", note: "La La Sol La Do2 Re2 Mi" },
-              { lyric: "Mãn viên xuân sắc sầu nhân túy", note: "Sol2 Mi2 Re2 Do2 La Do2 Re2" },
-              { lyric: "Tiễu tiễu vấn thánh tăng", note: "La La Sol La Do2" },
-              { lyric: "Nhi nữ mỹ bất mỹ, nhi nữ mỹ bất mỹ", note: "Re2 Mi2 Sol2 Mi2 Re2, Re2 Mi2 Sol2 Mi2 Re2" }
+              { lyric: "Uyên ương song phi bướm lượn cùng hoa", note: "Sol1  La1  Do2  Re2  Mi2  Re2  Do2  Re2" },
+              { lyric: "Sắc đẹp nghiêng nước nghiêng thành mỹ nhân", note: "Mi2  Sol2  La2  Sol2  Mi2  Re2  Do2  La1" },
+              { lyric: "Hỏi chàng phong lưu ngắm nhìn ai đó", note: "Sol1  La1  Do2  Re2  Mi2  Re2  Do2  Re2" },
+              { lyric: "Có động lòng chăng trước cảnh sắc này", note: "Mi2  Sol2  La2  Sol2  Mi2  Re2  Do2  La1" }
             ]
           },
           {
             sectionTitle: "Điệp khúc",
             lines: [
-              { lyric: "Nguyện kim sinh tương tùy", note: "Sol2 Sol2 La2 Sol2 Mi2" },
-              { lyric: "Nguyện lai thế tương ỷ", note: "Re2 Re2 Mi2 Re2 Do2" },
-              { lyric: "Trì hòa tương duyệt, tâm hữu linh tê", note: "La Do2 Re2 Mi2, Sol2 Mi2 Re2 Do2 Re2" }
+              { lyric: "Nguyện cùng chàng kết tóc se duyên", note: "Do2  Re2  Mi2  Sol2  La2  Sol2  Mi2" },
+              { lyric: "Trọn đời không bao giờ chia xa", note: "Re2  Do2  La1  Sol1  La1  Do2" },
+              { lyric: "Chỉ cần chàng ở bên ta mãi", note: "Do2  Re2  Mi2  Sol2  La2  Sol2  Mi2" },
+              { lyric: "Sánh bước cùng nhau đến bạc đầu", note: "Re2  Do2  La1  Sol1  La1  Do2" }
             ]
           }
         ]
       },
       {
         id: 2,
+        title: "Hà Nội 12 mùa hoa",
+        author: "Giáng Son",
+        genreId: "am-huong-dan-ca",
+        genreName: "Âm Hưởng Dân Ca",
+        toneKey: "C-Am",
+        toneDisplay: "C / Am",
+        fluteTone: "Sáo C5 (Đô)",
+        diff: "Dễ",
+        tech: "Chạy ngón quãng 1, Ngân phách",
+        tip: "Dùng sáo C5, bài hát êm dịu, chú ý ngân dài đủ 2 phách cuối mỗi câu hát.",
+        sections: [
+          {
+            sectionTitle: "Đoạn 1",
+            lines: [
+              { lyric: "Tháng giêng hoa đào bừng nở đón xuân sang", note: "Do  Re  Mi  Sol  La  Do2" },
+              { lyric: "Tháng hai hoa ban ngập tràn sắc trắng", note: "La  Sol  Mi  Re  Do  Re  Mi" },
+              { lyric: "Tháng ba hoa gạo đỏ rực góc trời", note: "Sol  La  Do2  Re2  Mi2  Re2  Do2" }
+            ]
+          },
+          {
+            sectionTitle: "Điệp khúc",
+            lines: [
+              { lyric: "Mười hai mùa hoa, mười hai sắc hương", note: "Do2  Re2  Mi2  Sol2  La2  Sol2" },
+              { lyric: "Lòng tôi yêu mãi mảnh đất thủ đô", note: "Mi2  Re2  Do2  La  Sol  La  Do2" }
+            ]
+          }
+        ]
+      },
+      {
+        id: 3,
+        title: "Nơi này có anh",
+        author: "Sơn Tùng M-TP",
+        genreId: "nhac-tre",
+        genreName: "Nhạc Trẻ Ballad / Pop",
+        toneKey: "D-Bm",
+        toneDisplay: "D / Bm",
+        fluteTone: "Sáo C5 hoặc D5",
+        diff: "Dễ",
+        tech: "Đánh lưỡi đơn, Nhịp điệu Pop",
+        tip: "Thế tay D / Bm, tiết tấu nhịp nhàng, chạy ngón nhẹ nhàng không bị gắt hơi.",
+        sections: [
+          {
+            sectionTitle: "Lời 1",
+            lines: [
+              { lyric: "Em là ai từ đâu bước đến nơi đây dịu dàng", note: "La  Sol  Fa  Mi  Re" },
+              { lyric: "Ánh mắt trao nụ cười làm xao xuyến", note: "La  Sol  Fa  Mi  Re  Fa  Sol" },
+              { lyric: "Cầm tay anh bước qua bao ngày mưa gió", note: "Sol  La  Do2  La  Sol  Fa  Sol" }
+            ]
+          },
+          {
+            sectionTitle: "Điệp khúc",
+            lines: [
+              { lyric: "Hãy trao cho anh nụ cười ấm áp", note: "Do2  Re2  Mi2  Sol2  La2  Sol2" },
+              { lyric: "Nơi này có anh luôn chở che cho em", note: "Mi2  Re2  Do2  La  Sol  La" }
+            ]
+          }
+        ]
+      },
+      {
+        id: 4,
+        title: "Mắt biếc",
+        author: "Ngô Thụy Miên",
+        genreId: "bolero",
+        genreName: "Trữ Tình Bất Hủ",
+        toneKey: "E-C#m",
+        toneDisplay: "E / C#m",
+        fluteTone: "Sáo C5 (Đô)",
+        diff: "Trung bình",
+        tech: "Chuyển quãng 2 (Mi2, Re2), Rung hơi",
+        tip: "Thế tay E / C#m, tập chuyển mượt mà quãng 1 lên quãng 2 với lực môi tăng dần.",
+        sections: [
+          {
+            sectionTitle: "Mở đầu",
+            lines: [
+              { lyric: "Nhớ ánh mắt biếc năm xưa ngây thơ", note: "Mi  Sol  Si  Re2  Do2  Si" },
+              { lyric: "Lòng bâng khuâng khi chiều buông lối cũ", note: "La  Si  Do2  Si  La  Sol" },
+              { lyric: "Mắt biếc năm xưa nay ở phương nào?", note: "Mi  Sol  Si  Re2  Mi2" }
+            ]
+          },
+          {
+            sectionTitle: "Điệp khúc",
+            lines: [
+              { lyric: "Giọt sầu rơi đọng bờ mi khép kín", note: "Sol2  Fa#2  Mi2  Re2  Do2  Si" },
+              { lyric: "Thương hoài kỷ niệm thuở mộng mơ", note: "La  Si  Do2  Si  La  Sol" }
+            ]
+          }
+        ]
+      },
+      {
+        id: 5,
+        title: "Qua cầu gió bay",
+        author: "Dân ca Quan họ Bắc Ninh",
+        genreId: "dan-ca",
+        genreName: "Dân Ca Quan Họ & Bắc Bộ",
+        toneKey: "F-Dm",
+        toneDisplay: "F / Dm",
+        fluteTone: "Sáo C5 / F4",
+        diff: "Trung bình",
+        tech: "Vuốt ngón (Glissando), Luyến láy",
+        tip: "Thế tay F / Dm, chú ý kỹ thuật trượt ngón nửa lỗ để giai điệu mềm như dải lụa.",
+        sections: [
+          {
+            sectionTitle: "Lời ca",
+            lines: [
+              { lyric: "Yêu nhau cởi áo í a cho nhau", note: "Fa  Sol  La  Do2  Fa2" },
+              { lyric: "Về nhà dối mẹ qua cầu gió bay", note: "Do2  La  Sol  Fa  Sol  La" },
+              { lyric: "Gió bay là bay qua cầu", note: "Fa  Sol  La  Do2  Re2" }
+            ]
+          }
+        ]
+      },
+      {
+        id: 6,
+        title: "Bèo Dạt Mây Trôi",
+        author: "Dân ca Đồng bằng Bắc Bộ",
+        genreId: "dan-ca",
+        genreName: "Dân Ca Quan Họ & Bắc Bộ",
+        toneKey: "C-Am",
+        toneDisplay: "C / Am",
+        fluteTone: "Sáo C5 (Đô) chuẩn",
+        diff: "Dễ",
+        tech: "Rung hơi cơ hoành, Luyến nốt",
+        tip: "Bài dân ca kinh điển của sáo trúc Việt Nam. Chú ý luyến láy mềm mại ở các nốt chuyển quãng 1 và 2.",
+        sections: [
+          {
+            sectionTitle: "Đoạn 1",
+            lines: [
+              { lyric: "Bèo dạt mây trôi, chốn xa xôi", note: "Sol Sol Sol La, Do2 La Sol" },
+              { lyric: "Anh ơi em vẫn đợi bèo dạt", note: "Mi Mi Mi Sol Mi Re Do" },
+              { lyric: "Mây trôi, chim ca tang tính tình", note: "Re Mi, Sol Sol La Do2 Sol" },
+              { lyric: "Cá lội, lửng lơ trông tin anh", note: "La Do2, Re2 Do2 La Sol Sol" }
+            ]
+          }
+        ]
+      },
+      {
+        id: 7,
+        title: "Em ơi Hà Nội phố",
+        author: "Phú Quang",
+        genreId: "bolero",
+        genreName: "Trữ Tình Bất Hủ",
+        toneKey: "Bb-Gm",
+        toneDisplay: "Bb / Gm",
+        fluteTone: "Sáo Bb4 / C5",
+        diff: "Trung bình",
+        tech: "Nốt thăng giáng Do#2, Fa#2",
+        tip: "Thế tay Bb / Gm, bấm nửa lỗ chính xác để nốt thăng không bị chênh phô.",
+        sections: [
+          {
+            sectionTitle: "Đoạn 1",
+            lines: [
+              { lyric: "Em ơi Hà Nội phố", note: "Si  Do#2  Re2  Fa#2  Sol2  Fa#2" },
+              { lyric: "Ta còn em mùi hoàng lan", note: "Mi2  Re2  Si  La  Si" },
+              { lyric: "Ta còn em cây bàng mồ côi mùa đông", note: "Sol2  Fa#2  Mi2  Re2  Si" }
+            ]
+          }
+        ]
+      },
+      {
+        id: 8,
+        title: "Độ ta không độ nàng",
+        author: "Nhạc Hoa Lời Việt",
+        genreId: "nhac-hoa",
+        genreName: "Nhạc Hoa Lời Việt",
+        toneKey: "F-Dm",
+        toneDisplay: "F / Dm",
+        fluteTone: "Sáo C5 / D5",
+        diff: "Trung bình",
+        tech: "Ép hơi quãng 2, Vuốt ngón",
+        tip: "Thế tay F / Dm, âm hưởng cổ phong huyền bí, dứt khoát ở điệp khúc.",
+        sections: [
+          {
+            sectionTitle: "Đoạn mở đầu",
+            lines: [
+              { lyric: "Hồng trần hôm nay sương khói mịt mờ", note: "Fa  Sol  La  Do2  Re2" },
+              { lyric: "Vấn vương câu kinh nơi cửa phật", note: "Re2  Do2  La  Sol  Fa  Sol" },
+              { lyric: "Vì sao độ ta không độ nàng?", note: "La  Do2  Re2  Fa2  Mi2  Re2" }
+            ]
+          }
+        ]
+      },
+      {
+        id: 9,
         title: "Thần Thoại (Endless Love)",
         author: "Choi Jun Young",
         genreId: "nhac-hoa",
         genreName: "Nhạc Hoa Lời Việt",
+        toneKey: "D-Bm",
         toneDisplay: "D / Bm",
-        toneKey: "D",
         fluteTone: "Sáo C5 hoặc D5",
         diff: "Trung bình",
-        tech: "Vuốt ngón, Rung hơi",
-        tip: "Nhạc phim Thần Thoại (Thành Long - Kim Hee Sun). Đoạn điệp khúc lên cao trào cần giữ hơi thật sâu.",
+        tech: "Vuốt ngón, Rung hơi, Quãng 3",
+        tip: "Nhạc phim Thần Thoại. Đoạn điệp khúc lên cao trào cần giữ hơi thật sâu.",
         sections: [
           {
             sectionTitle: "Lời 1",
@@ -1048,37 +1297,82 @@
         ]
       },
       {
-        id: 3,
-        title: "Bèo Dạt Mây Trôi",
-        author: "Dân ca Quan họ Bắc Ninh",
-        genreId: "dan-ca",
-        genreName: "Dân Ca Quan Họ & Bắc Bộ",
-        toneDisplay: "C",
-        toneKey: "C",
-        fluteTone: "Sáo C5 (Đô) chuẩn",
+        id: 10,
+        title: "Tiến về Hà Nội",
+        author: "Văn Cao",
+        genreId: "cach-mang",
+        genreName: "Nhạc Cách Mạng / Tiền Chiến",
+        toneKey: "C-Am",
+        toneDisplay: "C / Am",
+        fluteTone: "Sáo C5 (Tone Đô)",
         diff: "Dễ",
-        tech: "Rung hơi, Luyến hơi",
-        tip: "Bài dân ca kinh điển của sáo trúc Việt Nam. Chú ý luyến láy mềm mại ở các nốt chuyển quãng 1 và 2.",
+        tech: "Đánh lưỡi Ta dứt khoát",
+        tip: "Thế tay C / Am, tiết tấu hào hùng, luồng hơi khỏe khoắn và dứt khoát.",
         sections: [
           {
-            sectionTitle: "Đoạn 1",
+            sectionTitle: "Hào hùng",
             lines: [
-              { lyric: "Bèo dạt mây trôi, chốn xa xôi", note: "Sol Sol Sol La, Do2 La Sol" },
-              { lyric: "Anh ơi em vẫn đợi bèo dạt", note: "Mi Mi Mi Sol Mi Re Do" },
-              { lyric: "Mây trôi, chim ca tang tính tình", note: "Re Mi, Sol Sol La Do2 Sol" },
-              { lyric: "Cá lội, lửng lơ trông tin anh", note: "La Do2, Re2 Do2 La Sol Sol" }
+              { lyric: "Trùng trùng quân đi như sóng", note: "Do  Mi  Sol  Do2" },
+              { lyric: "Lớp lớp đoàn quân tiến về", note: "Do2  La  Sol  Mi" },
+              { lyric: "Chúng ta đem vinh quang sức dân tộc trở về", note: "Sol  La  Do2  Mi2  Re2" }
             ]
           }
         ]
       },
       {
-        id: 4,
-        title: "Độc Tấu: Xuân Về Bản Mèo (Nhạc Không Lời)",
+        id: 11,
+        title: "Lòng mẹ",
+        author: "Y Vân",
+        genreId: "am-huong-dan-ca",
+        genreName: "Âm Hưởng Dân Ca / Quê Hương",
+        toneKey: "C-Am",
+        toneDisplay: "C / Am",
+        fluteTone: "Sáo C5 / D5",
+        diff: "Dễ",
+        tech: "Nhịp 3/4 mượt mà, Rung hơi",
+        tip: "Thế tay C / Am, nhịp 3/4 dìu dặt, thích hợp luyện tập câu cú liền mạch.",
+        sections: [
+          {
+            sectionTitle: "Mở đầu",
+            lines: [
+              { lyric: "Lòng mẹ bao la như biển Thái Bình dạt dào", note: "Do  Mi  Sol  La  Sol" },
+              { lyric: "Tình mẹ tha thiết như dòng suối hiền ngọt ngào", note: "La  Do2  La  Sol  Mi" },
+              { lyric: "Lời ru êm ái như đồng lúa chiều rì rào", note: "Re  Mi  Sol  Re  Do" }
+            ]
+          }
+        ]
+      },
+      {
+        id: 12,
+        title: "Bài ca đất phương Nam",
+        author: "Lư Nhất Vũ - Lê Giang",
+        genreId: "am-huong-dan-ca",
+        genreName: "Âm Hưởng Dân Ca / Quê Hương",
+        toneKey: "G-Em",
+        toneDisplay: "G / Em",
+        fluteTone: "Sáo G4 (Sol trầm) / C5",
+        diff: "Khó",
+        tech: "Rung hơi sâu, Vuốt ngón Sol2",
+        tip: "Thế tay G / Em, giai điệu hào sảng, phóng khoáng mang đậm nét sông nước Nam Bộ.",
+        sections: [
+          {
+            sectionTitle: "Dạo đầu hào sảng",
+            lines: [
+              { lyric: "Nhắn ai đi về miền đất phương Nam", note: "Sol  La  Do2  Mi2  Sol2" },
+              { lyric: "Trời xanh ngắt mênh mông sông nước", note: "Sol2  Mi2  Re2  Do2  La" },
+              { lyric: "Cửu Long giang cuộn sóng trùng dương", note: "Mi2  Sol2  La2  Sol2  Mi2" }
+            ]
+          }
+        ]
+      },
+      {
+        id: 13,
+        title: "Độc Tấu: Xuân Về Bản Mèo",
         author: "Dân ca H'Mông / Sáo Trúc Âu Cơ",
         genreId: "khong-loi",
         genreName: "Nhạc Không Lời / Độc tấu",
+        toneKey: "G-Em",
         toneDisplay: "G / Em",
-        toneKey: "G",
         fluteTone: "Sáo Mèo hoặc Sáo C5",
         diff: "Nâng cao",
         tech: "Đánh lưỡi kép, Rung hơi, Phi ngón",
@@ -1097,6 +1391,34 @@
               { lyric: "", note: "Sol Mi Sol La Do2 Re2 Mi2" },
               { lyric: "", note: "Sol2 Mi2 Re2 Do2 Re2 Mi2 Re2 Do2 La" },
               { lyric: "", note: "Do2 Re2 Mi2 Sol2 La2 Sol2 Mi2 Re2 Do2" }
+            ]
+          }
+        ]
+      },
+      {
+        id: 14,
+        title: "Bài tập chạy ngón Thang âm Đô trưởng",
+        author: "Giáo trình Âu Cơ",
+        genreId: "luyen-ngon",
+        genreName: "Bài Tập Luyện Ngón",
+        toneKey: "C-Am",
+        toneDisplay: "C / Am",
+        fluteTone: "Sáo C5 (Đô)",
+        diff: "Dễ",
+        tech: "Chạy ngón 8 nốt, Luyện tốc độ",
+        tip: "Chạy đều ngón từ chậm đến nhanh, giữ nhịp đập chân đều đặn 60-100 BPM.",
+        sections: [
+          {
+            sectionTitle: "Thang âm đi lên và đi xuống",
+            lines: [
+              { lyric: "Thổi hơi đều đặn từ nốt Đô 1 trầm lên Đô 2", note: "Do · Re · Mi · Fa · Sol · La · Si · Do2" },
+              { lyric: "Thổi ngược từ Đô 2 về Đô 1, bịt kín mép lỗ", note: "Do2 · Si · La · Sol · Fa · Mi · Re · Do" }
+            ]
+          },
+          {
+            sectionTitle: "Nhảy bậc quãng 3",
+            lines: [
+              { lyric: "Luyện độ độc lập và linh hoạt của các ngón tay", note: "Do - Mi · Re - Fa · Mi - Sol · Fa - La · Sol - Si · La - Do2" }
             ]
           }
         ]
@@ -1353,10 +1675,24 @@
         document.getElementById('adminApp').classList.add('hidden');
       }
 
-      // Load Songs
+      // Load Songs (Full 14 Tracks Merge)
       const storedSongs = localStorage.getItem('DAYTHOISAO_SONGS_DB');
       if (storedSongs) {
-        try { songsData = JSON.parse(storedSongs); } catch (e) { songsData = SEED_SONGS; }
+        try { 
+          songsData = JSON.parse(storedSongs); 
+          if (!Array.isArray(songsData) || songsData.length < 14) {
+            const existingTitles = new Set(songsData.map(s => s.title.toLowerCase().trim()));
+            SEED_SONGS.forEach(ss => {
+              if (!existingTitles.has(ss.title.toLowerCase().trim())) {
+                songsData.push(ss);
+              }
+            });
+            localStorage.setItem('DAYTHOISAO_SONGS_DB', JSON.stringify(songsData));
+          }
+        } catch (e) { 
+          songsData = SEED_SONGS; 
+          localStorage.setItem('DAYTHOISAO_SONGS_DB', JSON.stringify(songsData));
+        }
       } else {
         songsData = SEED_SONGS;
         localStorage.setItem('DAYTHOISAO_SONGS_DB', JSON.stringify(songsData));
@@ -1780,8 +2116,161 @@
       showToast(`Đã thay đổi thứ tự ưu tiên của bài viết!`);
     }
 
-    // ================= SONG EDITOR MODAL LOGIC =================
+    // ================= SONG EDITOR MODAL LOGIC (VISUAL & QUICK TEXT MODES) =================
     let currentEditingSections = [];
+    let currentSongEditorMode = 'visual'; // 'visual' or 'text'
+    let lastActiveNoteInput = null;
+
+    function setSongEditorMode(mode) {
+      currentSongEditorMode = mode;
+      const btnVisual = document.getElementById('btnSongModeVisual');
+      const btnText = document.getElementById('btnSongModeText');
+      const visualArea = document.getElementById('songEditorVisualArea');
+      const textArea = document.getElementById('songEditorTextArea');
+
+      if (mode === 'visual') {
+        if (btnVisual) btnVisual.className = "px-3 py-1 text-xs rounded-lg transition-all bg-white text-[#881B1B] shadow-sm font-bold border border-[#E8DFC8]";
+        if (btnText) btnText.className = "px-3 py-1 text-xs font-semibold rounded-lg transition-all text-[#6B625B] hover:text-[#292421]";
+        if (visualArea) visualArea.classList.remove('hidden');
+        if (textArea) textArea.classList.add('hidden');
+        renderFormSections();
+        updateLivePreview();
+      } else {
+        if (btnText) btnText.className = "px-3 py-1 text-xs rounded-lg transition-all bg-white text-[#881B1B] shadow-sm font-bold border border-[#E8DFC8]";
+        if (btnVisual) btnVisual.className = "px-3 py-1 text-xs font-semibold rounded-lg transition-all text-[#6B625B] hover:text-[#292421]";
+        if (textArea) textArea.classList.remove('hidden');
+        if (visualArea) visualArea.classList.add('hidden');
+
+        // Export visual sections to text in textarea
+        const quickTextarea = document.getElementById('formSongQuickText');
+        if (quickTextarea) {
+          quickTextarea.value = exportSectionsToText(currentEditingSections);
+          lastActiveNoteInput = quickTextarea;
+        }
+        updateLivePreview();
+      }
+    }
+
+    function exportSectionsToText(sections) {
+      if (!sections || sections.length === 0) return "";
+      return sections.map(sec => {
+        let secStr = `[${sec.sectionTitle || 'Đoạn'}]\n`;
+        sec.lines.forEach(l => {
+          if (l.lyric && l.lyric.trim() !== '') {
+            secStr += `${l.lyric.trim()}\n`;
+          }
+          if (l.note && l.note.trim() !== '') {
+            secStr += `${l.note.trim()}\n\n`;
+          }
+        });
+        return secStr.trim();
+      }).join('\n\n');
+    }
+
+    function parseQuickText(rawText) {
+      if (!rawText || !rawText.trim()) return [];
+      const lines = rawText.split('\n');
+      const sections = [];
+      let currentSec = { sectionTitle: "Đoạn 1", lines: [] };
+
+      for (let i = 0; i < lines.length; i++) {
+        let line = lines[i].trim();
+        if (!line) continue;
+
+        // Section header e.g. [Đoạn 1] or [Điệp khúc]
+        if (line.startsWith('[') && line.endsWith(']')) {
+          if (currentSec.lines.length > 0) {
+            sections.push(currentSec);
+          }
+          currentSec = {
+            sectionTitle: line.substring(1, line.length - 1).trim() || `Đoạn ${sections.length + 1}`,
+            lines: []
+          };
+          continue;
+        }
+
+        // Check if current line contains music notes
+        const isNoteLine = /(Do|Re|Mi|Fa|Sol|La|Si|Đô|Rê|Do2|Re2|Mi2|Fa2|Sol2|La2|Si2|Do3|Re3|Mi3|Fa#|Do#|Sib|Mib)/i.test(line);
+
+        if (isNoteLine) {
+          currentSec.lines.push({ lyric: "", note: line });
+        } else {
+          // It's a lyric line. Look ahead for the note line
+          let nextLine = (i + 1 < lines.length) ? lines[i + 1].trim() : '';
+          const isNextNote = /(Do|Re|Mi|Fa|Sol|La|Si|Đô|Rê|Do2|Re2|Mi2|Fa2|Sol2|La2|Si2|Do3|Re3|Mi3|Fa#|Do#|Sib|Mib)/i.test(nextLine);
+
+          if (isNextNote && !nextLine.startsWith('[')) {
+            currentSec.lines.push({ lyric: line, note: nextLine });
+            i++; // skip next line as it's consumed
+          } else {
+            // Standalone lyric without note
+            currentSec.lines.push({ lyric: line, note: "" });
+          }
+        }
+      }
+
+      if (currentSec.lines.length > 0) {
+        sections.push(currentSec);
+      }
+
+      return sections.length > 0 ? sections : [{ sectionTitle: "Đoạn 1", lines: [{ lyric: "", note: "" }] }];
+    }
+
+    function handleQuickTextInput() {
+      const text = document.getElementById('formSongQuickText').value;
+      const parsed = parseQuickText(text);
+      renderLivePreviewFromSections(parsed);
+    }
+
+    function convertQuickTextToVisual() {
+      const text = document.getElementById('formSongQuickText').value;
+      currentEditingSections = parseQuickText(text);
+      setSongEditorMode('visual');
+      showToast("Đã phân tích văn bản sang từng câu trực quan!");
+    }
+
+    function insertNoteSymbol(sym) {
+      if (currentSongEditorMode === 'text') {
+        const textarea = document.getElementById('formSongQuickText');
+        if (textarea) {
+          const start = textarea.selectionStart || textarea.value.length;
+          const end = textarea.selectionEnd || textarea.value.length;
+          const text = textarea.value;
+          textarea.value = text.substring(0, start) + sym + text.substring(end);
+          textarea.selectionStart = textarea.selectionEnd = start + sym.length;
+          textarea.focus();
+          handleQuickTextInput();
+        }
+        return;
+      }
+
+      // Visual Mode
+      if (lastActiveNoteInput && document.body.contains(lastActiveNoteInput)) {
+        const input = lastActiveNoteInput;
+        const start = input.selectionStart || input.value.length;
+        const end = input.selectionEnd || input.value.length;
+        const text = input.value;
+        input.value = text.substring(0, start) + sym + text.substring(end);
+        input.selectionStart = input.selectionEnd = start + sym.length;
+        input.focus();
+        input.dispatchEvent(new Event('input'));
+      } else {
+        // Append to last line's note of last section
+        if (currentEditingSections.length === 0) {
+          currentEditingSections = [{ sectionTitle: "Đoạn 1", lines: [{ lyric: "", note: sym }] }];
+        } else {
+          const lastSec = currentEditingSections[currentEditingSections.length - 1];
+          if (lastSec.lines.length === 0) {
+            lastSec.lines.push({ lyric: "", note: sym });
+          } else {
+            const lastLine = lastSec.lines[lastSec.lines.length - 1];
+            lastLine.note = (lastLine.note ? lastLine.note + " " : "") + sym;
+          }
+        }
+        renderFormSections();
+        updateLivePreview();
+      }
+    }
 
     function openSongFormModal(song = null) {
       document.getElementById('songEditorForm').reset();
@@ -1789,13 +2278,13 @@
       const title = document.getElementById('songFormModalTitle');
 
       if (song) {
-        title.innerHTML = `<i class="fa-solid fa-pen-to-square"></i> Chỉnh Sửa Cảm Âm: <span class="text-amber-300 ml-1">${song.title}</span>`;
+        title.innerHTML = `<i class="fa-solid fa-pen-to-square"></i> Chỉnh Sửa Cảm Âm: <span class="text-amber-300 ml-1 font-sans">${song.title}</span>`;
         document.getElementById('editSongId').value = song.id;
-        document.getElementById('formSongTitle').value = song.title;
-        document.getElementById('formSongAuthor').value = song.author;
+        document.getElementById('formSongTitle').value = song.title || '';
+        document.getElementById('formSongAuthor').value = song.author || '';
         document.getElementById('formSongGenre').value = song.genreId || 'nhac-hoa';
-        document.getElementById('formSongTone').value = song.toneDisplay || 'C';
-        document.getElementById('formSongFlute').value = song.fluteTone || 'Sáo C5';
+        document.getElementById('formSongTone').value = song.toneDisplay || 'C / Am';
+        document.getElementById('formSongFlute').value = song.fluteTone || 'Sáo C5 (Tone Đô)';
         document.getElementById('formSongDiff').value = song.diff || 'Dễ';
         document.getElementById('formSongTip').value = song.tip || '';
         document.getElementById('formSongTech').value = song.tech || '';
@@ -1805,7 +2294,7 @@
         document.getElementById('editSongId').value = '';
         currentEditingSections = [
           {
-            sectionTitle: "Lời 1",
+            sectionTitle: "Đoạn 1",
             lines: [
               { lyric: "", note: "" }
             ]
@@ -1813,8 +2302,7 @@
         ];
       }
 
-      renderFormSections();
-      updateLivePreview();
+      setSongEditorMode('visual');
       modal.classList.remove('hidden');
       modal.classList.add('flex');
     }
@@ -1823,6 +2311,7 @@
       const modal = document.getElementById('songFormModal');
       modal.classList.add('hidden');
       modal.classList.remove('flex');
+      lastActiveNoteInput = null;
     }
 
     function addFormSection() {
@@ -1872,24 +2361,25 @@
 
     function renderFormSections() {
       const container = document.getElementById('formSectionsContainer');
+      if (!container) return;
       container.innerHTML = currentEditingSections.map((sec, secIdx) => `
-        <div class="p-4 bg-[#FAF6EE] rounded-2xl border border-[#E8DFC8] space-y-3">
+        <div class="p-3.5 sm:p-4 bg-[#FAF6EE] rounded-2xl border border-[#E8DFC8] space-y-3 shadow-sm">
           <div class="flex items-center justify-between pb-2 border-b border-stone-200">
             <div class="flex items-center gap-2 w-full max-w-xs">
-              <i class="fa-solid fa-bookmark text-[#881B1B]"></i>
+              <i class="fa-solid fa-bookmark text-[#881B1B] text-xs"></i>
               <input 
                 type="text" 
                 value="${sec.sectionTitle}" 
                 oninput="updateSectionTitle(${secIdx}, this.value)"
-                placeholder="Tên đoạn (Lời 1, Điệp khúc...)" 
-                class="w-full bg-white border border-[#D9CDBB] rounded-lg px-2.5 py-1 text-xs font-bold text-[#193822]"
+                placeholder="Tên đoạn (Đoạn 1, Điệp khúc...)" 
+                class="w-full bg-white border border-[#D9CDBB] rounded-lg px-2.5 py-1 text-xs font-bold text-[#193822] focus:ring-2 focus:ring-[#881B1B] outline-none"
               >
             </div>
             <div class="flex items-center gap-2">
-              <button type="button" onclick="addLineToSection(${secIdx})" class="px-2.5 py-1 bg-white border border-stone-300 hover:bg-stone-100 rounded-lg text-[11px] font-semibold flex items-center gap-1">
-                <i class="fa-solid fa-plus text-[9px]"></i> Thêm câu
+              <button type="button" onclick="addLineToSection(${secIdx})" class="px-2.5 py-1 bg-white border border-stone-300 hover:bg-[#EADBCA] rounded-lg text-[11px] font-bold text-[#193822] flex items-center gap-1 transition-colors">
+                <i class="fa-solid fa-plus text-[9px] text-[#881B1B]"></i> Thêm câu
               </button>
-              <button type="button" onclick="removeFormSection(${secIdx})" class="text-stone-400 hover:text-red-700 p-1">
+              <button type="button" onclick="removeFormSection(${secIdx})" class="text-stone-400 hover:text-red-700 p-1 transition-colors" title="Xóa đoạn">
                 <i class="fa-solid fa-trash-can"></i>
               </button>
             </div>
@@ -1897,23 +2387,24 @@
 
           <div class="space-y-2">
             ${sec.lines.map((l, lineIdx) => `
-              <div class="flex items-center gap-2 bg-white p-2.5 rounded-xl border border-stone-200">
-                <span class="text-[10px] font-mono text-stone-400 w-4">${lineIdx + 1}</span>
+              <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-1.5 sm:gap-2 bg-white p-2.5 rounded-xl border border-stone-200 shadow-2xs">
+                <span class="text-[10px] font-mono text-stone-400 hidden sm:inline-block w-4">${lineIdx + 1}</span>
                 <input 
                   type="text" 
                   value="${l.lyric}" 
                   oninput="updateLineData(${secIdx}, ${lineIdx}, 'lyric', this.value)"
-                  placeholder="Lời ca (để trống nếu là nhạc không lời)..." 
-                  class="flex-1 bg-[#FAF6EE] border border-[#E8DFC8] rounded-lg px-2.5 py-1.5 text-xs text-[#292421] outline-none"
+                  placeholder="Lời ca (để trống nếu là độc tấu)..." 
+                  class="flex-1 bg-[#FAF6EE] border border-[#E8DFC8] rounded-lg px-2.5 py-1.5 text-xs text-[#292421] outline-none focus:ring-1 focus:ring-[#881B1B]"
                 >
                 <input 
                   type="text" 
                   value="${l.note}" 
+                  onfocus="lastActiveNoteInput = this"
                   oninput="updateLineData(${secIdx}, ${lineIdx}, 'note', this.value)"
                   placeholder="Nốt nhạc (Ví dụ: Sol La Do2 Re2 Mi...)" 
-                  class="flex-1 bg-amber-50/60 border border-amber-200 font-mono font-bold text-[#701515] rounded-lg px-2.5 py-1.5 text-xs outline-none"
+                  class="flex-1 bg-amber-50/70 border border-amber-300/80 font-mono font-bold text-[#701515] rounded-lg px-2.5 py-1.5 text-xs outline-none focus:ring-2 focus:ring-[#881B1B]"
                 >
-                <button type="button" onclick="removeLineFromSection(${secIdx}, ${lineIdx})" class="text-stone-300 hover:text-red-600 p-1">
+                <button type="button" onclick="removeLineFromSection(${secIdx}, ${lineIdx})" class="self-end sm:self-center text-stone-300 hover:text-red-600 p-1" title="Xóa câu">
                   <i class="fa-solid fa-xmark"></i>
                 </button>
               </div>
@@ -1923,31 +2414,36 @@
       `).join('');
     }
 
-    function updateLivePreview() {
+    function renderLivePreviewFromSections(sections) {
       const box = document.getElementById('formLivePreviewBox');
-      const hasLines = currentEditingSections.some(s => s.lines.some(l => l.note.trim() !== ''));
+      if (!box) return;
+      const hasLines = sections.some(s => s.lines.some(l => (l.note && l.note.trim() !== '') || (l.lyric && l.lyric.trim() !== '')));
 
       if (!hasLines) {
         box.innerHTML = `<p class="text-stone-400 italic text-center py-4">Nhập nốt nhạc bên trên để xem trước giao diện cảm âm...</p>`;
         return;
       }
 
-      box.innerHTML = currentEditingSections.map(sec => `
-        <div class="space-y-2">
-          <div class="text-xs font-bold text-[#193822] uppercase tracking-wider flex items-center gap-1.5">
+      box.innerHTML = sections.map(sec => `
+        <div class="space-y-2 mb-3">
+          <div class="text-xs font-bold text-[#193822] uppercase tracking-wider flex items-center gap-1.5 pb-1 border-b border-stone-200/60">
             <i class="fa-solid fa-bookmark text-[#881B1B] text-[10px]"></i> ${sec.sectionTitle}
           </div>
           ${sec.lines.map(l => {
             const hasLyric = l.lyric && l.lyric.trim() !== '';
             return `
-              <div class="tab-2line-block">
-                ${hasLyric ? `<div class="lyric-line">${l.lyric}</div>` : ''}
-                <div class="note-box">${formatMusicNotes(l.note) || '<span class="text-stone-300">(Chưa nhập nốt)</span>'}</div>
+              <div class="tab-2line-block my-1.5">
+                ${hasLyric ? `<div class="lyric-line font-medium text-[#292421] text-xs mb-0.5">${l.lyric}</div>` : ''}
+                <div class="note-box bg-[#F6ECD8] border border-[#EAD8BD] rounded-lg px-3 py-1.5 font-mono text-xs font-bold text-[#5C1914]">${formatMusicNotes(l.note) || '<span class="text-stone-300">(Chưa nhập nốt)</span>'}</div>
               </div>
             `;
           }).join('')}
         </div>
       `).join('');
+    }
+
+    function updateLivePreview() {
+      renderLivePreviewFromSections(currentEditingSections);
     }
 
     function handleSaveSong(e) {
@@ -1963,6 +2459,12 @@
       const diff = document.getElementById('formSongDiff').value;
       const tip = document.getElementById('formSongTip').value.trim();
       const tech = document.getElementById('formSongTech').value.trim();
+
+      // If in Quick Text mode, parse textarea first
+      if (currentSongEditorMode === 'text') {
+        const textVal = document.getElementById('formSongQuickText').value;
+        currentEditingSections = parseQuickText(textVal);
+      }
 
       // Clean sections
       const cleanedSections = currentEditingSections.map(s => ({
@@ -1997,7 +2499,7 @@
             tech,
             sections: cleanedSections
           };
-          showToast(`Đã cập nhật bài hát "${title}"!`);
+          showToast(`Đã cập nhật bài hát "${title}" thành công!`);
         }
       } else {
         // Add new
@@ -2017,7 +2519,7 @@
           sections: cleanedSections
         };
         songsData.unshift(newSong);
-        showToast(`Đã thêm mới bài hát "${title}"!`);
+        showToast(`Đã thêm mới bài hát "${title}" vào kho cảm âm!`);
       }
 
       localStorage.setItem('DAYTHOISAO_SONGS_DB', JSON.stringify(songsData));
@@ -2056,7 +2558,7 @@
         updateBadgesAndStats();
         renderDashboard();
         filterAdminSongs();
-        showToast(`Đã xóa bài hát "${song.title}"!`);
+        showToast(`Đã xóa bài hát "${song.title}" khỏi hệ thống!`);
       }
     }
 
