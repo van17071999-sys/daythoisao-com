@@ -1106,6 +1106,35 @@
       return false;
     }
 
+    function matchSongGenre(genreId, song) {
+      if (!genreId || genreId === 'all') return true;
+      const sGId = (song.genreId || '').toLowerCase().trim();
+      const sGName = (song.genreName || '').toLowerCase().trim();
+      if (sGId === genreId) return true;
+      if (genreId === 'nhac-hoa') {
+        return sGId.includes('hoa') || sGName.includes('hoa') || sGName.includes('lời việt') || sGName.includes('loi viet');
+      }
+      if (genreId === 'dan-ca' || genreId === 'am-huong-dan-ca') {
+        return sGId.includes('dan-ca') || sGId.includes('am-huong') || sGName.includes('dân ca') || sGName.includes('dan ca') || sGName.includes('quê hương') || sGName.includes('quan họ') || sGName.includes('bắc bộ');
+      }
+      if (genreId === 'nhac-tre') {
+        return sGId.includes('tre') || sGName.includes('trẻ') || sGName.includes('tre') || sGName.includes('ballad') || sGName.includes('pop') || sGName.includes('tiktok');
+      }
+      if (genreId === 'bolero') {
+        return sGId.includes('bolero') || sGName.includes('bolero') || sGName.includes('trữ tình') || sGName.includes('tru tinh');
+      }
+      if (genreId === 'cach-mang') {
+        return sGId.includes('cach-mang') || sGName.includes('cách mạng') || sGName.includes('tiền chiến') || sGName.includes('tien chien');
+      }
+      if (genreId === 'khong-loi') {
+        return sGId.includes('khong-loi') || sGName.includes('không lời') || sGName.includes('khong loi') || sGName.includes('độc tấu') || sGName.includes('doc tau') || sGName.includes('tây bắc');
+      }
+      if (genreId === 'luyen-ngon') {
+        return sGId.includes('luyen-ngon') || sGName.includes('luyện ngón') || sGName.includes('lưỡi kép') || sGName.includes('bài tập') || sGName.includes('bai tap');
+      }
+      return false;
+    }
+
     function applyFilter() {
       const q = document.getElementById('searchInput').value.toLowerCase().trim();
       const tone = document.getElementById('toneFilterSelect').value;
@@ -1113,7 +1142,7 @@
       const allSongs = getActiveSongsDB();
 
       const filtered = allSongs.filter(song => {
-        const matchGenre = currentGenre === 'all' || song.genreId === currentGenre;
+        const matchGenre = matchSongGenre(currentGenre, song);
         const textToSearch = `${song.title} ${song.author} ${song.genreName || ''} ${song.toneDisplay || song.tone || ''} ${song.fluteTone || ''} ${song.tip || ''}`.toLowerCase();
         const matchQ = textToSearch.includes(q);
         const matchTone = matchSongTone(tone, song);
@@ -1124,19 +1153,25 @@
       renderSongsList(filtered);
     }
 
+    function selectGenre(genreId) {
+      filterGenre(genreId);
+    }
+
     function filterGenre(genreId) {
       currentGenre = genreId;
       document.querySelectorAll('.genre-btn').forEach(btn => {
-        if (btn.dataset.genre === genreId) {
-          btn.className = 'genre-btn px-4 py-2 rounded-xl text-xs font-bold transition-all shadow-sm bg-[#881B1B] text-white flex items-center gap-1.5 shrink-0';
+        const btnGenre = btn.getAttribute('data-genre') || btn.dataset.genre;
+        if (btnGenre === genreId) {
+          btn.className = 'genre-btn px-4 py-2 rounded-xl text-xs font-bold bg-[#881B1B] text-white transition-all shadow-sm';
         } else {
-          btn.className = 'genre-btn px-4 py-2 rounded-xl text-xs font-medium transition-all bg-white border border-[#E0D5C3] text-[#292421] hover:border-[#881B1B] hover:text-[#881B1B] flex items-center gap-1.5 shrink-0';
+          btn.className = 'genre-btn px-4 py-2 rounded-xl text-xs font-bold bg-[#FAF6EE] text-[#59524B] hover:bg-[#EADBCA] transition-all border border-[#E0D5C3]';
         }
       });
 
       const genreTitles = {
-        'all': 'Tất cả cảm âm sáo trúc tuyển chọn',
+        'all': 'Danh sách cảm âm sáo trúc chuẩn 2 dòng',
         'nhac-hoa': 'Danh sách cảm âm: Nhạc Hoa Lời Việt Hay Nhất',
+        'dan-ca': 'Danh sách cảm âm: Dân Ca Quan Họ & Bắc Bộ',
         'nhac-tre': 'Danh sách cảm âm: Nhạc Trẻ / Hot TikTok',
         'bolero': 'Danh sách cảm âm: Bolero / Trữ Tình Bất Hủ',
         'am-huong-dan-ca': 'Danh sách cảm âm: Âm Hưởng Dân Ca / Quê Hương',
@@ -1144,7 +1179,10 @@
         'khong-loi': 'Danh sách cảm âm: Độc Tấu Không Lời / Nhạc Không Lời',
         'luyen-ngon': 'Danh sách bài tập: Luyện Ngón'
       };
-      document.getElementById('currentListHeaderTitle').innerText = genreTitles[genreId] || 'Danh sách cảm âm sáo trúc';
+      const titleEl = document.getElementById('currentListHeaderTitle');
+      if (titleEl) {
+        titleEl.innerText = genreTitles[genreId] || 'Danh sách cảm âm sáo trúc';
+      }
 
       applyFilter();
     }
