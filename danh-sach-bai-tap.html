@@ -550,7 +550,20 @@
   </footer>
 
   <!-- ================= JAVASCRIPT DATABASE & PARSER ================= -->
-  <script>
+    function generateSongSlug(title) {
+      if (!title) return 'cam-am-sao-truc';
+      let str = title.toLowerCase();
+      str = str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+      str = str.replace(/[đĐ]/g, 'd');
+      str = str.replace(/([^0-9a-z-\s])/g, '');
+      str = str.replace(/(\s+)/g, '-');
+      str = str.replace(/^-+/g, '').replace(/-+$/g, '');
+      if (!str.startsWith('cam-am-')) {
+        str = 'cam-am-' + str;
+      }
+      return str;
+    }
+
     /**
      * Tự động chuyển đổi chuỗi cảm âm thô thành định dạng số mũ và dấu âm nhạc chuẩn:
      * - Số 2, 3 -> số mũ ², ³ (Quãng 2, Quãng 3)
@@ -968,6 +981,10 @@
       osc.stop(startT + duration);
     }
 
+    function generateSongSlug(title) {
+        return title.toLowerCase().replace(/á|à|ả|ạ|ã|ă|ắ|ằ|ẳ|ặ|ẵ|â|ấ|ầ|ẩ|ậ|ẫ/g, 'a').replace(/é|è|ẻ|ẹ|ẽ|ê|ế|ề|ể|ệ|ễ/g, 'e').replace(/í|ì|ỉ|ị|ĩ/g, 'i').replace(/ó|ò|ỏ|ọ|õ|ô|ố|ồ|ổ|ộ|ỗ|ơ|ớ|ờ|ở|ợ|ỡ/g, 'o').replace(/ú|ù|ủ|ụ|ũ|ư|ứ|ừ|ử|ự|ữ/g, 'u').replace(/ý|ỳ|ỷ|ỵ|ỹ/g, 'y').replace(/đ/g, 'd').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+    }
+
     function playSongDemoAudio() {
       const ctx = getAudioContext();
       const now = ctx.currentTime;
@@ -1019,8 +1036,10 @@
             ? 'text-amber-700 bg-amber-50 border border-amber-200' 
             : 'text-red-700 bg-red-50 border border-red-200');
 
+        const slug = item.slug || generateSongSlug(item.title);
+
         return `
-          <div class="song-row py-3.5 px-3 sm:px-4 flex items-center justify-between gap-3 cursor-pointer rounded-xl group transition-all" onclick="openSongDetailModal(${item.id})">
+          <a href="/kho-cam-am/${slug}" class="song-row py-3.5 px-3 sm:px-4 flex items-center justify-between gap-3 cursor-pointer rounded-xl group transition-all">
             
             <!-- Left: Music Note Icon + Title + Author + Genre -->
             <div class="flex items-center gap-3 min-w-0">
@@ -1045,12 +1064,12 @@
               <span class="hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-semibold ${diffColor}">
                 ${item.diff}
               </span>
-              <button class="w-7 h-7 rounded-full bg-[#FAF6EE] group-hover:bg-[#881B1B] group-hover:text-white text-[#59524B] border border-[#E0D5C3] flex items-center justify-center text-xs transition-colors" title="Xem cảm âm 2 dòng">
-                <i class="fa-solid fa-plus"></i>
-              </button>
+              <div class="w-7 h-7 rounded-full bg-[#FAF6EE] group-hover:bg-[#881B1B] group-hover:text-white text-[#59524B] border border-[#E0D5C3] flex items-center justify-center text-xs transition-colors" title="Xem bài cảm âm">
+                <i class="fa-solid fa-arrow-right text-[11px]"></i>
+              </div>
             </div>
 
-          </div>
+          </a>
         `;
       }).join('');
     }
@@ -1098,32 +1117,30 @@
 
       const filtered = allSongs.filter(song => {
         const matchGenre = currentGenre === 'all' || song.genreId === currentGenre;
-        const textToSearch = (song.title + " " + song.author + " " + (song.genreName || "") + " " + (song.toneDisplay || song.tone || "") + " " + (song.fluteTone || "") + " " + (song.tip || "")).toLowerCase();
-        const matchQuery = textToSearch.includes(q);
+        const textToSearch = `${song.title} ${song.author} ${song.genreName || ''} ${song.toneDisplay || song.tone || ''} ${song.fluteTone || ''} ${song.tip || ''}`.toLowerCase();
+        const matchQ = textToSearch.includes(q);
         const matchTone = matchSongTone(tone, song);
         const matchDiff = diff === 'all' || (song.diff && song.diff.includes(diff));
-        return matchGenre && matchQuery && matchTone && matchDiff;
+        return matchGenre && matchQ && matchTone && matchDiff;
       });
 
       renderSongsList(filtered);
     }
 
-    function selectGenre(genreId) {
+    function filterGenre(genreId) {
       currentGenre = genreId;
-      const btns = document.querySelectorAll('.genre-btn');
-      btns.forEach(b => {
-        if (b.getAttribute('data-genre') === genreId) {
-          b.className = "genre-btn px-4 py-2 rounded-xl text-xs font-bold bg-[#881B1B] text-white transition-all shadow-sm";
+      document.querySelectorAll('.genre-btn').forEach(btn => {
+        if (btn.dataset.genre === genreId) {
+          btn.className = 'genre-btn px-4 py-2 rounded-xl text-xs font-bold transition-all shadow-sm bg-[#881B1B] text-white flex items-center gap-1.5 shrink-0';
         } else {
-          b.className = "genre-btn px-4 py-2 rounded-xl text-xs font-bold bg-[#FAF6EE] text-[#59524B] hover:bg-[#EADBCA] transition-all border border-[#E0D5C3]";
+          btn.className = 'genre-btn px-4 py-2 rounded-xl text-xs font-medium transition-all bg-white border border-[#E0D5C3] text-[#292421] hover:border-[#881B1B] hover:text-[#881B1B] flex items-center gap-1.5 shrink-0';
         }
       });
 
       const genreTitles = {
-        'all': 'Danh sách cảm âm tất cả thể loại',
-        'nhac-hoa': 'Danh sách cảm âm: Nhạc Hoa Lời Việt (Nữ Nhi Tình, Thần Thoại...)',
-        'dan-ca': 'Danh sách cảm âm: Dân Ca Quan Họ & Bắc Bộ',
-        'nhac-tre': 'Danh sách cảm âm: Nhạc Trẻ Ballad / Pop',
+        'all': 'Tất cả cảm âm sáo trúc tuyển chọn',
+        'nhac-hoa': 'Danh sách cảm âm: Nhạc Hoa Lời Việt Hay Nhất',
+        'nhac-tre': 'Danh sách cảm âm: Nhạc Trẻ / Hot TikTok',
         'bolero': 'Danh sách cảm âm: Bolero / Trữ Tình Bất Hủ',
         'am-huong-dan-ca': 'Danh sách cảm âm: Âm Hưởng Dân Ca / Quê Hương',
         'cach-mang': 'Danh sách cảm âm: Nhạc Cách Mạng / Tiền Chiến',

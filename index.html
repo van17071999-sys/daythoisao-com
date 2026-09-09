@@ -1840,6 +1840,20 @@
     window.playCurrentNote = playCurrentNote;
     window.playFluteTone = playFluteTone;
 
+    function generateSongSlug(title) {
+      if (!title) return 'cam-am-sao-truc';
+      let str = title.toLowerCase();
+      str = str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+      str = str.replace(/[đĐ]/g, 'd');
+      str = str.replace(/([^0-9a-z-\s])/g, '');
+      str = str.replace(/(\s+)/g, '-');
+      str = str.replace(/^-+/g, '').replace(/-+$/g, '');
+      if (!str.startsWith('cam-am-')) {
+        str = 'cam-am-' + str;
+      }
+      return str;
+    }
+
     function renderSongTabs(songs) {
       const container = document.getElementById("songTabList");
       if (!container) return;
@@ -1847,22 +1861,25 @@
         container.innerHTML = `<div class="py-8 text-center text-stone-400 text-xs">Không tìm thấy bài cảm âm nào phù hợp.</div>`;
         return;
       }
-      container.innerHTML = songs.map(song => `
-        <div onclick="openSongTabModal(${song.id})" class="py-3 flex items-center justify-between hover:bg-[#FAF6EE] px-2 rounded-lg transition-colors cursor-pointer group">
-          <div class="flex items-center gap-2.5 min-w-0 pr-2">
-            <i class="fa-solid fa-music text-[11px] text-[#881B1B] shrink-0"></i>
-            <div class="min-w-0">
-              <span class="font-medium text-[#292421] group-hover:text-[#881B1B] block truncate text-xs sm:text-sm">${song.title}</span>
-              <span class="text-[10px] text-stone-400 truncate block">${song.author}</span>
+      container.innerHTML = songs.map(song => {
+        const slug = song.slug || generateSongSlug(song.title);
+        return `
+          <a href="/kho-cam-am/${slug}" class="py-3 flex items-center justify-between hover:bg-[#FAF6EE] px-2 rounded-lg transition-colors cursor-pointer group">
+            <div class="flex items-center gap-2.5 min-w-0 pr-2">
+              <i class="fa-solid fa-music text-[11px] text-[#881B1B] shrink-0"></i>
+              <div class="min-w-0">
+                <span class="font-medium text-[#292421] group-hover:text-[#881B1B] block truncate text-xs sm:text-sm">${song.title}</span>
+                <span class="text-[10px] text-stone-400 truncate block">${song.author} • <span class="text-[#193822]">${song.fluteTone || ''}</span></span>
+              </div>
             </div>
-          </div>
-          <div class="flex items-center gap-2 sm:gap-3 shrink-0">
-            <span class="text-[11px] font-semibold text-[#881B1B] bg-red-50 px-2 py-0.5 rounded border border-red-200/60">${song.toneDisplay || song.tone || 'C / Am'}</span>
-            <span class="text-[11px] text-[#6B625B] hidden sm:inline-block">${song.diff}</span>
-            <button class="w-6 h-6 rounded-full bg-[#FAF6EE] group-hover:bg-[#881B1B] group-hover:text-white flex items-center justify-center text-xs transition-colors"><i class="fa-solid fa-plus text-[10px]"></i></button>
-          </div>
-        </div>
-      `).join("");
+            <div class="flex items-center gap-2 sm:gap-3 shrink-0">
+              <span class="text-[11px] font-semibold text-[#881B1B] bg-red-50 px-2 py-0.5 rounded border border-red-200/60">${song.toneDisplay || song.tone || 'C / Am'}</span>
+              <span class="text-[11px] text-[#6B625B] hidden sm:inline-block">${song.diff}</span>
+              <div class="w-6 h-6 rounded-full bg-[#FAF6EE] group-hover:bg-[#881B1B] group-hover:text-white flex items-center justify-center text-xs transition-colors"><i class="fa-solid fa-arrow-right text-[10px]"></i></div>
+            </div>
+          </a>
+        `;
+      }).join("");
     }
 
     function matchSongTone(filterTone, song) {

@@ -1923,6 +1923,20 @@
       }
     }
 
+    function generateSongSlug(title) {
+      if (!title) return 'cam-am-sao-truc';
+      let str = title.toLowerCase();
+      str = str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+      str = str.replace(/[đĐ]/g, 'd');
+      str = str.replace(/([^0-9a-z-\s])/g, '');
+      str = str.replace(/(\s+)/g, '-');
+      str = str.replace(/^-+/g, '').replace(/-+$/g, '');
+      if (!str.startsWith('cam-am-')) {
+        str = 'cam-am-' + str;
+      }
+      return str;
+    }
+
     // Render Songs List in Table
     function renderAdminSongs(list) {
       const tbody = document.getElementById('adminSongsTableBody');
@@ -1934,6 +1948,7 @@
       tbody.innerHTML = list.map((s, idx) => {
         const fullIndex = songsData.findIndex(item => item.id === s.id);
         const orderNum = fullIndex !== -1 ? fullIndex + 1 : idx + 1;
+        const slug = s.slug || generateSongSlug(s.title);
         return `
         <tr class="hover:bg-[#FAF6EE] transition-colors border-b border-stone-100">
           <td class="py-3 px-3 whitespace-nowrap">
@@ -1952,7 +1967,7 @@
             </div>
           </td>
           <td class="py-3 px-3">
-            <strong class="text-[#881B1B] text-sm block">${s.title}</strong>
+            <a href="/kho-cam-am/${slug}" target="_blank" class="text-[#881B1B] hover:underline font-bold text-sm block">${s.title}</a>
             <span class="text-[11px] text-stone-500">${s.genreName || s.genreId}</span>
           </td>
           <td class="py-3 px-3 text-stone-700 font-medium">${s.author}</td>
@@ -1966,6 +1981,9 @@
           </td>
           <td class="py-3 px-3 text-stone-500 font-semibold">${s.sections ? s.sections.length : 0} đoạn</td>
           <td class="py-3 px-3 text-right space-x-1.5 whitespace-nowrap">
+            <a href="/kho-cam-am/${slug}" target="_blank" title="Xem bài trên web" class="p-1.5 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 rounded-lg transition-all inline-block">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </a>
             <button onclick="editSong(${s.id})" title="Chỉnh sửa" class="p-1.5 bg-amber-50 hover:bg-amber-100 text-amber-800 rounded-lg transition-all">
               <i class="fa-solid fa-pen-to-square"></i>
             </button>
@@ -2517,6 +2535,7 @@
 
           const cfg = getTelegramConfig();
           if (cfg.notifyAdmin) {
+            const songSlug = generateSongSlug(title);
             sendTelegramMessage(
               `✏️ <b>[CẬP NHẬT CẢM ÂM] Đã chỉnh sửa bài hát trên web!</b>\n\n` +
               `🎵 <b>Tên bài:</b> ${title}\n` +
@@ -2524,7 +2543,7 @@
               `🎋 <b>Tone thế tay:</b> ${toneDisplay} (${fluteTone})\n` +
               `📊 <b>Độ khó:</b> ${diff}\n` +
               `⏰ <b>Thời gian:</b> ${new Date().toLocaleString('vi-VN')}\n\n` +
-              `🌐 <i>Website: daythoisao.com</i>`
+              `🌐 <i>Xem ngay tại: daythoisao.com/kho-cam-am/${songSlug}</i>`
             );
           }
         }
@@ -2550,6 +2569,7 @@
 
         const cfg = getTelegramConfig();
         if (cfg.notifyAdmin) {
+          const songSlug = generateSongSlug(title);
           sendTelegramMessage(
             `✨ <b>[CẢM ÂM MỚI] Vừa thêm bài hát mới lên web!</b>\n\n` +
             `🎵 <b>Tên bài:</b> ${title}\n` +
@@ -2557,7 +2577,7 @@
             `🎋 <b>Tone thế tay:</b> ${toneDisplay} (${fluteTone})\n` +
             `📊 <b>Độ khó:</b> ${diff}\n` +
             `⏰ <b>Thời gian:</b> ${new Date().toLocaleString('vi-VN')}\n\n` +
-            `🌐 <i>Xem ngay tại: daythoisao.com/danh-sach-bai-tap</i>`
+            `🌐 <i>Xem ngay tại: daythoisao.com/kho-cam-am/${songSlug}</i>`
           );
         }
       }
