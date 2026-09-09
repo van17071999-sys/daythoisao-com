@@ -568,6 +568,58 @@
               </form>
             </div>
 
+            <!-- Telegram Bot Notifications Settings -->
+            <div class="bg-white rounded-2xl border border-[#E8DFC8] shadow-sm p-6 space-y-4">
+              <div class="flex items-center justify-between pb-2 border-b border-stone-100">
+                <h3 class="font-serif text-base font-bold text-[#193822] flex items-center gap-2">
+                  <i class="fa-brands fa-telegram text-sky-500 text-lg"></i> Cấu hình Thông báo Telegram Bot
+                </h3>
+                <span class="text-[10px] uppercase font-bold text-sky-700 bg-sky-50 px-2 py-0.5 rounded border border-sky-200">Thông Báo Tự Động</span>
+              </div>
+              <p class="text-xs text-[#6B625B]">Tự động gửi tin nhắn báo về điện thoại qua Telegram ngay khi có khách yêu cầu cảm âm mới hoặc khi Admin cập nhật nội dung trên website.</p>
+
+              <div class="bg-sky-50 border border-sky-200 rounded-xl p-3.5 text-xs text-sky-900 space-y-1.5">
+                <p class="font-bold flex items-center gap-1.5"><i class="fa-solid fa-circle-info text-sky-600"></i> Hướng dẫn tạo Bot Telegram trong 1 phút:</p>
+                <ol class="list-decimal list-inside space-y-1 text-[11px] text-sky-800">
+                  <li>Mở Telegram tìm kiếm <strong>@BotFather</strong>, gõ <code>/newbot</code> và làm theo hướng dẫn để nhận <strong>Bot Token</strong>.</li>
+                  <li>Nhắn 1 tin nhắn bất kỳ cho Bot vừa tạo, rồi tìm <strong>@userinfobot</strong> để lấy <strong>Chat ID</strong> của bạn (hoặc thêm Bot vào Nhóm chat).</li>
+                  <li>Dán Token & Chat ID vào 2 ô bên dưới rồi bấm <strong>"Gửi tin nhắn thử nghiệm"</strong> để kiểm tra.</li>
+                </ol>
+              </div>
+
+              <form onsubmit="saveTelegramSettings(event)" class="space-y-3.5 text-xs">
+                <div>
+                  <label class="font-bold text-[#292421] block mb-1">Telegram Bot Token:</label>
+                  <input type="text" id="settingTelegramBotToken" placeholder="VD: 7123456789:AAHk98XYZ_abc123..." class="w-full bg-[#FAF6EE] border border-[#D9CDBB] rounded-xl px-3 py-2 focus:ring-2 focus:ring-[#881B1B] outline-none font-mono text-xs">
+                </div>
+
+                <div>
+                  <label class="font-bold text-[#292421] block mb-1">Telegram Chat ID / Group ID:</label>
+                  <input type="text" id="settingTelegramChatId" placeholder="VD: 123456789 (chat riêng) hoặc -100123456789 (nhóm)" class="w-full bg-[#FAF6EE] border border-[#D9CDBB] rounded-xl px-3 py-2 focus:ring-2 focus:ring-[#881B1B] outline-none font-mono text-xs">
+                </div>
+
+                <div class="space-y-2 pt-1 border-t border-stone-100">
+                  <label class="flex items-center gap-2 cursor-pointer select-none">
+                    <input type="checkbox" id="settingTelegramNotifyRequests" checked class="w-4 h-4 rounded text-[#881B1B] focus:ring-[#881B1B]">
+                    <span class="font-semibold text-stone-700">🔔 Thông báo khi có khách gửi yêu cầu cảm âm mới trên web</span>
+                  </label>
+                  <label class="flex items-center gap-2 cursor-pointer select-none">
+                    <input type="checkbox" id="settingTelegramNotifyAdmin" checked class="w-4 h-4 rounded text-[#881B1B] focus:ring-[#881B1B]">
+                    <span class="font-semibold text-stone-700">✨ Thông báo khi Admin cập nhật / sửa / thêm cảm âm & bài viết</span>
+                  </label>
+                </div>
+
+                <div class="flex flex-wrap items-center gap-2.5 pt-2">
+                  <button type="submit" class="px-5 py-2.5 bg-sky-600 hover:bg-sky-700 text-white font-bold rounded-xl shadow transition-all flex items-center gap-2">
+                    <i class="fa-solid fa-floppy-disk"></i> Lưu cấu hình Telegram
+                  </button>
+                  <button type="button" onclick="testTelegramNotification()" class="px-4 py-2.5 bg-[#FAF6EE] hover:bg-[#EADBCA] text-sky-800 border border-sky-300 font-bold rounded-xl transition-all flex items-center gap-2">
+                    <i class="fa-solid fa-paper-plane"></i> Gửi tin nhắn thử nghiệm
+                  </button>
+                </div>
+              </form>
+            </div>
+
             <!-- Change Admin Password -->
             <div class="bg-white rounded-2xl border border-[#E8DFC8] shadow-sm p-6 space-y-4">
               <h3 class="font-serif text-base font-bold text-[#193822] flex items-center gap-2 pb-2 border-b border-stone-100">
@@ -1585,7 +1637,8 @@
           settings: JSON.parse(localStorage.getItem('DAYTHOISAO_SITE_SETTINGS') || '{}'),
           founder: JSON.parse(localStorage.getItem('DAYTHOISAO_FOUNDER_SETTINGS') || '{"visibility":"private"}'),
           social: JSON.parse(localStorage.getItem('DAYTHOISAO_SOCIAL_LINKS') || JSON.stringify(DEFAULT_SOCIAL_LINKS)),
-          donate: JSON.parse(localStorage.getItem('DAYTHOISAO_DONATE_SETTINGS') || '{}')
+          donate: JSON.parse(localStorage.getItem('DAYTHOISAO_DONATE_SETTINGS') || '{}'),
+          telegram: JSON.parse(localStorage.getItem('DAYTHOISAO_TELEGRAM_SETTINGS') || '{}')
         };
         const res = await fetch(DAYTHOISAO_API_URL, {
           method: 'POST',
@@ -1637,6 +1690,10 @@
           if (data && data.donate && typeof data.donate === 'object' && Object.keys(data.donate).length > 0) {
             localStorage.setItem('DAYTHOISAO_DONATE_SETTINGS', JSON.stringify(data.donate));
           }
+          if (data && data.telegram && typeof data.telegram === 'object' && Object.keys(data.telegram).length > 0) {
+            localStorage.setItem('DAYTHOISAO_TELEGRAM_SETTINGS', JSON.stringify(data.telegram));
+            loadTelegramSettings();
+          }
 
           if (hasChanges) {
             updateBadgesAndStats();
@@ -1646,6 +1703,7 @@
             if (typeof renderAdminArticles === 'function') renderAdminArticles(articlesData);
             loadFounderSettings();
             loadSocialSettings();
+            loadTelegramSettings();
           }
         }
       } catch (e) {
@@ -1735,6 +1793,7 @@
       renderAdminArticles(articlesData);
       loadFounderSettings();
       loadSocialSettings();
+      loadTelegramSettings();
     }
 
     // Login Handler
@@ -1941,6 +2000,15 @@
       localStorage.setItem('DAYTHOISAO_SONGS_V2_INIT', 'true');
       localStorage.setItem('DAYTHOISAO_SONGS_DB', JSON.stringify(songsData));
       syncToCloudflare();
+      const cfg = getTelegramConfig();
+      if (cfg.notifyAdmin) {
+        sendTelegramMessage(
+          `🔢 <b>[THỨ TỰ CẢM ÂM] Đã thay đổi vị trí bài hát!</b>\n\n` +
+          `🎵 <b>Tên bài:</b> ${temp.title} (Vị trí mới: #${targetIdx + 1})\n` +
+          `⏰ <b>Thời gian:</b> ${new Date().toLocaleString('vi-VN')}\n\n` +
+          `🌐 <i>Website: daythoisao.com</i>`
+        );
+      }
       filterAdminSongs();
       renderDashboard();
       showToast(`Đã thay đổi thứ tự ưu tiên của bài cảm âm "${temp.title}"!`);
@@ -2446,6 +2514,19 @@
             sections: cleanedSections
           };
           showToast(`Đã cập nhật bài hát "${title}" thành công!`);
+
+          const cfg = getTelegramConfig();
+          if (cfg.notifyAdmin) {
+            sendTelegramMessage(
+              `✏️ <b>[CẬP NHẬT CẢM ÂM] Đã chỉnh sửa bài hát trên web!</b>\n\n` +
+              `🎵 <b>Tên bài:</b> ${title}\n` +
+              `👤 <b>Tác giả:</b> ${author}\n` +
+              `🎋 <b>Tone thế tay:</b> ${toneDisplay} (${fluteTone})\n` +
+              `📊 <b>Độ khó:</b> ${diff}\n` +
+              `⏰ <b>Thời gian:</b> ${new Date().toLocaleString('vi-VN')}\n\n` +
+              `🌐 <i>Website: daythoisao.com</i>`
+            );
+          }
         }
       } else {
         // Add new
@@ -2466,6 +2547,19 @@
         };
         songsData.unshift(newSong);
         showToast(`Đã thêm mới bài hát "${title}" vào kho cảm âm!`);
+
+        const cfg = getTelegramConfig();
+        if (cfg.notifyAdmin) {
+          sendTelegramMessage(
+            `✨ <b>[CẢM ÂM MỚI] Vừa thêm bài hát mới lên web!</b>\n\n` +
+            `🎵 <b>Tên bài:</b> ${title}\n` +
+            `👤 <b>Tác giả:</b> ${author}\n` +
+            `🎋 <b>Tone thế tay:</b> ${toneDisplay} (${fluteTone})\n` +
+            `📊 <b>Độ khó:</b> ${diff}\n` +
+            `⏰ <b>Thời gian:</b> ${new Date().toLocaleString('vi-VN')}\n\n` +
+            `🌐 <i>Xem ngay tại: daythoisao.com/danh-sach-bai-tap</i>`
+          );
+        }
       }
 
       localStorage.setItem('DAYTHOISAO_SONGS_V2_INIT', 'true');
@@ -2507,6 +2601,15 @@
         localStorage.setItem('DAYTHOISAO_SONGS_V2_INIT', 'true');
         localStorage.setItem('DAYTHOISAO_SONGS_DB', JSON.stringify(songsData));
         syncToCloudflare();
+        const cfg = getTelegramConfig();
+        if (cfg.notifyAdmin) {
+          sendTelegramMessage(
+            `🗑️ <b>[ĐÃ XÓA] Vừa gỡ bỏ bài cảm âm khỏi web!</b>\n\n` +
+            `🎵 <b>Tên bài:</b> ${song.title}\n` +
+            `⏰ <b>Thời gian:</b> ${new Date().toLocaleString('vi-VN')}\n\n` +
+            `🌐 <i>Website: daythoisao.com</i>`
+          );
+        }
         updateBadgesAndStats();
         renderDashboard();
         filterAdminSongs();
@@ -2860,6 +2963,17 @@
             content
           };
           showToast(`Đã cập nhật bài viết "${title}"!`);
+
+          const cfg = getTelegramConfig();
+          if (cfg.notifyAdmin) {
+            sendTelegramMessage(
+              `📰 <b>[CẬP NHẬT BÀI VIẾT] Đã chỉnh sửa bài viết trên web!</b>\n\n` +
+              `📌 <b>Tiêu đề:</b> ${title}\n` +
+              `📂 <b>Chuyên mục:</b> ${categoryName}\n` +
+              `⏰ <b>Thời gian:</b> ${new Date().toLocaleString('vi-VN')}\n\n` +
+              `🌐 <i>Website: daythoisao.com</i>`
+            );
+          }
         }
       } else {
         const newId = articlesData.length > 0 ? Math.max(...articlesData.map(a => a.id)) + 1 : 1;
@@ -2878,6 +2992,18 @@
         };
         articlesData.push(newArt);
         showToast(`Đã thêm bài viết mới "${title}"!`);
+
+        const cfg = getTelegramConfig();
+        if (cfg.notifyAdmin) {
+          sendTelegramMessage(
+            `✨ <b>[BÀI VIẾT MỚI] Vừa đăng bài viết mới lên web!</b>\n\n` +
+            `📌 <b>Tiêu đề:</b> ${title}\n` +
+            `📂 <b>Chuyên mục:</b> ${categoryName}\n` +
+            `⏱️ <b>Thời lượng đọc:</b> ${readTime}\n` +
+            `⏰ <b>Thời gian:</b> ${new Date().toLocaleString('vi-VN')}\n\n` +
+            `🌐 <i>Xem bài tại: daythoisao.com/bai-viet</i>`
+          );
+        }
       }
 
       articlesData.sort((a, b) => (a.order || 999) - (b.order || 999));
@@ -2902,6 +3028,15 @@
         articlesData.sort((a, b) => (a.order || 999) - (b.order || 999));
         localStorage.setItem('DAYTHOISAO_ARTICLES', JSON.stringify(articlesData));
         syncToCloudflare();
+        const cfg = getTelegramConfig();
+        if (cfg.notifyAdmin) {
+          sendTelegramMessage(
+            `🗑️ <b>[ĐÃ XÓA BÀI VIẾT] Vừa gỡ bỏ bài viết khỏi web!</b>\n\n` +
+            `📌 <b>Tiêu đề:</b> ${art.title}\n` +
+            `⏰ <b>Thời gian:</b> ${new Date().toLocaleString('vi-VN')}\n\n` +
+            `🌐 <i>Website: daythoisao.com</i>`
+          );
+        }
         updateBadgesAndStats();
         renderDashboard();
         renderAdminArticles(articlesData);
@@ -2921,6 +3056,16 @@
       };
       localStorage.setItem('DAYTHOISAO_SITE_SETTINGS', JSON.stringify(settings));
       syncToCloudflare();
+      const cfg = getTelegramConfig();
+      if (cfg.notifyAdmin) {
+        sendTelegramMessage(
+          `⚙️ <b>[CÀI ĐẶT WEB] Đã cập nhật thông tin chung website!</b>\n\n` +
+          `🏢 <b>Tên web:</b> ${settings.siteName}\n` +
+          `📞 <b>Hotline:</b> ${settings.hotline}\n` +
+          `⏰ <b>Thời gian:</b> ${new Date().toLocaleString('vi-VN')}\n\n` +
+          `🌐 <i>Website: daythoisao.com</i>`
+        );
+      }
       showToast("Đã lưu và đồng bộ thông tin cấu hình website!");
     }
 
@@ -2937,6 +3082,16 @@
       localStorage.setItem('DAYTHOISAO_FOUNDER_SETTINGS', JSON.stringify(founder));
       syncToCloudflare();
       const statusText = visibility === 'public' ? 'Công khai (Hiển thị đầy đủ)' : 'Riêng tư / Tạm ẩn (Báo Đang cập nhật)';
+      const cfg = getTelegramConfig();
+      if (cfg.notifyAdmin) {
+        sendTelegramMessage(
+          `👤 <b>[NGƯỜI SÁNG LẬP] Cập nhật trang Giới thiệu!</b>\n\n` +
+          `🏷️ <b>Trạng thái:</b> ${statusText}\n` +
+          `👨‍🏫 <b>Tên:</b> ${founder.name || 'Sáo Trúc Âu Cơ'}\n` +
+          `⏰ <b>Thời gian:</b> ${new Date().toLocaleString('vi-VN')}\n\n` +
+          `🌐 <i>Website: daythoisao.com/gioi-thieu</i>`
+        );
+      }
       showToast(`Đã lưu! Trang Giới thiệu hiện ở chế độ: ${statusText}`);
     }
 
@@ -2974,6 +3129,16 @@
       };
       localStorage.setItem('DAYTHOISAO_SOCIAL_LINKS', JSON.stringify(social));
       syncToCloudflare();
+      const cfg = getTelegramConfig();
+      if (cfg.notifyAdmin) {
+        sendTelegramMessage(
+          `🔗 <b>[MẠNG XÃ HỘI] Đã cập nhật liên kết các nền tảng!</b>\n\n` +
+          `🌐 <b>Zalo:</b> ${social.zalo}\n` +
+          `🌐 <b>Website:</b> ${social.website}\n` +
+          `⏰ <b>Thời gian:</b> ${new Date().toLocaleString('vi-VN')}\n\n` +
+          `🌐 <i>Website: daythoisao.com</i>`
+        );
+      }
       showToast("Đã lưu và đồng bộ cấu hình liên kết các nền tảng!");
     }
 
@@ -2995,7 +3160,113 @@
       };
       localStorage.setItem('DAYTHOISAO_DONATE_SETTINGS', JSON.stringify(donate));
       syncToCloudflare();
+      const cfg = getTelegramConfig();
+      if (cfg.notifyAdmin) {
+        sendTelegramMessage(
+          `💳 <b>[VIETQR DONATE] Đã cập nhật thông tin tài khoản!</b>\n\n` +
+          `🏦 <b>Ngân hàng:</b> ${donate.bankName}\n` +
+          `🔢 <b>Số TK:</b> ${donate.bankAccount}\n` +
+          `👤 <b>Chủ TK:</b> ${donate.bankHolder}\n` +
+          `⏰ <b>Thời gian:</b> ${new Date().toLocaleString('vi-VN')}\n\n` +
+          `🌐 <i>Website: daythoisao.com</i>`
+        );
+      }
       showToast("Đã lưu và đồng bộ thông tin VietQR Donate!");
+    }
+
+    // ================= TELEGRAM NOTIFICATION HELPERS =================
+    function getTelegramConfig() {
+      try {
+        const saved = localStorage.getItem('DAYTHOISAO_TELEGRAM_SETTINGS');
+        if (saved) return JSON.parse(saved);
+      } catch (e) {}
+      return {
+        botToken: '',
+        chatId: '',
+        notifyRequests: true,
+        notifyAdmin: true
+      };
+    }
+
+    async function sendTelegramMessage(htmlMessage) {
+      const cfg = getTelegramConfig();
+      if (!cfg.botToken || !cfg.chatId) return false;
+      try {
+        const teleUrl = `https://api.telegram.org/bot${cfg.botToken}/sendMessage`;
+        const res = await fetch(teleUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            chat_id: cfg.chatId,
+            text: htmlMessage,
+            parse_mode: 'HTML',
+            disable_web_page_preview: true
+          })
+        });
+        const data = await res.json();
+        return data.ok;
+      } catch (err) {
+        console.warn("Lỗi gửi tin nhắn Telegram:", err);
+        return false;
+      }
+    }
+
+    function saveTelegramSettings(e) {
+      e.preventDefault();
+      const botToken = document.getElementById('settingTelegramBotToken').value.trim();
+      const chatId = document.getElementById('settingTelegramChatId').value.trim();
+      const notifyRequests = document.getElementById('settingTelegramNotifyRequests').checked;
+      const notifyAdmin = document.getElementById('settingTelegramNotifyAdmin').checked;
+
+      const teleSettings = { botToken, chatId, notifyRequests, notifyAdmin };
+      localStorage.setItem('DAYTHOISAO_TELEGRAM_SETTINGS', JSON.stringify(teleSettings));
+      syncToCloudflare();
+      showToast("Đã lưu và đồng bộ cấu hình Telegram Bot!");
+    }
+
+    function loadTelegramSettings() {
+      const saved = getTelegramConfig();
+      if (document.getElementById('settingTelegramBotToken')) document.getElementById('settingTelegramBotToken').value = saved.botToken || '';
+      if (document.getElementById('settingTelegramChatId')) document.getElementById('settingTelegramChatId').value = saved.chatId || '';
+      if (document.getElementById('settingTelegramNotifyRequests')) document.getElementById('settingTelegramNotifyRequests').checked = saved.notifyRequests !== false;
+      if (document.getElementById('settingTelegramNotifyAdmin')) document.getElementById('settingTelegramNotifyAdmin').checked = saved.notifyAdmin !== false;
+    }
+
+    async function testTelegramNotification() {
+      const botToken = document.getElementById('settingTelegramBotToken').value.trim();
+      const chatId = document.getElementById('settingTelegramChatId').value.trim();
+
+      if (!botToken || !chatId) {
+        alert("Vui lòng điền Telegram Bot Token và Chat ID trước khi bấm gửi thử!");
+        return;
+      }
+
+      showToast("Đang gửi tin nhắn thử nghiệm qua Telegram...");
+      try {
+        const testMsg = `🎉 <b>[DẠY THỔI SÁO - KẾT NỐI THÀNH CÔNG]</b>\n\n` +
+          `✅ <b>Website:</b> daythoisao.com\n` +
+          `⏰ <b>Thời gian:</b> ${new Date().toLocaleString('vi-VN')}\n` +
+          `💬 Kết nối Telegram Bot đã thành công! Bạn sẽ nhận được thông báo khi có khách yêu cầu hoặc khi cập nhật nội dung trên website.`;
+
+        const teleUrl = `https://api.telegram.org/bot${botToken}/sendMessage`;
+        const res = await fetch(teleUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            chat_id: chatId,
+            text: testMsg,
+            parse_mode: 'HTML'
+          })
+        });
+        const data = await res.json();
+        if (data.ok) {
+          showToast("🎉 Đã gửi tin nhắn thử nghiệm thành công! Hãy kiểm tra Telegram.");
+        } else {
+          alert(`Gửi thất bại: ${data.description || 'Vui lòng kiểm tra lại Bot Token và Chat ID.'}`);
+        }
+      } catch (err) {
+        alert(`Lỗi kết nối tới Telegram API: ${err.message}`);
+      }
     }
 
     function handleChangePassword(e) {

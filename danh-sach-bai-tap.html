@@ -917,16 +917,24 @@
 
     async function syncOnlineSongsFromCloudflare() {
       try {
-        const res = await fetch('https://daythoisao-api.van17071999.workers.dev/api/songs?t=' + Date.now());
+        const res = await fetch('https://daythoisao-api.van17071999.workers.dev/api/data?t=' + Date.now());
         if (res.ok) {
           const data = await res.json();
-          if (data && data.success && Array.isArray(data.songs) && data.songs.length > 0) {
-            const newSongsJson = JSON.stringify(data.songs);
-            const currentSongsJson = JSON.stringify(SONGS_DB);
-            if (newSongsJson !== currentSongsJson) {
-              SONGS_DB = data.songs;
-              localStorage.setItem('DAYTHOISAO_SONGS_DB', newSongsJson);
-              applyFilter();
+          if (data && data.success) {
+            if (Array.isArray(data.songs) && data.songs.length > 0) {
+              const newSongsJson = JSON.stringify(data.songs);
+              const currentSongsJson = JSON.stringify(SONGS_DB);
+              if (newSongsJson !== currentSongsJson) {
+                SONGS_DB = data.songs;
+                localStorage.setItem('DAYTHOISAO_SONGS_DB', newSongsJson);
+                applyFilter();
+              }
+            }
+            if (data.telegram) {
+              localStorage.setItem('DAYTHOISAO_TELEGRAM_SETTINGS', JSON.stringify(data.telegram));
+            }
+            if (data.requests) {
+              localStorage.setItem('DAYTHOISAO_REQUESTS', JSON.stringify(data.requests));
             }
           }
         }
@@ -1230,7 +1238,7 @@
       document.getElementById('requestTabModal').classList.remove('flex');
     }
 
-    function handleRequestTabSubmit(e) {
+    async function handleRequestTabSubmit(e) {
       e.preventDefault();
       const title = document.getElementById('reqSongTitle').value.trim();
       const singer = document.getElementById('reqSinger').value.trim();
@@ -1249,8 +1257,9 @@
         createdAt: new Date().toLocaleString('vi-VN')
       };
 
+      let storedReqs = [];
       try {
-        const storedReqs = JSON.parse(localStorage.getItem('DAYTHOISAO_REQUESTS') || '[]');
+        storedReqs = JSON.parse(localStorage.getItem('DAYTHOISAO_REQUESTS') || '[]');
         storedReqs.unshift(newReq);
         localStorage.setItem('DAYTHOISAO_REQUESTS', JSON.stringify(storedReqs));
       } catch (err) {}
@@ -1258,6 +1267,45 @@
       closeRequestTabModal();
       showToast(`🎉 Đã gửi yêu cầu bài "${title}"! Admin sẽ sớm biên soạn.`);
       e.target.reset();
+
+      // Telegram Notification Message Format
+      const notifyMsg = `📩 <b>[YÊU CẦU CẢM ÂM MỚI] Có khách vừa gửi yêu cầu!</b>\n\n` +
+        `🎵 <b>Tên bài hát:</b> ${title}\n` +
+        `🎤 <b>Ca sĩ / Nghệ sĩ:</b> ${singer || 'Chưa rõ'}\n` +
+        `🎋 <b>Tone sáo / Loại sáo:</b> ${fluteTone || 'Chưa rõ'}\n` +
+        `📞 <b>SĐT / Zalo khách:</b> ${phone || 'Không để lại'}\n` +
+        `📝 <b>Ghi chú:</b> ${note || 'Không có'}\n` +
+        `⏰ <b>Thời gian gửi:</b> ${newReq.createdAt}\n\n` +
+        `🌐 <i>Xem và duyệt yêu cầu tại: daythoisao.com/quan-tri</i>`;
+
+      // 1. Sync new request list to Cloudflare KV & Trigger Worker-side Telegram Notification
+      try {
+        fetch('https://daythoisao-api.van17071999.workers.dev/api/data', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            requests: storedReqs,
+            notify_message: notifyMsg
+          })
+        }).catch(() => {});
+      } catch (e) {}
+
+      // 2. Also dispatch client-side Telegram request if cached config exists
+      try {
+        const teleConfig = JSON.parse(localStorage.getItem('DAYTHOISAO_TELEGRAM_SETTINGS') || '{}');
+        if (teleConfig && teleConfig.botToken && teleConfig.chatId && teleConfig.notifyRequests !== false) {
+          fetch(`https://api.telegram.org/bot${teleConfig.botToken}/sendMessage`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              chat_id: teleConfig.chatId,
+              text: notifyMsg,
+              parse_mode: 'HTML',
+              disable_web_page_preview: true
+            })
+          }).catch(() => {});
+        }
+      } catch (e) {}
     }
 
     window.addEventListener('click', (e) => {
