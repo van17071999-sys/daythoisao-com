@@ -309,6 +309,9 @@
               </div>
 
               <div class="flex items-center gap-2">
+                <button onclick="syncFullSeedSongs()" class="px-3.5 py-2 bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold rounded-xl shadow flex items-center gap-1.5 whitespace-nowrap transition-all" title="Đồng bộ nạp đủ toàn bộ 14 bài cảm âm gốc vào quản trị">
+                  <i class="fa-solid fa-arrows-rotate"></i> Đồng bộ 14 bài gốc
+                </button>
                 <button onclick="openSongFormModal()" class="px-4 py-2 bg-[#881B1B] hover:bg-[#701515] text-white text-xs font-bold rounded-xl shadow flex items-center gap-2 whitespace-nowrap transition-all">
                   <i class="fa-solid fa-plus"></i> Thêm cảm âm mới
                 </button>
@@ -1675,28 +1678,19 @@
         document.getElementById('adminApp').classList.add('hidden');
       }
 
-      // Load Songs (Full 14 Tracks Merge)
+      // Load Songs (Full 14 Tracks Merge & Guarantee)
       const storedSongs = localStorage.getItem('DAYTHOISAO_SONGS_DB');
       if (storedSongs) {
         try { 
-          songsData = JSON.parse(storedSongs); 
-          if (!Array.isArray(songsData) || songsData.length < 14) {
-            const existingTitles = new Set(songsData.map(s => s.title.toLowerCase().trim()));
-            SEED_SONGS.forEach(ss => {
-              if (!existingTitles.has(ss.title.toLowerCase().trim())) {
-                songsData.push(ss);
-              }
-            });
-            localStorage.setItem('DAYTHOISAO_SONGS_DB', JSON.stringify(songsData));
-          }
+          const parsed = JSON.parse(storedSongs); 
+          songsData = mergeSeedSongs(parsed);
         } catch (e) { 
-          songsData = SEED_SONGS; 
-          localStorage.setItem('DAYTHOISAO_SONGS_DB', JSON.stringify(songsData));
+          songsData = JSON.parse(JSON.stringify(SEED_SONGS)); 
         }
       } else {
-        songsData = SEED_SONGS;
-        localStorage.setItem('DAYTHOISAO_SONGS_DB', JSON.stringify(songsData));
+        songsData = JSON.parse(JSON.stringify(SEED_SONGS));
       }
+      localStorage.setItem('DAYTHOISAO_SONGS_DB', JSON.stringify(songsData));
 
       // Load Requests
       const storedReqs = localStorage.getItem('DAYTHOISAO_REQUESTS');
@@ -2560,6 +2554,38 @@
         filterAdminSongs();
         showToast(`Đã xóa bài hát "${song.title}" khỏi hệ thống!`);
       }
+    }
+
+    function mergeSeedSongs(existingList) {
+      if (!Array.isArray(existingList) || existingList.length === 0) {
+        return JSON.parse(JSON.stringify(SEED_SONGS));
+      }
+      const result = JSON.parse(JSON.stringify(SEED_SONGS));
+      const seedTitles = new Set(SEED_SONGS.map(s => (s.title || '').toLowerCase().replace(/[\(\)\s\-\_\.\,]/g, '')));
+
+      existingList.forEach(item => {
+        if (!item || !item.title) return;
+        const norm = item.title.toLowerCase().replace(/[\(\)\s\-\_\.\,]/g, '');
+        if (!seedTitles.has(norm)) {
+          const newId = Math.max(...result.map(r => r.id), 0) + 1;
+          result.push({ ...item, id: newId });
+        }
+      });
+      return result;
+    }
+
+    function syncFullSeedSongs() {
+      const stored = localStorage.getItem('DAYTHOISAO_SONGS_DB');
+      let current = [];
+      try {
+        current = stored ? JSON.parse(stored) : [];
+      } catch (e) {}
+      songsData = mergeSeedSongs(current);
+      localStorage.setItem('DAYTHOISAO_SONGS_DB', JSON.stringify(songsData));
+      updateBadgesAndStats();
+      renderDashboard();
+      filterAdminSongs();
+      showToast("🎉 Đã đồng bộ nạp đầy đủ 14 bài cảm âm chuẩn vào quản trị!");
     }
 
     // ================= ARTICLE EDITOR MODAL LOGIC, LIVE PREVIEW & SEO =================
