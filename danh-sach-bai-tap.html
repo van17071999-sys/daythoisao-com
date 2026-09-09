@@ -550,6 +550,7 @@
   </footer>
 
   <!-- ================= JAVASCRIPT DATABASE & PARSER ================= -->
+  <script>
     function generateSongSlug(title) {
       if (!title) return 'cam-am-sao-truc';
       let str = title.toLowerCase();
@@ -979,10 +980,6 @@
       gain.connect(ctx.destination);
       osc.start(startT);
       osc.stop(startT + duration);
-    }
-
-    function generateSongSlug(title) {
-        return title.toLowerCase().replace(/á|à|ả|ạ|ã|ă|ắ|ằ|ẳ|ặ|ẵ|â|ấ|ầ|ẩ|ậ|ẫ/g, 'a').replace(/é|è|ẻ|ẹ|ẽ|ê|ế|ề|ể|ệ|ễ/g, 'e').replace(/í|ì|ỉ|ị|ĩ/g, 'i').replace(/ó|ò|ỏ|ọ|õ|ô|ố|ồ|ổ|ộ|ỗ|ơ|ớ|ờ|ở|ợ|ỡ/g, 'o').replace(/ú|ù|ủ|ụ|ũ|ư|ứ|ừ|ử|ự|ữ/g, 'u').replace(/ý|ỳ|ỷ|ỵ|ỹ/g, 'y').replace(/đ/g, 'd').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
     }
 
     function playSongDemoAudio() {

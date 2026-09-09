@@ -1616,7 +1616,7 @@
 
     async function syncOnlineSongsFromCloudflare() {
       try {
-        const res = await fetch('https://daythoisao-api.van17071999.workers.dev/api/songs?t=' + Date.now());
+        const res = await fetch('https://daythoisao-api.van17071999.workers.dev/api/data?t=' + Date.now());
         if (res.ok) {
           const data = await res.json();
           if (data && data.success && Array.isArray(data.songs) && data.songs.length > 0) {
