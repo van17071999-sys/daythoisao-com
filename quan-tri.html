@@ -710,23 +710,24 @@
           </div>
         </div>
 
-        <!-- Section & Line Builder with 2 Modes -->
-        <div class="bg-white p-4 sm:p-5 rounded-2xl border border-[#E8DFC8] space-y-3">
-          <div class="flex flex-wrap items-center justify-between gap-2 pb-2 border-b border-stone-100">
-            <div>
-              <h4 class="font-serif text-xs font-bold text-[#881B1B] uppercase tracking-wider flex items-center gap-1.5">
-                <i class="fa-solid fa-music"></i> 2. Nội dung lời bài hát & Nốt cảm âm
-              </h4>
-              <p class="text-[11px] text-[#6B625B]">Hỗ trợ soạn từng câu hoặc dán nhanh toàn bộ bài cảm âm</p>
+        <!-- Section 2: Lời bài hát & nốt cảm âm (Kiểu nhập nhanh 2 dòng) -->
+        <div class="bg-white p-4 sm:p-5 rounded-2xl border border-[#E8DFC8] space-y-4">
+          <div class="pb-2 border-b border-stone-100 flex items-center justify-between">
+            <h4 class="font-serif text-xs font-bold text-[#881B1B] uppercase tracking-wider flex items-center gap-1.5">
+              <i class="fa-solid fa-music"></i> 2. Nội dung lời bài hát & Nốt cảm âm
+            </h4>
+            <span class="text-[11px] text-stone-400 font-mono">2-Line Format</span>
+          </div>
+
+          <!-- Instruction Box (Style matching Image 2) -->
+          <div class="p-3.5 bg-amber-50/70 rounded-2xl border border-amber-200 text-xs text-amber-950 space-y-1.5">
+            <div class="font-bold text-[#881B1B] flex items-center gap-1.5">
+              💡 Hướng dẫn nhập cảm âm chuẩn (2 dòng):
             </div>
-            <div class="flex items-center gap-1 bg-[#FAF6EE] p-1 rounded-xl border border-[#D9CDBB]">
-              <button type="button" onclick="setSongEditorMode('visual')" id="btnSongModeVisual" class="px-3 py-1 text-xs rounded-lg transition-all bg-white text-[#881B1B] shadow-sm font-bold border border-[#E8DFC8]">
-                🧩 Từng câu trực quan
-              </button>
-              <button type="button" onclick="setSongEditorMode('text')" id="btnSongModeText" class="px-3 py-1 text-xs font-semibold rounded-lg transition-all text-[#6B625B] hover:text-[#292421]">
-                📝 Nhập nhanh văn bản
-              </button>
-            </div>
+            <p class="leading-relaxed"><strong>Dòng 1:</strong> Lời bài hát ở trên (Ví dụ: <em>Bèo dạt mây trôi chốn xa xôi</em>).</p>
+            <p class="leading-relaxed"><strong>Dòng 2:</strong> Nốt cảm âm ở dưới (Ví dụ: <em>do2 re2 mi2 sol2 la2 sol2 mi2 re2 do2</em>).</p>
+            <p class="leading-relaxed"><strong>Tự động đổi quãng:</strong> Gõ <code>re2</code>, <code>mi3</code>... website sẽ tự động chuyển thành <strong>Rê²</strong>, <strong>Mi³</strong> (dạng số mũ chuẩn).</p>
+            <p class="text-[11px] text-stone-500 italic">(Bạn cũng có thể viết trên cùng 1 dòng ngăn cách bằng dấu | : <em>Lời bài hát | do2 re2 mi2</em>)</p>
           </div>
 
           <!-- Quick Note Toolbar -->
@@ -747,34 +748,19 @@
             <button type="button" onclick="insertNoteSymbol(' · ')" class="px-2 py-1 bg-stone-100 hover:bg-stone-200 text-stone-800 font-bold rounded-md border border-stone-300 text-[11px]" title="Dấu ngăn nốt (·)">· Ngăn</button>
           </div>
 
-          <!-- Mode 1: Visual Sections Container -->
-          <div id="songEditorVisualArea" class="space-y-3">
-            <div id="formSectionsContainer" class="space-y-3">
-              <!-- Injected dynamically -->
-            </div>
-            <button type="button" onclick="addFormSection()" class="w-full py-2.5 bg-[#FAF6EE] hover:bg-[#EADBCA] border-2 border-dashed border-[#D9CDBB] text-[#881B1B] font-bold rounded-xl text-xs flex items-center justify-center gap-1.5 transition-colors">
-              <i class="fa-solid fa-plus"></i> Thêm Đoạn Mới (Đoạn 2, Điệp khúc...)
-            </button>
-          </div>
-
-          <!-- Mode 2: Quick Textarea Area -->
-          <div id="songEditorTextArea" class="space-y-2 hidden">
-            <div class="p-3 bg-[#FFFBEB] rounded-xl border border-[#FDE68A] text-xs text-[#92400E] space-y-1">
-              <strong>💡 Hướng dẫn nhập nhanh / Dán cảm âm:</strong>
-              <p class="text-[11px] leading-relaxed">Nhập hoặc dán trực tiếp toàn bộ bài hát. Sử dụng <code class="bg-[#FEF3C7] px-1 py-0.5 rounded font-mono font-bold">[Tên đoạn]</code> để chia đoạn, sau đó là dòng Lời và dòng Nốt (hoặc chỉ nốt nếu là nhạc không lời).</p>
-            </div>
+          <!-- Direct 2-Line Textarea Area -->
+          <div class="space-y-1.5">
+            <label for="formSongQuickText" class="font-bold text-xs text-[#292421] block">
+              Lời bài hát & nốt cảm âm *
+            </label>
             <textarea 
               id="formSongQuickText" 
-              rows="12" 
+              rows="14" 
+              required
               oninput="handleQuickTextInput()"
-              placeholder="[Đoạn 1]&#10;Uyên ương song phi bướm lượn cùng hoa&#10;Sol1  La1  Do2  Re2  Mi2  Re2  Do2  Re2&#10;&#10;Sắc đẹp nghiêng nước nghiêng thành mỹ nhân&#10;Mi2  Sol2  La2  Sol2  Mi2  Re2  Do2  La1&#10;&#10;[Điệp khúc]&#10;Nguyện cùng chàng kết tóc se duyên&#10;Do2  Re2  Mi2  Sol2  La2  Sol2  Mi2" 
-              class="w-full bg-[#FAF6EE] border border-[#D9CDBB] rounded-xl p-3 font-mono text-xs text-[#292421] outline-none focus:ring-2 focus:ring-[#881B1B] leading-relaxed custom-scrollbar"
+              placeholder="Việt Nam sáng trong bao lời ca&#10;Đô² Rê² Sol² La² Sol² Mi² Rê² Đô² Rê² Sol²&#10;&#10;À ơi ơi a ru hời&#10;Sol² La² Đô³ Rê³ Đô³ La² Sol²&#10;&#10;Đây nắng tre xanh mưa chân trời&#10;La² Đô³ La² Sol² Mi² Rê² Đô²&#10;&#10;Rừng sâu, biển rộng, núi cao&#10;La¹-Sol¹ Đô² Sol¹ Đô² Rê² Mi² Đô² Rê²" 
+              class="w-full bg-[#FAF6EE] border border-[#D9CDBB] rounded-2xl p-4 font-mono text-xs text-[#292421] outline-none focus:ring-2 focus:ring-[#881B1B] leading-relaxed custom-scrollbar shadow-inner"
             ></textarea>
-            <div class="flex items-center justify-end">
-              <button type="button" onclick="convertQuickTextToVisual()" class="px-4 py-2 bg-[#193822] hover:bg-[#112517] text-white font-bold rounded-xl text-xs flex items-center gap-1.5 shadow transition-all">
-                <i class="fa-solid fa-arrows-rotate"></i> Chuyển đổi sang từng câu trực quan
-              </button>
-            </div>
           </div>
         </div>
 
@@ -2124,68 +2110,60 @@
       showToast(`Đã thay đổi thứ tự ưu tiên của bài viết!`);
     }
 
-    // ================= SONG EDITOR MODAL LOGIC (VISUAL & QUICK TEXT MODES) =================
+    // ================= SONG EDITOR MODAL LOGIC (QUICK 2-LINE TEXTAREA & LIVE PREVIEW) =================
     let currentEditingSections = [];
-    let currentSongEditorMode = 'visual'; // 'visual' or 'text'
-    let lastActiveNoteInput = null;
 
-    function setSongEditorMode(mode) {
-      currentSongEditorMode = mode;
-      const btnVisual = document.getElementById('btnSongModeVisual');
-      const btnText = document.getElementById('btnSongModeText');
-      const visualArea = document.getElementById('songEditorVisualArea');
-      const textArea = document.getElementById('songEditorTextArea');
-
-      if (mode === 'visual') {
-        if (btnVisual) btnVisual.className = "px-3 py-1 text-xs rounded-lg transition-all bg-white text-[#881B1B] shadow-sm font-bold border border-[#E8DFC8]";
-        if (btnText) btnText.className = "px-3 py-1 text-xs font-semibold rounded-lg transition-all text-[#6B625B] hover:text-[#292421]";
-        if (visualArea) visualArea.classList.remove('hidden');
-        if (textArea) textArea.classList.add('hidden');
-        renderFormSections();
-        updateLivePreview();
-      } else {
-        if (btnText) btnText.className = "px-3 py-1 text-xs rounded-lg transition-all bg-white text-[#881B1B] shadow-sm font-bold border border-[#E8DFC8]";
-        if (btnVisual) btnVisual.className = "px-3 py-1 text-xs font-semibold rounded-lg transition-all text-[#6B625B] hover:text-[#292421]";
-        if (textArea) textArea.classList.remove('hidden');
-        if (visualArea) visualArea.classList.add('hidden');
-
-        // Export visual sections to text in textarea
-        const quickTextarea = document.getElementById('formSongQuickText');
-        if (quickTextarea) {
-          quickTextarea.value = exportSectionsToText(currentEditingSections);
-          lastActiveNoteInput = quickTextarea;
-        }
-        updateLivePreview();
-      }
-    }
-
-    function exportSectionsToText(sections) {
+    function songToPlainText(sections) {
       if (!sections || sections.length === 0) return "";
-      return sections.map(sec => {
-        let secStr = `[${sec.sectionTitle || 'Đoạn'}]\n`;
-        sec.lines.forEach(l => {
-          if (l.lyric && l.lyric.trim() !== '') {
-            secStr += `${l.lyric.trim()}\n`;
-          }
-          if (l.note && l.note.trim() !== '') {
-            secStr += `${l.note.trim()}\n\n`;
+      return sections.map((sec, idx) => {
+        let linesText = [];
+        if (sec.sectionTitle && (sections.length > 1 || (sec.sectionTitle !== 'Đoạn 1' && sec.sectionTitle !== 'Đoạn'))) {
+          linesText.push(`[${sec.sectionTitle}]`);
+        }
+        (sec.lines || []).forEach(l => {
+          let lyric = (l.lyric || '').trim();
+          let note = (l.note || '').trim();
+          if (lyric && note) {
+            linesText.push(`${lyric}\n${note}`);
+          } else if (note) {
+            linesText.push(note);
+          } else if (lyric) {
+            linesText.push(lyric);
           }
         });
-        return secStr.trim();
-      }).join('\n\n');
+        return linesText.join('\n\n');
+      }).filter(Boolean).join('\n\n\n');
+    }
+
+    function isMusicNoteLine(line) {
+      if (!line || !line.trim()) return false;
+      const s = line.trim();
+      if (s.startsWith('[') && s.endsWith(']')) return false;
+      const tokens = s.split(/[\s\-\–\—\.\,\/\|\~\·\(\)\:\;]+/).filter(Boolean);
+      if (tokens.length === 0) return false;
+      const noteRegex = /^(Do|Re|Mi|Fa|Sol|La|Si|Đô|Rê|C|D|E|F|G|A|B)(#|b|♯|♭)?([1-4]|¹|²|³|⁴)?$/i;
+      let matchCount = 0;
+      for (let t of tokens) {
+        if (noteRegex.test(t)) matchCount++;
+      }
+      return (matchCount / tokens.length) >= 0.5;
     }
 
     function parseQuickText(rawText) {
       if (!rawText || !rawText.trim()) return [];
-      const lines = rawText.split('\n');
+      const lines = rawText.split('\n').map(l => l.trim());
       const sections = [];
       let currentSec = { sectionTitle: "Đoạn 1", lines: [] };
 
-      for (let i = 0; i < lines.length; i++) {
-        let line = lines[i].trim();
-        if (!line) continue;
+      let i = 0;
+      while (i < lines.length) {
+        let line = lines[i];
+        if (!line) {
+          i++;
+          continue;
+        }
 
-        // Section header e.g. [Đoạn 1] or [Điệp khúc]
+        // Section header e.g. [Đoạn 1] or [Điệp khúc] or [Dạo đầu]
         if (line.startsWith('[') && line.endsWith(']')) {
           if (currentSec.lines.length > 0) {
             sections.push(currentSec);
@@ -2194,25 +2172,38 @@
             sectionTitle: line.substring(1, line.length - 1).trim() || `Đoạn ${sections.length + 1}`,
             lines: []
           };
+          i++;
           continue;
         }
 
-        // Check if current line contains music notes
-        const isNoteLine = /(Do|Re|Mi|Fa|Sol|La|Si|Đô|Rê|Do2|Re2|Mi2|Fa2|Sol2|La2|Si2|Do3|Re3|Mi3|Fa#|Do#|Sib|Mib)/i.test(line);
+        // Pipe separator "Lyric | Note"
+        if (line.includes('|')) {
+          const parts = line.split('|');
+          const lyric = parts[0].trim();
+          const note = parts.slice(1).join('|').trim();
+          currentSec.lines.push({ lyric, note });
+          i++;
+          continue;
+        }
 
-        if (isNoteLine) {
+        if (isMusicNoteLine(line)) {
+          // Standalone note line (intro / instrumental)
           currentSec.lines.push({ lyric: "", note: line });
+          i++;
         } else {
-          // It's a lyric line. Look ahead for the note line
-          let nextLine = (i + 1 < lines.length) ? lines[i + 1].trim() : '';
-          const isNextNote = /(Do|Re|Mi|Fa|Sol|La|Si|Đô|Rê|Do2|Re2|Mi2|Fa2|Sol2|La2|Si2|Do3|Re3|Mi3|Fa#|Do#|Sib|Mib)/i.test(nextLine);
+          // Lyric line. Look ahead for next non-empty line
+          let nextIdx = i + 1;
+          while (nextIdx < lines.length && !lines[nextIdx]) {
+            nextIdx++;
+          }
+          let nextLine = nextIdx < lines.length ? lines[nextIdx] : "";
 
-          if (isNextNote && !nextLine.startsWith('[')) {
+          if (nextLine && isMusicNoteLine(nextLine)) {
             currentSec.lines.push({ lyric: line, note: nextLine });
-            i++; // skip next line as it's consumed
+            i = nextIdx + 1;
           } else {
-            // Standalone lyric without note
             currentSec.lines.push({ lyric: line, note: "" });
+            i++;
           }
         }
       }
@@ -2225,65 +2216,35 @@
     }
 
     function handleQuickTextInput() {
-      const text = document.getElementById('formSongQuickText').value;
+      const text = document.getElementById('formSongQuickText')?.value || '';
       const parsed = parseQuickText(text);
+      currentEditingSections = parsed;
       renderLivePreviewFromSections(parsed);
     }
 
-    function convertQuickTextToVisual() {
-      const text = document.getElementById('formSongQuickText').value;
-      currentEditingSections = parseQuickText(text);
-      setSongEditorMode('visual');
-      showToast("Đã phân tích văn bản sang từng câu trực quan!");
-    }
-
     function insertNoteSymbol(sym) {
-      if (currentSongEditorMode === 'text') {
-        const textarea = document.getElementById('formSongQuickText');
-        if (textarea) {
-          const start = textarea.selectionStart || textarea.value.length;
-          const end = textarea.selectionEnd || textarea.value.length;
-          const text = textarea.value;
-          textarea.value = text.substring(0, start) + sym + text.substring(end);
-          textarea.selectionStart = textarea.selectionEnd = start + sym.length;
-          textarea.focus();
-          handleQuickTextInput();
-        }
-        return;
+      const textarea = document.getElementById('formSongQuickText');
+      if (!textarea) return;
+      const start = textarea.selectionStart != null ? textarea.selectionStart : textarea.value.length;
+      const end = textarea.selectionEnd != null ? textarea.selectionEnd : textarea.value.length;
+      const text = textarea.value;
+
+      let insertText = sym;
+      if (['Do', 'Re', 'Mi', 'Fa', 'Sol', 'La', 'Si'].includes(sym)) {
+        insertText = sym + " ";
       }
 
-      // Visual Mode
-      if (lastActiveNoteInput && document.body.contains(lastActiveNoteInput)) {
-        const input = lastActiveNoteInput;
-        const start = input.selectionStart || input.value.length;
-        const end = input.selectionEnd || input.value.length;
-        const text = input.value;
-        input.value = text.substring(0, start) + sym + text.substring(end);
-        input.selectionStart = input.selectionEnd = start + sym.length;
-        input.focus();
-        input.dispatchEvent(new Event('input'));
-      } else {
-        // Append to last line's note of last section
-        if (currentEditingSections.length === 0) {
-          currentEditingSections = [{ sectionTitle: "Đoạn 1", lines: [{ lyric: "", note: sym }] }];
-        } else {
-          const lastSec = currentEditingSections[currentEditingSections.length - 1];
-          if (lastSec.lines.length === 0) {
-            lastSec.lines.push({ lyric: "", note: sym });
-          } else {
-            const lastLine = lastSec.lines[lastSec.lines.length - 1];
-            lastLine.note = (lastLine.note ? lastLine.note + " " : "") + sym;
-          }
-        }
-        renderFormSections();
-        updateLivePreview();
-      }
+      textarea.value = text.substring(0, start) + insertText + text.substring(end);
+      textarea.selectionStart = textarea.selectionEnd = start + insertText.length;
+      textarea.focus();
+      handleQuickTextInput();
     }
 
     function openSongFormModal(song = null) {
       document.getElementById('songEditorForm').reset();
       const modal = document.getElementById('songFormModal');
       const title = document.getElementById('songFormModalTitle');
+      const quickTextarea = document.getElementById('formSongQuickText');
 
       if (song) {
         title.innerHTML = `<i class="fa-solid fa-pen-to-square"></i> Chỉnh Sửa Cảm Âm: <span class="text-amber-300 ml-1 font-sans">${song.title}</span>`;
@@ -2297,20 +2258,19 @@
         document.getElementById('formSongTip').value = song.tip || '';
         document.getElementById('formSongTech').value = song.tech || '';
         currentEditingSections = JSON.parse(JSON.stringify(song.sections || []));
+        if (quickTextarea) {
+          quickTextarea.value = songToPlainText(song.sections || []);
+        }
       } else {
         title.innerHTML = `<i class="fa-solid fa-plus"></i> Thêm Cảm Âm Mới`;
         document.getElementById('editSongId').value = '';
-        currentEditingSections = [
-          {
-            sectionTitle: "Đoạn 1",
-            lines: [
-              { lyric: "", note: "" }
-            ]
-          }
-        ];
+        currentEditingSections = [];
+        if (quickTextarea) {
+          quickTextarea.value = '';
+        }
       }
 
-      setSongEditorMode('visual');
+      handleQuickTextInput();
       modal.classList.remove('hidden');
       modal.classList.add('flex');
     }
@@ -2319,107 +2279,6 @@
       const modal = document.getElementById('songFormModal');
       modal.classList.add('hidden');
       modal.classList.remove('flex');
-      lastActiveNoteInput = null;
-    }
-
-    function addFormSection() {
-      currentEditingSections.push({
-        sectionTitle: `Đoạn ${currentEditingSections.length + 1}`,
-        lines: [{ lyric: "", note: "" }]
-      });
-      renderFormSections();
-      updateLivePreview();
-    }
-
-    function removeFormSection(secIdx) {
-      if (currentEditingSections.length <= 1) {
-        alert("Bản cảm âm cần có ít nhất một đoạn!");
-        return;
-      }
-      currentEditingSections.splice(secIdx, 1);
-      renderFormSections();
-      updateLivePreview();
-    }
-
-    function addLineToSection(secIdx) {
-      currentEditingSections[secIdx].lines.push({ lyric: "", note: "" });
-      renderFormSections();
-      updateLivePreview();
-    }
-
-    function removeLineFromSection(secIdx, lineIdx) {
-      if (currentEditingSections[secIdx].lines.length <= 1) {
-        alert("Đoạn cần có ít nhất một câu nốt!");
-        return;
-      }
-      currentEditingSections[secIdx].lines.splice(lineIdx, 1);
-      renderFormSections();
-      updateLivePreview();
-    }
-
-    function updateSectionTitle(secIdx, val) {
-      currentEditingSections[secIdx].sectionTitle = val;
-      updateLivePreview();
-    }
-
-    function updateLineData(secIdx, lineIdx, field, val) {
-      currentEditingSections[secIdx].lines[lineIdx][field] = val;
-      updateLivePreview();
-    }
-
-    function renderFormSections() {
-      const container = document.getElementById('formSectionsContainer');
-      if (!container) return;
-      container.innerHTML = currentEditingSections.map((sec, secIdx) => `
-        <div class="p-3.5 sm:p-4 bg-[#FAF6EE] rounded-2xl border border-[#E8DFC8] space-y-3 shadow-sm">
-          <div class="flex items-center justify-between pb-2 border-b border-stone-200">
-            <div class="flex items-center gap-2 w-full max-w-xs">
-              <i class="fa-solid fa-bookmark text-[#881B1B] text-xs"></i>
-              <input 
-                type="text" 
-                value="${sec.sectionTitle}" 
-                oninput="updateSectionTitle(${secIdx}, this.value)"
-                placeholder="Tên đoạn (Đoạn 1, Điệp khúc...)" 
-                class="w-full bg-white border border-[#D9CDBB] rounded-lg px-2.5 py-1 text-xs font-bold text-[#193822] focus:ring-2 focus:ring-[#881B1B] outline-none"
-              >
-            </div>
-            <div class="flex items-center gap-2">
-              <button type="button" onclick="addLineToSection(${secIdx})" class="px-2.5 py-1 bg-white border border-stone-300 hover:bg-[#EADBCA] rounded-lg text-[11px] font-bold text-[#193822] flex items-center gap-1 transition-colors">
-                <i class="fa-solid fa-plus text-[9px] text-[#881B1B]"></i> Thêm câu
-              </button>
-              <button type="button" onclick="removeFormSection(${secIdx})" class="text-stone-400 hover:text-red-700 p-1 transition-colors" title="Xóa đoạn">
-                <i class="fa-solid fa-trash-can"></i>
-              </button>
-            </div>
-          </div>
-
-          <div class="space-y-2">
-            ${sec.lines.map((l, lineIdx) => `
-              <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-1.5 sm:gap-2 bg-white p-2.5 rounded-xl border border-stone-200 shadow-2xs">
-                <span class="text-[10px] font-mono text-stone-400 hidden sm:inline-block w-4">${lineIdx + 1}</span>
-                <input 
-                  type="text" 
-                  value="${l.lyric}" 
-                  oninput="updateLineData(${secIdx}, ${lineIdx}, 'lyric', this.value)"
-                  placeholder="Lời ca (để trống nếu là độc tấu)..." 
-                  class="flex-1 bg-[#FAF6EE] border border-[#E8DFC8] rounded-lg px-2.5 py-1.5 text-xs text-[#292421] outline-none focus:ring-1 focus:ring-[#881B1B]"
-                >
-                <input 
-                  type="text" 
-                  value="${l.note}" 
-                  onfocus="lastActiveNoteInput = this"
-                  oninput="updateLineData(${secIdx}, ${lineIdx}, 'note', this.value)"
-                  placeholder="Nốt nhạc (Ví dụ: Sol La Do2 Re2 Mi...)" 
-                  class="flex-1 bg-amber-50/70 border border-amber-300/80 font-mono font-bold text-[#701515] rounded-lg px-2.5 py-1.5 text-xs outline-none focus:ring-2 focus:ring-[#881B1B]"
-                >
-                <button type="button" onclick="removeLineFromSection(${secIdx}, ${lineIdx})" class="self-end sm:self-center text-stone-300 hover:text-red-600 p-1" title="Xóa câu">
-                  <i class="fa-solid fa-xmark"></i>
-                </button>
-              </div>
-            `).join('')}
-          </div>
-        </div>
-      `).join('');
     }
 
     function renderLivePreviewFromSections(sections) {
@@ -2435,7 +2294,7 @@
       box.innerHTML = sections.map(sec => `
         <div class="space-y-2 mb-3">
           <div class="text-xs font-bold text-[#193822] uppercase tracking-wider flex items-center gap-1.5 pb-1 border-b border-stone-200/60">
-            <i class="fa-solid fa-bookmark text-[#881B1B] text-[10px]"></i> ${sec.sectionTitle}
+            <i class="fa-solid fa-bookmark text-[#881B1B] text-[10px]"></i> ${sec.sectionTitle || 'Đoạn'}
           </div>
           ${sec.lines.map(l => {
             const hasLyric = l.lyric && l.lyric.trim() !== '';
@@ -2448,10 +2307,6 @@
           }).join('')}
         </div>
       `).join('');
-    }
-
-    function updateLivePreview() {
-      renderLivePreviewFromSections(currentEditingSections);
     }
 
     function handleSaveSong(e) {
@@ -2468,18 +2323,21 @@
       const tip = document.getElementById('formSongTip').value.trim();
       const tech = document.getElementById('formSongTech').value.trim();
 
-      // If in Quick Text mode, parse textarea first
-      if (currentSongEditorMode === 'text') {
-        const textVal = document.getElementById('formSongQuickText').value;
-        currentEditingSections = parseQuickText(textVal);
+      const textVal = (document.getElementById('formSongQuickText')?.value || '').trim();
+      if (!textVal) {
+        alert("Vui lòng nhập lời bài hát và nốt cảm âm!");
+        document.getElementById('formSongQuickText')?.focus();
+        return;
       }
 
+      const parsedSections = parseQuickText(textVal);
+
       // Clean sections
-      const cleanedSections = currentEditingSections.map(s => ({
+      const cleanedSections = parsedSections.map(s => ({
         sectionTitle: s.sectionTitle.trim() || 'Đoạn nhạc',
         lines: s.lines.map(l => ({
-          lyric: l.lyric.trim(),
-          note: l.note.trim()
+          lyric: (l.lyric || '').trim(),
+          note: (l.note || '').trim()
         })).filter(l => l.note !== '' || l.lyric !== '')
       })).filter(s => s.lines.length > 0);
 
