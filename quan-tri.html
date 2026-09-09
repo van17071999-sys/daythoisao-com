@@ -617,17 +617,6 @@
                   <i class="fa-solid fa-upload"></i> Chọn file để Import
                 </button>
               </div>
-
-              <div class="p-5 bg-red-50 rounded-2xl border border-red-200 space-y-3">
-                <div class="w-10 h-10 rounded-xl bg-[#881B1B] text-white flex items-center justify-center text-lg">
-                  <i class="fa-solid fa-rotate-left"></i>
-                </div>
-                <h4 class="font-bold text-sm text-red-900">Khôi phục mặc định (Reset)</h4>
-                <p class="text-red-700 leading-relaxed">Khôi phục lại kho cảm âm và bài viết gốc chuẩn theo giáo trình ban đầu của Sáo Trúc Âu Cơ.</p>
-                <button onclick="resetToDefaultData()" class="w-full py-2.5 bg-red-800 hover:bg-red-900 text-white font-bold rounded-xl shadow flex items-center justify-center gap-2">
-                  <i class="fa-solid fa-trash-arrow-up"></i> Khôi phục dữ liệu gốc
-                </button>
-              </div>
             </div>
           </div>
         </section>
@@ -1582,6 +1571,88 @@
     let requestsData = [];
     let articlesData = [];
 
+    const DAYTHOISAO_API_URL = 'https://daythoisao-api.van17071999.workers.dev/api/data';
+    let isCloudflareSyncing = false;
+
+    // Cloudflare Direct Sync
+    async function syncToCloudflare() {
+      try {
+        isCloudflareSyncing = true;
+        const payload = {
+          songs: songsData,
+          articles: articlesData,
+          requests: requestsData,
+          settings: JSON.parse(localStorage.getItem('DAYTHOISAO_SITE_SETTINGS') || '{}'),
+          founder: JSON.parse(localStorage.getItem('DAYTHOISAO_FOUNDER_SETTINGS') || '{"visibility":"private"}'),
+          social: JSON.parse(localStorage.getItem('DAYTHOISAO_SOCIAL_LINKS') || JSON.stringify(DEFAULT_SOCIAL_LINKS)),
+          donate: JSON.parse(localStorage.getItem('DAYTHOISAO_DONATE_SETTINGS') || '{}')
+        };
+        const res = await fetch(DAYTHOISAO_API_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        if (res.ok) {
+          console.log("☁️ Đã đồng bộ trực tiếp lên Cloudflare KV thành công!");
+        }
+      } catch (err) {
+        console.warn("Lỗi đồng bộ Cloudflare:", err);
+      } finally {
+        isCloudflareSyncing = false;
+      }
+    }
+
+    // Cloudflare Fetch on Load
+    async function fetchCloudflareDataOnLoad() {
+      try {
+        const res = await fetch(DAYTHOISAO_API_URL + '?t=' + Date.now());
+        if (res.ok) {
+          const data = await res.json();
+          let hasChanges = false;
+          if (data && data.songs && Array.isArray(data.songs) && data.songs.length > 0) {
+            songsData = data.songs;
+            localStorage.setItem('DAYTHOISAO_SONGS_DB', JSON.stringify(songsData));
+            localStorage.setItem('DAYTHOISAO_SONGS_V2_INIT', 'true');
+            hasChanges = true;
+          }
+          if (data && data.articles && Array.isArray(data.articles) && data.articles.length > 0) {
+            articlesData = data.articles;
+            localStorage.setItem('DAYTHOISAO_ARTICLES', JSON.stringify(articlesData));
+            hasChanges = true;
+          }
+          if (data && data.requests && Array.isArray(data.requests) && data.requests.length > 0) {
+            requestsData = data.requests;
+            localStorage.setItem('DAYTHOISAO_REQUESTS', JSON.stringify(requestsData));
+            hasChanges = true;
+          }
+          if (data && data.settings && typeof data.settings === 'object' && Object.keys(data.settings).length > 0) {
+            localStorage.setItem('DAYTHOISAO_SITE_SETTINGS', JSON.stringify(data.settings));
+          }
+          if (data && data.founder && typeof data.founder === 'object' && Object.keys(data.founder).length > 0) {
+            localStorage.setItem('DAYTHOISAO_FOUNDER_SETTINGS', JSON.stringify(data.founder));
+          }
+          if (data && data.social && typeof data.social === 'object' && Object.keys(data.social).length > 0) {
+            localStorage.setItem('DAYTHOISAO_SOCIAL_LINKS', JSON.stringify(data.social));
+          }
+          if (data && data.donate && typeof data.donate === 'object' && Object.keys(data.donate).length > 0) {
+            localStorage.setItem('DAYTHOISAO_DONATE_SETTINGS', JSON.stringify(data.donate));
+          }
+
+          if (hasChanges) {
+            updateBadgesAndStats();
+            renderDashboard();
+            if (typeof filterAdminSongs === 'function') filterAdminSongs();
+            if (typeof renderAdminRequests === 'function') renderAdminRequests(requestsData);
+            if (typeof renderAdminArticles === 'function') renderAdminArticles(articlesData);
+            loadFounderSettings();
+            loadSocialSettings();
+          }
+        }
+      } catch (e) {
+        console.warn("Không thể tải dữ liệu mới từ Cloudflare:", e);
+      }
+    }
+
     // Initialize Data
     function initAdminData() {
       // Check auth
@@ -1869,6 +1940,7 @@
 
       localStorage.setItem('DAYTHOISAO_SONGS_V2_INIT', 'true');
       localStorage.setItem('DAYTHOISAO_SONGS_DB', JSON.stringify(songsData));
+      syncToCloudflare();
       filterAdminSongs();
       renderDashboard();
       showToast(`Đã thay đổi thứ tự ưu tiên của bài cảm âm "${temp.title}"!`);
@@ -1974,6 +2046,7 @@
       if (item) {
         item.status = newStatus;
         localStorage.setItem('DAYTHOISAO_REQUESTS', JSON.stringify(requestsData));
+        syncToCloudflare();
         updateBadgesAndStats();
         renderAdminRequests(requestsData);
         showToast("Đã cập nhật trạng thái yêu cầu!");
@@ -1984,6 +2057,7 @@
       if (confirm("Bạn có chắc chắn muốn xóa yêu cầu này?")) {
         requestsData = requestsData.filter(r => r.id !== id);
         localStorage.setItem('DAYTHOISAO_REQUESTS', JSON.stringify(requestsData));
+        syncToCloudflare();
         updateBadgesAndStats();
         renderAdminRequests(requestsData);
         showToast("Đã xóa yêu cầu!");
@@ -1994,6 +2068,7 @@
       if (confirm("Xóa tất cả các yêu cầu đã đánh dấu 'Hoàn thành'?")) {
         requestsData = requestsData.filter(r => r.status !== 'Hoàn thành');
         localStorage.setItem('DAYTHOISAO_REQUESTS', JSON.stringify(requestsData));
+        syncToCloudflare();
         updateBadgesAndStats();
         renderAdminRequests(requestsData);
         showToast("Đã dọn dẹp các yêu cầu đã xong!");
@@ -2110,6 +2185,7 @@
       // Re-sort
       articlesData.sort((a, b) => (a.order || 999) - (b.order || 999));
       localStorage.setItem('DAYTHOISAO_ARTICLES', JSON.stringify(articlesData));
+      syncToCloudflare();
       renderAdminArticles(articlesData);
       showToast(`Đã thay đổi thứ tự ưu tiên của bài viết!`);
     }
@@ -2394,6 +2470,7 @@
 
       localStorage.setItem('DAYTHOISAO_SONGS_V2_INIT', 'true');
       localStorage.setItem('DAYTHOISAO_SONGS_DB', JSON.stringify(songsData));
+      syncToCloudflare();
       closeSongFormModal();
       updateBadgesAndStats();
       renderDashboard();
@@ -2415,6 +2492,7 @@
         songsData.unshift(cloned);
         localStorage.setItem('DAYTHOISAO_SONGS_V2_INIT', 'true');
         localStorage.setItem('DAYTHOISAO_SONGS_DB', JSON.stringify(songsData));
+        syncToCloudflare();
         updateBadgesAndStats();
         filterAdminSongs();
         showToast(`Đã nhân bản bài hát "${cloned.title}"!`);
@@ -2428,6 +2506,7 @@
         songsData = songsData.filter(s => s.id !== id);
         localStorage.setItem('DAYTHOISAO_SONGS_V2_INIT', 'true');
         localStorage.setItem('DAYTHOISAO_SONGS_DB', JSON.stringify(songsData));
+        syncToCloudflare();
         updateBadgesAndStats();
         renderDashboard();
         filterAdminSongs();
@@ -2438,10 +2517,11 @@
     function saveAllSongsChanges() {
       localStorage.setItem('DAYTHOISAO_SONGS_V2_INIT', 'true');
       localStorage.setItem('DAYTHOISAO_SONGS_DB', JSON.stringify(songsData));
+      syncToCloudflare();
       updateBadgesAndStats();
       renderDashboard();
       filterAdminSongs();
-      showToast(`💾 Đã lưu thành công danh sách ${songsData.length} bài cảm âm vào hệ thống!`);
+      showToast(`💾 Đã lưu và đồng bộ danh sách ${songsData.length} bài cảm âm lên hệ thống!`);
     }
 
     function mergeSeedSongs(existingList) {
@@ -2449,18 +2529,6 @@
         return existingList;
       }
       return JSON.parse(JSON.stringify(SEED_SONGS));
-    }
-
-    function syncFullSeedSongs() {
-      if (confirm("Khôi phục lại toàn bộ 14 bài cảm âm chuẩn ban đầu của hệ thống?")) {
-        songsData = JSON.parse(JSON.stringify(SEED_SONGS));
-        localStorage.setItem('DAYTHOISAO_SONGS_V2_INIT', 'true');
-        localStorage.setItem('DAYTHOISAO_SONGS_DB', JSON.stringify(songsData));
-        updateBadgesAndStats();
-        renderDashboard();
-        filterAdminSongs();
-        showToast("🎉 Đã khôi phục đầy đủ 14 bài cảm âm gốc!");
-      }
     }
 
     // ================= ARTICLE EDITOR MODAL LOGIC, LIVE PREVIEW & SEO =================
@@ -2814,6 +2882,7 @@
 
       articlesData.sort((a, b) => (a.order || 999) - (b.order || 999));
       localStorage.setItem('DAYTHOISAO_ARTICLES', JSON.stringify(articlesData));
+      syncToCloudflare();
       closeArticleFormModal();
       updateBadgesAndStats();
       renderDashboard();
@@ -2832,6 +2901,7 @@
         articlesData = articlesData.filter(a => a.id !== id);
         articlesData.sort((a, b) => (a.order || 999) - (b.order || 999));
         localStorage.setItem('DAYTHOISAO_ARTICLES', JSON.stringify(articlesData));
+        syncToCloudflare();
         updateBadgesAndStats();
         renderDashboard();
         renderAdminArticles(articlesData);
@@ -2850,7 +2920,8 @@
         email: document.getElementById('settingEmail').value
       };
       localStorage.setItem('DAYTHOISAO_SITE_SETTINGS', JSON.stringify(settings));
-      showToast("Đã lưu thông tin cấu hình website!");
+      syncToCloudflare();
+      showToast("Đã lưu và đồng bộ thông tin cấu hình website!");
     }
 
     function saveFounderSettings(e) {
@@ -2864,6 +2935,7 @@
         zalo: document.getElementById('settingFounderZalo').value
       };
       localStorage.setItem('DAYTHOISAO_FOUNDER_SETTINGS', JSON.stringify(founder));
+      syncToCloudflare();
       const statusText = visibility === 'public' ? 'Công khai (Hiển thị đầy đủ)' : 'Riêng tư / Tạm ẩn (Báo Đang cập nhật)';
       showToast(`Đã lưu! Trang Giới thiệu hiện ở chế độ: ${statusText}`);
     }
@@ -2901,7 +2973,8 @@
         website: document.getElementById('settingSocialWebsite').value.trim() || DEFAULT_SOCIAL_LINKS.website
       };
       localStorage.setItem('DAYTHOISAO_SOCIAL_LINKS', JSON.stringify(social));
-      showToast("Đã lưu cấu hình liên kết các nền tảng!");
+      syncToCloudflare();
+      showToast("Đã lưu và đồng bộ cấu hình liên kết các nền tảng!");
     }
 
     function loadSocialSettings() {
@@ -2921,7 +2994,8 @@
         bankHolder: document.getElementById('settingBankHolder').value
       };
       localStorage.setItem('DAYTHOISAO_DONATE_SETTINGS', JSON.stringify(donate));
-      showToast("Đã lưu thông tin VietQR Donate!");
+      syncToCloudflare();
+      showToast("Đã lưu và đồng bộ thông tin VietQR Donate!");
     }
 
     function handleChangePassword(e) {
@@ -2993,6 +3067,7 @@
             localStorage.setItem('DAYTHOISAO_DONATE_SETTINGS', JSON.stringify(imported.donate));
           }
 
+          syncToCloudflare();
           updateBadgesAndStats();
           renderDashboard();
           filterAdminSongs();
@@ -3000,27 +3075,13 @@
           renderAdminArticles(articlesData);
           loadFounderSettings();
           loadSocialSettings();
-          showToast("Khôi phục dữ liệu từ file JSON thành công!");
+          showToast("Khôi phục dữ liệu từ file JSON và đồng bộ Cloudflare thành công!");
         } catch (err) {
           alert("File JSON không hợp lệ hoặc bị lỗi định dạng!");
         }
       };
       reader.readAsText(file);
       e.target.value = '';
-    }
-
-    function resetToDefaultData() {
-      if (confirm("CẢNH BÁO: Thao tác này sẽ khôi phục lại kho cảm âm và bài viết gốc ban đầu. Bạn có chắc chắn muốn tiếp tục?")) {
-        songsData = SEED_SONGS;
-        requestsData = SEED_REQUESTS;
-        localStorage.setItem('DAYTHOISAO_SONGS_DB', JSON.stringify(songsData));
-        localStorage.setItem('DAYTHOISAO_REQUESTS', JSON.stringify(requestsData));
-        updateBadgesAndStats();
-        renderDashboard();
-        filterAdminSongs();
-        renderAdminRequests(requestsData);
-        showToast("Đã khôi phục dữ liệu gốc ban đầu!");
-      }
     }
 
     // Toast Notification
@@ -3063,7 +3124,10 @@
     }
 
     // Initialize on Load
-    window.addEventListener('DOMContentLoaded', initAdminData);
+    window.addEventListener('DOMContentLoaded', () => {
+      initAdminData();
+      fetchCloudflareDataOnLoad();
+    });
   </script>
 </body>
 </html>

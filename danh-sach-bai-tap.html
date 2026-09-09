@@ -915,6 +915,26 @@
       return SONGS_DB;
     }
 
+    async function syncOnlineSongsFromCloudflare() {
+      try {
+        const res = await fetch('https://daythoisao-api.van17071999.workers.dev/api/songs?t=' + Date.now());
+        if (res.ok) {
+          const data = await res.json();
+          if (data && data.success && Array.isArray(data.songs) && data.songs.length > 0) {
+            const newSongsJson = JSON.stringify(data.songs);
+            const currentSongsJson = JSON.stringify(SONGS_DB);
+            if (newSongsJson !== currentSongsJson) {
+              SONGS_DB = data.songs;
+              localStorage.setItem('DAYTHOISAO_SONGS_DB', newSongsJson);
+              applyFilter();
+            }
+          }
+        }
+      } catch (err) {
+        console.warn("Không thể tải bài hát từ Cloudflare:", err);
+      }
+    }
+
     let currentGenre = 'all';
     let selectedSongItem = null;
     let audioCtx = null;
@@ -1249,6 +1269,7 @@
 
     window.addEventListener('DOMContentLoaded', () => {
       applyFilter();
+      syncOnlineSongsFromCloudflare();
     });
   </script>
   <!-- FIXED MOBILE BOTTOM NAVIGATION BAR -->

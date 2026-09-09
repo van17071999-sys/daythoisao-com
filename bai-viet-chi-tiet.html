@@ -765,7 +765,29 @@
       }
     }
 
-    document.addEventListener('DOMContentLoaded', initDetailPage);
+    async function syncOnlineArticlesFromCloudflare() {
+      try {
+        const res = await fetch('https://daythoisao-api.van17071999.workers.dev/api/data?t=' + Date.now());
+        if (res.ok) {
+          const data = await res.json();
+          if (data && data.articles && Array.isArray(data.articles) && data.articles.length > 0) {
+            const newArtJson = JSON.stringify(data.articles);
+            const curArtJson = localStorage.getItem('DAYTHOISAO_ARTICLES');
+            if (newArtJson !== curArtJson) {
+              localStorage.setItem('DAYTHOISAO_ARTICLES', newArtJson);
+              initDetailPage();
+            }
+          }
+        }
+      } catch (e) {
+        console.warn("Lỗi tải bài viết từ Cloudflare:", e);
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      initDetailPage();
+      syncOnlineArticlesFromCloudflare();
+    });
   </script>
 </body>
 </html>
