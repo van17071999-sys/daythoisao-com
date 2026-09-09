@@ -329,7 +329,7 @@
               <table class="w-full text-left text-xs border-collapse">
                 <thead>
                   <tr class="bg-[#FAF6EE] border-b border-[#E8DFC8] text-[#59524B] font-bold uppercase tracking-wider">
-                    <th class="py-3 px-3">ID</th>
+                    <th class="py-3 px-3 whitespace-nowrap">Ưu tiên</th>
                     <th class="py-3 px-3">Tên bài hát</th>
                     <th class="py-3 px-3">Tác giả</th>
                     <th class="py-3 px-3">Thể loại</th>
@@ -1874,9 +1874,26 @@
         return;
       }
 
-      tbody.innerHTML = list.map((s, idx) => `
+      tbody.innerHTML = list.map((s, idx) => {
+        const fullIndex = songsData.findIndex(item => item.id === s.id);
+        const orderNum = fullIndex !== -1 ? fullIndex + 1 : idx + 1;
+        return `
         <tr class="hover:bg-[#FAF6EE] transition-colors border-b border-stone-100">
-          <td class="py-3 px-3 font-mono text-stone-400 font-semibold">${idx + 1}</td>
+          <td class="py-3 px-3 whitespace-nowrap">
+            <div class="flex items-center gap-1.5">
+              <span class="w-7 h-7 rounded-lg bg-amber-100 text-amber-900 font-bold flex items-center justify-center text-[11px] shrink-0" title="Thứ tự ưu tiên #${orderNum}">
+                #${orderNum}
+              </span>
+              <div class="flex items-center gap-0.5">
+                <button onclick="moveSongPriority(${s.id}, -1)" class="w-6 h-6 rounded bg-[#FAF6EE] hover:bg-[#EADBCA] text-[#881B1B] border border-[#D9CDBB] flex items-center justify-center text-[10px] transition-colors" title="Đẩy lên trước (Ưu tiên cao hơn)">
+                  <i class="fa-solid fa-arrow-up"></i>
+                </button>
+                <button onclick="moveSongPriority(${s.id}, 1)" class="w-6 h-6 rounded bg-[#FAF6EE] hover:bg-[#EADBCA] text-[#881B1B] border border-[#D9CDBB] flex items-center justify-center text-[10px] transition-colors" title="Đẩy xuống sau">
+                  <i class="fa-solid fa-arrow-down"></i>
+                </button>
+              </div>
+            </div>
+          </td>
           <td class="py-3 px-3">
             <strong class="text-[#881B1B] text-sm block">${s.title}</strong>
             <span class="text-[11px] text-stone-500">${s.genreName || s.genreId}</span>
@@ -1903,7 +1920,31 @@
             </button>
           </td>
         </tr>
-      `).join('');
+      `;
+      }).join('');
+    }
+
+    function moveSongPriority(id, direction) {
+      const idx = songsData.findIndex(s => s.id === id);
+      if (idx === -1) return;
+      const targetIdx = idx + direction;
+      if (targetIdx < 0 || targetIdx >= songsData.length) return;
+
+      // Swap items
+      const temp = songsData[idx];
+      songsData[idx] = songsData[targetIdx];
+      songsData[targetIdx] = temp;
+
+      // Update order property
+      songsData.forEach((s, i) => {
+        s.order = i + 1;
+      });
+
+      localStorage.setItem('DAYTHOISAO_SONGS_V2_INIT', 'true');
+      localStorage.setItem('DAYTHOISAO_SONGS_DB', JSON.stringify(songsData));
+      filterAdminSongs();
+      renderDashboard();
+      showToast(`Đã thay đổi thứ tự ưu tiên của bài cảm âm "${temp.title}"!`);
     }
 
     function filterAdminSongs() {
