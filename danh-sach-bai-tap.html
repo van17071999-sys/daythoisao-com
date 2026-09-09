@@ -1097,6 +1097,41 @@
       }).join('');
     }
 
+    function matchSongTone(filterTone, song) {
+      if (!filterTone || filterTone === 'all') return true;
+      const f = filterTone.toLowerCase().replace(/[\/\-\_\s]+/g, ' ').trim();
+      const td = (song.toneDisplay || song.toneKey || song.tone || '').toLowerCase().trim();
+      const tk = (song.toneKey || '').toLowerCase().trim();
+
+      if (td.includes(f) || f.includes(td) || (tk && (tk.includes(f) || f.includes(tk)))) {
+        return true;
+      }
+
+      const groups = [
+        { keys: ['c', 'am', 'c am', 'c/am', 'c-am'], vn: ['đô', 'la thứ', 'do', 'la thu'] },
+        { keys: ['d', 'bm', 'd bm', 'd/bm', 'd-bm'], vn: ['rê', 'si thứ', 're', 'si thu'] },
+        { keys: ['e', 'c#m', 'c#', 'e c#m', 'e/c#m', 'e-c#m'], vn: ['mi', 'đô# thứ', 'do# thu'] },
+        { keys: ['f', 'dm', 'f dm', 'f/dm', 'f-dm'], vn: ['fa', 'rê thứ', 're thu'] },
+        { keys: ['g', 'em', 'g em', 'g/em', 'g-em'], vn: ['sol', 'mi thứ', 'mi thu'] },
+        { keys: ['a', 'f#m', 'f#', 'a f#m', 'a/f#m', 'a-f#m'], vn: ['la', 'fa# thứ', 'fa# thu'] },
+        { keys: ['bb', 'gm', 'b♭', 'bb gm', 'bb/gm', 'bb-gm'], vn: ['si giáng', 'sol thứ', 'si giang', 'sol thu'] }
+      ];
+
+      for (let grp of groups) {
+        const filterMatchesGrp = grp.keys.some(k => k === f || f.includes(k) || k.includes(f));
+        if (filterMatchesGrp) {
+          for (let k of grp.keys) {
+            const pattern = new RegExp('(^|[\\s\\/\\-\\_\\,])' + k.replace('#', '\\#') + '($|[\\s\\/\\-\\_\\,])', 'i');
+            if (pattern.test(td) || pattern.test(tk)) return true;
+          }
+          for (let v of grp.vn) {
+            if (td.includes(v) || tk.includes(v)) return true;
+          }
+        }
+      }
+      return false;
+    }
+
     function applyFilter() {
       const q = document.getElementById('searchInput').value.toLowerCase().trim();
       const tone = document.getElementById('toneFilterSelect').value;
@@ -1105,10 +1140,10 @@
 
       const filtered = allSongs.filter(song => {
         const matchGenre = currentGenre === 'all' || song.genreId === currentGenre;
-        const textToSearch = (song.title + " " + song.author + " " + (song.genreName || "") + " " + (song.tip || "")).toLowerCase();
+        const textToSearch = (song.title + " " + song.author + " " + (song.genreName || "") + " " + (song.toneDisplay || song.tone || "") + " " + (song.fluteTone || "") + " " + (song.tip || "")).toLowerCase();
         const matchQuery = textToSearch.includes(q);
-        const matchTone = tone === 'all' || song.toneKey === tone || song.toneDisplay === tone;
-        const matchDiff = diff === 'all' || song.diff.includes(diff);
+        const matchTone = matchSongTone(tone, song);
+        const matchDiff = diff === 'all' || (song.diff && song.diff.includes(diff));
         return matchGenre && matchQuery && matchTone && matchDiff;
       });
 
