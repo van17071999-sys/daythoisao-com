@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="pageTitle">Cảm Âm Sáo Trúc Chuẩn 2 Dòng - Sáo Trúc Âu Cơ | daythoisao.com</title>
+  <meta name="description" id="pageDescription" content="Kho cảm âm sáo trúc 2 dòng chuẩn, phân chia đoạn rõ ràng, hướng dẫn kỹ thuật lấy hơi, rung ngón, kèm thế tay và tone sáo chuẩn từ Sáo Trúc Âu Cơ.">
+  <meta name="keywords" id="pageKeywords" content="cảm âm sáo trúc, cảm âm 2 dòng, tự học thổi sáo, nốt sáo trúc, sáo trúc âu cơ, daythoisao.com">
+  <meta name="author" content="Sáo Trúc Âu Cơ - daythoisao.com">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" id="pageCanonical" href="https://daythoisao.com/danh-sach-bai-tap.html">
+
+  <!-- Open Graph -->
+  <meta property="og:title" id="ogTitle" content="Cảm Âm Sáo Trúc Chuẩn 2 Dòng - daythoisao.com">
+  <meta property="og:description" id="ogDescription" content="Bản cảm âm sáo trúc 2 dòng chuẩn, đầy đủ lời và nốt nhạc từ Sáo Trúc Âu Cơ.">
+  <meta property="og:url" id="ogUrl" content="https://daythoisao.com/danh-sach-bai-tap.html">
+  <meta property="og:site_name" content="daythoisao.com - Sáo Trúc Âu Cơ">
+  <meta property="og:type" content="article">
+  <meta property="og:image" id="ogImage" content="https://daythoisao.com/assets/logo.png">
+
+  <!-- Favicon / Brand Icon -->
+  <link rel="icon" type="image/png" href="/assets/logo.png">
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" href="/assets/logo.png">
+
+  <!-- Tailwind CSS & Fonts -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'paper-warm': '#FAF6EE',
+            'bordeaux-red': '#881B1B',
+            'bamboo-green': '#193822',
+            'ink-dark': '#292421',
+            'ink-muted': '#6B625B'
+          },
+          fontFamily: {
+            serif: ['"Playfair Display"', 'Georgia', 'serif'],
+            sans: ['"Be Vietnam Pro"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    html { scroll-behavior: smooth; }
+    body {
+      background-color: #FAF6EE;
+      color: #292421;
+      font-family: 'Be Vietnam Pro', sans-serif;
+    }
+    .custom-scrollbar::-webkit-scrollbar { width: 5px; height: 5px; }
+    .custom-scrollbar::-webkit-scrollbar-track { background: rgba(0,0,0,0.03); }
+    .custom-scrollbar::-webkit-scrollbar-thumb { background: #D9CDBB; border-radius: 4px; }
+    
+    .note-line {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      color: #881B1B;
+      letter-spacing: 0.04em;
+    }
+
+    @media print {
+      header, footer, #mobileNav, #actionSidebar, #reqModalBtn, .no-print {
+        display: none !important;
+      }
+      body {
+        background-color: #ffffff !important;
+        color: #000000 !important;
+      }
+      .print-full {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+      .score-card {
+        border: 1px solid #ccc !important;
+        box-shadow: none !important;
+        break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body class="antialiased flex flex-col min-h-screen">
+
+  <!-- ================= TOP HEADER ================= -->
+  <header class="bg-[#FAF6EE]/95 sticky top-0 z-50 border-b border-[#EADFCB] backdrop-blur-md no-print">
+    <div class="w-full px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Logo Flush Left -->
+      <a href="/index.html" class="flex items-center gap-3 group shrink-0">
+        <img src="/assets/logo.png" alt="Logo Sáo Trúc Âu Cơ" class="w-11 h-11 rounded-full object-cover border border-[#E0D5C3] shadow-sm group-hover:scale-105 transition-transform duration-300">
+        <div class="flex flex-col">
+          <span class="font-serif text-2xl font-bold tracking-tight text-[#881B1B] lowercase leading-none">daythoisao.com</span>
+          <span class="text-[11px] text-[#193822] font-semibold tracking-wider uppercase mt-1">Sáo Trúc Âu Cơ</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Centered -->
+      <nav class="hidden md:flex items-center gap-6 lg:gap-8 text-xs font-semibold tracking-normal text-[#292421]">
+        <a href="/index.html" class="hover:text-[#881B1B] transition-colors">Trang chủ</a>
+        <a href="/gioi-thieu.html" class="hover:text-[#881B1B] transition-colors">Giới thiệu</a>
+        <a href="/lo-trinh-nguoi-moi.html" class="hover:text-[#881B1B] transition-colors">Lộ trình học</a>
+        <a href="/danh-sach-bai-tap.html" class="text-[#881B1B] border-b-2 border-[#881B1B] pb-1 transition-colors">Kho cảm âm</a>
+        <a href="/tra-cuu-the-bam.html" class="hover:text-[#881B1B] transition-colors">Thế bấm sáo</a>
+        <a href="/luyen-hoi-khau-hinh.html" class="hover:text-[#881B1B] transition-colors">Kỹ thuật hơi</a>
+        <a href="/doc-not-nhac.html" class="hover:text-[#881B1B] transition-colors">Đọc nốt nhạc</a>
+        <a href="/ke-hoach-15-phut.html" class="hover:text-[#881B1B] transition-colors">Kế hoạch tập</a>
+        <a href="/bai-viet.html" class="hover:text-[#881B1B] transition-colors">Bài viết</a>
+      </nav>
+
+      <!-- Desktop Action Right -->
+      <div class="hidden md:flex items-center gap-3">
+        <button onclick="openRequestTabModal()" class="px-4 py-2 bg-[#881B1B] hover:bg-[#701515] text-white text-xs font-bold rounded-full shadow-sm hover:shadow transition-all flex items-center gap-1.5">
+          <i class="fa-solid fa-pen-to-square text-[11px]"></i> Yêu cầu cảm âm
+        </button>
+      </div>
+
+      <!-- Mobile Hamburger Button -->
+      <div class="md:hidden flex items-center gap-2">
+        <button onclick="openRequestTabModal()" class="px-2.5 py-1.5 bg-[#881B1B] text-white text-[11px] font-bold rounded-lg shadow-sm">
+          <i class="fa-solid fa-pen-to-square"></i> Yêu cầu
+        </button>
+        <button onclick="toggleMobileMenu()" class="p-2 text-[#292421] hover:text-[#881B1B] focus:outline-none" aria-label="Toggle Menu">
+          <i id="mobileMenuIcon" class="fa-solid fa-bars text-xl"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobileMenu" class="hidden md:hidden bg-[#FAF6EE] border-b border-[#EADFCB] px-4 pt-2 pb-6 space-y-3 text-xs font-medium">
+      <a href="/index.html" class="block py-2 text-[#292421] hover:text-[#881B1B] border-b border-[#F0E8DA]">Trang chủ</a>
+      <a href="/gioi-thieu.html" class="block py-2 text-[#292421] hover:text-[#881B1B] border-b border-[#F0E8DA]">Giới thiệu</a>
+      <a href="/lo-trinh-nguoi-moi.html" class="block py-2 text-[#292421] hover:text-[#881B1B] border-b border-[#F0E8DA]">Lộ trình học sáo</a>
+      <a href="/danh-sach-bai-tap.html" class="block py-2 text-[#881B1B] font-bold border-b border-[#F0E8DA]">Kho cảm âm sáo trúc</a>
+      <a href="/tra-cuu-the-bam.html" class="block py-2 text-[#292421] hover:text-[#881B1B] border-b border-[#F0E8DA]">Bảng thế bấm sáo</a>
+      <a href="/luyen-hoi-khau-hinh.html" class="block py-2 text-[#292421] hover:text-[#881B1B] border-b border-[#F0E8DA]">Kỹ thuật lấy hơi & Khẩu hình</a>
+      <a href="/doc-not-nhac.html" class="block py-2 text-[#292421] hover:text-[#881B1B] border-b border-[#F0E8DA]">Cách đọc nốt nhạc</a>
+      <a href="/ke-hoach-15-phut.html" class="block py-2 text-[#292421] hover:text-[#881B1B] border-b border-[#F0E8DA]">Kế hoạch luyện 15 phút</a>
+      <a href="/bai-viet.html" class="block py-2 text-[#292421] hover:text-[#881B1B]">Cẩm nang & Bài viết</a>
+    </div>
+  </header>
+
+  <!-- ================= MAIN CONTENT ================= -->
+  <main class="flex-grow py-6 sm:py-10 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full print-full">
+    
+    <!-- Breadcrumb & Back Link -->
+    <div class="mb-5 flex flex-wrap items-center justify-between gap-3 text-xs text-[#6B625B] no-print">
+      <nav class="flex items-center gap-1.5">
+        <a href="/index.html" class="hover:text-[#881B1B] transition-colors"><i class="fa-solid fa-house text-[10px]"></i> Trang chủ</a>
+        <span>/</span>
+        <a href="/danh-sach-bai-tap.html" class="hover:text-[#881B1B] transition-colors">Kho cảm âm</a>
+        <span>/</span>
+        <span id="breadcrumbTitle" class="text-[#881B1B] font-semibold truncate max-w-[200px] sm:max-w-md">Đang tải cảm âm...</span>
+      </nav>
+      <a href="/danh-sach-bai-tap.html" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white border border-[#E0D5C3] hover:border-[#881B1B] hover:text-[#881B1B] rounded-lg font-medium transition-all shadow-sm">
+        <i class="fa-solid fa-arrow-left text-[10px]"></i> Quay lại kho cảm âm
+      </a>
+    </div>
+
+    <!-- MAIN GRID: 8 Cols Content + 4 Cols Sidebar -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      
+      <!-- LEFT / MAIN SCORE CONTAINER (8 Cols) -->
+      <article class="lg:col-span-8 space-y-6">
+        
+        <!-- SONG HERO HEADER CARD -->
+        <div class="bg-white rounded-2xl sm:rounded-3xl border border-[#E8DFC8] shadow-sm p-5 sm:p-7 space-y-5">
+          
+          <div class="flex flex-wrap items-center gap-2">
+            <span id="songGenreBadge" class="px-3 py-1 rounded-full text-xs font-bold bg-[#193822]/10 text-[#193822] border border-[#193822]/20">
+              Nhạc Sáo Trúc
+            </span>
+            <span id="songDiffBadge" class="px-3 py-1 rounded-full text-xs font-bold bg-emerald-50 text-emerald-800 border border-emerald-200">
+              Độ khó: Dễ
+            </span>
+            <span id="songToneBadge" class="px-3 py-1 rounded-full text-xs font-bold bg-red-50 text-[#881B1B] border border-red-200">
+              Tone thế tay: C
+            </span>
+          </div>
+
+          <div>
+            <h1 id="songMainTitle" class="font-serif text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#881B1B] leading-tight">
+              Đang tải bản cảm âm...
+            </h1>
+            <p id="songAuthorSub" class="text-xs sm:text-sm text-[#6B625B] mt-2 flex items-center gap-2">
+              <span><i class="fa-solid fa-user-pen text-stone-400 mr-1"></i>Tác giả: <strong id="songAuthor" class="text-[#292421]">Đang cập nhật</strong></span>
+              <span>•</span>
+              <span><i class="fa-solid fa-compass-drafting text-stone-400 mr-1"></i>Biên soạn: <strong class="text-[#193822]">Sáo Trúc Âu Cơ</strong></span>
+            </p>
+          </div>
+
+          <!-- 4 Parameter Metric Boxes -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs pt-1">
+            <div class="bg-[#FAF6EE] p-3.5 rounded-xl border border-[#E8DFC8] text-center">
+              <span class="text-[10px] text-[#6B625B] uppercase block font-semibold mb-1">Tone thế tay</span>
+              <strong id="metricTone" class="text-sm sm:text-base font-bold text-[#881B1B]">C</strong>
+            </div>
+            <div class="bg-[#FAF6EE] p-3.5 rounded-xl border border-[#E8DFC8] text-center">
+              <span class="text-[10px] text-[#6B625B] uppercase block font-semibold mb-1">Sáo khuyến nghị</span>
+              <strong id="metricFlute" class="text-xs sm:text-sm font-bold text-[#193822]">Sáo C5 (Đô)</strong>
+            </div>
+            <div class="bg-[#FAF6EE] p-3.5 rounded-xl border border-[#E8DFC8] text-center">
+              <span class="text-[10px] text-[#6B625B] uppercase block font-semibold mb-1">Độ khó</span>
+              <strong id="metricDiff" class="text-xs sm:text-sm font-bold text-[#292421]">Dễ</strong>
+            </div>
+            <div class="bg-[#FAF6EE] p-3.5 rounded-xl border border-[#E8DFC8] text-center">
+              <span class="text-[10px] text-[#6B625B] uppercase block font-semibold mb-1">Kỹ thuật chính</span>
+              <strong id="metricTech" class="text-xs sm:text-sm font-bold text-[#881B1B]">Rung hơi</strong>
+            </div>
+          </div>
+
+          <!-- Tip / Notes Banner -->
+          <div id="songTipBox" class="bg-amber-50 border border-amber-200/80 rounded-xl p-3.5 text-xs text-amber-950 flex items-start gap-2.5">
+            <i class="fa-solid fa-circle-info text-amber-600 mt-0.5 shrink-0 text-sm"></i>
+            <div>
+              <strong class="font-bold block text-amber-900 mb-0.5">Hướng dẫn kỹ thuật & Lưu ý khi thổi:</strong>
+              <p id="songTipText" class="text-amber-800 leading-relaxed">
+                Thổi đúng cao độ và nhịp phách, chú ý giữ cột hơi đều và thư giãn khẩu hình.
+              </p>
+            </div>
+          </div>
+
+          <!-- ACTION BUTTONS TOOLBAR -->
+          <div class="flex flex-wrap items-center gap-2 pt-2 border-t border-[#F0E8DA] no-print">
+            <button id="playAudioDemoBtn" onclick="playSongDemoAudio()" class="px-4 py-2.5 bg-[#193822] hover:bg-[#122818] text-white font-bold text-xs rounded-xl shadow-sm transition-all flex items-center gap-2">
+              <i class="fa-solid fa-play"></i> <span>Nghe mẫu giai điệu</span>
+            </button>
+            <button onclick="copyFullSongScore()" class="px-4 py-2.5 bg-[#FAF6EE] hover:bg-[#EADBCA] border border-[#D9CDBB] text-[#292421] font-bold text-xs rounded-xl transition-all flex items-center gap-2">
+              <i class="fa-regular fa-copy text-[#881B1B]"></i> Sao chép cảm âm
+            </button>
+            <button onclick="window.print()" class="px-3.5 py-2.5 bg-[#FAF6EE] hover:bg-[#EADBCA] border border-[#D9CDBB] text-[#292421] font-semibold text-xs rounded-xl transition-all flex items-center gap-1.5">
+              <i class="fa-solid fa-print"></i> In / Xuất PDF
+            </button>
+            <button onclick="shareSong('facebook')" class="px-3 py-2.5 bg-blue-50 hover:bg-blue-100 text-blue-700 border border-blue-200 rounded-xl text-xs font-semibold flex items-center gap-1.5">
+              <i class="fa-brands fa-facebook"></i>
+            </button>
+            <button onclick="shareSong('copy')" class="px-3 py-2.5 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 rounded-xl text-xs font-semibold flex items-center gap-1.5" title="Copy link bài hát">
+              <i class="fa-solid fa-share-nodes"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- 2-LINE SCORE CONTAINER -->
+        <div class="bg-white rounded-2xl sm:rounded-3xl border border-[#E8DFC8] shadow-sm p-5 sm:p-8 space-y-6">
+          <div class="flex items-center justify-between pb-3 border-b border-[#F0E8DA]">
+            <h2 class="font-serif text-lg font-bold text-[#881B1B] flex items-center gap-2">
+              <i class="fa-solid fa-align-left text-sm"></i> BẢN CẢM ÂM 2 DÒNG CHUẨN
+            </h2>
+            <span class="text-xs text-[#6B625B] hidden sm:inline">Lời trên • Nốt dưới</span>
+          </div>
+
+          <!-- Dynamic Sections List -->
+          <div id="songSectionsContainer" class="space-y-6">
+            <div class="py-12 text-center text-[#6B625B]">
+              <i class="fa-solid fa-spinner fa-spin text-2xl text-[#881B1B] mb-2"></i>
+              <p>Đang chuẩn bị bản cảm âm...</p>
+            </div>
+          </div>
+
+          <!-- Bottom Footer Note in Score Card -->
+          <div class="pt-4 border-t border-[#F0E8DA] flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-[#6B625B]">
+            <div>
+              Biên soạn & Cung cấp độc quyền bởi: <strong class="text-[#881B1B]">Sáo Trúc Âu Cơ</strong> (saotrucauco.com)
+            </div>
+            <button onclick="copyFullSongScore()" class="text-[#881B1B] font-bold hover:underline flex items-center gap-1 no-print">
+              <i class="fa-regular fa-copy"></i> Sao chép toàn bộ bài
+            </button>
+          </div>
+        </div>
+
+        <!-- Next / Prev or Search CTA Banner -->
+        <div class="bg-gradient-to-r from-[#193822] to-[#2a5538] rounded-2xl p-6 text-white flex flex-col sm:flex-row items-center justify-between gap-4 shadow-md no-print">
+          <div class="space-y-1 text-center sm:text-left">
+            <h3 class="font-serif text-lg font-bold text-amber-200">Bạn muốn tìm cảm âm bài hát khác?</h3>
+            <p class="text-xs text-white/80">Khám phá hơn 100+ bản cảm âm tuyển chọn được phân loại theo Tone và độ khó.</p>
+          </div>
+          <a href="/danh-sach-bai-tap.html" class="px-5 py-2.5 bg-amber-400 hover:bg-amber-300 text-stone-900 font-bold rounded-xl text-xs transition-all shadow shrink-0">
+            Xem toàn bộ kho cảm âm <i class="fa-solid fa-arrow-right ml-1"></i>
+          </a>
+        </div>
+
+      </article>
+
+      <!-- RIGHT SIDEBAR (4 Cols) -->
+      <aside class="lg:col-span-4 space-y-6 no-print" id="actionSidebar">
+        
+        <!-- FLUTE COURSE PROMOTION CARD -->
+        <div class="bg-white rounded-2xl border border-[#E8DFC8] shadow-sm p-5 space-y-4">
+          <div class="flex items-center gap-3">
+            <img src="/assets/logo.png" alt="Sáo Trúc Âu Cơ" class="w-10 h-10 rounded-full border border-[#E0D5C3]">
+            <div>
+              <h4 class="font-serif text-sm font-bold text-[#881B1B]">Lớp Học Thổi Sáo TPHCM</h4>
+              <p class="text-[11px] text-[#6B625B]">Sáo Trúc Âu Cơ • Tân Phú & Tân Bình</p>
+            </div>
+          </div>
+          <p class="text-xs text-[#292421] leading-relaxed">
+            Khóa học sáo trúc từ cơ bản đến biểu diễn dành cho người mới bắt đầu. Học 1 kèm 1, chỉnh sửa khẩu hình và ngón bấm trực tiếp.
+          </p>
+          <div class="space-y-2 pt-2 border-t border-stone-100 text-xs">
+            <div class="flex items-center gap-2 text-stone-700">
+              <i class="fa-solid fa-location-dot text-[#881B1B] text-xs w-4"></i>
+              <span>106/72 Hoà Bình, P. Tân Phú, HCM</span>
+            </div>
+            <div class="flex items-center gap-2 text-stone-700">
+              <i class="fa-solid fa-phone text-emerald-700 text-xs w-4"></i>
+              <span>Hotline / Zalo: <strong>0374 261 368</strong></span>
+            </div>
+          </div>
+          <a href="https://zalo.me/0374261368" target="_blank" class="w-full py-2.5 bg-emerald-700 hover:bg-emerald-800 text-white font-bold rounded-xl text-xs transition-all flex items-center justify-center gap-2 shadow-sm">
+            <i class="fa-solid fa-comment-dots"></i> Nhắn tin tư vấn khóa học
+          </a>
+        </div>
+
+        <!-- QUICK FINGER CHART SEARCH LINK -->
+        <div class="bg-[#FAF6EE] rounded-2xl border border-[#E0D5C3] p-5 space-y-3">
+          <h4 class="font-serif text-sm font-bold text-[#193822] flex items-center gap-2">
+            <i class="fa-solid fa-hand text-[#881B1B]"></i> Tra Cứu Thế Bấm Nốt Sáo
+          </h4>
+          <p class="text-xs text-[#6B625B]">
+            Bạn quên vị trí ngón bấm nốt quãng cao hoặc nốt thăng/giáng trong bài này?
+          </p>
+          <a href="/tra-cuu-the-bam.html" class="inline-flex items-center gap-1.5 text-xs font-bold text-[#881B1B] hover:underline">
+            Mở bảng tra cứu thế bấm sáo 6/10 lỗ <i class="fa-solid fa-arrow-right text-[10px]"></i>
+          </a>
+        </div>
+
+        <!-- RELATED SONGS CARD -->
+        <div class="bg-white rounded-2xl border border-[#E8DFC8] shadow-sm p-5 space-y-4">
+          <div class="flex items-center justify-between pb-2 border-b border-[#F0E8DA]">
+            <h4 class="font-serif text-sm font-bold text-[#881B1B] flex items-center gap-2">
+              <i class="fa-solid fa-music"></i> CẢM ÂM CÙNG THỂ LOẠI
+            </h4>
+            <a href="/danh-sach-bai-tap.html" class="text-[11px] text-[#6B625B] hover:text-[#881B1B]">Xem tất cả</a>
+          </div>
+          <div id="relatedSongsList" class="space-y-2 text-xs">
+            <div class="py-4 text-center text-stone-400">Đang tìm bài liên quan...</div>
+          </div>
+        </div>
+
+        <!-- REQUEST SONG CTA -->
+        <div class="bg-white rounded-2xl border border-[#E8DFC8] shadow-sm p-5 space-y-3 text-center">
+          <div class="w-10 h-10 rounded-full bg-red-50 text-[#881B1B] flex items-center justify-center mx-auto text-base">
+            <i class="fa-solid fa-pen-to-square"></i>
+          </div>
+          <h4 class="font-serif text-sm font-bold text-[#292421]">Chưa có bài hát bạn yêu thích?</h4>
+          <p class="text-xs text-[#6B625B]">Gửi yêu cầu soạn cảm âm đến Admin Sáo Trúc Âu Cơ hoàn toàn miễn phí.</p>
+          <button onclick="openRequestTabModal()" class="w-full py-2.5 bg-[#881B1B] hover:bg-[#701515] text-white font-bold rounded-xl text-xs transition-all shadow-sm">
+            Gửi yêu cầu ngay
+          </button>
+        </div>
+
+      </aside>
+
+    </div>
+  </main>
+
+  <!-- ================= REQUEST SONG MODAL ================= -->
+  <div id="requestTabModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-[#FAF6EE] rounded-2xl max-w-md w-full border border-[#EADFCB] shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-200">
+      <div class="p-4 sm:p-5 bg-[#193822] text-white flex items-center justify-between">
+        <div class="flex items-center gap-2.5">
+          <i class="fa-solid fa-pen-to-square text-amber-300 text-lg"></i>
+          <div>
+            <h3 class="font-serif text-lg font-bold">Yêu Cầu Soạn Cảm Âm Sáo Trúc</h3>
+            <p class="text-[11px] text-emerald-200">Gửi yêu cầu bài hát đến Admin Sáo Trúc Âu Cơ</p>
+          </div>
+        </div>
+        <button onclick="closeRequestTabModal()" class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <form onsubmit="handleRequestTabSubmit(event)" class="p-6 space-y-4 text-xs">
+        <div>
+          <label class="block font-bold text-[#292421] mb-1">Tên bài hát bạn muốn cảm âm *</label>
+          <input type="text" id="reqSongTitle" required placeholder="VD: Gặp mẹ trong mơ, Sóng gió, Đi đâu để thấy hoa bay..." class="w-full bg-white border border-[#D9CDBB] rounded-xl px-3.5 py-2.5 text-xs text-[#292421] focus:ring-1 focus:ring-[#881B1B] outline-none">
+        </div>
+        <div>
+          <label class="block font-bold text-[#292421] mb-1">Ca sĩ thể hiện hoặc Link YouTube / MP3</label>
+          <input type="text" id="reqSongArtist" placeholder="VD: Thùy Chi / https://youtube.com/..." class="w-full bg-white border border-[#D9CDBB] rounded-xl px-3.5 py-2.5 text-xs text-[#292421] focus:ring-1 focus:ring-[#881B1B] outline-none">
+        </div>
+        <div>
+          <label class="block font-bold text-[#292421] mb-1">Tone sáo bạn mong muốn</label>
+          <select id="reqSongTone" class="w-full bg-white border border-[#D9CDBB] rounded-xl px-3.5 py-2.5 text-xs text-[#292421] outline-none">
+            <option value="C5">Sáo C5 (Đô chuẩn - Dễ thổi nhất)</option>
+            <option value="D5">Sáo D5 (Rê)</option>
+            <option value="A4">Sáo A4 (La trầm)</option>
+            <option value="G4">Sáo G4 (Sol trầm)</option>
+            <option value="any">Nhờ Admin chọn tone hay nhất</option>
+          </select>
+        </div>
+        <div>
+          <label class="block font-bold text-[#292421] mb-1">Số Zalo / Điện thoại nhận thông báo (Không bắt buộc)</label>
+          <input type="tel" id="reqUserPhone" placeholder="0374 261 368" class="w-full bg-white border border-[#D9CDBB] rounded-xl px-3.5 py-2.5 text-xs text-[#292421] focus:ring-1 focus:ring-[#881B1B] outline-none">
+        </div>
+
+        <div class="pt-2 flex flex-col sm:flex-row gap-2">
+          <button type="submit" class="flex-1 py-3 bg-[#881B1B] hover:bg-[#701515] text-white font-bold rounded-xl shadow transition-all flex items-center justify-center gap-2">
+            <i class="fa-solid fa-paper-plane"></i> Gửi yêu cầu ngay
+          </button>
+          <a href="https://zalo.me/0374261368" target="_blank" class="py-3 px-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl shadow transition-all flex items-center justify-center gap-1.5 whitespace-nowrap">
+            <i class="fa-solid fa-comments"></i> Chat Zalo Admin
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="fixed bottom-6 right-6 z-50 bg-[#292421] text-white px-4 py-3 rounded-xl shadow-xl border border-white/10 text-xs flex items-center gap-2 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none">
+    <i class="fa-solid fa-circle-check text-emerald-400 text-base"></i>
+    <span id="toastMsg">Đã sao chép cảm âm vào bộ nhớ tạm!</span>
+  </div>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="bg-[#112517] text-white/80 pt-14 pb-8 border-t border-[#193822] mt-auto no-print">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 pb-10 border-b border-white/10">
+        <div class="lg:col-span-4 space-y-4">
+          <div class="flex items-center gap-3">
+            <img src="/assets/logo.png" alt="Logo Sáo Trúc Âu Cơ" class="w-11 h-11 rounded-full object-cover border border-white/30 shadow-sm">
+            <div>
+              <span class="block font-serif text-xl font-bold tracking-wide text-white lowercase leading-none">daythoisao.com</span>
+              <span class="text-[11px] text-emerald-300/80 font-light mt-0.5">Sáo Trúc Âu Cơ</span>
+            </div>
+          </div>
+          <p class="text-xs text-white/70 leading-relaxed max-w-sm">
+            Trang web chia sẻ kiến thức sáo trúc miễn phí được biên soạn bởi Sáo Trúc Âu Cơ với mong muốn giúp mọi người yêu sáo dễ dàng học tập và tiến bộ mỗi ngày.
+          </p>
+        </div>
+        <div class="lg:col-span-4 space-y-3">
+          <h4 class="text-xs font-bold text-white uppercase tracking-wider">CÁC CHUYÊN ĐỀ HƯỚNG DẪN</h4>
+          <ul class="space-y-2 text-xs">
+            <li><a href="/lo-trinh-nguoi-moi.html" class="hover:text-amber-300 transition-colors">1. Lộ trình học thổi sáo cho người mới</a></li>
+            <li><a href="/doc-not-nhac.html" class="hover:text-amber-300 transition-colors">2. Cách đọc nốt nhạc & Nhạc lý cơ bản</a></li>
+            <li><a href="/tra-cuu-the-bam.html" class="hover:text-amber-300 transition-colors">3. Công cụ tra cứu thế bấm sáo 6/10 lỗ</a></li>
+            <li><a href="/luyen-hoi-khau-hinh.html" class="hover:text-amber-300 transition-colors">4. Hướng dẫn khẩu hình & Kiểm soát hơi</a></li>
+            <li><a href="/danh-sach-bai-tap.html" class="hover:text-amber-300 transition-colors">5. Kho cảm âm theo thể loại</a></li>
+            <li><a href="/ke-hoach-15-phut.html" class="hover:text-amber-300 transition-colors">6. Kế hoạch luyện tập 15 phút mỗi ngày</a></li>
+          </ul>
+        </div>
+        <div class="lg:col-span-4 space-y-3">
+          <h4 class="text-xs font-bold text-white uppercase tracking-wider">LIÊN HỆ TRỰC TIẾP</h4>
+          <ul class="space-y-2.5 text-xs text-white/70">
+            <li class="flex items-start gap-2"><i class="fa-solid fa-location-dot text-emerald-400 mt-0.5"></i><span>106/72 Hoà Bình, P. Tân Phú, HCM</span></li>
+            <li class="flex items-center gap-2"><i class="fa-solid fa-phone text-emerald-400"></i><a href="tel:0374261368" class="hover:text-white">0374 261 368</a></li>
+            <li class="flex items-center gap-2"><i class="fa-solid fa-envelope text-emerald-400"></i><span>saotrucauco@gmail.com</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="pt-6 text-center text-xs text-white/50 flex flex-col sm:flex-row items-center justify-between gap-2">
+        <p>© 2024 daythoisao.com. Bản quyền thuộc về Sáo Trúc Âu Cơ.</p>
+        <div class="flex items-center gap-3">
+          <a href="/index.html" class="text-amber-400 hover:underline">← Về trang chủ</a>
+          <span>•</span>
+          <a href="/quan-tri.html" class="hover:text-amber-300 transition-colors flex items-center gap-1 text-white/60">
+            <i class="fa-solid fa-lock text-[9px]"></i> Quản trị
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- FIXED MOBILE BOTTOM NAVIGATION BAR -->
+  <div id="mobileNav" class="fixed bottom-0 left-0 right-0 z-40 bg-[#FAF6EE]/95 border-t border-[#EADFCB] backdrop-blur-md md:hidden px-2 py-1 flex items-center justify-around shadow-lg no-print">
+    <a href="/index.html" class="flex flex-col items-center justify-center py-1 px-2 text-[#292421] hover:text-[#881B1B] transition-colors group">
+      <i class="fa-solid fa-house text-base group-hover:scale-110 transition-transform"></i>
+      <span class="text-[10px] font-medium mt-0.5">Trang chủ</span>
+    </a>
+    <a href="/lo-trinh-nguoi-moi.html" class="flex flex-col items-center justify-center py-1 px-2 text-[#292421] hover:text-[#881B1B] transition-colors group">
+      <i class="fa-solid fa-compass text-base group-hover:scale-110 transition-transform"></i>
+      <span class="text-[10px] font-medium mt-0.5">Lộ trình</span>
+    </a>
+    <a href="/danh-sach-bai-tap.html" class="flex flex-col items-center justify-center py-1 px-2 text-[#881B1B] transition-colors group">
+      <div class="w-8 h-8 rounded-full bg-[#881B1B] text-white flex items-center justify-center shadow-md -mt-3 mb-0.5 group-hover:scale-105 transition-transform">
+        <i class="fa-solid fa-music text-xs"></i>
+      </div>
+      <span class="text-[10px] font-bold text-[#881B1B]">Cảm âm</span>
+    </a>
+    <a href="/tra-cuu-the-bam.html" class="flex flex-col items-center justify-center py-1 px-2 text-[#292421] hover:text-[#881B1B] transition-colors group">
+      <i class="fa-solid fa-hand text-base group-hover:scale-110 transition-transform"></i>
+      <span class="text-[10px] font-medium mt-0.5">Thế bấm</span>
+    </a>
+    <button onclick="toggleMobileMenu()" class="flex flex-col items-center justify-center py-1 px-2 text-[#292421] hover:text-[#881B1B] transition-colors group">
+      <i class="fa-solid fa-bars text-base group-hover:scale-110 transition-transform"></i>
+      <span class="text-[10px] font-medium mt-0.5">Menu</span>
+    </button>
+  </div>
+
+  <!-- ================= JAVASCRIPT LOGIC ================= -->
+  <script>
+    function generateSongSlug(title) {
+      if (!title) return 'cam-am-sao-truc';
+      let str = title.toLowerCase();
+      str = str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+      str = str.replace(/[đĐ]/g, 'd');
+      str = str.replace(/([^0-9a-z-\s])/g, '');
+      str = str.replace(/(\s+)/g, '-');
+      str = str.replace(/^-+/g, '').replace(/-+$/g, '');
+      if (!str.startsWith('cam-am-')) {
+        str = 'cam-am-' + str;
+      }
+      return str;
+    }
+
+    function formatMusicNotes(rawText) {
+      if (!rawText) return "";
+      return rawText
+        .replace(/(Đô|Do|Rê|Re|Mi|Fa|Sol|La|Si)#([1-3]?)/gi, (m, note, oct) => {
+          let octSign = oct === '2' ? '²' : (oct === '3' ? '³' : (oct === '1' ? '' : ''));
+          let capitalized = note.charAt(0).toUpperCase() + note.slice(1);
+          return `${capitalized}♯${octSign}`;
+        })
+        .replace(/(Đô|Do|Rê|Re|Mi|Fa|Sol|La|Si)b([1-3]?)/gi, (m, note, oct) => {
+          let octSign = oct === '2' ? '²' : (oct === '3' ? '³' : (oct === '1' ? '' : ''));
+          let capitalized = note.charAt(0).toUpperCase() + note.slice(1);
+          return `${capitalized}♭${octSign}`;
+        })
+        .replace(/(Đô|Do|Rê|Re|Mi|Fa|Sol|La|Si|♯|♭)2/gi, (m, note) => {
+          let capitalized = note.charAt(0).toUpperCase() + note.slice(1);
+          return `${capitalized}²`;
+        })
+        .replace(/(Đô|Do|Rê|Re|Mi|Fa|Sol|La|Si|♯|♭)3/gi, (m, note) => {
+          let capitalized = note.charAt(0).toUpperCase() + note.slice(1);
+          return `${capitalized}³`;
+        })
+        .replace(/(Đô|Do|Rê|Re|Mi|Fa|Sol|La|Si)1/gi, (m, note) => {
+          return note.charAt(0).toUpperCase() + note.slice(1);
+        })
+        .replace(/\s\.\s/g, ' · ')
+        .replace(/\s\-\s/g, ' – ');
+    }
+
+    let currentSong = null;
+    let allSongsList = [];
+
+    function getAllSongs() {
+      try {
+        const stored = localStorage.getItem('DAYTHOISAO_SONGS_DB');
+        if (stored) {
+          const parsed = JSON.parse(stored);
+          if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+        }
+      } catch (e) {}
+      return [];
+    }
+
+    function getSlugFromUrl() {
+      const path = window.location.pathname;
+      const parts = path.split('/').filter(Boolean);
+      if (parts.length > 0) {
+        const last = parts[parts.length - 1];
+        if (last && last !== 'cam-am-chi-tiet.html' && last !== 'kho-cam-am' && last !== 'cam-am') {
+          return last.replace('.html', '');
+        }
+      }
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get('bai') || urlParams.get('slug') || '';
+    }
+
+    function renderSongDetailPage() {
+      allSongsList = getAllSongs();
+      const slugFromUrl = getSlugFromUrl();
+      const urlParams = new URLSearchParams(window.location.search);
+      const songId = parseInt(urlParams.get('id'));
+
+      let song = null;
+      if (slugFromUrl) {
+        song = allSongsList.find(s => (s.slug || generateSongSlug(s.title)) === slugFromUrl);
+      }
+      if (!song && songId) {
+        song = allSongsList.find(s => s.id === songId);
+      }
+      if (!song && allSongsList.length > 0) {
+        song = allSongsList[0];
+      }
+
+      if (!song) {
+        document.getElementById('songMainTitle').innerText = 'Không tìm thấy bài cảm âm này';
+        document.getElementById('songSectionsContainer').innerHTML = `
+          <div class="py-12 text-center text-[#6B625B] space-y-3">
+            <p>Bài hát có thể đã được cập nhật hoặc di chuyển.</p>
+            <a href="/danh-sach-bai-tap.html" class="inline-block px-5 py-2.5 bg-[#881B1B] text-white font-bold rounded-xl text-xs">Về kho cảm âm</a>
+          </div>
+        `;
+        return;
+      }
+
+      currentSong = song;
+      const currentSlug = song.slug || generateSongSlug(song.title);
+
+      // Clean URL: Update browser address bar to clean SEO link: /kho-cam-am/{slug}
+      try {
+        const cleanPath = `/kho-cam-am/${currentSlug}`;
+        if (window.location.pathname !== cleanPath) {
+          window.history.replaceState({ songId: song.id, slug: currentSlug }, '', cleanPath);
+        }
+      } catch (e) {}
+
+      // Update Page SEO Metadata
+      const pageTitle = `Cảm Âm Sáo Trúc ${song.title} (Chuẩn 2 Dòng) - ${song.toneDisplay} | Sáo Trúc Âu Cơ`;
+      const pageDesc = `Bản cảm âm sáo trúc bài hát ${song.title} (${song.author}) chuẩn 2 dòng, tone thế tay ${song.toneDisplay}, khuyến nghị dùng ${song.fluteTone}. Đầy đủ lời và nốt nhạc chi tiết từ Sáo Trúc Âu Cơ.`;
+      
+      document.title = pageTitle;
+      const titleEl = document.getElementById('pageTitle');
+      if (titleEl) titleEl.innerText = pageTitle;
+      const descEl = document.getElementById('pageDescription');
+      if (descEl) descEl.content = pageDesc;
+      const canonicalEl = document.getElementById('pageCanonical');
+      if (canonicalEl) canonicalEl.href = `https://daythoisao.com/kho-cam-am/${currentSlug}`;
+      const ogTitleEl = document.getElementById('ogTitle');
+      if (ogTitleEl) ogTitleEl.content = pageTitle;
+      const ogDescEl = document.getElementById('ogDescription');
+      if (ogDescEl) ogDescEl.content = pageDesc;
+      const ogUrlEl = document.getElementById('ogUrl');
+      if (ogUrlEl) ogUrlEl.content = `https://daythoisao.com/kho-cam-am/${currentSlug}`;
+
+      // Update Headings & Breadcrumbs
+      document.getElementById('breadcrumbTitle').innerText = song.title;
+      document.getElementById('songMainTitle').innerText = song.title;
+      document.getElementById('songAuthor').innerText = song.author || 'Chưa rõ tác giả';
+      document.getElementById('songGenreBadge').innerText = song.genreName || 'Nhạc Sáo Trúc';
+      document.getElementById('songDiffBadge').innerText = `Độ khó: ${song.diff || 'Dễ'}`;
+      document.getElementById('songToneBadge').innerText = `Tone: ${song.toneDisplay || 'C'}`;
+
+      // Update 4 Metric Boxes
+      document.getElementById('metricTone').innerText = song.toneDisplay || 'C';
+      document.getElementById('metricFlute').innerText = song.fluteTone || 'Sáo C5';
+      document.getElementById('metricDiff').innerText = song.diff || 'Dễ';
+      document.getElementById('metricTech').innerText = song.tech || 'Rung hơi';
+
+      // Update Tip
+      const tipText = song.tip || 'Thổi đúng cao độ và nhịp phách, chú ý kiểm soát hơi thở và mở rộng khẩu hình.';
+      document.getElementById('songTipText').innerText = tipText;
+
+      // Render 2-Line Sections
+      const container = document.getElementById('songSectionsContainer');
+      if (song.sections && song.sections.length > 0) {
+        container.innerHTML = song.sections.map((sec, sIdx) => `
+          <div class="score-card bg-[#FAF6EE] p-4 sm:p-6 rounded-2xl border border-[#E8DFC8] space-y-3 shadow-sm">
+            <h3 class="font-serif text-sm sm:text-base font-bold text-[#881B1B] uppercase tracking-wide flex items-center gap-2 pb-2 border-b border-[#E0D5C3]">
+              <i class="fa-solid fa-bookmark text-xs"></i> ${sec.name || `ĐOẠN ${sIdx + 1}`}
+            </h3>
+            <div class="space-y-3">
+              ${(sec.lines || []).map((l, lIdx) => `
+                <div class="bg-white p-3.5 sm:p-4 rounded-xl border border-[#EADBCA] shadow-sm space-y-1.5 hover:border-[#881B1B] transition-colors">
+                  ${l.lyric ? `<p class="text-xs sm:text-sm text-[#292421] font-medium">${l.lyric}</p>` : ''}
+                  <p class="note-line text-xs sm:text-sm text-[#881B1B] leading-relaxed select-all">${formatMusicNotes(l.note)}</p>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        `).join('');
+      } else {
+        container.innerHTML = `
+          <div class="bg-[#FAF6EE] p-6 rounded-2xl border border-[#E8DFC8] text-center text-xs text-[#6B625B]">
+            Bản cảm âm đang được hoàn thiện nội dung.
+          </div>
+        `;
+      }
+
+      // Render Related Songs
+      renderRelatedSongs(song);
+    }
+
+    function renderRelatedSongs(song) {
+      const relContainer = document.getElementById('relatedSongsList');
+      if (!relContainer) return;
+
+      const related = allSongsList
+        .filter(s => s.id !== song.id && (s.genreId === song.genreId || s.toneKey === song.toneKey))
+        .slice(0, 5);
+
+      const displayList = related.length > 0 ? related : allSongsList.filter(s => s.id !== song.id).slice(0, 5);
+
+      if (displayList.length === 0) {
+        relContainer.innerHTML = `<div class="py-2 text-stone-400">Không có bài liên quan.</div>`;
+        return;
+      }
+
+      relContainer.innerHTML = displayList.map(s => {
+        const slug = s.slug || generateSongSlug(s.title);
+        return `
+          <a href="/kho-cam-am/${slug}" class="p-2.5 bg-[#FAF6EE] hover:bg-[#F2E8D8] rounded-xl border border-[#E0D5C3] flex items-center justify-between gap-2 group transition-all">
+            <div class="min-w-0">
+              <h5 class="font-bold text-[#292421] group-hover:text-[#881B1B] truncate">${s.title}</h5>
+              <p class="text-[11px] text-[#6B625B] truncate">${s.author} • <span class="text-[#193822]">${s.fluteTone}</span></p>
+            </div>
+            <span class="px-2 py-0.5 bg-red-50 text-[#881B1B] border border-red-200 rounded text-[10px] font-bold shrink-0">
+              ${s.toneDisplay || 'C'}
+            </span>
+          </a>
+        `;
+      }).join('');
+    }
+
+    // Web Audio Synthesizer Demo
+    let audioCtx = null;
+    function getAudioContext() {
+      if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      if (audioCtx.state === 'suspended') audioCtx.resume();
+      return audioCtx;
+    }
+
+    function playBeep(freq, startT, duration) {
+      const ctx = getAudioContext();
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(freq, startT);
+      gain.gain.setValueAtTime(0.001, startT);
+      gain.gain.linearRampToValueAtTime(0.25, startT + 0.04);
+      gain.gain.exponentialRampToValueAtTime(0.0001, startT + duration);
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start(startT);
+      osc.stop(startT + duration);
+    }
+
+    function playSongDemoAudio() {
+      const ctx = getAudioContext();
+      const now = ctx.currentTime;
+      const notesMap = {
+        'C': 261.63, 'D': 293.66, 'E': 329.63, 'F': 349.23, 'G': 392.00, 'A': 440.00, 'B': 493.88,
+        'C2': 523.25, 'D2': 587.33, 'E2': 659.25, 'F2': 698.46, 'G2': 783.99, 'A2': 880.00, 'B2': 987.77
+      };
+      
+      const demoMelody = [
+        { f: notesMap.G, d: 0.4 }, { f: notesMap.A, d: 0.4 }, { f: notesMap.C2, d: 0.5 },
+        { f: notesMap.D2, d: 0.4 }, { f: notesMap.E2, d: 0.6 }, { f: notesMap.D2, d: 0.4 },
+        { f: notesMap.C2, d: 0.5 }, { f: notesMap.D2, d: 0.8 }, { f: notesMap.E2, d: 0.5 },
+        { f: notesMap.G2, d: 0.6 }, { f: notesMap.E2, d: 0.5 }, { f: notesMap.C2, d: 0.9 }
+      ];
+
+      let t = now + 0.1;
+      demoMelody.forEach(n => {
+        playBeep(n.f, t, n.d);
+        t += n.d + 0.06;
+      });
+
+      const btn = document.getElementById('playAudioDemoBtn');
+      if (btn) {
+        const orig = btn.innerHTML;
+        btn.innerHTML = '<i class="fa-solid fa-volume-high animate-pulse"></i> <span>Đang phát...</span>';
+        setTimeout(() => { btn.innerHTML = orig; }, (t - now) * 1000);
+      }
+    }
+
+    function copyFullSongScore() {
+      if (!currentSong) return;
+      let text = `🎵 BẢN CẢM ÂM: ${currentSong.title.toUpperCase()}\n`;
+      text += `👤 Tác giả: ${currentSong.author}\n`;
+      text += `🎋 Tone thế tay: ${currentSong.toneDisplay} (${currentSong.fluteTone})\n`;
+      text += `📊 Độ khó: ${currentSong.diff} | Kỹ thuật: ${currentSong.tech}\n`;
+      if (currentSong.tip) text += `💡 Lưu ý: ${currentSong.tip}\n`;
+      text += `------------------------------------\n\n`;
+
+      if (currentSong.sections) {
+        currentSong.sections.forEach(sec => {
+          text += `[${sec.name.toUpperCase()}]\n`;
+          (sec.lines || []).forEach(l => {
+            if (l.lyric) text += `${l.lyric}\n`;
+            if (l.note) text += `${formatMusicNotes(l.note)}\n`;
+            text += `\n`;
+          });
+        });
+      }
+
+      text += `------------------------------------\n`;
+      text += `Biên soạn bởi Sáo Trúc Âu Cơ (daythoisao.com)`;
+
+      navigator.clipboard.writeText(text).then(() => {
+        showToast(`Đã sao chép cảm âm bài "${currentSong.title}" vào bộ nhớ tạm!`);
+      });
+    }
+
+    function shareSong(type) {
+      const url = window.location.href;
+      if (type === 'facebook') {
+        window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`, '_blank');
+      } else if (type === 'copy') {
+        navigator.clipboard.writeText(url).then(() => {
+          showToast('Đã sao chép đường link bài cảm âm!');
+        });
+      }
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      const toastMsg = document.getElementById('toastMsg');
+      if (toast && toastMsg) {
+        toastMsg.innerText = msg;
+        toast.classList.remove('translate-y-24', 'opacity-0');
+        setTimeout(() => {
+          toast.classList.add('translate-y-24', 'opacity-0');
+        }, 2500);
+      }
+    }
+
+    function openRequestTabModal() {
+      document.getElementById('requestTabModal').classList.remove('hidden');
+      document.getElementById('requestTabModal').classList.add('flex');
+    }
+
+    function closeRequestTabModal() {
+      document.getElementById('requestTabModal').classList.add('hidden');
+      document.getElementById('requestTabModal').classList.remove('flex');
+    }
+
+    async function handleRequestTabSubmit(e) {
+      e.preventDefault();
+      const submitBtn = e.target.querySelector('button[type="submit"]');
+      const originalBtnHtml = submitBtn ? submitBtn.innerHTML : '';
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Đang gửi...';
+      }
+
+      const title = document.getElementById('reqSongTitle')?.value.trim() || '';
+      const artist = document.getElementById('reqSongArtist')?.value.trim() || '';
+      const toneSelect = document.getElementById('reqSongTone');
+      const fluteTone = toneSelect ? (toneSelect.options[toneSelect.selectedIndex]?.text || toneSelect.value) : 'Sáo C5 (Đô)';
+      const phone = document.getElementById('reqUserPhone')?.value.trim() || '';
+
+      const newReq = {
+        id: Date.now(),
+        title: title,
+        singer: artist,
+        fluteTone: fluteTone,
+        phone: phone,
+        status: 'Mới nhận',
+        createdAt: new Date().toLocaleString('vi-VN')
+      };
+
+      let storedReqs = [];
+      try {
+        storedReqs = JSON.parse(localStorage.getItem('DAYTHOISAO_REQUESTS') || '[]');
+        storedReqs.unshift(newReq);
+        localStorage.setItem('DAYTHOISAO_REQUESTS', JSON.stringify(storedReqs));
+      } catch (err) {}
+
+      const notifyMsg = `🎼 <b>[YÊU CẦU CẢM ÂM MỚI TỪ WEBSITE]</b> 🎼\n\n` +
+        `🎵 <b>Tên bài hát:</b> ${title}\n` +
+        `🎤 <b>Ca sĩ / Link YouTube:</b> ${artist || 'Chưa cung cấp'}\n` +
+        `🎋 <b>Tone sáo mong muốn:</b> ${fluteTone}\n` +
+        `📞 <b>SĐT / Zalo khách:</b> ${phone || 'Không để lại'}\n` +
+        `⏰ <b>Thời gian gửi:</b> ${newReq.createdAt}\n\n` +
+        `🌐 <i>Xem và duyệt yêu cầu tại: daythoisao.com/quan-tri</i>`;
+
+      try {
+        await fetch('https://daythoisao-api.van17071999.workers.dev/api/data', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            requests: storedReqs,
+            notify_message: notifyMsg
+          })
+        });
+      } catch (err) {}
+
+      try {
+        const teleConfig = JSON.parse(localStorage.getItem('DAYTHOISAO_TELEGRAM_SETTINGS') || '{}');
+        const botToken = teleConfig.botToken || '8942258580:AAH7YtwYV6R6e4Ku3P7GQ_RPpz-ltFwTZLY';
+        const chatId = teleConfig.chatId || '7822336086';
+        if (botToken && chatId) {
+          fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              chat_id: chatId,
+              text: notifyMsg,
+              parse_mode: 'HTML',
+              disable_web_page_preview: true
+            })
+          }).catch(() => {});
+        }
+      } catch (err) {}
+
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalBtnHtml;
+      }
+
+      closeRequestTabModal();
+      showToast(`🎉 Đã gửi yêu cầu bài "${title}" thành công! Admin sẽ sớm biên soạn.`);
+      e.target.reset();
+    }
+
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobileMenu');
+      const icon = document.getElementById('mobileMenuIcon');
+      if (menu) {
+        menu.classList.toggle('hidden');
+        if (icon) {
+          icon.className = menu.classList.contains('hidden') ? 'fa-solid fa-bars text-xl' : 'fa-solid fa-xmark text-xl';
+        }
+      }
+    }
+
+    async function syncSongsFromCloudflare() {
+      try {
+        const res = await fetch('https://daythoisao-api.van17071999.workers.dev/api/data?t=' + Date.now());
+        if (res.ok) {
+          const data = await res.json();
+          if (data && data.success) {
+            if (Array.isArray(data.songs) && data.songs.length > 0) {
+              const newSongsJson = JSON.stringify(data.songs);
+              const currentSongsJson = localStorage.getItem('DAYTHOISAO_SONGS_DB');
+              if (newSongsJson !== currentSongsJson) {
+                localStorage.setItem('DAYTHOISAO_SONGS_DB', newSongsJson);
+                renderSongDetailPage();
+              }
+            }
+          }
+        }
+      } catch (e) {}
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      renderSongDetailPage();
+      syncSongsFromCloudflare();
+    });
+
+    window.addEventListener('popstate', () => {
+      renderSongDetailPage();
+    });
+  </script>
+</body>
+</html>
