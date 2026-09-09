@@ -1240,19 +1240,25 @@
 
     async function handleRequestTabSubmit(e) {
       e.preventDefault();
-      const title = document.getElementById('reqSongTitle').value.trim();
-      const singer = document.getElementById('reqSinger').value.trim();
-      const fluteTone = document.getElementById('reqFluteTone').value.trim();
-      const phone = document.getElementById('reqPhone').value.trim();
-      const note = document.getElementById('reqNote').value.trim();
+      const submitBtn = e.target.querySelector('button[type="submit"]');
+      const originalBtnHtml = submitBtn ? submitBtn.innerHTML : '';
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Đang gửi yêu cầu...';
+      }
+
+      const title = document.getElementById('reqSongTitle')?.value.trim() || '';
+      const artist = document.getElementById('reqSongArtist')?.value.trim() || '';
+      const toneSelect = document.getElementById('reqSongTone');
+      const fluteTone = toneSelect ? (toneSelect.options[toneSelect.selectedIndex]?.text || toneSelect.value) : 'Sáo C5 (Đô)';
+      const phone = document.getElementById('reqUserPhone')?.value.trim() || '';
 
       const newReq = {
         id: Date.now(),
-        title,
-        singer,
-        fluteTone,
-        phone,
-        note,
+        title: title,
+        singer: artist,
+        fluteTone: fluteTone,
+        phone: phone,
         status: 'Mới nhận',
         createdAt: new Date().toLocaleString('vi-VN')
       };
@@ -1264,48 +1270,56 @@
         localStorage.setItem('DAYTHOISAO_REQUESTS', JSON.stringify(storedReqs));
       } catch (err) {}
 
-      closeRequestTabModal();
-      showToast(`🎉 Đã gửi yêu cầu bài "${title}"! Admin sẽ sớm biên soạn.`);
-      e.target.reset();
-
       // Telegram Notification Message Format
-      const notifyMsg = `📩 <b>[YÊU CẦU CẢM ÂM MỚI] Có khách vừa gửi yêu cầu!</b>\n\n` +
+      const notifyMsg = `🎼 <b>[YÊU CẦU CẢM ÂM MỚI TỪ WEBSITE]</b> 🎼\n\n` +
         `🎵 <b>Tên bài hát:</b> ${title}\n` +
-        `🎤 <b>Ca sĩ / Nghệ sĩ:</b> ${singer || 'Chưa rõ'}\n` +
-        `🎋 <b>Tone sáo / Loại sáo:</b> ${fluteTone || 'Chưa rõ'}\n` +
+        `🎤 <b>Ca sĩ / Link YouTube:</b> ${artist || 'Chưa cung cấp'}\n` +
+        `🎋 <b>Tone sáo mong muốn:</b> ${fluteTone}\n` +
         `📞 <b>SĐT / Zalo khách:</b> ${phone || 'Không để lại'}\n` +
-        `📝 <b>Ghi chú:</b> ${note || 'Không có'}\n` +
         `⏰ <b>Thời gian gửi:</b> ${newReq.createdAt}\n\n` +
         `🌐 <i>Xem và duyệt yêu cầu tại: daythoisao.com/quan-tri</i>`;
 
       // 1. Sync new request list to Cloudflare KV & Trigger Worker-side Telegram Notification
       try {
-        fetch('https://daythoisao-api.van17071999.workers.dev/api/data', {
+        await fetch('https://daythoisao-api.van17071999.workers.dev/api/data', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             requests: storedReqs,
             notify_message: notifyMsg
           })
-        }).catch(() => {});
-      } catch (e) {}
+        });
+      } catch (err) {
+        console.warn("Lỗi đồng bộ yêu cầu lên Cloudflare:", err);
+      }
 
-      // 2. Also dispatch client-side Telegram request if cached config exists
+      // 2. Also dispatch client-side Telegram request directly
       try {
         const teleConfig = JSON.parse(localStorage.getItem('DAYTHOISAO_TELEGRAM_SETTINGS') || '{}');
-        if (teleConfig && teleConfig.botToken && teleConfig.chatId && teleConfig.notifyRequests !== false) {
-          fetch(`https://api.telegram.org/bot${teleConfig.botToken}/sendMessage`, {
+        const botToken = teleConfig.botToken || '8942258580:AAH7YtwYV6R6e4Ku3P7GQ_RPpz-ltFwTZLY';
+        const chatId = teleConfig.chatId || '7822336086';
+        if (botToken && chatId) {
+          fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-              chat_id: teleConfig.chatId,
+              chat_id: chatId,
               text: notifyMsg,
               parse_mode: 'HTML',
               disable_web_page_preview: true
             })
           }).catch(() => {});
         }
-      } catch (e) {}
+      } catch (err) {}
+
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalBtnHtml;
+      }
+
+      closeRequestTabModal();
+      showToast(`🎉 Đã gửi yêu cầu bài "${title}" thành công! Admin sẽ sớm biên soạn.`);
+      e.target.reset();
     }
 
     window.addEventListener('click', (e) => {
