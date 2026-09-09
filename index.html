@@ -1676,24 +1676,12 @@
         if (stored) {
           const parsed = JSON.parse(stored);
           if (Array.isArray(parsed) && parsed.length > 0) {
-            const result = JSON.parse(JSON.stringify(DEFAULT_SONGS_DATA));
-            const seedTitles = new Set(DEFAULT_SONGS_DATA.map(s => (s.title || '').toLowerCase().replace(/[\(\)\s\-\_\.\,]/g, '')));
-            parsed.forEach(item => {
-              if (!item || !item.title) return;
-              const norm = item.title.toLowerCase().replace(/[\(\)\s\-\_\.\,]/g, '');
-              if (!seedTitles.has(norm)) {
-                const newId = Math.max(...result.map(r => r.id), 0) + 1;
-                result.push({ ...item, id: newId });
-              }
-            });
-            SONGS_DATA = result;
-            localStorage.setItem('DAYTHOISAO_SONGS_DB', JSON.stringify(result));
+            SONGS_DATA = parsed;
             return;
           }
         }
       } catch (e) {}
       SONGS_DATA = JSON.parse(JSON.stringify(DEFAULT_SONGS_DATA));
-      localStorage.setItem('DAYTHOISAO_SONGS_DB', JSON.stringify(SONGS_DATA));
     }
 
     let currentOctave = 1;

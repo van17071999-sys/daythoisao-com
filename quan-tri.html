@@ -308,12 +308,15 @@
                 </select>
               </div>
 
-              <div class="flex items-center gap-2">
-                <button onclick="syncFullSeedSongs()" class="px-3.5 py-2 bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold rounded-xl shadow flex items-center gap-1.5 whitespace-nowrap transition-all" title="Đồng bộ nạp đủ toàn bộ 14 bài cảm âm gốc vào quản trị">
-                  <i class="fa-solid fa-arrows-rotate"></i> Đồng bộ 14 bài gốc
+              <div class="flex flex-wrap items-center gap-2">
+                <button onclick="saveAllSongsChanges()" class="px-3.5 py-2 bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold rounded-xl shadow flex items-center gap-1.5 whitespace-nowrap transition-all" title="Lưu lại toàn bộ danh sách cảm âm hiện tại">
+                  <i class="fa-solid fa-floppy-disk"></i> Lưu thay đổi
                 </button>
                 <button onclick="openSongFormModal()" class="px-4 py-2 bg-[#881B1B] hover:bg-[#701515] text-white text-xs font-bold rounded-xl shadow flex items-center gap-2 whitespace-nowrap transition-all">
                   <i class="fa-solid fa-plus"></i> Thêm cảm âm mới
+                </button>
+                <button onclick="syncFullSeedSongs()" class="px-3 py-2 bg-[#FAF6EE] hover:bg-[#EADBCA] text-[#59524B] border border-[#D9CDBB] text-xs font-semibold rounded-xl flex items-center gap-1.5 transition-all whitespace-nowrap" title="Khôi phục lại 14 bài gốc ban đầu">
+                  <i class="fa-solid fa-arrows-rotate"></i> Khôi phục 14 bài gốc
                 </button>
                 <a href="danh-sach-bai-tap.html" target="_blank" class="px-3.5 py-2 bg-[#FAF6EE] hover:bg-[#EADBCA] text-[#292421] border border-[#D9CDBB] text-xs font-semibold rounded-xl flex items-center gap-1.5 transition-all whitespace-nowrap">
                   <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i> Xem trên Web
@@ -1678,19 +1681,30 @@
         document.getElementById('adminApp').classList.add('hidden');
       }
 
-      // Load Songs (Full 14 Tracks Merge & Guarantee)
+      // Load Songs (Respect user saves & deletions)
       const storedSongs = localStorage.getItem('DAYTHOISAO_SONGS_DB');
-      if (storedSongs) {
+      const isV2Init = localStorage.getItem('DAYTHOISAO_SONGS_V2_INIT');
+      if (storedSongs && isV2Init === 'true') {
         try { 
           const parsed = JSON.parse(storedSongs); 
-          songsData = mergeSeedSongs(parsed);
+          if (Array.isArray(parsed)) {
+            songsData = parsed;
+          } else {
+            songsData = JSON.parse(JSON.stringify(SEED_SONGS));
+          }
         } catch (e) { 
           songsData = JSON.parse(JSON.stringify(SEED_SONGS)); 
         }
       } else {
-        songsData = JSON.parse(JSON.stringify(SEED_SONGS));
+        try {
+          const parsed = storedSongs ? JSON.parse(storedSongs) : [];
+          songsData = mergeSeedSongs(Array.isArray(parsed) ? parsed : []);
+        } catch(e) {
+          songsData = JSON.parse(JSON.stringify(SEED_SONGS));
+        }
+        localStorage.setItem('DAYTHOISAO_SONGS_V2_INIT', 'true');
+        localStorage.setItem('DAYTHOISAO_SONGS_DB', JSON.stringify(songsData));
       }
-      localStorage.setItem('DAYTHOISAO_SONGS_DB', JSON.stringify(songsData));
 
       // Load Requests
       const storedReqs = localStorage.getItem('DAYTHOISAO_REQUESTS');
@@ -2516,6 +2530,7 @@
         showToast(`Đã thêm mới bài hát "${title}" vào kho cảm âm!`);
       }
 
+      localStorage.setItem('DAYTHOISAO_SONGS_V2_INIT', 'true');
       localStorage.setItem('DAYTHOISAO_SONGS_DB', JSON.stringify(songsData));
       closeSongFormModal();
       updateBadgesAndStats();
@@ -2536,6 +2551,7 @@
         cloned.id = newId;
         cloned.title = `${cloned.title} (Bản sao)`;
         songsData.unshift(cloned);
+        localStorage.setItem('DAYTHOISAO_SONGS_V2_INIT', 'true');
         localStorage.setItem('DAYTHOISAO_SONGS_DB', JSON.stringify(songsData));
         updateBadgesAndStats();
         filterAdminSongs();
@@ -2548,12 +2564,22 @@
       if (!song) return;
       if (confirm(`Bạn có chắc chắn muốn xóa bài cảm âm "${song.title}"?`)) {
         songsData = songsData.filter(s => s.id !== id);
+        localStorage.setItem('DAYTHOISAO_SONGS_V2_INIT', 'true');
         localStorage.setItem('DAYTHOISAO_SONGS_DB', JSON.stringify(songsData));
         updateBadgesAndStats();
         renderDashboard();
         filterAdminSongs();
-        showToast(`Đã xóa bài hát "${song.title}" khỏi hệ thống!`);
+        showToast(`🗑️ Đã xóa bài hát "${song.title}" và lưu thay đổi!`);
       }
+    }
+
+    function saveAllSongsChanges() {
+      localStorage.setItem('DAYTHOISAO_SONGS_V2_INIT', 'true');
+      localStorage.setItem('DAYTHOISAO_SONGS_DB', JSON.stringify(songsData));
+      updateBadgesAndStats();
+      renderDashboard();
+      filterAdminSongs();
+      showToast(`💾 Đã lưu thành công danh sách ${songsData.length} bài cảm âm vào hệ thống!`);
     }
 
     function mergeSeedSongs(existingList) {
@@ -2575,17 +2601,15 @@
     }
 
     function syncFullSeedSongs() {
-      const stored = localStorage.getItem('DAYTHOISAO_SONGS_DB');
-      let current = [];
-      try {
-        current = stored ? JSON.parse(stored) : [];
-      } catch (e) {}
-      songsData = mergeSeedSongs(current);
-      localStorage.setItem('DAYTHOISAO_SONGS_DB', JSON.stringify(songsData));
-      updateBadgesAndStats();
-      renderDashboard();
-      filterAdminSongs();
-      showToast("🎉 Đã đồng bộ nạp đầy đủ 14 bài cảm âm chuẩn vào quản trị!");
+      if (confirm("Khôi phục lại toàn bộ 14 bài cảm âm chuẩn ban đầu của hệ thống?")) {
+        songsData = JSON.parse(JSON.stringify(SEED_SONGS));
+        localStorage.setItem('DAYTHOISAO_SONGS_V2_INIT', 'true');
+        localStorage.setItem('DAYTHOISAO_SONGS_DB', JSON.stringify(songsData));
+        updateBadgesAndStats();
+        renderDashboard();
+        filterAdminSongs();
+        showToast("🎉 Đã khôi phục đầy đủ 14 bài cảm âm gốc!");
+      }
     }
 
     // ================= ARTICLE EDITOR MODAL LOGIC, LIVE PREVIEW & SEO =================

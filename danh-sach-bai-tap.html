@@ -976,24 +976,12 @@
         if (stored) {
           const parsed = JSON.parse(stored);
           if (Array.isArray(parsed) && parsed.length > 0) {
-            const result = JSON.parse(JSON.stringify(DEFAULT_SONGS_DB));
-            const seedTitles = new Set(DEFAULT_SONGS_DB.map(s => (s.title || '').toLowerCase().replace(/[\(\)\s\-\_\.\,]/g, '')));
-            parsed.forEach(item => {
-              if (!item || !item.title) return;
-              const norm = item.title.toLowerCase().replace(/[\(\)\s\-\_\.\,]/g, '');
-              if (!seedTitles.has(norm)) {
-                const newId = Math.max(...result.map(r => r.id), 0) + 1;
-                result.push({ ...item, id: newId });
-              }
-            });
-            SONGS_DB = result;
-            localStorage.setItem('DAYTHOISAO_SONGS_DB', JSON.stringify(result));
-            return result;
+            SONGS_DB = parsed;
+            return parsed;
           }
         }
       } catch (e) {}
       SONGS_DB = JSON.parse(JSON.stringify(DEFAULT_SONGS_DB));
-      localStorage.setItem('DAYTHOISAO_SONGS_DB', JSON.stringify(SONGS_DB));
       return SONGS_DB;
     }
 
