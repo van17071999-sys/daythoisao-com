@@ -5,16 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Đang tải bài viết... - daythoisao.com</title>
   <script>
-    // Client-side fallback router for clean URLs like /bai-viet/:slug
+    // Client-side fallback router for clean URLs like /kho-cam-am/:slug and /bai-viet/:slug
     (function() {
       var path = window.location.pathname;
-      var match = path.match(/\/bai-viet\/([^/?#]+)/);
-      if (match && match[1]) {
-        var slug = decodeURIComponent(match[1]);
-        window.location.replace('/bai-viet-chi-tiet.html?slug=' + encodeURIComponent(slug));
-      } else {
-        window.location.replace('/index.html');
+      var songMatch = path.match(/\/(?:kho-cam-am|cam-am)\/([^/?#]+)/);
+      if (songMatch && songMatch[1]) {
+        var slug = decodeURIComponent(songMatch[1]);
+        window.location.replace('/cam-am-chi-tiet.html?slug=' + encodeURIComponent(slug));
+        return;
       }
+      var postMatch = path.match(/\/bai-viet\/([^/?#]+)/);
+      if (postMatch && postMatch[1]) {
+        var slug = decodeURIComponent(postMatch[1]);
+        window.location.replace('/bai-viet-chi-tiet.html?slug=' + encodeURIComponent(slug));
+        return;
+      }
+      window.location.replace('/index.html');
     })();
   </script>
   <!-- Favicon / Brand Icon -->
