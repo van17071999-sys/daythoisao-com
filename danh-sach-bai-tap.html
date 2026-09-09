@@ -594,379 +594,309 @@
 
     const DEFAULT_SONGS_DB = [
       {
-        id: 1,
-        title: "Nữ Nhi Tình (Tây Du Ký)",
-        author: "Hứa Kính Thanh",
-        genreId: "nhac-hoa",
-        genreName: "Nhạc Hoa Lời Việt",
-        toneKey: "C-Am",
-        toneDisplay: "C / Am",
-        fluteTone: "Sáo C5 (Tone Đô)",
-        diff: "Dễ",
-        tech: "Rung hơi, Luyến nốt quãng 2, Ngân phách",
-        tip: "Thổi bằng sáo Nứa C5 (Đô), nhịp 2/4 chậm rãi, luyến nhẹ nhàng giữa các nốt Sol lên Do² và Re² sang Mi².",
-        sections: [
-          {
-            sectionTitle: "Đoạn 1",
-            lines: [
-              { lyric: "Uyên ương song phi bướm lượn cùng hoa", note: "Sol1  La1  Do2  Re2  Mi2  Re2  Do2  Re2" },
-              { lyric: "Sắc đẹp nghiêng nước nghiêng thành mỹ nhân", note: "Mi2  Sol2  La2  Sol2  Mi2  Re2  Do2  La1" },
-              { lyric: "Hỏi chàng phong lưu ngắm nhìn ai đó", note: "Sol1  La1  Do2  Re2  Mi2  Re2  Do2  Re2" },
-              { lyric: "Có động lòng chăng trước cảnh sắc này", note: "Mi2  Sol2  La2  Sol2  Mi2  Re2  Do2  La1" }
+            "id": 1,
+            "title": "Nữ Nhi Tình (Tây Du Ký)",
+            "author": "Hứa Kính Thanh",
+            "genreId": "nhac-hoa",
+            "genreName": "Nhạc Hoa Lời Việt",
+            "toneKey": "C-Am",
+            "toneDisplay": "C / Am",
+            "fluteTone": "Sáo C5 (Tone Đô)",
+            "diff": "Dễ",
+            "tech": "Rung hơi, Luyến nốt quãng 2, Ngân phách",
+            "tip": "Thổi bằng sáo Nứa C5 (Đô), nhịp 2/4 chậm rãi, luyến nhẹ nhàng giữa các nốt Sol lên Do² và Re² sang Mi².",
+            "sections": [
+                  {
+                        "sectionTitle": "Đoạn 1",
+                        "lines": [
+                              {
+                                    "lyric": "Uyên ương song phi bướm lượn cùng hoa",
+                                    "note": "Sol1  La1  Do2  Re2  Mi2  Re2  Do2  Re2"
+                              },
+                              {
+                                    "lyric": "Sắc đẹp nghiêng nước nghiêng thành mỹ nhân",
+                                    "note": "Mi2  Sol2  La2  Sol2  Mi2  Re2  Do2  La1"
+                              },
+                              {
+                                    "lyric": "Hỏi chàng phong lưu ngắm nhìn ai đó",
+                                    "note": "Sol1  La1  Do2  Re2  Mi2  Re2  Do2  Re2"
+                              },
+                              {
+                                    "lyric": "Có động lòng chăng trước cảnh sắc này",
+                                    "note": "Mi2  Sol2  La2  Sol2  Mi2  Re2  Do2  La1"
+                              }
+                        ]
+                  },
+                  {
+                        "sectionTitle": "Điệp khúc",
+                        "lines": [
+                              {
+                                    "lyric": "Nguyện cùng chàng kết tóc se duyên",
+                                    "note": "Do2  Re2  Mi2  Sol2  La2  Sol2  Mi2"
+                              },
+                              {
+                                    "lyric": "Trọn đời không bao giờ chia xa",
+                                    "note": "Re2  Do2  La1  Sol1  La1  Do2"
+                              },
+                              {
+                                    "lyric": "Chỉ cần chàng ở bên ta mãi",
+                                    "note": "Do2  Re2  Mi2  Sol2  La2  Sol2  Mi2"
+                              },
+                              {
+                                    "lyric": "Sánh bước cùng nhau đến bạc đầu",
+                                    "note": "Re2  Do2  La1  Sol1  La1  Do2"
+                              }
+                        ]
+                  }
             ]
-          },
-          {
-            sectionTitle: "Điệp khúc",
-            lines: [
-              { lyric: "Nguyện cùng chàng kết tóc se duyên", note: "Do2  Re2  Mi2  Sol2  La2  Sol2  Mi2" },
-              { lyric: "Trọn đời không bao giờ chia xa", note: "Re2  Do2  La1  Sol1  La1  Do2" },
-              { lyric: "Chỉ cần chàng ở bên ta mãi", note: "Do2  Re2  Mi2  Sol2  La2  Sol2  Mi2" },
-              { lyric: "Sánh bước cùng nhau đến bạc đầu", note: "Re2  Do2  La1  Sol1  La1  Do2" }
-            ]
-          }
-        ]
       },
       {
-        id: 2,
-        title: "Hà Nội 12 mùa hoa",
-        author: "Giáng Son",
-        genreId: "am-huong-dan-ca",
-        genreName: "Âm Hưởng Dân Ca",
-        toneKey: "C-Am",
-        toneDisplay: "C / Am",
-        fluteTone: "Sáo C5 (Đô)",
-        diff: "Dễ",
-        tech: "Chạy ngón quãng 1, Ngân phách",
-        tip: "Dùng sáo C5, bài hát êm dịu, chú ý ngân dài đủ 2 phách cuối mỗi câu hát.",
-        sections: [
-          {
-            sectionTitle: "Đoạn 1",
-            lines: [
-              { lyric: "Tháng giêng hoa đào bừng nở đón xuân sang", note: "Do  Re  Mi  Sol  La  Do2" },
-              { lyric: "Tháng hai hoa ban ngập tràn sắc trắng", note: "La  Sol  Mi  Re  Do  Re  Mi" },
-              { lyric: "Tháng ba hoa gạo đỏ rực góc trời", note: "Sol  La  Do2  Re2  Mi2  Re2  Do2" }
+            "id": 3,
+            "title": "Nơi này có anh",
+            "author": "Sơn Tùng M-TP",
+            "genreId": "nhac-tre",
+            "genreName": "Nhạc Trẻ Ballad / Pop",
+            "toneKey": "D-Bm",
+            "toneDisplay": "D / Bm",
+            "fluteTone": "Sáo C5 hoặc D5",
+            "diff": "Dễ",
+            "tech": "Đánh lưỡi đơn, Nhịp điệu Pop",
+            "tip": "Thế tay D / Bm, tiết tấu nhịp nhàng, chạy ngón nhẹ nhàng không bị gắt hơi.",
+            "sections": [
+                  {
+                        "sectionTitle": "Lời 1",
+                        "lines": [
+                              {
+                                    "lyric": "Em là ai từ đâu bước đến nơi đây dịu dàng",
+                                    "note": "La  Sol  Fa  Mi  Re"
+                              },
+                              {
+                                    "lyric": "Ánh mắt trao nụ cười làm xao xuyến",
+                                    "note": "La  Sol  Fa  Mi  Re  Fa  Sol"
+                              },
+                              {
+                                    "lyric": "Cầm tay anh bước qua bao ngày mưa gió",
+                                    "note": "Sol  La  Do2  La  Sol  Fa  Sol"
+                              }
+                        ]
+                  },
+                  {
+                        "sectionTitle": "Điệp khúc",
+                        "lines": [
+                              {
+                                    "lyric": "Hãy trao cho anh nụ cười ấm áp",
+                                    "note": "Do2  Re2  Mi2  Sol2  La2  Sol2"
+                              },
+                              {
+                                    "lyric": "Nơi này có anh luôn chở che cho em",
+                                    "note": "Mi2  Re2  Do2  La  Sol  La"
+                              }
+                        ]
+                  }
             ]
-          },
-          {
-            sectionTitle: "Điệp khúc",
-            lines: [
-              { lyric: "Mười hai mùa hoa, mười hai sắc hương", note: "Do2  Re2  Mi2  Sol2  La2  Sol2" },
-              { lyric: "Lòng tôi yêu mãi mảnh đất thủ đô", note: "Mi2  Re2  Do2  La  Sol  La  Do2" }
-            ]
-          }
-        ]
       },
       {
-        id: 3,
-        title: "Nơi này có anh",
-        author: "Sơn Tùng M-TP",
-        genreId: "nhac-tre",
-        genreName: "Nhạc Trẻ Ballad / Pop",
-        toneKey: "D-Bm",
-        toneDisplay: "D / Bm",
-        fluteTone: "Sáo C5 hoặc D5",
-        diff: "Dễ",
-        tech: "Đánh lưỡi đơn, Nhịp điệu Pop",
-        tip: "Thế tay D / Bm, tiết tấu nhịp nhàng, chạy ngón nhẹ nhàng không bị gắt hơi.",
-        sections: [
-          {
-            sectionTitle: "Lời 1",
-            lines: [
-              { lyric: "Em là ai từ đâu bước đến nơi đây dịu dàng", note: "La  Sol  Fa  Mi  Re" },
-              { lyric: "Ánh mắt trao nụ cười làm xao xuyến", note: "La  Sol  Fa  Mi  Re  Fa  Sol" },
-              { lyric: "Cầm tay anh bước qua bao ngày mưa gió", note: "Sol  La  Do2  La  Sol  Fa  Sol" }
+            "id": 5,
+            "title": "Qua cầu gió bay",
+            "author": "Dân ca Quan họ Bắc Ninh",
+            "genreId": "dan-ca",
+            "genreName": "Dân Ca Quan Họ & Bắc Bộ",
+            "toneKey": "F-Dm",
+            "toneDisplay": "F / Dm",
+            "fluteTone": "Sáo C5 / F4",
+            "diff": "Trung bình",
+            "tech": "Vuốt ngón (Glissando), Luyến láy",
+            "tip": "Thế tay F / Dm, chú ý kỹ thuật trượt ngón nửa lỗ để giai điệu mềm như dải lụa.",
+            "sections": [
+                  {
+                        "sectionTitle": "Lời ca",
+                        "lines": [
+                              {
+                                    "lyric": "Yêu nhau cởi áo í a cho nhau",
+                                    "note": "Fa  Sol  La  Do2  Fa2"
+                              },
+                              {
+                                    "lyric": "Về nhà dối mẹ qua cầu gió bay",
+                                    "note": "Do2  La  Sol  Fa  Sol  La"
+                              },
+                              {
+                                    "lyric": "Gió bay là bay qua cầu",
+                                    "note": "Fa  Sol  La  Do2  Re2"
+                              }
+                        ]
+                  }
             ]
-          },
-          {
-            sectionTitle: "Điệp khúc",
-            lines: [
-              { lyric: "Hãy trao cho anh nụ cười ấm áp", note: "Do2  Re2  Mi2  Sol2  La2  Sol2" },
-              { lyric: "Nơi này có anh luôn chở che cho em", note: "Mi2  Re2  Do2  La  Sol  La" }
-            ]
-          }
-        ]
       },
       {
-        id: 4,
-        title: "Mắt biếc",
-        author: "Ngô Thụy Miên",
-        genreId: "bolero",
-        genreName: "Trữ Tình Bất Hủ",
-        toneKey: "E-C#m",
-        toneDisplay: "E / C#m",
-        fluteTone: "Sáo C5 (Đô)",
-        diff: "Trung bình",
-        tech: "Chuyển quãng 2 (Mi2, Re2), Rung hơi",
-        tip: "Thế tay E / C#m, tập chuyển mượt mà quãng 1 lên quãng 2 với lực môi tăng dần.",
-        sections: [
-          {
-            sectionTitle: "Mở đầu",
-            lines: [
-              { lyric: "Nhớ ánh mắt biếc năm xưa ngây thơ", note: "Mi  Sol  Si  Re2  Do2  Si" },
-              { lyric: "Lòng bâng khuâng khi chiều buông lối cũ", note: "La  Si  Do2  Si  La  Sol" },
-              { lyric: "Mắt biếc năm xưa nay ở phương nào?", note: "Mi  Sol  Si  Re2  Mi2" }
+            "id": 6,
+            "title": "Bèo Dạt Mây Trôi",
+            "author": "Dân ca Đồng bằng Bắc Bộ",
+            "genreId": "dan-ca",
+            "genreName": "Dân Ca Quan Họ & Bắc Bộ",
+            "toneKey": "C-Am",
+            "toneDisplay": "C / Am",
+            "fluteTone": "Sáo C5 (Đô) chuẩn",
+            "diff": "Dễ",
+            "tech": "Rung hơi cơ hoành, Luyến nốt",
+            "tip": "Bài dân ca kinh điển của sáo trúc Việt Nam. Chú ý luyến láy mềm mại ở các nốt chuyển quãng 1 và 2.",
+            "sections": [
+                  {
+                        "sectionTitle": "Đoạn 1",
+                        "lines": [
+                              {
+                                    "lyric": "Bèo dạt mây trôi, chốn xa xôi",
+                                    "note": "Sol Sol Sol La, Do2 La Sol"
+                              },
+                              {
+                                    "lyric": "Anh ơi em vẫn đợi bèo dạt",
+                                    "note": "Mi Mi Mi Sol Mi Re Do"
+                              },
+                              {
+                                    "lyric": "Mây trôi, chim ca tang tính tình",
+                                    "note": "Re Mi, Sol Sol La Do2 Sol"
+                              },
+                              {
+                                    "lyric": "Cá lội, lửng lơ trông tin anh",
+                                    "note": "La Do2, Re2 Do2 La Sol Sol"
+                              }
+                        ]
+                  }
             ]
-          },
-          {
-            sectionTitle: "Điệp khúc",
-            lines: [
-              { lyric: "Giọt sầu rơi đọng bờ mi khép kín", note: "Sol2  Fa#2  Mi2  Re2  Do2  Si" },
-              { lyric: "Thương hoài kỷ niệm thuở mộng mơ", note: "La  Si  Do2  Si  La  Sol" }
-            ]
-          }
-        ]
       },
       {
-        id: 5,
-        title: "Qua cầu gió bay",
-        author: "Dân ca Quan họ Bắc Ninh",
-        genreId: "dan-ca",
-        genreName: "Dân Ca Quan Họ & Bắc Bộ",
-        toneKey: "F-Dm",
-        toneDisplay: "F / Dm",
-        fluteTone: "Sáo C5 / F4",
-        diff: "Trung bình",
-        tech: "Vuốt ngón (Glissando), Luyến láy",
-        tip: "Thế tay F / Dm, chú ý kỹ thuật trượt ngón nửa lỗ để giai điệu mềm như dải lụa.",
-        sections: [
-          {
-            sectionTitle: "Lời ca",
-            lines: [
-              { lyric: "Yêu nhau cởi áo í a cho nhau", note: "Fa  Sol  La  Do2  Fa2" },
-              { lyric: "Về nhà dối mẹ qua cầu gió bay", note: "Do2  La  Sol  Fa  Sol  La" },
-              { lyric: "Gió bay là bay qua cầu", note: "Fa  Sol  La  Do2  Re2" }
+            "id": 8,
+            "title": "Độ ta không độ nàng",
+            "author": "Nhạc Hoa Lời Việt",
+            "genreId": "nhac-hoa",
+            "genreName": "Nhạc Hoa Lời Việt",
+            "toneKey": "F-Dm",
+            "toneDisplay": "F / Dm",
+            "fluteTone": "Sáo C5 / D5",
+            "diff": "Trung bình",
+            "tech": "Ép hơi quãng 2, Vuốt ngón",
+            "tip": "Thế tay F / Dm, âm hưởng cổ phong huyền bí, dứt khoát ở điệp khúc.",
+            "sections": [
+                  {
+                        "sectionTitle": "Đoạn mở đầu",
+                        "lines": [
+                              {
+                                    "lyric": "Hồng trần hôm nay sương khói mịt mờ",
+                                    "note": "Fa  Sol  La  Do2  Re2"
+                              },
+                              {
+                                    "lyric": "Vấn vương câu kinh nơi cửa phật",
+                                    "note": "Re2  Do2  La  Sol  Fa  Sol"
+                              },
+                              {
+                                    "lyric": "Vì sao độ ta không độ nàng?",
+                                    "note": "La  Do2  Re2  Fa2  Mi2  Re2"
+                              }
+                        ]
+                  }
             ]
-          }
-        ]
       },
       {
-        id: 6,
-        title: "Bèo Dạt Mây Trôi",
-        author: "Dân ca Đồng bằng Bắc Bộ",
-        genreId: "dan-ca",
-        genreName: "Dân Ca Quan Họ & Bắc Bộ",
-        toneKey: "C-Am",
-        toneDisplay: "C / Am",
-        fluteTone: "Sáo C5 (Đô) chuẩn",
-        diff: "Dễ",
-        tech: "Rung hơi cơ hoành, Luyến nốt",
-        tip: "Bài dân ca kinh điển của sáo trúc Việt Nam. Chú ý luyến láy mềm mại ở các nốt chuyển quãng 1 và 2.",
-        sections: [
-          {
-            sectionTitle: "Đoạn 1",
-            lines: [
-              { lyric: "Bèo dạt mây trôi, chốn xa xôi", note: "Sol Sol Sol La, Do2 La Sol" },
-              { lyric: "Anh ơi em vẫn đợi bèo dạt", note: "Mi Mi Mi Sol Mi Re Do" },
-              { lyric: "Mây trôi, chim ca tang tính tình", note: "Re Mi, Sol Sol La Do2 Sol" },
-              { lyric: "Cá lội, lửng lơ trông tin anh", note: "La Do2, Re2 Do2 La Sol Sol" }
+            "id": 9,
+            "title": "Thần Thoại (Endless Love)",
+            "author": "Choi Jun Young",
+            "genreId": "nhac-hoa",
+            "genreName": "Nhạc Hoa Lời Việt",
+            "toneKey": "D-Bm",
+            "toneDisplay": "D / Bm",
+            "fluteTone": "Sáo C5 hoặc D5",
+            "diff": "Trung bình",
+            "tech": "Vuốt ngón, Rung hơi, Quãng 3",
+            "tip": "Nhạc phim Thần Thoại. Đoạn điệp khúc lên cao trào cần giữ hơi thật sâu.",
+            "sections": [
+                  {
+                        "sectionTitle": "Lời 1",
+                        "lines": [
+                              {
+                                    "lyric": "Jie kai wo zui shen mi de deng dai",
+                                    "note": "La Sol Fa Mi Re Fa Sol La"
+                              },
+                              {
+                                    "lyric": "Xing xing zhui luo feng zai chui dong",
+                                    "note": "Do2 Si La Sol Fa Sol La Fa"
+                              },
+                              {
+                                    "lyric": "Zhong yu deng dao ni de ai",
+                                    "note": "Mi Fa Sol La Do2 Si La"
+                              }
+                        ]
+                  },
+                  {
+                        "sectionTitle": "Điệp khúc",
+                        "lines": [
+                              {
+                                    "lyric": "Wan shi cang sang wei you ai shi yong heng de shen hua",
+                                    "note": "La2 Sol2 Fa2 Mi2 Re2 Fa2 Sol2 La2 Do3 Si2 La2 Sol2"
+                              },
+                              {
+                                    "lyric": "Chao qi chao luo shi zhong bu hui gai bian",
+                                    "note": "Fa2 Sol2 La2 Fa2 Mi2 Fa2 Sol2 Mi2 Re2"
+                              }
+                        ]
+                  }
             ]
-          }
-        ]
       },
       {
-        id: 7,
-        title: "Em ơi Hà Nội phố",
-        author: "Phú Quang",
-        genreId: "bolero",
-        genreName: "Trữ Tình Bất Hủ",
-        toneKey: "Bb-Gm",
-        toneDisplay: "Bb / Gm",
-        fluteTone: "Sáo Bb4 / C5",
-        diff: "Trung bình",
-        tech: "Nốt thăng giáng Do#2, Fa#2",
-        tip: "Thế tay Bb / Gm, bấm nửa lỗ chính xác để nốt thăng không bị chênh phô.",
-        sections: [
-          {
-            sectionTitle: "Đoạn 1",
-            lines: [
-              { lyric: "Em ơi Hà Nội phố", note: "Si  Do#2  Re2  Fa#2  Sol2  Fa#2" },
-              { lyric: "Ta còn em mùi hoàng lan", note: "Mi2  Re2  Si  La  Si" },
-              { lyric: "Ta còn em cây bàng mồ côi mùa đông", note: "Sol2  Fa#2  Mi2  Re2  Si" }
+            "id": 11,
+            "title": "Lòng mẹ",
+            "author": "Y Vân",
+            "genreId": "am-huong-dan-ca",
+            "genreName": "Âm Hưởng Dân Ca / Quê Hương",
+            "toneKey": "C-Am",
+            "toneDisplay": "C / Am",
+            "fluteTone": "Sáo C5 / D5",
+            "diff": "Dễ",
+            "tech": "Nhịp 3/4 mượt mà, Rung hơi",
+            "tip": "Thế tay C / Am, nhịp 3/4 dìu dặt, thích hợp luyện tập câu cú liền mạch.",
+            "sections": [
+                  {
+                        "sectionTitle": "Mở đầu",
+                        "lines": [
+                              {
+                                    "lyric": "Lòng mẹ bao la như biển Thái Bình dạt dào",
+                                    "note": "Do  Mi  Sol  La  Sol"
+                              },
+                              {
+                                    "lyric": "Tình mẹ tha thiết như dòng suối hiền ngọt ngào",
+                                    "note": "La  Do2  La  Sol  Mi"
+                              },
+                              {
+                                    "lyric": "Lời ru êm ái như đồng lúa chiều rì rào",
+                                    "note": "Re  Mi  Sol  Re  Do"
+                              }
+                        ]
+                  }
             ]
-          }
-        ]
       },
       {
-        id: 8,
-        title: "Độ ta không độ nàng",
-        author: "Nhạc Hoa Lời Việt",
-        genreId: "nhac-hoa",
-        genreName: "Nhạc Hoa Lời Việt",
-        toneKey: "F-Dm",
-        toneDisplay: "F / Dm",
-        fluteTone: "Sáo C5 / D5",
-        diff: "Trung bình",
-        tech: "Ép hơi quãng 2, Vuốt ngón",
-        tip: "Thế tay F / Dm, âm hưởng cổ phong huyền bí, dứt khoát ở điệp khúc.",
-        sections: [
-          {
-            sectionTitle: "Đoạn mở đầu",
-            lines: [
-              { lyric: "Hồng trần hôm nay sương khói mịt mờ", note: "Fa  Sol  La  Do2  Re2" },
-              { lyric: "Vấn vương câu kinh nơi cửa phật", note: "Re2  Do2  La  Sol  Fa  Sol" },
-              { lyric: "Vì sao độ ta không độ nàng?", note: "La  Do2  Re2  Fa2  Mi2  Re2" }
+            "id": 12,
+            "title": "Bài ca đất phương Nam",
+            "author": "Lư Nhất Vũ - Lê Giang",
+            "genreId": "am-huong-dan-ca",
+            "genreName": "Âm Hưởng Dân Ca / Quê Hương",
+            "toneKey": "G",
+            "toneDisplay": "G / Em",
+            "fluteTone": "Sáo G4 (Sol trầm) / C5",
+            "diff": "Nâng cao",
+            "tech": "Rung hơi sâu, Vuốt ngón Sol2",
+            "tip": "Thế tay G / Em, giai điệu hào sảng, phóng khoáng mang đậm nét sông nước Nam Bộ.",
+            "sections": [
+                  {
+                        "sectionTitle": "Dạo đầu hào sảng",
+                        "lines": [
+                              {
+                                    "lyric": "Nhắn ai đi về",
+                                    "note": "La Si La Sol Fa Re"
+                              }
+                        ]
+                  }
             ]
-          }
-        ]
-      },
-      {
-        id: 9,
-        title: "Thần Thoại (Endless Love)",
-        author: "Choi Jun Young",
-        genreId: "nhac-hoa",
-        genreName: "Nhạc Hoa Lời Việt",
-        toneKey: "D-Bm",
-        toneDisplay: "D / Bm",
-        fluteTone: "Sáo C5 hoặc D5",
-        diff: "Trung bình",
-        tech: "Vuốt ngón, Rung hơi, Quãng 3",
-        tip: "Nhạc phim Thần Thoại. Đoạn điệp khúc lên cao trào cần giữ hơi thật sâu.",
-        sections: [
-          {
-            sectionTitle: "Lời 1",
-            lines: [
-              { lyric: "Jie kai wo zui shen mi de deng dai", note: "La Sol Fa Mi Re Fa Sol La" },
-              { lyric: "Xing xing zhui luo feng zai chui dong", note: "Do2 Si La Sol Fa Sol La Fa" },
-              { lyric: "Zhong yu deng dao ni de ai", note: "Mi Fa Sol La Do2 Si La" }
-            ]
-          },
-          {
-            sectionTitle: "Điệp khúc",
-            lines: [
-              { lyric: "Wan shi cang sang wei you ai shi yong heng de shen hua", note: "La2 Sol2 Fa2 Mi2 Re2 Fa2 Sol2 La2 Do3 Si2 La2 Sol2" },
-              { lyric: "Chao qi chao luo shi zhong bu hui gai bian", note: "Fa2 Sol2 La2 Fa2 Mi2 Fa2 Sol2 Mi2 Re2" }
-            ]
-          }
-        ]
-      },
-      {
-        id: 10,
-        title: "Tiến về Hà Nội",
-        author: "Văn Cao",
-        genreId: "cach-mang",
-        genreName: "Nhạc Cách Mạng / Tiền Chiến",
-        toneKey: "C-Am",
-        toneDisplay: "C / Am",
-        fluteTone: "Sáo C5 (Tone Đô)",
-        diff: "Dễ",
-        tech: "Đánh lưỡi Ta dứt khoát",
-        tip: "Thế tay C / Am, tiết tấu hào hùng, luồng hơi khỏe khoắn và dứt khoát.",
-        sections: [
-          {
-            sectionTitle: "Hào hùng",
-            lines: [
-              { lyric: "Trùng trùng quân đi như sóng", note: "Do  Mi  Sol  Do2" },
-              { lyric: "Lớp lớp đoàn quân tiến về", note: "Do2  La  Sol  Mi" },
-              { lyric: "Chúng ta đem vinh quang sức dân tộc trở về", note: "Sol  La  Do2  Mi2  Re2" }
-            ]
-          }
-        ]
-      },
-      {
-        id: 11,
-        title: "Lòng mẹ",
-        author: "Y Vân",
-        genreId: "am-huong-dan-ca",
-        genreName: "Âm Hưởng Dân Ca / Quê Hương",
-        toneKey: "C-Am",
-        toneDisplay: "C / Am",
-        fluteTone: "Sáo C5 / D5",
-        diff: "Dễ",
-        tech: "Nhịp 3/4 mượt mà, Rung hơi",
-        tip: "Thế tay C / Am, nhịp 3/4 dìu dặt, thích hợp luyện tập câu cú liền mạch.",
-        sections: [
-          {
-            sectionTitle: "Mở đầu",
-            lines: [
-              { lyric: "Lòng mẹ bao la như biển Thái Bình dạt dào", note: "Do  Mi  Sol  La  Sol" },
-              { lyric: "Tình mẹ tha thiết như dòng suối hiền ngọt ngào", note: "La  Do2  La  Sol  Mi" },
-              { lyric: "Lời ru êm ái như đồng lúa chiều rì rào", note: "Re  Mi  Sol  Re  Do" }
-            ]
-          }
-        ]
-      },
-      {
-        id: 12,
-        title: "Bài ca đất phương Nam",
-        author: "Lư Nhất Vũ - Lê Giang",
-        genreId: "am-huong-dan-ca",
-        genreName: "Âm Hưởng Dân Ca / Quê Hương",
-        toneKey: "G-Em",
-        toneDisplay: "G / Em",
-        fluteTone: "Sáo G4 (Sol trầm) / C5",
-        diff: "Khó",
-        tech: "Rung hơi sâu, Vuốt ngón Sol2",
-        tip: "Thế tay G / Em, giai điệu hào sảng, phóng khoáng mang đậm nét sông nước Nam Bộ.",
-        sections: [
-          {
-            sectionTitle: "Dạo đầu hào sảng",
-            lines: [
-              { lyric: "Nhắn ai đi về miền đất phương Nam", note: "Sol  La  Do2  Mi2  Sol2" },
-              { lyric: "Trời xanh ngắt mênh mông sông nước", note: "Sol2  Mi2  Re2  Do2  La" },
-              { lyric: "Cửu Long giang cuộn sóng trùng dương", note: "Mi2  Sol2  La2  Sol2  Mi2" }
-            ]
-          }
-        ]
-      },
-      {
-        id: 13,
-        title: "Độc Tấu: Xuân Về Bản Mèo",
-        author: "Dân ca H'Mông / Sáo Trúc Âu Cơ",
-        genreId: "khong-loi",
-        genreName: "Nhạc Không Lời / Độc tấu",
-        toneKey: "G-Em",
-        toneDisplay: "G / Em",
-        fluteTone: "Sáo Mèo hoặc Sáo C5",
-        diff: "Nâng cao",
-        tech: "Đánh lưỡi kép, Rung hơi, Phi ngón",
-        tip: "Bản độc tấu không lời rộn ràng, miêu tả cảnh xuân rực rỡ trên vùng cao Tây Bắc.",
-        sections: [
-          {
-            sectionTitle: "Mở đầu (Chậm rãi, ngân vang)",
-            lines: [
-              { lyric: "", note: "Sol2 ··· La2 ··· Do3 ··· La2 Sol2 Mi2" },
-              { lyric: "", note: "Sol2 La2 Do3 Re3 Mi3 Re3 Do3 La2 Sol2" }
-            ]
-          },
-          {
-            sectionTitle: "Thân bài (Tiết tấu vui tươi, đánh lưỡi đơn và kép)",
-            lines: [
-              { lyric: "", note: "Sol Mi Sol La Do2 Re2 Mi2" },
-              { lyric: "", note: "Sol2 Mi2 Re2 Do2 Re2 Mi2 Re2 Do2 La" },
-              { lyric: "", note: "Do2 Re2 Mi2 Sol2 La2 Sol2 Mi2 Re2 Do2" }
-            ]
-          }
-        ]
-      },
-      {
-        id: 14,
-        title: "Bài tập chạy ngón Thang âm Đô trưởng",
-        author: "Giáo trình Âu Cơ",
-        genreId: "luyen-ngon",
-        genreName: "Bài Tập Luyện Ngón",
-        toneKey: "C-Am",
-        toneDisplay: "C / Am",
-        fluteTone: "Sáo C5 (Đô)",
-        diff: "Dễ",
-        tech: "Chạy ngón 8 nốt, Luyện tốc độ",
-        tip: "Chạy đều ngón từ chậm đến nhanh, giữ nhịp đập chân đều đặn 60-100 BPM.",
-        sections: [
-          {
-            sectionTitle: "Thang âm đi lên và đi xuống",
-            lines: [
-              { lyric: "Thổi hơi đều đặn từ nốt Đô 1 trầm lên Đô 2", note: "Do · Re · Mi · Fa · Sol · La · Si · Do2" },
-              { lyric: "Thổi ngược từ Đô 2 về Đô 1, bịt kín mép lỗ", note: "Do2 · Si · La · Sol · Fa · Mi · Re · Do" }
-            ]
-          },
-          {
-            sectionTitle: "Nhảy bậc quãng 3",
-            lines: [
-              { lyric: "Luyện độ độc lập và linh hoạt của các ngón tay", note: "Do - Mi  ·  Re - Fa  ·  Mi - Sol  ·  Fa - La  ·  Sol - Si  ·  La - Do2" }
-            ]
-          }
-        ]
       }
-    ];
+];
 
     let SONGS_DB = [...DEFAULT_SONGS_DB];
 
