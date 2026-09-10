@@ -197,28 +197,40 @@
             ✨ Tất cả thể loại
           </button>
           <button onclick="selectGenre('nhac-hoa')" class="genre-btn px-4 py-2 rounded-xl text-xs font-bold bg-[#FAF6EE] text-[#59524B] hover:bg-[#EADBCA] transition-all border border-[#E0D5C3]" data-genre="nhac-hoa">
-            🏯 Nhạc Hoa Lời Việt (Nữ Nhi Tình...)
+            🏯 Nhạc Hoa Lời Việt / Nhạc Trung Quốc
           </button>
           <button onclick="selectGenre('dan-ca')" class="genre-btn px-4 py-2 rounded-xl text-xs font-bold bg-[#FAF6EE] text-[#59524B] hover:bg-[#EADBCA] transition-all border border-[#E0D5C3]" data-genre="dan-ca">
-            🌾 Dân Ca Quan Họ & Bắc Bộ
+            🌾 Dân Ca Việt Nam
           </button>
           <button onclick="selectGenre('nhac-tre')" class="genre-btn px-4 py-2 rounded-xl text-xs font-bold bg-[#FAF6EE] text-[#59524B] hover:bg-[#EADBCA] transition-all border border-[#E0D5C3]" data-genre="nhac-tre">
-            🎸 Nhạc Trẻ Ballad / Pop
+            🎸 Nhạc Trẻ / Ballad / Pop
           </button>
           <button onclick="selectGenre('bolero')" class="genre-btn px-4 py-2 rounded-xl text-xs font-bold bg-[#FAF6EE] text-[#59524B] hover:bg-[#EADBCA] transition-all border border-[#E0D5C3]" data-genre="bolero">
-            ☕ Bolero / Trữ Tình Bất Hủ
+            ☕ Bolero / Nhạc Trữ Tình
           </button>
-          <button onclick="selectGenre('am-huong-dan-ca')" class="genre-btn px-4 py-2 rounded-xl text-xs font-bold bg-[#FAF6EE] text-[#59524B] hover:bg-[#EADBCA] transition-all border border-[#E0D5C3]" data-genre="am-huong-dan-ca">
-            🌸 Âm Hưởng Dân Ca / Quê Hương
+          <button onclick="selectGenre('que-huong')" class="genre-btn px-4 py-2 rounded-xl text-xs font-bold bg-[#FAF6EE] text-[#59524B] hover:bg-[#EADBCA] transition-all border border-[#E0D5C3]" data-genre="que-huong">
+            🌸 Nhạc Quê Hương / Âm Hưởng Dân Gian
           </button>
           <button onclick="selectGenre('cach-mang')" class="genre-btn px-4 py-2 rounded-xl text-xs font-bold bg-[#FAF6EE] text-[#59524B] hover:bg-[#EADBCA] transition-all border border-[#E0D5C3]" data-genre="cach-mang">
             ⭐ Nhạc Cách Mạng / Tiền Chiến
           </button>
-          <button onclick="selectGenre('khong-loi')" class="genre-btn px-4 py-2 rounded-xl text-xs font-bold bg-[#FAF6EE] text-[#59524B] hover:bg-[#EADBCA] transition-all border border-[#E0D5C3]" data-genre="khong-loi">
-            🎵 Độc Tấu Không Lời / Tây Bắc
+          <button onclick="selectGenre('nhac-phim')" class="genre-btn px-4 py-2 rounded-xl text-xs font-bold bg-[#FAF6EE] text-[#59524B] hover:bg-[#EADBCA] transition-all border border-[#E0D5C3]" data-genre="nhac-phim">
+            🎬 Nhạc Phim / OST
           </button>
-          <button onclick="selectGenre('luyen-ngon')" class="genre-btn px-4 py-2 rounded-xl text-xs font-bold bg-[#FAF6EE] text-[#59524B] hover:bg-[#EADBCA] transition-all border border-[#E0D5C3]" data-genre="luyen-ngon">
-            🎯 Bài Tập Luyện Ngón & Lưỡi Kép
+          <button onclick="selectGenre('tay-bac')" class="genre-btn px-4 py-2 rounded-xl text-xs font-bold bg-[#FAF6EE] text-[#59524B] hover:bg-[#EADBCA] transition-all border border-[#E0D5C3]" data-genre="tay-bac">
+            🏔️ Nhạc Tây Bắc / Dân Tộc Vùng Cao
+          </button>
+          <button onclick="selectGenre('phat-giao')" class="genre-btn px-4 py-2 rounded-xl text-xs font-bold bg-[#FAF6EE] text-[#59524B] hover:bg-[#EADBCA] transition-all border border-[#E0D5C3]" data-genre="phat-giao">
+            🪷 Nhạc Thiền / Phật Giáo
+          </button>
+          <button onclick="selectGenre('khong-loi')" class="genre-btn px-4 py-2 rounded-xl text-xs font-bold bg-[#FAF6EE] text-[#59524B] hover:bg-[#EADBCA] transition-all border border-[#E0D5C3]" data-genre="khong-loi">
+            🎵 Nhạc Không Lời
+          </button>
+          <button onclick="selectGenre('thieu-nhi')" class="genre-btn px-4 py-2 rounded-xl text-xs font-bold bg-[#FAF6EE] text-[#59524B] hover:bg-[#EADBCA] transition-all border border-[#E0D5C3]" data-genre="thieu-nhi">
+            🎈 Nhạc Thiếu Nhi
+          </button>
+          <button onclick="selectGenre('khac')" class="genre-btn px-4 py-2 rounded-xl text-xs font-bold bg-[#FAF6EE] text-[#59524B] hover:bg-[#EADBCA] transition-all border border-[#E0D5C3]" data-genre="khac">
+            🎼 Thể loại khác
           </button>
         </div>
       </div>
@@ -1111,26 +1123,42 @@
       const sGId = (song.genreId || '').toLowerCase().trim();
       const sGName = (song.genreName || '').toLowerCase().trim();
       if (sGId === genreId) return true;
+
       if (genreId === 'nhac-hoa') {
-        return sGId.includes('hoa') || sGName.includes('hoa') || sGName.includes('lời việt') || sGName.includes('loi viet');
+        return sGId.includes('hoa') || sGId.includes('trung-quoc') || sGName.includes('hoa') || sGName.includes('trung quốc') || sGName.includes('trung quoc') || sGName.includes('lời việt') || sGName.includes('loi viet');
       }
-      if (genreId === 'dan-ca' || genreId === 'am-huong-dan-ca') {
-        return sGId.includes('dan-ca') || sGId.includes('am-huong') || sGName.includes('dân ca') || sGName.includes('dan ca') || sGName.includes('quê hương') || sGName.includes('quan họ') || sGName.includes('bắc bộ');
+      if (genreId === 'dan-ca') {
+        return sGId.includes('dan-ca') || sGName.includes('dân ca') || sGName.includes('dan ca') || sGName.includes('quan họ') || sGName.includes('quan ho') || sGName.includes('bắc bộ') || sGName.includes('bac bo') || sGName.includes('nam bộ') || sGName.includes('nam bo');
       }
       if (genreId === 'nhac-tre') {
-        return sGId.includes('tre') || sGName.includes('trẻ') || sGName.includes('tre') || sGName.includes('ballad') || sGName.includes('pop') || sGName.includes('tiktok');
+        return sGId.includes('tre') || sGId.includes('ballad') || sGId.includes('pop') || sGName.includes('trẻ') || sGName.includes('tre') || sGName.includes('ballad') || sGName.includes('pop') || sGName.includes('tiktok');
       }
       if (genreId === 'bolero') {
-        return sGId.includes('bolero') || sGName.includes('bolero') || sGName.includes('trữ tình') || sGName.includes('tru tinh');
+        return sGId.includes('bolero') || sGId.includes('tru-tinh') || sGName.includes('bolero') || sGName.includes('trữ tình') || sGName.includes('tru tinh');
+      }
+      if (genreId === 'que-huong') {
+        return sGId.includes('que-huong') || sGId.includes('am-huong') || sGName.includes('quê hương') || sGName.includes('que huong') || sGName.includes('âm hưởng') || sGName.includes('am huong') || sGName.includes('dân gian') || sGName.includes('dan gian');
       }
       if (genreId === 'cach-mang') {
-        return sGId.includes('cach-mang') || sGName.includes('cách mạng') || sGName.includes('tiền chiến') || sGName.includes('tien chien');
+        return sGId.includes('cach-mang') || sGId.includes('tien-chien') || sGName.includes('cách mạng') || sGName.includes('cach mang') || sGName.includes('tiền chiến') || sGName.includes('tien chien') || sGName.includes('hành khúc');
+      }
+      if (genreId === 'nhac-phim') {
+        return sGId.includes('phim') || sGId.includes('ost') || sGName.includes('phim') || sGName.includes('ost');
+      }
+      if (genreId === 'tay-bac') {
+        return sGId.includes('tay-bac') || sGId.includes('dan-toc') || sGId.includes('vung-cao') || sGName.includes('tây bắc') || sGName.includes('tay bac') || sGName.includes('dân tộc') || sGName.includes('dan toc') || sGName.includes('vùng cao') || sGName.includes('mèo') || sGName.includes('h mông');
+      }
+      if (genreId === 'phat-giao') {
+        return sGId.includes('phat-giao') || sGId.includes('thien') || sGName.includes('phật') || sGName.includes('phat') || sGName.includes('thiền') || sGName.includes('thien') || sGName.includes('cõi phật') || sGName.includes('tụng kinh');
       }
       if (genreId === 'khong-loi') {
-        return sGId.includes('khong-loi') || sGName.includes('không lời') || sGName.includes('khong loi') || sGName.includes('độc tấu') || sGName.includes('doc tau') || sGName.includes('tây bắc');
+        return sGId.includes('khong-loi') || sGId.includes('doc-tau') || sGName.includes('không lời') || sGName.includes('khong loi') || sGName.includes('độc tấu') || sGName.includes('doc tau') || (!song.sections || !song.sections.some(s => (s.lines || []).some(l => l.lyric && l.lyric.trim() !== '' && l.lyric.trim() !== '-')));
       }
-      if (genreId === 'luyen-ngon') {
-        return sGId.includes('luyen-ngon') || sGName.includes('luyện ngón') || sGName.includes('lưỡi kép') || sGName.includes('bài tập') || sGName.includes('bai tap');
+      if (genreId === 'thieu-nhi') {
+        return sGId.includes('thieu-nhi') || sGName.includes('thiếu nhi') || sGName.includes('thieu nhi') || sGName.includes('trẻ em') || sGName.includes('tuổi thơ');
+      }
+      if (genreId === 'khac') {
+        return sGId === 'khac' || sGId === 'luyen-ngon' || sGName.includes('khác') || sGName.includes('luyện ngón');
       }
       return false;
     }
@@ -1170,17 +1198,23 @@
 
       const genreTitles = {
         'all': 'Danh sách cảm âm sáo trúc chuẩn 2 dòng',
-        'nhac-hoa': 'Danh sách cảm âm: Nhạc Hoa Lời Việt Hay Nhất',
-        'dan-ca': 'Danh sách cảm âm: Dân Ca Quan Họ & Bắc Bộ',
-        'nhac-tre': 'Danh sách cảm âm: Nhạc Trẻ / Hot TikTok',
-        'bolero': 'Danh sách cảm âm: Bolero / Trữ Tình Bất Hủ',
-        'am-huong-dan-ca': 'Danh sách cảm âm: Âm Hưởng Dân Ca / Quê Hương',
+        'nhac-hoa': 'Danh sách cảm âm: Nhạc Hoa Lời Việt / Nhạc Trung Quốc',
+        'dan-ca': 'Danh sách cảm âm: Dân Ca Việt Nam',
+        'nhac-tre': 'Danh sách cảm âm: Nhạc Trẻ / Ballad / Pop',
+        'bolero': 'Danh sách cảm âm: Bolero / Nhạc Trữ Tình',
+        'que-huong': 'Danh sách cảm âm: Nhạc Quê Hương / Âm Hưởng Dân Gian',
         'cach-mang': 'Danh sách cảm âm: Nhạc Cách Mạng / Tiền Chiến',
-        'khong-loi': 'Danh sách cảm âm: Độc Tấu Không Lời / Nhạc Không Lời',
-        'luyen-ngon': 'Danh sách bài tập: Luyện Ngón'
+        'nhac-phim': 'Danh sách cảm âm: Nhạc Phim / OST',
+        'tay-bac': 'Danh sách cảm âm: Nhạc Tây Bắc / Dân Tộc Vùng Cao',
+        'phat-giao': 'Danh sách cảm âm: Nhạc Thiền / Phật Giáo',
+        'khong-loi': 'Danh sách cảm âm: Nhạc Không Lời',
+        'thieu-nhi': 'Danh sách cảm âm: Nhạc Thiếu Nhi',
+        'khac': 'Danh sách cảm âm: Thể loại khác'
       };
       const titleEl = document.getElementById('currentListHeaderTitle');
       if (titleEl) {
+        titleEl.innerText = genreTitles[genreId] || 'Danh sách cảm âm sáo trúc';
+      }
         titleEl.innerText = genreTitles[genreId] || 'Danh sách cảm âm sáo trúc';
       }
 

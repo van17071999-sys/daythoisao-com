@@ -286,15 +286,19 @@
                   <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-stone-400 text-xs"></i>
                 </div>
                 <select id="adminGenreFilter" onchange="filterAdminSongs()" class="bg-[#FAF6EE] border border-[#D9CDBB] rounded-xl px-3 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-[#881B1B]">
-                  <option value="all">Tất cả thể loại (14+ bài)</option>
-                  <option value="nhac-hoa">Nhạc Hoa Lời Việt</option>
-                  <option value="dan-ca">Dân Ca Quan Họ & Bắc Bộ</option>
-                  <option value="nhac-tre">Nhạc Trẻ Ballad / Pop</option>
-                  <option value="bolero">Bolero / Trữ Tình Bất Hủ</option>
-                  <option value="am-huong-dan-ca">Âm Hưởng Dân Ca / Quê Hương</option>
+                  <option value="all">Tất cả thể loại</option>
+                  <option value="nhac-hoa">Nhạc Hoa Lời Việt / Nhạc Trung Quốc</option>
+                  <option value="dan-ca">Dân Ca Việt Nam</option>
+                  <option value="nhac-tre">Nhạc Trẻ / Ballad / Pop</option>
+                  <option value="bolero">Bolero / Nhạc Trữ Tình</option>
+                  <option value="que-huong">Nhạc Quê Hương / Âm Hưởng Dân Gian</option>
                   <option value="cach-mang">Nhạc Cách Mạng / Tiền Chiến</option>
-                  <option value="khong-loi">Nhạc Không Lời / Độc tấu</option>
-                  <option value="luyen-ngon">Bài Tập Luyện Ngón</option>
+                  <option value="nhac-phim">Nhạc Phim / OST</option>
+                  <option value="tay-bac">Nhạc Tây Bắc / Dân Tộc Vùng Cao</option>
+                  <option value="phat-giao">Nhạc Thiền / Phật Giáo</option>
+                  <option value="khong-loi">Nhạc Không Lời</option>
+                  <option value="thieu-nhi">Nhạc Thiếu Nhi</option>
+                  <option value="khac">Thể loại khác</option>
                 </select>
                 <select id="adminToneFilter" onchange="filterAdminSongs()" class="bg-[#FAF6EE] border border-[#D9CDBB] rounded-xl px-3 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-[#881B1B]">
                   <option value="all">Tất cả Tone thế tay</option>
@@ -711,14 +715,18 @@
             <div>
               <label class="font-bold block mb-1">Thể loại *:</label>
               <select id="formSongGenre" class="w-full bg-[#FAF6EE] border border-[#D9CDBB] rounded-xl px-3 py-2 outline-none focus:ring-2 focus:ring-[#881B1B]">
-                <option value="nhac-hoa">Nhạc Hoa Lời Việt</option>
-                <option value="dan-ca">Dân Ca Quan Họ & Bắc Bộ</option>
-                <option value="nhac-tre">Nhạc Trẻ Ballad / Pop</option>
-                <option value="bolero">Bolero / Trữ Tình Bất Hủ</option>
-                <option value="am-huong-dan-ca">Âm Hưởng Dân Ca / Quê Hương</option>
+                <option value="nhac-hoa">Nhạc Hoa Lời Việt / Nhạc Trung Quốc</option>
+                <option value="dan-ca">Dân Ca Việt Nam</option>
+                <option value="nhac-tre">Nhạc Trẻ / Ballad / Pop</option>
+                <option value="bolero">Bolero / Nhạc Trữ Tình</option>
+                <option value="que-huong">Nhạc Quê Hương / Âm Hưởng Dân Gian</option>
                 <option value="cach-mang">Nhạc Cách Mạng / Tiền Chiến</option>
-                <option value="khong-loi">Nhạc Không Lời / Độc tấu</option>
-                <option value="luyen-ngon">Bài Tập Luyện Ngón</option>
+                <option value="nhac-phim">Nhạc Phim / OST</option>
+                <option value="tay-bac">Nhạc Tây Bắc / Dân Tộc Vùng Cao</option>
+                <option value="phat-giao">Nhạc Thiền / Phật Giáo</option>
+                <option value="khong-loi">Nhạc Không Lời</option>
+                <option value="thieu-nhi">Nhạc Thiếu Nhi</option>
+                <option value="khac">Thể loại khác</option>
               </select>
             </div>
             <div>
@@ -2076,6 +2084,51 @@
       return false;
     }
 
+    function matchSongGenre(genreId, song) {
+      if (!genreId || genreId === 'all') return true;
+      const sGId = (song.genreId || '').toLowerCase().trim();
+      const sGName = (song.genreName || '').toLowerCase().trim();
+      if (sGId === genreId) return true;
+
+      if (genreId === 'nhac-hoa') {
+        return sGId.includes('hoa') || sGId.includes('trung-quoc') || sGName.includes('hoa') || sGName.includes('trung quốc') || sGName.includes('trung quoc') || sGName.includes('lời việt') || sGName.includes('loi viet');
+      }
+      if (genreId === 'dan-ca') {
+        return sGId.includes('dan-ca') || sGName.includes('dân ca') || sGName.includes('dan ca') || sGName.includes('quan họ') || sGName.includes('quan ho') || sGName.includes('bắc bộ') || sGName.includes('bac bo') || sGName.includes('nam bộ') || sGName.includes('nam bo');
+      }
+      if (genreId === 'nhac-tre') {
+        return sGId.includes('tre') || sGId.includes('ballad') || sGId.includes('pop') || sGName.includes('trẻ') || sGName.includes('tre') || sGName.includes('ballad') || sGName.includes('pop') || sGName.includes('tiktok');
+      }
+      if (genreId === 'bolero') {
+        return sGId.includes('bolero') || sGId.includes('tru-tinh') || sGName.includes('bolero') || sGName.includes('trữ tình') || sGName.includes('tru tinh');
+      }
+      if (genreId === 'que-huong') {
+        return sGId.includes('que-huong') || sGId.includes('am-huong') || sGName.includes('quê hương') || sGName.includes('que huong') || sGName.includes('âm hưởng') || sGName.includes('am huong') || sGName.includes('dân gian') || sGName.includes('dan gian');
+      }
+      if (genreId === 'cach-mang') {
+        return sGId.includes('cach-mang') || sGId.includes('tien-chien') || sGName.includes('cách mạng') || sGName.includes('cach mang') || sGName.includes('tiền chiến') || sGName.includes('tien chien') || sGName.includes('hành khúc');
+      }
+      if (genreId === 'nhac-phim') {
+        return sGId.includes('phim') || sGId.includes('ost') || sGName.includes('phim') || sGName.includes('ost');
+      }
+      if (genreId === 'tay-bac') {
+        return sGId.includes('tay-bac') || sGId.includes('dan-toc') || sGId.includes('vung-cao') || sGName.includes('tây bắc') || sGName.includes('tay bac') || sGName.includes('dân tộc') || sGName.includes('dan toc') || sGName.includes('vùng cao') || sGName.includes('mèo') || sGName.includes('h mông');
+      }
+      if (genreId === 'phat-giao') {
+        return sGId.includes('phat-giao') || sGId.includes('thien') || sGName.includes('phật') || sGName.includes('phat') || sGName.includes('thiền') || sGName.includes('thien') || sGName.includes('cõi phật') || sGName.includes('tụng kinh');
+      }
+      if (genreId === 'khong-loi') {
+        return sGId.includes('khong-loi') || sGId.includes('doc-tau') || sGName.includes('không lời') || sGName.includes('khong loi') || sGName.includes('độc tấu') || sGName.includes('doc tau') || (!song.sections || !song.sections.some(s => (s.lines || []).some(l => l.lyric && l.lyric.trim() !== '' && l.lyric.trim() !== '-')));
+      }
+      if (genreId === 'thieu-nhi') {
+        return sGId.includes('thieu-nhi') || sGName.includes('thiếu nhi') || sGName.includes('thieu nhi') || sGName.includes('trẻ em') || sGName.includes('tuổi thơ');
+      }
+      if (genreId === 'khac') {
+        return sGId === 'khac' || sGId === 'luyen-ngon' || sGName.includes('khác') || sGName.includes('luyện ngón');
+      }
+      return false;
+    }
+
     function filterAdminSongs() {
       const q = document.getElementById('adminSongSearch').value.toLowerCase().trim();
       const genre = document.getElementById('adminGenreFilter').value;
@@ -2084,7 +2137,7 @@
       const filtered = songsData.filter(s => {
         const textToSearch = `${s.title} ${s.author} ${s.genreName || ''} ${s.toneDisplay || ''} ${s.fluteTone || ''}`.toLowerCase();
         const mq = textToSearch.includes(q);
-        const mg = genre === 'all' || s.genreId === genre;
+        const mg = matchSongGenre(genre, s);
         const mt = matchSongTone(tone, s);
         return mq && mg && mt;
       });
