@@ -409,9 +409,9 @@
 
         <!-- Action Buttons -->
         <div class="flex flex-wrap items-center justify-between gap-3 pt-2">
-          <button onclick="playSongDemoAudio()" id="playDemoBtn" class="px-5 py-2.5 bg-[#881B1B] hover:bg-[#701515] text-white text-xs font-bold rounded-xl shadow flex items-center gap-2">
-            <i class="fa-solid fa-play"></i> Nghe mẫu giai điệu (Web Audio)
-          </button>
+          <a id="playDemoBtn" href="https://www.youtube.com/@saotrucauco" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 bg-[#CC0000] hover:bg-[#B30000] text-white text-xs font-bold rounded-xl shadow flex items-center gap-2">
+            <i class="fa-brands fa-youtube text-base"></i> Nghe mẫu giai điệu (YouTube)
+          </a>
           <button onclick="copyTabContent()" class="px-4 py-2.5 bg-white border border-[#D9CDBB] hover:bg-[#FAF6EE] text-[#292421] text-xs font-bold rounded-xl shadow-sm flex items-center gap-2">
             <i class="fa-regular fa-copy"></i> Sao chép toàn bộ cảm âm
           </button>
@@ -1236,6 +1236,13 @@
         }).join('');
       } else {
         tabBox.innerHTML = '<p class="text-xs text-stone-500 italic">Đang cập nhật nội dung cảm âm...</p>';
+      }
+
+      // Update YouTube demo button link
+      const ytBtn = document.getElementById('playDemoBtn');
+      if (ytBtn) {
+        const ytQuery = encodeURIComponent(`Sáo trúc ${item.title} ${item.author || ''} Sáo Trúc Âu Cơ`);
+        ytBtn.href = item.youtubeUrl || item.youtube || `https://www.youtube.com/results?search_query=${ytQuery}`;
       }
 
       document.getElementById('songModal').classList.remove('hidden');

@@ -1189,9 +1189,9 @@
         </div>
 
         <div class="flex items-center justify-between pt-2">
-          <button onclick="playSongDemoAudio()" id="playSongTabBtn" class="px-4 py-2 bg-[#881B1B] hover:bg-[#701515] text-white text-xs font-semibold rounded-lg flex items-center gap-2">
-            <i class="fa-solid fa-play"></i> Nghe mẫu giai điệu
-          </button>
+          <a id="playSongTabBtn" href="https://www.youtube.com/@saotrucauco" target="_blank" rel="noopener noreferrer" class="px-4 py-2 bg-[#CC0000] hover:bg-[#B30000] text-white text-xs font-bold rounded-lg flex items-center gap-2">
+            <i class="fa-brands fa-youtube text-base"></i> Nghe mẫu giai điệu
+          </a>
           <button onclick="copyTabContent()" class="px-4 py-2 bg-white border border-[#D9CDBB] hover:bg-[#F4ECE0] text-xs font-semibold rounded-lg flex items-center gap-1.5 text-[#292421]">
             <i class="fa-regular fa-copy"></i> Sao chép cảm âm
           </button>
@@ -1999,6 +1999,12 @@
           return `<div class="font-sans font-semibold text-xs text-[#292421] my-0.5">${line}</div>`;
         }).join("");
         contentBox.innerHTML = formattedLines;
+      }
+
+      const playBtn = document.getElementById("playSongTabBtn");
+      if (playBtn) {
+        const ytQuery = encodeURIComponent(`Sáo trúc ${activeSong.title} ${activeSong.author || ''} Sáo Trúc Âu Cơ`);
+        playBtn.href = activeSong.youtubeUrl || activeSong.youtube || `https://www.youtube.com/results?search_query=${ytQuery}`;
       }
 
       document.getElementById("songModal").classList.remove("hidden");

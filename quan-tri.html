@@ -745,6 +745,10 @@
               <label class="font-bold block mb-1">Kỹ thuật tiêu biểu:</label>
               <input type="text" id="formSongTech" placeholder="Ví dụ: Láy ngón, Rung hơi, Vuốt ngón" class="w-full bg-[#FAF6EE] border border-[#D9CDBB] rounded-xl px-3 py-2 outline-none focus:ring-2 focus:ring-[#881B1B]">
             </div>
+            <div>
+              <label class="font-bold block mb-1"><i class="fa-brands fa-youtube text-red-600"></i> Link YouTube mẫu (Tùy chọn):</label>
+              <input type="url" id="formSongYoutube" placeholder="https://www.youtube.com/watch?v=..." class="w-full bg-[#FAF6EE] border border-[#D9CDBB] rounded-xl px-3 py-2 outline-none focus:ring-2 focus:ring-[#881B1B]">
+            </div>
           </div>
         </div>
 
@@ -2428,6 +2432,7 @@
         document.getElementById('formSongDiff').value = song.diff || 'Dễ';
         document.getElementById('formSongTip').value = song.tip || '';
         document.getElementById('formSongTech').value = song.tech || '';
+        document.getElementById('formSongYoutube').value = song.youtubeUrl || song.youtube || '';
         currentEditingSections = JSON.parse(JSON.stringify(song.sections || []));
         if (quickTextarea) {
           quickTextarea.value = songToPlainText(song.sections || []);
@@ -2435,6 +2440,7 @@
       } else {
         title.innerHTML = `<i class="fa-solid fa-plus"></i> Thêm Cảm Âm Mới`;
         document.getElementById('editSongId').value = '';
+        document.getElementById('formSongYoutube').value = '';
         currentEditingSections = [];
         if (quickTextarea) {
           quickTextarea.value = '';
@@ -2524,6 +2530,7 @@
       const diff = document.getElementById('formSongDiff').value;
       const tip = document.getElementById('formSongTip').value.trim();
       const tech = document.getElementById('formSongTech').value.trim();
+      const youtubeUrl = document.getElementById('formSongYoutube')?.value.trim() || '';
 
       const textVal = (document.getElementById('formSongQuickText')?.value || '').trim();
       if (!textVal) {
@@ -2565,6 +2572,7 @@
             diff,
             tip,
             tech,
+            youtubeUrl,
             sections: cleanedSections
           };
           showToast(`Đã cập nhật bài hát "${title}" thành công!`);
@@ -2598,6 +2606,7 @@
           diff,
           tip,
           tech,
+          youtubeUrl,
           sections: cleanedSections
         };
         songsData.unshift(newSong);
