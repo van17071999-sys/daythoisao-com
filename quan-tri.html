@@ -788,15 +788,20 @@
 
           <!-- Direct 2-Line Textarea Area -->
           <div class="space-y-1.5">
-            <label for="formSongQuickText" class="font-bold text-xs text-[#292421] block">
-              Lời bài hát & nốt cảm âm *
-            </label>
+            <div class="flex items-center justify-between">
+              <label for="formSongQuickText" class="font-bold text-xs text-[#292421] block">
+                Nội dung cảm âm (Nhập 2 dòng Lời + Nốt, HOẶC chỉ nhập nốt nếu là nhạc không lời) *
+              </label>
+              <span class="text-[11px] text-[#881B1B] font-medium bg-red-50 px-2 py-0.5 rounded border border-red-100">
+                Tự động nhận diện bài không lời
+              </span>
+            </div>
             <textarea 
               id="formSongQuickText" 
               rows="14" 
               required
               oninput="handleQuickTextInput()"
-              placeholder="Việt Nam sáng trong bao lời ca&#10;Đô² Rê² Sol² La² Sol² Mi² Rê² Đô² Rê² Sol²&#10;&#10;À ơi ơi a ru hời&#10;Sol² La² Đô³ Rê³ Đô³ La² Sol²&#10;&#10;Đây nắng tre xanh mưa chân trời&#10;La² Đô³ La² Sol² Mi² Rê² Đô²&#10;&#10;Rừng sâu, biển rộng, núi cao&#10;La¹-Sol¹ Đô² Sol¹ Đô² Rê² Mi² Đô² Rê²" 
+              placeholder="[Cách 1: Nhạc có lời - 2 dòng lời & nốt]&#10;Uyên ương song phi bướm lượn cùng hoa&#10;Sol1  La1  Do2  Re2  Mi2  Re2  Do2  Re2&#10;&#10;[Cách 2: Nhạc không lời / Độc tấu - Chỉ nhập nốt nhạc]&#10;Do2  Re2  Mi2  Sol2  La2  Sol2  Mi2&#10;Re2  Do2  La1  Sol1  La1  Do2" 
               class="w-full bg-[#FAF6EE] border border-[#D9CDBB] rounded-2xl p-4 font-mono text-xs text-[#292421] outline-none focus:ring-2 focus:ring-[#881B1B] leading-relaxed custom-scrollbar shadow-inner"
             ></textarea>
           </div>
@@ -809,7 +814,7 @@
               <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
               👁️ Xem trước giao diện thực tế trên website (Live Preview)
             </h4>
-            <span class="text-[10px] text-stone-400 font-mono">2-Line Sheet Format</span>
+            <span class="text-[10px] text-stone-400 font-mono" id="formPreviewFormatBadge">Tự động nhận diện</span>
           </div>
           <div id="formLivePreviewBox" class="p-4 bg-[#FAF6EE] rounded-xl border border-[#E8DFC8] space-y-3 min-h-[100px] max-h-[320px] overflow-y-auto custom-scrollbar">
             <p class="text-stone-400 italic text-center py-4">Nhập nốt bên trên để xem trước cảm âm hiển thị...</p>
@@ -2449,30 +2454,61 @@
 
     function renderLivePreviewFromSections(sections) {
       const box = document.getElementById('formLivePreviewBox');
+      const badge = document.getElementById('formPreviewFormatBadge');
       if (!box) return;
       const hasLines = sections.some(s => s.lines.some(l => (l.note && l.note.trim() !== '') || (l.lyric && l.lyric.trim() !== '')));
 
       if (!hasLines) {
+        if (badge) {
+          badge.textContent = "Tự động nhận diện";
+          badge.className = "text-[10px] text-stone-400 font-mono";
+        }
         box.innerHTML = `<p class="text-stone-400 italic text-center py-4">Nhập nốt nhạc bên trên để xem trước giao diện cảm âm...</p>`;
         return;
       }
 
-      box.innerHTML = sections.map(sec => `
-        <div class="space-y-2 mb-3">
-          <div class="text-xs font-bold text-[#193822] uppercase tracking-wider flex items-center gap-1.5 pb-1 border-b border-stone-200/60">
-            <i class="fa-solid fa-bookmark text-[#881B1B] text-[10px]"></i> ${sec.sectionTitle || 'Đoạn'}
-          </div>
-          ${sec.lines.map(l => {
-            const hasLyric = l.lyric && l.lyric.trim() !== '';
+      // Check if any line in any section has lyrics
+      const hasAnyLyrics = sections.some(sec => (sec.lines || []).some(l => l.lyric && l.lyric.trim() !== '' && l.lyric.trim() !== '-'));
+
+      if (badge) {
+        if (hasAnyLyrics) {
+          badge.textContent = "Format: 2 dòng (Lời & Cảm âm)";
+          badge.className = "text-[10px] font-bold text-amber-700 bg-amber-100 px-2 py-0.5 rounded font-mono border border-amber-200";
+        } else {
+          badge.textContent = "Format: Nhạc không lời (Chỉ có nốt)";
+          badge.className = "text-[10px] font-bold text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded font-mono border border-emerald-200";
+        }
+      }
+
+      box.innerHTML = sections.map(sec => {
+        const linesHtml = (sec.lines || []).map(l => {
+          const hasLyric = l.lyric && l.lyric.trim() !== '' && l.lyric.trim() !== '-';
+          const formattedNote = formatMusicNotes(l.note) || '<span class="text-stone-300">(Chưa nhập nốt)</span>';
+          if (hasLyric) {
             return `
               <div class="tab-2line-block my-1.5">
-                ${hasLyric ? `<div class="lyric-line font-medium text-[#292421] text-xs mb-0.5">${l.lyric}</div>` : ''}
-                <div class="note-box bg-[#F6ECD8] border border-[#EAD8BD] rounded-lg px-3 py-1.5 font-mono text-xs font-bold text-[#5C1914]">${formatMusicNotes(l.note) || '<span class="text-stone-300">(Chưa nhập nốt)</span>'}</div>
+                <div class="lyric-line font-medium text-[#292421] text-xs mb-0.5">${l.lyric}</div>
+                <div class="note-box bg-[#F6ECD8] border border-[#EAD8BD] rounded-lg px-3 py-1.5 font-mono text-xs font-bold text-[#5C1914] select-all">${formattedNote}</div>
               </div>
             `;
-          }).join('')}
-        </div>
-      `).join('');
+          } else {
+            return `
+              <div class="tab-note-only-block my-1.5">
+                <div class="note-box bg-[#FAF6EE] border border-[#E0D5C3] rounded-lg px-3 py-2 font-mono text-xs font-bold text-[#881B1B] select-all">${formattedNote}</div>
+              </div>
+            `;
+          }
+        }).join('');
+
+        return `
+          <div class="space-y-1 mb-3">
+            <div class="text-xs font-bold text-[#193822] uppercase tracking-wider flex items-center gap-1.5 pb-1 border-b border-stone-200/60 font-sans">
+              <i class="fa-solid fa-bookmark text-[#881B1B] text-[10px]"></i> ${sec.sectionTitle || 'Đoạn'}
+            </div>
+            ${linesHtml}
+          </div>
+        `;
+      }).join('');
     }
 
     function handleSaveSong(e) {

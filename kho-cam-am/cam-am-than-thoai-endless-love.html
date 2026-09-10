@@ -251,13 +251,13 @@
           </div>
         </div>
 
-        <!-- 2-LINE SCORE CONTAINER -->
+        <!-- 2-LINE OR NOTE-ONLY SCORE CONTAINER -->
         <div class="bg-white rounded-2xl sm:rounded-3xl border border-[#E8DFC8] shadow-sm p-5 sm:p-8 space-y-6">
           <div class="flex items-center justify-between pb-3 border-b border-[#F0E8DA]">
             <h2 class="font-serif text-lg font-bold text-[#881B1B] flex items-center gap-2">
-              <i class="fa-solid fa-align-left text-sm"></i> BẢN CẢM ÂM 2 DÒNG CHUẨN
+              <i class="fa-solid fa-music text-sm" id="scoreHeaderIcon"></i> <span id="scoreHeaderTitleText">BẢN CẢM ÂM 2 DÒNG CHUẨN</span>
             </h2>
-            <span class="text-xs text-[#6B625B] hidden sm:inline">Lời trên • Nốt dưới</span>
+            <span class="text-xs text-[#6B625B] hidden sm:inline" id="scoreHeaderSubtitle">Lời trên • Nốt dưới</span>
           </div>
 
           <!-- Dynamic Sections List -->
@@ -607,9 +607,17 @@
         }
       } catch (e) {}
 
+      // Check if song has any lyrics or is instrumental / note-only
+      const hasAnyLyrics = song.sections && song.sections.some(sec => 
+        (sec.lines || []).some(l => l.lyric && l.lyric.trim() !== '' && l.lyric.trim() !== '-')
+      );
+
       // Update Page SEO Metadata
-      const pageTitle = `Cảm Âm Sáo Trúc ${song.title} (Chuẩn 2 Dòng) - ${song.toneDisplay} | Sáo Trúc Âu Cơ`;
-      const pageDesc = `Bản cảm âm sáo trúc bài hát ${song.title} (${song.author}) chuẩn 2 dòng, tone thế tay ${song.toneDisplay}, khuyến nghị dùng ${song.fluteTone}. Đầy đủ lời và nốt nhạc chi tiết từ Sáo Trúc Âu Cơ.`;
+      const formatTypeSuffix = hasAnyLyrics ? '(Chuẩn 2 Dòng)' : '(Nhạc Không Lời / Độc Tấu)';
+      const pageTitle = `Cảm Âm Sáo Trúc ${song.title} ${formatTypeSuffix} - ${song.toneDisplay} | Sáo Trúc Âu Cơ`;
+      const pageDesc = hasAnyLyrics 
+        ? `Bản cảm âm sáo trúc bài hát ${song.title} (${song.author}) chuẩn 2 dòng, tone thế tay ${song.toneDisplay}, khuyến nghị dùng ${song.fluteTone}. Đầy đủ lời và nốt nhạc chi tiết từ Sáo Trúc Âu Cơ.`
+        : `Bản cảm âm sáo trúc nốt nhạc chuẩn bài hát ${song.title} (${song.author}) - Nhạc không lời / độc tấu, tone thế tay ${song.toneDisplay}, khuyến nghị dùng ${song.fluteTone}.`;
       
       document.title = pageTitle;
       const titleEl = document.getElementById('pageTitle');
@@ -629,9 +637,19 @@
       document.getElementById('breadcrumbTitle').innerText = song.title;
       document.getElementById('songMainTitle').innerText = song.title;
       document.getElementById('songAuthor').innerText = song.author || 'Chưa rõ tác giả';
-      document.getElementById('songGenreBadge').innerText = song.genreName || 'Nhạc Sáo Trúc';
+      document.getElementById('songGenreBadge').innerText = song.genreName || (hasAnyLyrics ? 'Nhạc Có Lời' : 'Nhạc Không Lời');
       document.getElementById('songDiffBadge').innerText = `Độ khó: ${song.diff || 'Dễ'}`;
       document.getElementById('songToneBadge').innerText = `Tone: ${song.toneDisplay || 'C'}`;
+
+      // Update Score Header Title & Subtitle
+      const headerTitleEl = document.getElementById('scoreHeaderTitleText');
+      const headerSubEl = document.getElementById('scoreHeaderSubtitle');
+      if (headerTitleEl) {
+        headerTitleEl.innerText = hasAnyLyrics ? 'BẢN CẢM ÂM 2 DÒNG CHUẨN' : 'BẢN CẢM ÂM NỐT NHẠC (NHẠC KHÔNG LỜI / ĐỘC TẤU)';
+      }
+      if (headerSubEl) {
+        headerSubEl.innerText = hasAnyLyrics ? 'Lời trên • Nốt dưới' : 'Bản nốt độc tấu chuẩn';
+      }
 
       // Update 4 Metric Boxes
       document.getElementById('metricTone').innerText = song.toneDisplay || 'C';
@@ -643,24 +661,42 @@
       const tipText = song.tip || 'Thổi đúng cao độ và nhịp phách, chú ý kiểm soát hơi thở và mở rộng khẩu hình.';
       document.getElementById('songTipText').innerText = tipText;
 
-      // Render 2-Line Sections
+      // Render Sections (2-Line for lyrics or Note-Only for instrumental)
       const container = document.getElementById('songSectionsContainer');
       if (song.sections && song.sections.length > 0) {
-        container.innerHTML = song.sections.map((sec, sIdx) => `
-          <div class="score-card bg-[#FAF6EE] p-4 sm:p-6 rounded-2xl border border-[#E8DFC8] space-y-3 shadow-sm">
-            <h3 class="font-serif text-sm sm:text-base font-bold text-[#881B1B] uppercase tracking-wide flex items-center gap-2 pb-2 border-b border-[#E0D5C3]">
-              <i class="fa-solid fa-bookmark text-xs"></i> ${sec.name || `ĐOẠN ${sIdx + 1}`}
-            </h3>
-            <div class="space-y-3">
-              ${(sec.lines || []).map((l, lIdx) => `
+        container.innerHTML = song.sections.map((sec, sIdx) => {
+          const linesHtml = (sec.lines || []).map((l, lIdx) => {
+            const hasLyric = l.lyric && l.lyric.trim() !== '' && l.lyric.trim() !== '-';
+            const formattedNote = formatMusicNotes(l.note);
+
+            if (hasLyric) {
+              return `
                 <div class="bg-white p-3.5 sm:p-4 rounded-xl border border-[#EADBCA] shadow-sm space-y-1.5 hover:border-[#881B1B] transition-colors">
-                  ${l.lyric ? `<p class="text-xs sm:text-sm text-[#292421] font-medium">${l.lyric}</p>` : ''}
-                  <p class="note-line text-xs sm:text-sm text-[#881B1B] leading-relaxed select-all">${formatMusicNotes(l.note)}</p>
+                  <p class="text-xs sm:text-sm text-[#292421] font-medium">${l.lyric}</p>
+                  <p class="note-line text-xs sm:text-sm text-[#881B1B] leading-relaxed select-all font-mono font-bold">${formattedNote}</p>
                 </div>
-              `).join('')}
+              `;
+            } else {
+              // Instrumental / Note-only line
+              return `
+                <div class="bg-white p-3.5 sm:p-4 rounded-xl border border-[#EADBCA] shadow-sm hover:border-[#881B1B] transition-colors">
+                  <p class="note-line text-xs sm:text-sm text-[#881B1B] leading-relaxed select-all font-mono font-bold tracking-wide">${formattedNote || '<span class="text-stone-300 italic">(Đang cập nhật nốt)</span>'}</p>
+                </div>
+              `;
+            }
+          }).join('');
+
+          return `
+            <div class="score-card bg-[#FAF6EE] p-4 sm:p-6 rounded-2xl border border-[#E8DFC8] space-y-3 shadow-sm">
+              <h3 class="font-serif text-sm sm:text-base font-bold text-[#881B1B] uppercase tracking-wide flex items-center gap-2 pb-2 border-b border-[#E0D5C3]">
+                <i class="fa-solid fa-bookmark text-xs"></i> ${sec.sectionTitle || sec.name || `ĐOẠN ${sIdx + 1}`}
+              </h3>
+              <div class="space-y-3">
+                ${linesHtml}
+              </div>
             </div>
-          </div>
-        `).join('');
+          `;
+        }).join('');
       } else {
         container.innerHTML = `
           <div class="bg-[#FAF6EE] p-6 rounded-2xl border border-[#E8DFC8] text-center text-xs text-[#6B625B]">
@@ -767,10 +803,11 @@
 
       if (currentSong.sections) {
         currentSong.sections.forEach(sec => {
-          text += `[${sec.name.toUpperCase()}]\n`;
+          text += `[${(sec.sectionTitle || sec.name || 'ĐOẠN').toUpperCase()}]\n`;
           (sec.lines || []).forEach(l => {
-            if (l.lyric) text += `${l.lyric}\n`;
-            if (l.note) text += `${formatMusicNotes(l.note)}\n`;
+            const hasLyric = l.lyric && l.lyric.trim() !== '' && l.lyric.trim() !== '-';
+            if (hasLyric) text += `${l.lyric}\n`;
+            if (l.note && l.note.trim()) text += `${formatMusicNotes(l.note)}\n`;
             text += `\n`;
           });
         });

@@ -1975,14 +1975,14 @@
         contentBox.innerHTML = activeSong.sections.map(sec => `
           <div class="space-y-2 mb-4">
             <div class="text-xs font-bold text-[#193822] uppercase tracking-wider flex items-center gap-1.5 pb-1 border-b border-stone-200/60 font-sans">
-              <i class="fa-solid fa-bookmark text-[#881B1B] text-[10px]"></i> ${sec.sectionTitle}
+              <i class="fa-solid fa-bookmark text-[#881B1B] text-[10px]"></i> ${sec.sectionTitle || sec.name || 'Đoạn'}
             </div>
             ${sec.lines.map(l => {
-              const hasLyric = l.lyric && l.lyric.trim() !== '';
+              const hasLyric = l.lyric && l.lyric.trim() !== '' && l.lyric.trim() !== '-';
               return `
                 <div class="my-2">
                   ${hasLyric ? `<div class="font-sans font-semibold text-xs text-[#292421] mb-0.5">${l.lyric}</div>` : ''}
-                  <div class="bg-[#F6ECD8] border border-[#EAD8BD] rounded-lg px-3 py-1.5 font-mono text-xs font-bold text-[#5C1914]">${formatMusicNotes(l.note)}</div>
+                  <div class="bg-[#F6ECD8] border border-[#EAD8BD] rounded-lg px-3 py-1.5 font-mono text-xs font-bold text-[#5C1914] select-all">${formatMusicNotes(l.note)}</div>
                 </div>
               `;
             }).join('')}
@@ -1994,7 +1994,7 @@
             return `<div class="text-xs font-bold text-[#881B1B] uppercase tracking-wider mt-2 mb-1 font-sans">${line}</div>`;
           }
           if (/(Do|Re|Mi|Fa|Sol|La|Si|Đô|Rê)/i.test(line)) {
-            return `<div class="bg-[#F6ECD8] border border-[#EAD8BD] rounded-lg px-3 py-1.5 font-mono text-xs font-bold text-[#5C1914] my-1">${formatMusicNotes(line)}</div>`;
+            return `<div class="bg-[#F6ECD8] border border-[#EAD8BD] rounded-lg px-3 py-1.5 font-mono text-xs font-bold text-[#5C1914] my-1 select-all">${formatMusicNotes(line)}</div>`;
           }
           return `<div class="font-sans font-semibold text-xs text-[#292421] my-0.5">${line}</div>`;
         }).join("");

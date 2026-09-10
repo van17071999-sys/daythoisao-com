@@ -1208,18 +1208,27 @@
         tabBox.innerHTML = item.sections.map(sec => {
           const linesHtml = (sec.lines || []).map(l => {
             const hasLyric = l.lyric && l.lyric.trim() !== '' && l.lyric.trim() !== '-';
-            return `
-              <div class="tab-2line-block">
-                ${hasLyric ? `<div class="lyric-line">${l.lyric}</div>` : ''}
-                <div class="note-box">${formatMusicNotes(l.note)}</div>
-              </div>
-            `;
+            const formattedNote = formatMusicNotes(l.note);
+            if (hasLyric) {
+              return `
+                <div class="tab-2line-block mb-2">
+                  <div class="lyric-line text-xs font-medium text-[#292421] mb-0.5">${l.lyric}</div>
+                  <div class="note-box bg-[#FAF6EE] border border-[#E0D5C3] rounded-lg px-3 py-1.5 font-mono text-xs font-bold text-[#881B1B] select-all">${formattedNote}</div>
+                </div>
+              `;
+            } else {
+              return `
+                <div class="tab-note-only-block mb-2">
+                  <div class="note-box bg-[#FAF6EE] border border-[#E0D5C3] rounded-lg px-3 py-2 font-mono text-xs font-bold text-[#881B1B] select-all">${formattedNote}</div>
+                </div>
+              `;
+            }
           }).join('');
 
           return `
             <div class="mb-4">
               <div class="text-xs font-bold text-[#193822] uppercase tracking-wider mb-2 flex items-center gap-1.5">
-                <i class="fa-solid fa-bookmark text-[#881B1B] text-[10px]"></i> ${sec.sectionTitle}
+                <i class="fa-solid fa-bookmark text-[#881B1B] text-[10px]"></i> ${sec.sectionTitle || sec.name || 'Đoạn'}
               </div>
               ${linesHtml}
             </div>
@@ -1253,12 +1262,16 @@
       let plainText = `${selectedSongItem.title}\nTác giả: ${selectedSongItem.author} | Thể loại: ${selectedSongItem.genreName}\nThế tay: ${selectedSongItem.toneDisplay} | Sáo khuyến nghị: ${selectedSongItem.fluteTone}\n\n`;
       
       selectedSongItem.sections.forEach(sec => {
-        plainText += `[${sec.sectionTitle}]\n`;
+        plainText += `[${sec.sectionTitle || sec.name || 'Đoạn'}]\n`;
         sec.lines.forEach(l => {
-          if (l.lyric && l.lyric.trim() !== '' && l.lyric.trim() !== '-') {
+          const hasLyric = l.lyric && l.lyric.trim() !== '' && l.lyric.trim() !== '-';
+          if (hasLyric) {
             plainText += `${l.lyric}\n`;
           }
-          plainText += `${formatMusicNotes(l.note)}\n\n`;
+          if (l.note && l.note.trim() !== '') {
+            plainText += `${formatMusicNotes(l.note)}\n`;
+          }
+          plainText += `\n`;
         });
       });
 
