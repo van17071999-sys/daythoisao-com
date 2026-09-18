@@ -53,7 +53,7 @@ async function executeD1Query(context, sql, params = []) {
     const accountId = context.env.CF_ACCOUNT_ID;
     const authEmail = context.env.CF_AUTH_EMAIL || 'van17071999@gmail.com';
     const authKey = context.env.CF_AUTH_KEY;
-    const dbId = context.env.CF_D1_ID || 'f6a8a2d5-0ea6-45d5-b938-c3659701c135';
+    const dbId = context.env.CF_D1_ID || 'e17cb014-143a-47d1-af84-2dc822855e35';
 
     const res = await fetch(`https://api.cloudflare.com/client/v4/accounts/${accountId}/d1/database/${dbId}/query`, {
       method: 'POST',
