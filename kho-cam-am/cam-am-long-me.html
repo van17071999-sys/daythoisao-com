@@ -689,7 +689,9 @@
 
       // Update Headings & Breadcrumbs
       document.getElementById('breadcrumbTitle').innerText = song.title;
-      document.getElementById('songMainTitle').innerText = song.title;
+      const rawSongTitle = (song.title || '').trim();
+      const h1SongTitle = /^cảm âm\s+/i.test(rawSongTitle) ? rawSongTitle : 'Cảm âm ' + rawSongTitle;
+      document.getElementById('songMainTitle').innerText = h1SongTitle;
       document.getElementById('songAuthor').innerText = song.author || 'Chưa rõ tác giả';
       document.getElementById('songGenreBadge').innerText = song.genreName || (hasAnyLyrics ? 'Nhạc Có Lời' : 'Nhạc Không Lời');
       document.getElementById('songDiffBadge').innerText = `Độ khó: ${song.diff || 'Dễ'}`;
