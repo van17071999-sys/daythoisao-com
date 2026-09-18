@@ -340,8 +340,174 @@
           </div>
         </div>
 
-        <!-- Right Side (Để trống phần vừa xóa) -->
-        <div class="hidden lg:block lg:col-span-6"></div>
+        <!-- Right Hero Visual / Performance Images Showcase -->
+        <div class="lg:col-span-6 relative mt-8 lg:mt-0">
+          <!-- Background Glow Effect -->
+          <div class="absolute -inset-2 bg-gradient-to-tr from-[#881B1B]/15 via-[#FAF6EE] to-[#20402C]/15 rounded-3xl blur-xl opacity-75 -z-10"></div>
+          
+          <!-- Outer Card Frame with subtle paper texture aesthetic -->
+          <div class="relative bg-white/90 backdrop-blur-md p-3 sm:p-4 rounded-3xl border border-[#D9C4A6] shadow-xl transition-shadow hover:shadow-2xl">
+            
+            <!-- Main Featured Image Container with 4:3 ratio -->
+            <div 
+              id="heroImageCard"
+              class="relative overflow-hidden rounded-2xl aspect-[4/3] sm:aspect-[16/11] bg-[#1a1614] shadow-inner group cursor-pointer"
+              onmouseenter="stopHeroAutoplay()"
+              onmouseleave="startHeroAutoplay()"
+            >
+              <!-- Slides -->
+              <div id="heroCarousel" class="relative w-full h-full">
+                
+                <!-- Slide 1: Biểu diễn sân khấu áo dài truyền thống -->
+                <div class="hero-slide active absolute inset-0 transition-opacity duration-700 opacity-100 z-10" data-index="0">
+                  <img 
+                    src="assets/thay-van-bieu-dien-san-khau.jpg" 
+                    alt="Thầy Quách Hạ Văn biểu diễn sáo trúc chuyên nghiệp trên sân khấu" 
+                    class="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700"
+                    loading="eager"
+                  >
+                  <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent"></div>
+                  <div class="absolute bottom-3 left-4 right-4 text-white">
+                    <span class="inline-block px-2.5 py-0.5 rounded-full bg-[#881B1B] text-[11px] font-semibold tracking-wide uppercase mb-1">
+                      Biểu diễn sân khấu
+                    </span>
+                    <p class="text-sm sm:text-base font-serif font-bold text-amber-100 leading-snug">
+                      Nghệ sĩ Quách Hạ Văn • Sáo Trúc Âu Cơ
+                    </p>
+                    <p class="text-xs text-stone-300 line-clamp-1 mt-0.5">
+                      Âm sắc dân tộc hòa quyện sân khấu nghệ thuật chuyên nghiệp
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Slide 2: Độc tấu sáo trang phục thổ cẩm -->
+                <div class="hero-slide absolute inset-0 transition-opacity duration-700 opacity-0 pointer-events-none z-0" data-index="1">
+                  <img 
+                    src="assets/thay-van-thoi-sao-dan-toc.jpg" 
+                    alt="Thổi sáo trúc mộc mạc âm vang núi rừng" 
+                    class="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700"
+                    loading="lazy"
+                  >
+                  <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent"></div>
+                  <div class="absolute bottom-3 left-4 right-4 text-white">
+                    <span class="inline-block px-2.5 py-0.5 rounded-full bg-[#20402C] text-[11px] font-semibold tracking-wide uppercase mb-1">
+                      Âm sắc mộc bản
+                    </span>
+                    <p class="text-sm sm:text-base font-serif font-bold text-amber-100 leading-snug">
+                      Độc tấu sáo trúc & Dàn nhạc cụ truyền thống
+                    </p>
+                    <p class="text-xs text-stone-300 line-clamp-1 mt-0.5">
+                      Kỹ thuật bấm lỗ, rung hơi và biểu cảm sắc thái chuẩn mực
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Slide 3: Hòa tấu dàn nhạc dân tộc -->
+                <div class="hero-slide absolute inset-0 transition-opacity duration-700 opacity-0 pointer-events-none z-0" data-index="2">
+                  <img 
+                    src="assets/dan-nhac-dan-toc-bieu-dien.jpg" 
+                    alt="Hòa tấu sáo trúc cùng dàn nhạc dân tộc Việt Nam" 
+                    class="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700"
+                    loading="lazy"
+                  >
+                  <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent"></div>
+                  <div class="absolute bottom-3 left-4 right-4 text-white">
+                    <span class="inline-block px-2.5 py-0.5 rounded-full bg-[#881B1B] text-[11px] font-semibold tracking-wide uppercase mb-1">
+                      Dàn nhạc hòa tấu
+                    </span>
+                    <p class="text-sm sm:text-base font-serif font-bold text-amber-100 leading-snug">
+                      Hòa tấu nhạc cụ dân tộc Việt Nam
+                    </p>
+                    <p class="text-xs text-stone-300 line-clamp-1 mt-0.5">
+                      Gìn giữ & phát huy tinh hoa âm nhạc truyền thống Việt Nam
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Top Left Tag Badge -->
+              <div class="absolute top-3.5 left-3.5 z-20">
+                <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-white text-xs font-medium shadow-md">
+                  <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> Sáo Trúc Âu Cơ
+                </div>
+              </div>
+
+              <!-- Top Right Image Counter -->
+              <div class="absolute top-3.5 right-3.5 z-20">
+                <span id="heroSlideCounter" class="px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-white text-xs font-semibold shadow-md">
+                  1 / 3
+                </span>
+              </div>
+            </div>
+
+            <!-- Bottom Thumbnail Selector & Controls -->
+            <div class="mt-3 flex items-center justify-between gap-2 pt-2 border-t border-[#EADFCB]">
+              <div class="flex items-center gap-1.5 sm:gap-2 overflow-x-auto pb-0.5">
+                <button 
+                  type="button" 
+                  onclick="setHeroSlide(0)" 
+                  class="hero-thumb-btn flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border text-xs font-semibold transition-all bg-[#881B1B] text-white border-[#881B1B] shadow-sm whitespace-nowrap"
+                  data-thumb="0"
+                >
+                  <i class="fa-solid fa-microphone-lines text-[10px]"></i> Sân khấu
+                </button>
+                <button 
+                  type="button" 
+                  onclick="setHeroSlide(1)" 
+                  class="hero-thumb-btn flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border text-xs font-medium transition-all bg-white text-[#59524B] border-[#D9CDBB] hover:bg-[#FAF6EE] whitespace-nowrap"
+                  data-thumb="1"
+                >
+                  <i class="fa-solid fa-user text-[10px]"></i> Độc tấu
+                </button>
+                <button 
+                  type="button" 
+                  onclick="setHeroSlide(2)" 
+                  class="hero-thumb-btn flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border text-xs font-medium transition-all bg-white text-[#59524B] border-[#D9CDBB] hover:bg-[#FAF6EE] whitespace-nowrap"
+                  data-thumb="2"
+                >
+                  <i class="fa-solid fa-users text-[10px]"></i> Dàn nhạc
+                </button>
+              </div>
+
+              <!-- Next/Prev Buttons -->
+              <div class="flex items-center gap-1.5 shrink-0">
+                <button 
+                  type="button"
+                  onclick="prevHeroSlide()" 
+                  class="w-7 h-7 rounded-lg bg-[#FAF6EE] hover:bg-[#EADBCA] text-[#59524B] hover:text-[#881B1B] flex items-center justify-center text-xs transition-colors border border-[#D9CDBB] shadow-xs"
+                  aria-label="Ảnh trước"
+                >
+                  <i class="fa-solid fa-chevron-left text-[10px]"></i>
+                </button>
+                <button 
+                  type="button"
+                  onclick="nextHeroSlide()" 
+                  class="w-7 h-7 rounded-lg bg-[#FAF6EE] hover:bg-[#EADBCA] text-[#59524B] hover:text-[#881B1B] flex items-center justify-center text-xs transition-colors border border-[#D9CDBB] shadow-xs"
+                  aria-label="Ảnh tiếp theo"
+                >
+                  <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Floating Experience Pill Badge (Bottom-Left) -->
+          <div class="hidden sm:flex absolute -bottom-3 -left-3 bg-[#FAF6EE]/95 border border-[#D9C4A6] shadow-lg rounded-xl px-3 py-2 items-center gap-2.5 z-20 backdrop-blur-md">
+            <div class="w-8 h-8 rounded-lg bg-[#881B1B] text-white flex items-center justify-center font-bold text-sm shadow-sm">
+              <i class="fa-solid fa-award"></i>
+            </div>
+            <div>
+              <p class="text-xs font-bold text-[#881B1B] leading-none">10+ Năm Giảng Dạy</p>
+              <p class="text-[10px] text-[#59524B] mt-0.5">Biểu diễn chuyên nghiệp</p>
+            </div>
+          </div>
+
+          <!-- Floating Free Learning Pill Badge (Top-Right) -->
+          <div class="hidden sm:flex absolute -top-3 -right-2 bg-[#193822] text-white shadow-lg rounded-xl px-3 py-1.5 items-center gap-2 z-20 border border-emerald-600/30 backdrop-blur-md">
+            <i class="fa-solid fa-circle-check text-[#75C095] text-xs"></i>
+            <span class="text-xs font-medium">100% Cảm âm chuẩn & Miễn phí</span>
+          </div>
+        </div>
 
       </div>
     </div>
@@ -2124,6 +2290,63 @@
       } catch (e) {}
     }
 
+    /* Hero Image Carousel Scripts */
+    let currentHeroIndex = 0;
+    let heroSlideTimer = null;
+
+    function setHeroSlide(index) {
+      const slides = document.querySelectorAll('.hero-slide');
+      const thumbs = document.querySelectorAll('.hero-thumb-btn');
+      const counter = document.getElementById('heroSlideCounter');
+      if (!slides.length) return;
+      
+      currentHeroIndex = (index + slides.length) % slides.length;
+      
+      slides.forEach((slide, idx) => {
+        if (idx === currentHeroIndex) {
+          slide.classList.remove('opacity-0', 'pointer-events-none', 'z-0');
+          slide.classList.add('opacity-100', 'z-10');
+        } else {
+          slide.classList.remove('opacity-100', 'z-10');
+          slide.classList.add('opacity-0', 'pointer-events-none', 'z-0');
+        }
+      });
+
+      thumbs.forEach((thumb, idx) => {
+        if (idx === currentHeroIndex) {
+          thumb.className = 'hero-thumb-btn flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border text-xs font-semibold transition-all bg-[#881B1B] text-white border-[#881B1B] shadow-sm whitespace-nowrap';
+        } else {
+          thumb.className = 'hero-thumb-btn flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border text-xs font-medium transition-all bg-white text-[#59524B] border-[#D9CDBB] hover:bg-[#FAF6EE] whitespace-nowrap';
+        }
+      });
+
+      if (counter) {
+        counter.textContent = `${currentHeroIndex + 1} / ${slides.length}`;
+      }
+    }
+
+    function nextHeroSlide() {
+      setHeroSlide(currentHeroIndex + 1);
+    }
+
+    function prevHeroSlide() {
+      setHeroSlide(currentHeroIndex - 1);
+    }
+
+    function startHeroAutoplay() {
+      if (heroSlideTimer) clearInterval(heroSlideTimer);
+      heroSlideTimer = setInterval(() => {
+        nextHeroSlide();
+      }, 5000);
+    }
+
+    function stopHeroAutoplay() {
+      if (heroSlideTimer) {
+        clearInterval(heroSlideTimer);
+        heroSlideTimer = null;
+      }
+    }
+
     window.addEventListener("DOMContentLoaded", () => {
       loadDynamicSongs();
       renderNoteSelectors();
@@ -2131,6 +2354,7 @@
       renderSongTabs(SONGS_DATA);
       loadFooterSocialLinks();
       syncOnlineSongsFromCloudflare();
+      startHeroAutoplay();
     });
   </script>
   <!-- FIXED MOBILE BOTTOM NAVIGATION BAR -->
