@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Báo Cáo Analytics Nội Bộ | daythoisao.com</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/png" href="/assets/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #FAF6EE;
+      color: #292421;
+    }
+    .font-serif {
+      font-family: 'Lora', serif;
+    }
+    .bg-paper-texture {
+      background-color: #FAF6EE;
+      background-image: radial-gradient(#DCCFB7 0.75px, transparent 0.75px);
+      background-size: 20px 20px;
+    }
+  </style>
+</head>
+<body class="bg-paper-texture min-h-screen flex flex-col text-sm">
+
+  <!-- ================= AUTH SCREEN ================= -->
+  <div id="authScreen" class="fixed inset-0 z-50 bg-[#FAF6EE] flex items-center justify-center p-4">
+    <div class="max-w-md w-full bg-white rounded-3xl p-8 border border-[#D9C4A6] shadow-2xl text-center">
+      <img src="/assets/logo.png" alt="Logo" class="w-16 h-16 mx-auto rounded-full object-cover border-2 border-[#881B1B] shadow-md mb-4">
+      <h1 class="font-serif text-2xl font-bold text-[#881B1B]">daythoisao.com</h1>
+      <p class="text-xs text-stone-500 mt-1 mb-6">Hệ Thống Analytics & Báo Cáo Nội Bộ</p>
+      
+      <form onsubmit="handleLogin(event)" class="space-y-4 text-left">
+        <div>
+          <label class="block text-xs font-bold uppercase text-stone-700 mb-1.5">Mật khẩu quản trị:</label>
+          <input 
+            type="password" 
+            id="passwordInput" 
+            required 
+            placeholder="Nhập mật khẩu quản trị..."
+            class="w-full bg-[#FAF6EE] border border-[#D9CDBB] rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#881B1B]"
+          >
+        </div>
+        <button type="submit" class="w-full py-3 bg-[#881B1B] hover:bg-[#701515] text-white font-bold rounded-xl shadow-md transition-all flex items-center justify-center gap-2">
+          <i class="fa-solid fa-chart-line"></i> Mở Báo Cáo Thống Kê
+        </button>
+      </form>
+      <div class="mt-4">
+        <a href="/" class="text-xs text-stone-500 hover:text-[#881B1B]">← Về trang chủ daythoisao.com</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= MAIN DASHBOARD ================= -->
+  <div id="dashboardApp" class="hidden flex-1 flex flex-col">
+    
+    <!-- Top Bar -->
+    <header class="bg-white/90 backdrop-blur-md border-b border-[#EADFCB] sticky top-0 z-30 px-4 sm:px-8 py-3.5 flex flex-wrap items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <a href="/quan-tri.html" class="flex items-center gap-2.5">
+          <img src="/assets/logo.png" alt="Logo" class="w-9 h-9 rounded-full object-cover border border-[#881B1B]/30">
+          <div>
+            <span class="font-serif font-bold text-base text-[#881B1B] leading-none block">daythoisao.com</span>
+            <span class="text-[11px] text-[#20402C] font-semibold tracking-wider uppercase mt-0.5 block">Internal Analytics</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- Realtime badge & Polling status -->
+      <div class="flex items-center gap-3">
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-semibold shadow-xs">
+          <span class="relative flex h-2.5 w-2.5">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+          </span>
+          <span>Online: <strong id="onlineCount" class="text-emerald-700 text-sm">0</strong></span>
+        </div>
+
+        <button onclick="fetchStats(true)" class="p-2 rounded-xl border border-[#D9CDBB] bg-[#FAF6EE] hover:bg-stone-200 text-stone-700 transition-colors" title="Làm mới dữ liệu">
+          <i class="fa-solid fa-arrows-rotate text-xs" id="refreshIcon"></i>
+        </button>
+
+        <a href="/quan-tri.html" class="px-3 py-1.5 bg-[#881B1B] hover:bg-[#701515] text-white rounded-xl text-xs font-semibold transition-all">
+          <i class="fa-solid fa-sliders"></i> Quản trị
+        </a>
+      </div>
+    </header>
+
+    <!-- Content Area -->
+    <main class="max-w-7xl w-full mx-auto p-4 sm:p-6 lg:p-8 space-y-6 flex-1">
+      
+      <!-- Filter Bar -->
+      <div class="bg-white rounded-2xl p-4 border border-[#E8DFC8] shadow-sm flex flex-wrap items-center justify-between gap-4">
+        <div>
+          <h2 class="font-serif text-xl font-bold text-[#292421]">Báo Cáo Lưu Lượng & Chuyển Đổi</h2>
+          <p class="text-xs text-stone-500 mt-0.5">Dữ liệu cập nhật tự động mỗi 25 giây • Không block render</p>
+        </div>
+
+        <!-- Date Range Buttons -->
+        <div class="flex flex-wrap items-center gap-2">
+          <div class="inline-flex p-1 bg-[#FAF6EE] border border-[#D9CDBB] rounded-xl text-xs font-medium">
+            <button onclick="setRange('today')" id="btn-today" class="px-3 py-1.5 rounded-lg bg-[#881B1B] text-white font-semibold shadow-xs transition-all">
+              Hôm nay
+            </button>
+            <button onclick="setRange('7d')" id="btn-7d" class="px-3 py-1.5 rounded-lg text-stone-700 hover:text-[#881B1B] transition-all">
+              7 ngày qua
+            </button>
+            <button onclick="setRange('30d')" id="btn-30d" class="px-3 py-1.5 rounded-lg text-stone-700 hover:text-[#881B1B] transition-all">
+              30 ngày qua
+            </button>
+          </div>
+
+          <!-- Custom Date Input -->
+          <div class="flex items-center gap-1.5">
+            <input type="date" id="dateFrom" class="bg-[#FAF6EE] border border-[#D9CDBB] rounded-lg px-2.5 py-1 text-xs text-stone-700 outline-none">
+            <span class="text-stone-400 text-xs">→</span>
+            <input type="date" id="dateTo" class="bg-[#FAF6EE] border border-[#D9CDBB] rounded-lg px-2.5 py-1 text-xs text-stone-700 outline-none">
+            <button onclick="applyCustomRange()" class="px-2.5 py-1 bg-[#193822] text-white rounded-lg text-xs font-medium hover:bg-[#122a19]">
+              Lọc
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- KPI Metric Cards Grid -->
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
+        
+        <!-- Card 1: Visitors -->
+        <div class="bg-white rounded-2xl p-4 border border-[#E8DFC8] shadow-xs">
+          <div class="flex items-center justify-between text-stone-400 mb-2">
+            <span class="text-xs font-bold uppercase tracking-wider text-stone-500">Khách xem (Visitors)</span>
+            <i class="fa-solid fa-users text-[#881B1B]"></i>
+          </div>
+          <div class="text-2xl font-bold font-serif text-[#292421]" id="metricVisitors">0</div>
+          <p class="text-[11px] text-stone-500 mt-1">Unique visitor ID</p>
+        </div>
+
+        <!-- Card 2: Pageviews -->
+        <div class="bg-white rounded-2xl p-4 border border-[#E8DFC8] shadow-xs">
+          <div class="flex items-center justify-between text-stone-400 mb-2">
+            <span class="text-xs font-bold uppercase tracking-wider text-stone-500">Lượt xem (Pageviews)</span>
+            <i class="fa-solid fa-eye text-[#20402C]"></i>
+          </div>
+          <div class="text-2xl font-bold font-serif text-[#20402C]" id="metricPageviews">0</div>
+          <p class="text-[11px] text-stone-500 mt-1">Tổng số trang đã xem</p>
+        </div>
+
+        <!-- Card 3: Sessions -->
+        <div class="bg-white rounded-2xl p-4 border border-[#E8DFC8] shadow-xs">
+          <div class="flex items-center justify-between text-stone-400 mb-2">
+            <span class="text-xs font-bold uppercase tracking-wider text-stone-500">Phiên (Sessions)</span>
+            <i class="fa-solid fa-clock-rotate-left text-amber-600"></i>
+          </div>
+          <div class="text-2xl font-bold font-serif text-[#292421]" id="metricSessions">0</div>
+          <p class="text-[11px] text-stone-500 mt-1">Chu kỳ 30 phút</p>
+        </div>
+
+        <!-- Card 4: Zalo Clicks -->
+        <div class="bg-white rounded-2xl p-4 border border-blue-200 bg-gradient-to-br from-white to-blue-50/40 shadow-xs">
+          <div class="flex items-center justify-between text-blue-400 mb-2">
+            <span class="text-xs font-bold uppercase tracking-wider text-blue-900">Click Zalo</span>
+            <i class="fa-solid fa-comment-dots text-blue-600"></i>
+          </div>
+          <div class="text-2xl font-bold font-serif text-blue-700" id="metricZalo">0</div>
+          <p class="text-[11px] text-blue-600/80 mt-1">Liên hệ tư vấn Zalo</p>
+        </div>
+
+        <!-- Card 5: Signup Clicks -->
+        <div class="bg-white rounded-2xl p-4 border border-emerald-200 bg-gradient-to-br from-white to-emerald-50/40 shadow-xs">
+          <div class="flex items-center justify-between text-emerald-400 mb-2">
+            <span class="text-xs font-bold uppercase tracking-wider text-emerald-900">Đăng Ký Học</span>
+            <i class="fa-solid fa-graduation-cap text-emerald-600"></i>
+          </div>
+          <div class="text-2xl font-bold font-serif text-emerald-700" id="metricSignup">0</div>
+          <p class="text-[11px] text-emerald-600/80 mt-1">Bắt đầu học & Lớp học</p>
+        </div>
+
+        <!-- Card 6: Phone Clicks -->
+        <div class="bg-white rounded-2xl p-4 border border-amber-200 bg-gradient-to-br from-white to-amber-50/40 shadow-xs">
+          <div class="flex items-center justify-between text-amber-400 mb-2">
+            <span class="text-xs font-bold uppercase tracking-wider text-amber-900">Click Gọi Điện</span>
+            <i class="fa-solid fa-phone text-amber-600"></i>
+          </div>
+          <div class="text-2xl font-bold font-serif text-amber-700" id="metricPhone">0</div>
+          <p class="text-[11px] text-amber-600/80 mt-1">Hotline 0374 261 368</p>
+        </div>
+      </div>
+
+      <!-- Main Trend Chart -->
+      <div class="bg-white rounded-2xl p-5 sm:p-6 border border-[#E8DFC8] shadow-sm">
+        <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+          <div>
+            <h3 class="font-serif font-bold text-base text-[#292421]">Xu Hướng Truy Cập Theo Ngày</h3>
+            <p class="text-xs text-stone-500">So sánh lượt truy cập (Visitors) và lượt xem trang (Pageviews)</p>
+          </div>
+          <div class="flex items-center gap-4 text-xs">
+            <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-[#881B1B]"></span> Pageviews</span>
+            <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-[#20402C]"></span> Visitors</span>
+          </div>
+        </div>
+
+        <!-- Canvas Chart Container -->
+        <div class="relative w-full h-64 sm:h-72">
+          <canvas id="trendChartCanvas" class="w-full h-full"></canvas>
+        </div>
+      </div>
+
+      <!-- Middle Grid: Sources & Devices -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        
+        <!-- Traffic Sources Breakdown (7 cols) -->
+        <div class="lg:col-span-7 bg-white rounded-2xl p-5 border border-[#E8DFC8] shadow-sm">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="font-serif font-bold text-base text-[#292421]">Nguồn Lưu Lượng (Traffic Sources)</h3>
+            <span class="text-xs text-stone-400">Google • Facebook • Direct • Khác</span>
+          </div>
+          <div class="space-y-3" id="sourcesContainer">
+            <div class="text-center py-6 text-stone-400">Đang tải dữ liệu...</div>
+          </div>
+        </div>
+
+        <!-- Device Breakdown (5 cols) -->
+        <div class="lg:col-span-5 bg-white rounded-2xl p-5 border border-[#E8DFC8] shadow-sm flex flex-col justify-between">
+          <div>
+            <h3 class="font-serif font-bold text-base text-[#292421] mb-1">Thiết Bị Truy Cập</h3>
+            <p class="text-xs text-stone-500 mb-4">Tỷ lệ Mobile, Desktop và Tablet</p>
+            <div class="space-y-3" id="devicesContainer">
+              <div class="text-center py-6 text-stone-400">Đang tải dữ liệu...</div>
+            </div>
+          </div>
+
+          <div class="mt-4 p-3 bg-[#FAF6EE] rounded-xl border border-[#D9CDBB] text-xs text-stone-600">
+            <i class="fa-solid fa-circle-info text-[#881B1B] mr-1"></i> 
+            Tối ưu giao diện cho <strong>Mobile</strong> giúp tăng tối đa tỷ lệ click Zalo và đăng ký học trực tiếp.
+          </div>
+        </div>
+      </div>
+
+      <!-- Top Visited Pages & Landing Pages Table -->
+      <div class="bg-white rounded-2xl border border-[#E8DFC8] shadow-sm overflow-hidden">
+        <div class="p-5 border-b border-[#EADFCB] flex flex-wrap items-center justify-between gap-2">
+          <div>
+            <h3 class="font-serif font-bold text-base text-[#292421]">Hiệu Quả Landing Page & Phễu Chuyển Đổi</h3>
+            <p class="text-xs text-stone-500">Đo lường: Nguồn traffic → Landing page → Hành vi → Click Zalo / Đăng ký học</p>
+          </div>
+          <span class="text-xs px-2.5 py-1 rounded-full bg-[#FAF6EE] border border-[#D9CDBB] text-stone-600">
+            Top Landing Pages
+          </span>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse">
+            <thead>
+              <tr class="bg-[#FAF6EE] text-[11px] font-bold text-stone-600 uppercase tracking-wider border-b border-[#EADFCB]">
+                <th class="py-3 px-4">Landing Page / URL</th>
+                <th class="py-3 px-4 text-center">Khách (Visitors)</th>
+                <th class="py-3 px-4 text-center">Lượt xem (Pageviews)</th>
+                <th class="py-3 px-4 text-center text-blue-700">Click Zalo</th>
+                <th class="py-3 px-4 text-center text-emerald-700">Click Đăng ký</th>
+                <th class="py-3 px-4 text-right">Tỷ lệ chuyển đổi</th>
+              </tr>
+            </thead>
+            <tbody id="landingTableBody" class="divide-y divide-[#EADFCB]/60 text-xs">
+              <tr>
+                <td colspan="6" class="py-8 text-center text-stone-400">Đang tải bảng landing page...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-center py-4 text-xs text-stone-400 border-t border-[#EADFCB] bg-white">
+      daythoisao.com In-House Analytics • Sáo Trúc Âu Cơ © 2026
+    </footer>
+  </div>
+
+  <!-- ================= SCRIPTS ================= -->
+  <script>
+    let currentRange = 'today';
+    let adminToken = '';
+    let autoRefreshTimer = null;
+
+    // 1. Auth check
+    function checkAuth() {
+      const saved = sessionStorage.getItem('DAYTHOISAO_ADMIN_LOGGED') || localStorage.getItem('DAYTHOISAO_ADMIN_PASSWORD');
+      if (saved === 'true' || saved) {
+        adminToken = saved === 'true' ? 'saotrucauco' : saved;
+        document.getElementById('authScreen').classList.add('hidden');
+        document.getElementById('dashboardApp').classList.remove('hidden');
+        fetchStats();
+        startAutoRefresh();
+      }
+    }
+
+    function handleLogin(e) {
+      e.preventDefault();
+      const pwd = document.getElementById('passwordInput').value.trim();
+      const customPwd = localStorage.getItem('DAYTHOISAO_ADMIN_PASSWORD') || 'saotrucauco';
+
+      if (pwd === customPwd || pwd === 'saotrucauco' || pwd === '854123') {
+        adminToken = pwd;
+        sessionStorage.setItem('DAYTHOISAO_ADMIN_LOGGED', 'true');
+        document.getElementById('authScreen').classList.add('hidden');
+        document.getElementById('dashboardApp').classList.remove('hidden');
+        fetchStats();
+        startAutoRefresh();
+      } else {
+        alert('Mật khẩu quản trị không đúng! Vui lòng kiểm tra lại.');
+      }
+    }
+
+    function setRange(range) {
+      currentRange = range;
+      ['today', '7d', '30d'].forEach(r => {
+        const btn = document.getElementById(`btn-${r}`);
+        if (btn) {
+          if (r === range) {
+            btn.className = 'px-3 py-1.5 rounded-lg bg-[#881B1B] text-white font-semibold shadow-xs transition-all';
+          } else {
+            btn.className = 'px-3 py-1.5 rounded-lg text-stone-700 hover:text-[#881B1B] transition-all';
+          }
+        }
+      });
+      fetchStats();
+    }
+
+    function applyCustomRange() {
+      const from = document.getElementById('dateFrom').value;
+      const to = document.getElementById('dateTo').value;
+      if (!from || !to) {
+        alert('Vui lòng chọn cả ngày bắt đầu và ngày kết thúc.');
+        return;
+      }
+      currentRange = 'custom';
+      ['today', '7d', '30d'].forEach(r => {
+        const btn = document.getElementById(`btn-${r}`);
+        if (btn) btn.className = 'px-3 py-1.5 rounded-lg text-stone-700 hover:text-[#881B1B] transition-all';
+      });
+      fetchStats();
+    }
+
+    // 2. Fetch Stats API
+    async function fetchStats(isManual) {
+      const icon = document.getElementById('refreshIcon');
+      if (icon) icon.classList.add('fa-spin');
+
+      try {
+        let url = `/api/analytics/stats?range=${currentRange}&token=${encodeURIComponent(adminToken)}`;
+        if (currentRange === 'custom') {
+          const from = document.getElementById('dateFrom').value;
+          const to = document.getElementById('dateTo').value;
+          url += `&from=${encodeURIComponent(from)}&to=${encodeURIComponent(to)}`;
+        }
+
+        const res = await fetch(url, { headers: { 'Authorization': `Bearer ${adminToken}` } });
+        if (!res.ok) {
+          if (res.status === 401) {
+            sessionStorage.removeItem('DAYTHOISAO_ADMIN_LOGGED');
+            document.getElementById('authScreen').classList.remove('hidden');
+            document.getElementById('dashboardApp').classList.add('hidden');
+            return;
+          }
+          throw new Error('Lỗi tải dữ liệu');
+        }
+
+        const json = await res.json();
+        if (json.success && json.data) {
+          renderData(json.data);
+        }
+      } catch (err) {
+        console.error('Fetch stats error:', err);
+      } finally {
+        if (icon) setTimeout(() => icon.classList.remove('fa-spin'), 600);
+      }
+    }
+
+    function startAutoRefresh() {
+      if (autoRefreshTimer) clearInterval(autoRefreshTimer);
+      autoRefreshTimer = setInterval(() => {
+        fetchStats();
+      }, 25000);
+    }
+
+    // 3. Render Dashboard Data
+    function renderData(data) {
+      // Realtime Online
+      document.getElementById('onlineCount').innerText = data.online_now || 0;
+
+      // Summary
+      const s = data.summary || {};
+      document.getElementById('metricVisitors').innerText = (s.visitors || 0).toLocaleString();
+      document.getElementById('metricPageviews').innerText = (s.pageviews || 0).toLocaleString();
+      document.getElementById('metricSessions').innerText = (s.sessions || 0).toLocaleString();
+      document.getElementById('metricZalo').innerText = (s.zalo_clicks || 0).toLocaleString();
+      document.getElementById('metricSignup').innerText = (s.signup_clicks || 0).toLocaleString();
+      document.getElementById('metricPhone').innerText = (s.phone_clicks || 0).toLocaleString();
+
+      // Traffic Sources
+      renderSources(data.sources || [], s.visitors || 1);
+
+      // Devices
+      renderDevices(data.devices || [], s.visitors || 1);
+
+      // Trend Chart
+      drawTrendChart(data.trend || []);
+
+      // Landing Pages Table
+      renderLandingTable(data.landing_pages || []);
+    }
+
+    function renderSources(sources, totalVisitors) {
+      const el = document.getElementById('sourcesContainer');
+      if (!sources.length) {
+        el.innerHTML = '<div class="text-center py-6 text-stone-400">Chưa có dữ liệu nguồn truy cập</div>';
+        return;
+      }
+
+      const colors = {
+        'Google': 'bg-blue-600',
+        'Facebook': 'bg-indigo-600',
+        'Zalo': 'bg-sky-500',
+        'YouTube': 'bg-red-600',
+        'TikTok': 'bg-stone-900',
+        'Direct': 'bg-emerald-600',
+        'Others': 'bg-stone-400'
+      };
+
+      const icons = {
+        'Google': 'fa-brands fa-google text-blue-600',
+        'Facebook': 'fa-brands fa-facebook text-indigo-600',
+        'Zalo': 'fa-solid fa-comment-dots text-sky-500',
+        'YouTube': 'fa-brands fa-youtube text-red-600',
+        'TikTok': 'fa-brands fa-tiktok text-stone-800',
+        'Direct': 'fa-solid fa-compass text-emerald-600',
+        'Others': 'fa-solid fa-link text-stone-500'
+      };
+
+      el.innerHTML = sources.map(item => {
+        const pct = Math.min(100, Math.round((item.visitors / Math.max(1, totalVisitors)) * 100));
+        const color = colors[item.group_source] || 'bg-[#881B1B]';
+        const icon = icons[item.group_source] || 'fa-solid fa-globe text-stone-500';
+
+        return `
+          <div>
+            <div class="flex items-center justify-between text-xs mb-1">
+              <span class="flex items-center gap-2 font-medium">
+                <i class="${icon} w-4 text-center"></i> ${item.group_source}
+              </span>
+              <span class="font-bold text-stone-700">${item.visitors.toLocaleString()} <span class="text-stone-400 font-normal">(${pct}%)</span></span>
+            </div>
+            <div class="w-full bg-[#FAF6EE] h-2 rounded-full overflow-hidden border border-[#EADFCB]">
+              <div class="${color} h-full rounded-full transition-all duration-500" style="width: ${pct}%"></div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function renderDevices(devices, totalVisitors) {
+      const el = document.getElementById('devicesContainer');
+      if (!devices.length) {
+        el.innerHTML = '<div class="text-center py-6 text-stone-400">Chưa có dữ liệu thiết bị</div>';
+        return;
+      }
+
+      const icons = {
+        'Mobile': 'fa-solid fa-mobile-screen text-[#881B1B]',
+        'Desktop': 'fa-solid fa-laptop text-[#20402C]',
+        'Tablet': 'fa-solid fa-tablet-screen-button text-amber-600'
+      };
+
+      el.innerHTML = devices.map(item => {
+        const pct = Math.min(100, Math.round((item.visitors / Math.max(1, totalVisitors)) * 100));
+        const icon = icons[item.device] || 'fa-solid fa-display text-stone-500';
+
+        return `
+          <div class="flex items-center justify-between p-3 rounded-xl bg-[#FAF6EE] border border-[#EADFCB]">
+            <div class="flex items-center gap-3">
+              <i class="${icon} text-lg"></i>
+              <div>
+                <span class="font-bold text-xs text-stone-800 block">${item.device}</span>
+                <span class="text-[11px] text-stone-500">${item.events.toLocaleString()} lượt tương tác</span>
+              </div>
+            </div>
+            <div class="text-right">
+              <span class="text-sm font-bold text-[#881B1B]">${pct}%</span>
+              <span class="block text-[10px] text-stone-500">${item.visitors} khách</span>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function renderLandingTable(pages) {
+      const tbody = document.getElementById('landingTableBody');
+      if (!pages.length) {
+        tbody.innerHTML = '<tr><td colspan="6" class="py-6 text-center text-stone-400">Chưa có dữ liệu landing page</td></tr>';
+        return;
+      }
+
+      tbody.innerHTML = pages.map(p => {
+        const totalConversions = (p.zalo_clicks || 0) + (p.signup_clicks || 0);
+        const cr = p.visitors > 0 ? ((totalConversions / p.visitors) * 100).toFixed(1) : '0.0';
+
+        return `
+          <tr class="hover:bg-[#FAF6EE]/50 transition-colors">
+            <td class="py-3 px-4">
+              <a href="${p.path}" target="_blank" class="font-medium text-[#881B1B] hover:underline flex items-center gap-1.5">
+                <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-stone-400"></i>
+                <span class="truncate max-w-xs sm:max-w-md">${p.path}</span>
+              </a>
+            </td>
+            <td class="py-3 px-4 text-center font-bold text-stone-700">${(p.visitors || 0).toLocaleString()}</td>
+            <td class="py-3 px-4 text-center text-stone-600">${(p.pageviews || 0).toLocaleString()}</td>
+            <td class="py-3 px-4 text-center font-bold text-blue-700">${(p.zalo_clicks || 0).toLocaleString()}</td>
+            <td class="py-3 px-4 text-center font-bold text-emerald-700">${(p.signup_clicks || 0).toLocaleString()}</td>
+            <td class="py-3 px-4 text-right">
+              <span class="inline-block px-2 py-0.5 rounded-md ${totalConversions > 0 ? 'bg-emerald-100 text-emerald-800 font-bold' : 'bg-stone-100 text-stone-500'} text-xs">
+                ${cr}%
+              </span>
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    // Pure Canvas Line & Bar Trend Chart
+    function drawTrendChart(trendData) {
+      const canvas = document.getElementById('trendChartCanvas');
+      if (!canvas) return;
+
+      const ctx = canvas.getContext('2d');
+      const dpr = window.devicePixelRatio || 1;
+      const rect = canvas.getBoundingClientRect();
+
+      canvas.width = rect.width * dpr;
+      canvas.height = rect.height * dpr;
+      ctx.scale(dpr, dpr);
+
+      const w = rect.width;
+      const h = rect.height;
+
+      ctx.clearRect(0, 0, w, h);
+
+      if (!trendData.length) {
+        ctx.fillStyle = '#9C9388';
+        ctx.font = '13px Plus Jakarta Sans';
+        ctx.textAlign = 'center';
+        ctx.fillText('Chưa có dữ liệu xu hướng cho khoảng thời gian này', w / 2, h / 2);
+        return;
+      }
+
+      const padding = { top: 20, right: 20, bottom: 35, left: 40 };
+      const chartW = w - padding.left - padding.right;
+      const chartH = h - padding.top - padding.bottom;
+
+      const maxVal = Math.max(
+        ...trendData.map(d => Math.max(d.pageviews || 0, d.visitors || 0)),
+        10
+      );
+
+      // Grid lines
+      ctx.strokeStyle = '#EADFCB';
+      ctx.lineWidth = 1;
+      ctx.fillStyle = '#9C9388';
+      ctx.font = '10px Plus Jakarta Sans';
+      ctx.textAlign = 'right';
+
+      const gridSteps = 4;
+      for (let i = 0; i <= gridSteps; i++) {
+        const y = padding.top + (chartH / gridSteps) * i;
+        const val = Math.round(maxVal - (maxVal / gridSteps) * i);
+        ctx.beginPath();
+        ctx.moveTo(padding.left, y);
+        ctx.lineTo(w - padding.right, y);
+        ctx.stroke();
+        ctx.fillText(val.toString(), padding.left - 8, y + 3);
+      }
+
+      const stepX = chartW / Math.max(1, trendData.length - 1);
+
+      // Draw Pageviews Area & Line (Red #881B1B)
+      ctx.beginPath();
+      trendData.forEach((d, idx) => {
+        const x = padding.left + idx * stepX;
+        const y = padding.top + chartH - ((d.pageviews || 0) / maxVal) * chartH;
+        if (idx === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      });
+      ctx.strokeStyle = '#881B1B';
+      ctx.lineWidth = 2.5;
+      ctx.stroke();
+
+      // Draw Visitors Line (Green #20402C)
+      ctx.beginPath();
+      trendData.forEach((d, idx) => {
+        const x = padding.left + idx * stepX;
+        const y = padding.top + chartH - ((d.visitors || 0) / maxVal) * chartH;
+        if (idx === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      });
+      ctx.strokeStyle = '#20402C';
+      ctx.lineWidth = 2.5;
+      ctx.stroke();
+
+      // Points & X Labels
+      ctx.textAlign = 'center';
+      trendData.forEach((d, idx) => {
+        const x = padding.left + idx * stepX;
+        const yPv = padding.top + chartH - ((d.pageviews || 0) / maxVal) * chartH;
+        const yVi = padding.top + chartH - ((d.visitors || 0) / maxVal) * chartH;
+
+        // Dots
+        ctx.fillStyle = '#881B1B';
+        ctx.beginPath();
+        ctx.arc(x, yPv, 3.5, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.fillStyle = '#20402C';
+        ctx.beginPath();
+        ctx.arc(x, yVi, 3.5, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Label
+        if (trendData.length <= 10 || idx % Math.ceil(trendData.length / 7) === 0) {
+          ctx.fillStyle = '#6B625B';
+          const shortDate = d.date ? d.date.substring(5) : '';
+          ctx.fillText(shortDate, x, h - 10);
+        }
+      });
+    }
+
+    // Window resize chart handler
+    window.addEventListener('resize', () => {
+      fetchStats();
+    });
+
+    window.addEventListener('DOMContentLoaded', checkAuth);
+  </script>
+</body>
+</html>

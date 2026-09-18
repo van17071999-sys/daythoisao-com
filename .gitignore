@@ -5,3 +5,4 @@
 .idea/
 deploy.py
 .env*
+.wrangler

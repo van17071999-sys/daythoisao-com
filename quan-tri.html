@@ -151,6 +151,12 @@
           <span class="flex items-center gap-3"><i class="fa-solid fa-newspaper w-4 text-center"></i> Quản lý bài viết</span>
           <span id="badgeArticleCount" class="px-2 py-0.5 text-[10px] font-bold rounded-full bg-emerald-700 text-white">0</span>
         </button>
+        <button onclick="switchTab('analytics'); closeSidebarOnMobile();" id="nav-analytics" class="w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-white/80 hover:bg-white/10 hover:text-white transition-all text-left">
+          <span class="flex items-center gap-3"><i class="fa-solid fa-chart-line w-4 text-center text-amber-400"></i> Báo Cáo Analytics</span>
+          <span class="px-2 py-0.5 text-[10px] font-bold rounded-full bg-emerald-700 text-white flex items-center gap-1">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-300 animate-pulse"></span> Live
+          </span>
+        </button>
         <button onclick="switchTab('settings'); closeSidebarOnMobile();" id="nav-settings" class="w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-white/80 hover:bg-white/10 hover:text-white transition-all text-left">
           <span class="flex items-center gap-3"><i class="fa-solid fa-sliders w-4 text-center"></i> Cài đặt & Donate</span>
         </button>
@@ -674,6 +680,27 @@
                 </button>
               </div>
             </div>
+          </div>
+        </section>
+
+        <!-- ================= TAB 7: BÁO CÁO ANALYTICS NỘI BỘ ================= -->
+        <section id="tab-content-analytics" class="space-y-4 hidden">
+          <div class="bg-white rounded-2xl border border-[#E8DFC8] shadow-sm p-4 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-[#881B1B] text-white flex items-center justify-center font-bold text-lg shadow-sm">
+                <i class="fa-solid fa-chart-line"></i>
+              </div>
+              <div>
+                <h3 class="font-serif text-base font-bold text-[#193822]">Hệ Thống Analytics & Phễu Chuyển Đổi</h3>
+                <p class="text-xs text-stone-500">Xem trực tiếp số liệu lưu lượng, tỷ lệ chuyển đổi Zalo & Đăng ký học</p>
+              </div>
+            </div>
+            <a href="/admin/analytics" target="_blank" class="px-4 py-2 bg-[#FAF6EE] hover:bg-[#EADBCA] border border-[#D9CDBB] text-[#881B1B] font-bold rounded-xl text-xs flex items-center gap-2 transition-all">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i> Mở trang riêng
+            </a>
+          </div>
+          <div class="w-full h-[85vh] rounded-2xl overflow-hidden border border-[#E8DFC8] shadow-sm bg-white">
+            <iframe src="/admin/analytics" class="w-full h-full border-0" title="Analytics Dashboard"></iframe>
           </div>
         </section>
 
@@ -1885,12 +1912,13 @@
     // Switch Tabs
     function switchTab(tabId) {
       currentTab = tabId;
-      const tabs = ['dashboard', 'songs', 'requests', 'articles', 'settings', 'backup'];
+      const tabs = ['dashboard', 'songs', 'requests', 'articles', 'analytics', 'settings', 'backup'];
       const titles = {
         'dashboard': 'Tổng quan hệ thống',
         'songs': 'Quản lý kho cảm âm & Bài tập',
         'requests': 'Hộp thư yêu cầu cảm âm',
         'articles': 'Quản lý bài viết & Kinh nghiệm',
+        'analytics': 'Báo cáo Analytics & Lưu lượng',
         'settings': 'Cài đặt cấu hình & Donate',
         'backup': 'Sao lưu & Phục hồi dữ liệu'
       };
